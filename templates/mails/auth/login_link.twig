@@ -1,0 +1,23 @@
+{% extends layout %}
+
+{% import "mails/macros.twig" as e %}
+
+{% block body %}
+
+{#    {% apply markdown_email %}#}
+
+        Bonjour {{ username }} !
+        ===============================
+
+        Quelqu'un a demandé à un lien de connexion. Vous pouvez l'utiliser en cliquant sur le bouton ci-dessous.
+        Le lien de connexion expire dans {{ leftTime }}.
+
+{#    {% endapply %}#}
+
+    {{ e.button('Se connecter', loginUrl) }}
+
+{#    {% apply markdown_email %}#}
+        Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer cet email.
+{#    {% endapply %}#}
+
+{% endblock %}
