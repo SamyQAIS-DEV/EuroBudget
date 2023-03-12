@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+    web:
+        container_name: eurobudget
+        build:
+            context: ./docker/web/dev
+            target: app_php
+        depends_on:
+            - db
+        env_file:
+            - .env.local
+        healthcheck:
+            interval: 10s
+            timeout: 3s
+            retries: 3
+            start_period: 30s
+        volumes:
+            - ./:/var/www/html/
+            - ~/.composer:/var/composer:cached
+            - ./docker/web/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
+            - ./docker/web/dev/php.ini:/usr/local/etc/php/php.ini
+        ports:
+            - "8025:80"
+
+    db:
+        image: mariadb:10.3.31
+        volumes:
+            - db_data:/var/lib/mysql
+            - ./docker/db/init:/docker-entrypoint-initdb.d
+        env_file:
+            - .env.local
+        ports:
+            - "3325:3306"
+        working_dir: /app
+
+    maildev:
+        image: maildev/maildev
+        ports:
+            - "1080:80"
+        command: "bin/maildev --web 80 --smtp 25 -v --hide-extensions STARTTLS"
+
+volumes:
+    db_data:
