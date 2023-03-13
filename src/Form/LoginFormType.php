@@ -19,7 +19,6 @@ class LoginFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'NotBlank.',

@@ -21,11 +21,10 @@ class GithubAuthenticator extends AbstractSocialAuthenticator
             throw new RuntimeException('Expecting GithubResourceOwner as the first parameter');
         }
         $user = $userRepository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
-        // TODO
-//        if ($user && $user->getGithubId() === null) {
-//            $user->setGithubId($githubUser->getId());
+        if ($user && $user->getGithubId() === null) {
+            $user->setGithubId($githubUser->getId());
             $this->entityManager->flush();
-//        }
+        }
 
         return $user;
     }

@@ -52,12 +52,11 @@ class UserRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('u')
             ->where('u.email = :email')
-            // TODO
-//            ->orWhere("u.{$service}Id = :serviceId")
+            ->orWhere("u.{$service}Id = :serviceId")
             ->setMaxResults(1)
             ->setParameters([
                 'email' => $email,
-//                'serviceId' => $serviceId,
+                'serviceId' => $serviceId,
             ])
             ->getQuery()
             ->getOneOrNullResult();
