@@ -20,7 +20,9 @@ class User implements UserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5, max: 100)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column]

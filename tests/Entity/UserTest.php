@@ -27,12 +27,12 @@ class UserTest extends WebTestCase
     {
         $entity = $this->getValidEntity()->setEmail('');
         $errors = $this->validator->validate($entity);
-        $this->assertCount(1, $errors);
+        $this->assertCount(2, $errors);
     }
 
     public function testInvalidUsedEmailEntity(): void
     {
-        $this->loadFixtureFiles([dirname(__DIR__) . '/fixtures/users.yaml']);
+        $this->loadFixtureFiles(['users']);
         $entity = $this->getValidEntity()->setEmail('user1@domain.fr');
         $errors = $this->validator->validate($entity);
         $this->assertCount(1, $errors);

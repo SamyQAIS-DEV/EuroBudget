@@ -12,7 +12,7 @@ class SocialLoginControllerTest extends WebTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->users = $this->loadFixtureFiles([dirname(__DIR__) . '/fixtures/users.yaml']);
+        $this->users = $this->loadFixtureFiles(['users']);
     }
 
     public function testConnectGithub(): void

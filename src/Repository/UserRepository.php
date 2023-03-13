@@ -31,13 +31,12 @@ class UserRepository extends ServiceEntityRepository
     /**
      * Requête permettant de récupérer un utilisateur pour le login.
      */
-    public function findForAuth(string $username): ?User
+    public function findForAuth(string $email): ?User
     {
         return $this->createQueryBuilder('u')
-            ->where('LOWER(u.email) = :username')
-            ->orWhere('LOWER(u.username) = :username')
+            ->where('LOWER(u.email) = :email')
             ->setMaxResults(1)
-            ->setParameter('username', mb_strtolower($username))
+            ->setParameter('email', mb_strtolower($email))
             ->getQuery()
             ->getOneOrNullResult();
     }

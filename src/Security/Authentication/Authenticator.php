@@ -14,17 +14,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
-use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class Authenticator extends AbstractLoginFormAuthenticator
+class Authenticator extends AbstractAuthenticator
 {
     use TargetPathTrait;
 
@@ -34,6 +31,11 @@ class Authenticator extends AbstractLoginFormAuthenticator
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly UrlMatcherInterface $urlMatcher
     ) {
+    }
+
+    public function supports(Request $request): bool
+    {
+        return false;
     }
 
     public function authenticate(Request $request): Passport
@@ -69,24 +71,8 @@ class Authenticator extends AbstractLoginFormAuthenticator
         return new RedirectResponse($this->urlGenerator->generate(HomeController::HOME_ROUTE_NAME));
     }
 
-    protected function getLoginUrl(Request $request): string
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        return $this->urlGenerator->generate(SecurityController::LOGIN_ROUTE_NAME);
-    }
-
-    /**
-     * @param Request $request
-     * @param AuthenticationException|null $authException
-     * @return Response
-     */
-    public function start(Request $request, AuthenticationException $authException = null): Response
-    {
-        $url = $this->getLoginUrl($request);
-
-        if ('json' === $request->getContentTypeFormat()) {
-            return new JsonResponse([], Response::HTTP_FORBIDDEN);
-        }
-
-        return new RedirectResponse($url);
+        // TODO: Implement onAuthenticationFailure() method.
     }
 }

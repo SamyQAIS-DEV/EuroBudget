@@ -57,18 +57,6 @@ abstract class AbstractSocialAuthenticator extends OAuth2Authenticator
         return $request->attributes->get('_route') === 'oauth_check' && $request->get('service') === $this->serviceName;
     }
 
-    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
-    {
-        dd('start');
-        return new RedirectResponse($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
-    }
-
-    public function getCredentials(Request $request): AccessTokenInterface
-    {
-        dd('getCredentials');
-        return $this->fetchAccessToken($this->getClient());
-    }
-
     public function authenticate(Request $request): Passport
     {
         $client = $this->getClient();
