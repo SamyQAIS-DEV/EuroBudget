@@ -5,6 +5,10 @@ namespace App\Tests;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
@@ -112,5 +116,37 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         self::getContainer()->get(TokenStorageInterface::class)->setToken($key, $csrf);
 
         return $csrf;
+    }
+
+    protected function getSession(): SessionInterface
+    {
+        $this->ensureSessionIsAvailable();
+        $this->client->request('GET', '/contact');
+        return $this->client->getRequest()->getSession();
+    }
+
+    private function ensureSessionIsAvailable(): void
+    {
+        $container = self::getContainer();
+        $requestStack = $container->get('request_stack');
+
+        try {
+            $requestStack->getSession();
+        } catch (SessionNotFoundException) {
+            $session = $container->has('session')
+                ? $container->get('session')
+                : $container->get('session.factory')->createSession();
+
+            $masterRequest = new Request();
+            $masterRequest->setSession($session);
+
+            $requestStack->push($masterRequest);
+
+            $session->start();
+            $session->save();
+
+            $cookie = new Cookie($session->getName(), $session->getId());
+            $this->client->getCookieJar()->set($cookie);
+        }
     }
 }

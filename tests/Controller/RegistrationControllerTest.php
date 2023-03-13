@@ -5,6 +5,8 @@ namespace App\Tests\Controller;
 use App\Service\SocialLoginService;
 use App\Tests\WebTestCase;
 use League\OAuth2\Client\Provider\GithubResourceOwner;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class RegistrationControllerTest extends WebTestCase
 {
@@ -22,28 +24,29 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testOauthRegistration(): void
     {
-        $crawler = $this->client->request('GET', self::SIGNUP_PATH . '?oauth=1');
-
         // Simulates an oauth session
+        $this->client->request('GET', self::SIGNUP_PATH);
         $github = new GithubResourceOwner([
             'email' => 'john@doe.fr',
             'login' => 'JohnDoe',
             'id' => 123123,
         ]);
-        $loginService = self::getContainer()->get(SocialLoginService::class);
-        $this->callMethod($loginService, 'persist', [$github, $this->client->getRequest()]);
-        // TODO
-//        $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
-//        $form->setValues([
-//            'registration_form' => [
-//                'username' => 'Jane Doe',
-//            ],
-//        ]);
-//        $this->client->submit($form);
+        $this->client->getContainer()->get(SocialLoginService::class)->persist($this->getSession(), $github);
+
+        $crawler = $this->client->request('GET', self::SIGNUP_PATH . '?oauth=1');
+        self::assertResponseIsSuccessful();
+
+        $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
+        $form->setValues([
+            'registration_form' => [
+                'email' => 'john@doe.fr',
+                'agreeTerms' => 1
+            ],
+        ]);
+        $this->client->submit($form);
         $this->expectFormErrors(0);
-//        $this->assertResponseRedirects();
-        $this->assertEmailCount(0);
+//        self::assertResponseIsSuccessful();
+        self::assertResponseRedirects();
+        self::assertEmailCount(0);
     }
-
-
 }

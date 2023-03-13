@@ -2,7 +2,9 @@
 
 namespace App\Controller\Social;
 
+use App\Controller\HomeController;
 use App\Service\AuthService;
+use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +17,7 @@ class SocialLoginController extends AbstractController
 {
     private const SCOPES = [
         'github' => ['user:email'],
+        'discord' => ['identify', 'email'],
     ];
 
     public function __construct(private readonly ClientRegistry $clientRegistry)
@@ -31,17 +34,18 @@ class SocialLoginController extends AbstractController
 
     #[Route('/oauth/unlink/{service}', name: 'oauth_unlink')]
     #[IsGranted('ROLE_USER')]
-    // TODO
-//    public function disconnect(string $service, AuthService $authService, EntityManagerInterface $em): RedirectResponse
-//    {
-//        $this->ensureServiceAccepted($service);
-//        $method = 'set'.ucfirst($service).'Id';
+    public function disconnect(string $service, AuthService $authService, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        $this->ensureServiceAccepted($service);
+        // TODO
+//        $method = 'set' . ucfirst($service) . 'Id';
 //        $authService->getUser()->$method(null);
-//        $em->flush();
-//        $this->addFlash('success', 'Votre compte a bien été dissocié de '.$service);
-//
-//        return $this->redirectToRoute('user_edit');
-//    }
+        $entityManager->flush();
+        // TODO : TRAD
+        $this->addFlash('success', 'Votre compte a bien été dissocié de ' . $service);
+
+        return $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
+    }
 
     #[Route('/oauth/check/{service}', name: 'oauth_check')]
     public function check(): Response

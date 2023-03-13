@@ -17,7 +17,9 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator:
+                - App\Security\Authentication\Authenticator
                 - App\Security\Authentication\Social\GithubAuthenticator
+#                - App\Security\Authentication\Social\DiscordAuthenticator
 
             login_link:
                 check_route: login_link_check

@@ -3,7 +3,7 @@
 namespace App\Tests\EventSubscriber;
 
 use App\Entity\User;
-use App\Event\LoginLinkRequestedEvent;
+use App\Event\UserCreatedEvent;
 use App\EventSubscriber\AuthSubscriber;
 use App\Service\MailerService;
 use App\Tests\EventSubscriberTest;
@@ -13,7 +13,7 @@ class AuthSubscriberTest extends EventSubscriberTest
 {
     public function testEventSubscription(): void
     {
-        $this->assertArrayHasKey(LoginLinkRequestedEvent::class, AuthSubscriber::getSubscribedEvents());
+        $this->assertArrayHasKey(UserCreatedEvent::class, AuthSubscriber::getSubscribedEvents());
     }
 
     public function testSendEmail(): void
@@ -23,7 +23,7 @@ class AuthSubscriberTest extends EventSubscriberTest
         $mailer = self::getContainer()->get(MailerService::class);
         $loginLinkHandler = $this->createMock(LoginLinkHandlerInterface::class);
         $subscriber = new AuthSubscriber($mailer, $loginLinkHandler);
-        $event = new LoginLinkRequestedEvent($user);
+        $event = new UserCreatedEvent($user);
         $this->dispatch($subscriber, $event);
 
         $email = self::getMailerMessage();

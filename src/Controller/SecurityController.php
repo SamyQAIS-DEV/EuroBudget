@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Event\LoginLinkRequestedEvent;
+use App\Event\UserCreatedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,12 +32,14 @@ class SecurityController extends AbstractController
             $email = $form->get('email')->getData();
             $user = $userRepository->findOneBy(['email' => $email]);
             if ($user === null) {
+                // TODO : TRAD
                 $this->addFlash('danger', 'This email does not exist');
 
                 return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
             }
 
-            $dispatcher->dispatch(new LoginLinkRequestedEvent($user));
+            $dispatcher->dispatch(new UserCreatedEvent($user));
+            // TODO : TRAD
             $this->addFlash('success', 'Login link sent');
 
             return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);

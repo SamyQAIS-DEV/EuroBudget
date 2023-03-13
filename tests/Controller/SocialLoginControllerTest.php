@@ -27,6 +27,6 @@ class SocialLoginControllerTest extends WebTestCase
         $this->login($this->users['user1']);
         $crawler = $this->client->request('GET', '/oauth/unlink/github');
 
-        self::assertResponseIsSuccessful();
+        self::assertResponseRedirects();
     }
 }

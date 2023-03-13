@@ -23,6 +23,25 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findOneByEmail(string $email): ?User
+    {
+        return $this->findOneBy(['email' => $email]);
+    }
+
+    /**
+     * Requête permettant de récupérer un utilisateur pour le login.
+     */
+    public function findForAuth(string $username): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->where('LOWER(u.email) = :username')
+            ->orWhere('LOWER(u.username) = :username')
+            ->setMaxResults(1)
+            ->setParameter('username', mb_strtolower($username))
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     /**
      * Cherche un utilisateur pour l'oauth.
      */

@@ -17,7 +17,8 @@ class AuthenticationFailureListener implements EventSubscriberInterface
     public function __construct(
         private readonly NormalizerInterface $normalizer,
         private readonly RequestStack $requestStack,
-        private readonly EntityManagerInterface $em
+        private readonly EntityManagerInterface $entityManager,
+        private readonly SocialLoginService $socialLoginService,
     ) {
     }
 
@@ -41,8 +42,7 @@ class AuthenticationFailureListener implements EventSubscriberInterface
 
     public function onUserNotFound(UserOauthNotFoundException $exception): void
     {
-        $data = $this->normalizer->normalize($exception->getResourceOwner());
-        $this->requestStack->getSession()->set(SocialLoginService::SESSION_KEY, $data);
+        $this->socialLoginService->persist($this->requestStack->getSession(), $exception->getResourceOwner());
     }
 
     public function onUserAlreadyAuthenticated(UserAuthenticatedException $exception): void
@@ -53,7 +53,7 @@ class AuthenticationFailureListener implements EventSubscriberInterface
         $data = $this->normalizer->normalize($exception->getResourceOwner());
         $setter = 'set'.ucfirst($data['type']).'Id';
         $user->$setter($resourceOwner->getId());
-        $this->em->flush();
+        $this->entityManager->flush();
         $session = $this->requestStack->getSession();
         if ($session instanceof Session) {
             $session->getFlashBag()->set('success', 'Votre compte a bien été associé à ' . $data['type']);

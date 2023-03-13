@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Event\LoginLinkRequestedEvent;
+use App\Event\UserCreatedEvent;
 use App\Helper\TimeHelper;
 use App\Service\MailerService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -23,15 +23,18 @@ class AuthSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            LoginLinkRequestedEvent::class => 'onLoginLinkRequest'
+            UserCreatedEvent::class => 'onRegister'
         ];
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    public function onLoginLinkRequest(LoginLinkRequestedEvent $event): void
+    public function onRegister(UserCreatedEvent $event): void
     {
+        if ($event->isUsingOauth()) {
+            return;
+        }
         $user = $event->getUser();
         $loginLink = $this->loginLinkHandler->createLoginLink($user);
 
