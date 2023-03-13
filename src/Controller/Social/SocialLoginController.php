@@ -18,6 +18,8 @@ class SocialLoginController extends AbstractController
     private const SCOPES = [
         'github' => ['user:email'],
         'discord' => ['identify', 'email'],
+        'facebook' => ['email'],
+        'linkedin' => ['email'],
     ];
 
     public function __construct(private readonly ClientRegistry $clientRegistry)

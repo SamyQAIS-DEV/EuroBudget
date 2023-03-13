@@ -22,10 +22,10 @@ class GithubAuthenticator extends AbstractSocialAuthenticator
         }
         $user = $userRepository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
         // TODO
-        if ($user && null === $user->getGithubId()) {
-            $user->setGithubId($githubUser->getId());
+//        if ($user && $user->getGithubId() === null) {
+//            $user->setGithubId($githubUser->getId());
             $this->entityManager->flush();
-        }
+//        }
 
         return $user;
     }

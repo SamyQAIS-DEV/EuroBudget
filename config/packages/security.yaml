@@ -20,6 +20,8 @@ security:
                 - App\Security\Authentication\Authenticator
                 - App\Security\Authentication\Social\GithubAuthenticator
 #                - App\Security\Authentication\Social\DiscordAuthenticator
+#                - App\Security\Authentication\Social\FacebookAuthenticator
+#                - App\Security\Authentication\Social\LinkedInAuthenticator
 
             login_link:
                 check_route: login_link_check

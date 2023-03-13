@@ -1,14 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title "Inscription" %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="auth-title fade">
+        {% if oauth_type %}
+            Se connecter avec {{ oauth_type }}
+        {% else %}
+            S'inscrire
+        {% endif %}
+    </h1>
+
+    {% if oauth_registration %}
+        <div>
+            Il ne vous reste plus qu'à confirmer
+        </div>
+    {% endif %}
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.agreeTerms) }}
-
         <button type="submit" class="btn">S'inscrire</button>
+        <p>
+            <small class="text-muted">Vos données personnelles (email et nom d'utilisateur) ne sont utilisées qu'à des fins d'authentification et ne sont pas partagées avec des tiers (<a href="#">En savoir plus</a>).</small>
+        </p>
     {{ form_end(registrationForm) }}
+
+    <a href="{{ path('oauth_connect', {service: 'github'}) }}">Se connecter avec GitHub</a>
+    <a href="{{ path('oauth_connect', {service: 'google'}) }}">Se connecter avec Discord</a>
+    <a href="{{ path('oauth_connect', {service: 'facebook'}) }}">Se connecter avec Facebook</a>
+    <a href="{{ path('oauth_connect', {service: 'facebook'}) }}">Se connecter avec LinkedIn</a>
 {% endblock %}

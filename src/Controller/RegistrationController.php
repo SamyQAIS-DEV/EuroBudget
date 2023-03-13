@@ -65,6 +65,9 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'menu' => 'register',
+            'oauth_registration' => $request->get('oauth'),
+            'oauth_type' => $socialLoginService->getOauthType($request->getSession()),
         ]);
     }
 }

@@ -41,9 +41,9 @@ class SocialLoginService
         return true;
     }
 
-    public function getOauthType(): ?string
+    public function getOauthType(SessionInterface $session): ?string
     {
-        $oauthData = $this->requestStack->getSession()->get(self::SESSION_KEY);
+        $oauthData = $session->get(self::SESSION_KEY);
 
         return $oauthData ? $oauthData['type'] : null;
     }
