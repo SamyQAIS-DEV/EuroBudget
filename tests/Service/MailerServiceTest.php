@@ -2,7 +2,6 @@
 
 namespace App\Tests\Service;
 
-use App\Service\CalculatorService;
 use App\Service\MailerService;
 use App\Tests\KernelTestCase;
 

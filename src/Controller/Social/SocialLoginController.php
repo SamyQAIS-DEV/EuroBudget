@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Social;
 
-//use App\Domain\Auth\AuthService;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AuthService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,6 +31,7 @@ class SocialLoginController extends AbstractController
 
     #[Route('/oauth/unlink/{service}', name: 'oauth_unlink')]
     #[IsGranted('ROLE_USER')]
+    // TODO
 //    public function disconnect(string $service, AuthService $authService, EntityManagerInterface $em): RedirectResponse
 //    {
 //        $this->ensureServiceAccepted($service);

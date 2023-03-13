@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\RegistrationFormType;
-use App\Service\LoginLinkService;
+use App\Service\SocialLoginService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -21,9 +21,16 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         EntityManagerInterface $entityManager,
+        SocialLoginService $socialLoginService,
         EventDispatcherInterface $dispatcher
     ): Response {
+        if ($this->getUser()) {
+            return $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
+        }
+
         $user = new User();
+        // Si l'utilisateur provient de l'oauth, on préremplit ses données
+        $isOauthUser = $request->get('oauth') ? $socialLoginService->hydrate($user) : false;
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

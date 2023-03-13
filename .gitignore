@@ -1,3 +1,14 @@
+/public/uploads
+*.sql
+
+# Assets
+/assets/css/app.css
+/assets/css/app.css.map
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+.vault_pass
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -10,6 +21,7 @@
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
+.phpunit
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
