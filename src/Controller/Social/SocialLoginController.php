@@ -18,8 +18,6 @@ class SocialLoginController extends AbstractController
     private const SCOPES = [
         'github' => ['user:email'],
         'discord' => ['identify', 'email'],
-        'facebook' => ['email'],
-        'linkedin' => ['email'],
     ];
 
     public function __construct(private readonly ClientRegistry $clientRegistry)
@@ -39,9 +37,8 @@ class SocialLoginController extends AbstractController
     public function disconnect(string $service, AuthService $authService, EntityManagerInterface $entityManager): RedirectResponse
     {
         $this->ensureServiceAccepted($service);
-        // TODO
-//        $method = 'set' . ucfirst($service) . 'Id';
-//        $authService->getUser()->$method(null);
+        $method = 'set' . ucfirst($service) . 'Id';
+        $authService->getUser()->$method(null);
         $entityManager->flush();
         // TODO : TRAD
         $this->addFlash('success', 'Votre compte a bien été dissocié de ' . $service);

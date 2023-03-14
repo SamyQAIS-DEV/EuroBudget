@@ -29,7 +29,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testSEO(): void
     {
-        $crawler = $this->client->request('GET', self::SIGNUP_PATH);
+        $this->client->request('GET', self::SIGNUP_PATH);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertPageTitleContains(self::PAGE_TITLE);
         $this->expectH1(self::TITLE);
@@ -154,8 +154,7 @@ class RegistrationControllerTest extends WebTestCase
         ]);
         $this->client->submit($form);
         $this->expectFormErrors(0);
-        // TODO Checker message
-        self::assertResponseRedirects();
+        self::assertResponseRedirects('/');
         self::assertEmailCount(0);
         $this->assertSame(7, $this->repository->count([]));
     }

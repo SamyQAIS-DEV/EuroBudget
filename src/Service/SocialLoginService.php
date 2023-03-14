@@ -32,11 +32,9 @@ class SocialLoginService
             return false;
         }
         $user->setEmail($oauthData['email']);
-//        $user->setGithubId($oauthData['github_id'] ?? null);
-//        $user->setDiscordId($oauthData['discord_id'] ?? null);
-//        $user->setFacebookId($oauthData['facebook_id'] ?? null);
-//        $user->setUsername($oauthData['username']);
-//        $user->setConfirmationToken(null);
+        $user->setGithubId($oauthData['github_id'] ?? null);
+        $user->setDiscordId($oauthData['discord_id'] ?? null);
+        // TODO Hydrate user if needed
 
         return true;
     }

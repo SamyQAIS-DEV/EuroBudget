@@ -52,7 +52,7 @@ abstract class AbstractSocialAuthenticator extends OAuth2Authenticator
     public function supports(Request $request): bool
     {
         if ('' === $this->serviceName) {
-            throw new RuntimeException('You must set a $serviceName property (for instance "github", "discord", "facebook")');
+            throw new RuntimeException('You must set a $serviceName property (for instance "github", "discord")');
         }
         return $request->attributes->get('_route') === 'oauth_check' && $request->get('service') === $this->serviceName;
     }
@@ -109,7 +109,7 @@ abstract class AbstractSocialAuthenticator extends OAuth2Authenticator
             return new RedirectResponse($this->router->generate(RegistrationController::REGISTER_ROUTE_NAME, ['oauth' => 1]));
         }
 
-        // TODO
+        // TODO : Tests association compte déjà connecté
         if ($exception instanceof UserAuthenticatedException) {
             return new RedirectResponse($this->router->generate('user_edit'));
         }

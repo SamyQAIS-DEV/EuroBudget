@@ -26,8 +26,5 @@
         </p>
     {{ form_end(registrationForm) }}
 
-    <a href="{{ path('oauth_connect', {service: 'github'}) }}">Se connecter avec GitHub</a>
-    <a href="{{ path('oauth_connect', {service: 'google'}) }}">Se connecter avec Discord</a>
-    <a href="{{ path('oauth_connect', {service: 'facebook'}) }}">Se connecter avec Facebook</a>
-    <a href="{{ path('oauth_connect', {service: 'facebook'}) }}">Se connecter avec LinkedIn</a>
+    {% include 'auth/_social_login_buttons.html.twig' %}
 {% endblock %}

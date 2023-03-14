@@ -1,0 +1,28 @@
+<header class="header" style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 100px;">
+    <a href="{{ path('home') }}" title="Accueil" class="nav__logo">
+        Accueil
+    </a>
+
+    <div class="nav__menu">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="#" title="Item" class="nav__link">
+                    <small class="nav__name">Item</small>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="nav__side">
+        <li class="header__menu">
+            <ul id="menu">
+                {% if app.user %}
+                    <li><a href="{{ path('logout') }}" title="Déconnexion" class="menu__link">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ path('login') }}" title="Connexion" class="menu__link">Connexion</a></li>
+                    <li><a href="{{ path('register') }}" title="Inscription" class="menu__link">Inscription</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</header>

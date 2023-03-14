@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,28 +50,36 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     /**
      * Vérifie si on a un message de succès.
      */
-    public function expectAlert(string $type, ?string $message = null): void
+    public function expectAlert(string $type, ?string $message = null, int $count = 1): void
     {
-        $this->assertEquals(1, $this->client->getCrawler()->filter("alert-message[type=\"$type\"], alert-floating[type=\"$type\"]")->count());
+        $this->assertEquals($count, $this->client->getCrawler()->filter('.alerts alert-element[type="' . $type . '"]')->count());
         if ($message) {
-            $this->assertStringContainsString($message, $this->client->getCrawler()->filter("alert-message[type=\"$type\"], alert-floating[type=\"$type\"]")->text());
+            $this->assertStringContainsString($message, $this->client->getCrawler()->filter('.alerts alert-element[type="' . $type . '"]')->text());
         }
     }
 
     /**
      * Vérifie si on a un message d'erreur.
      */
-    public function expectErrorAlert(): void
+    public function expectErrorAlert(int $count = 1): void
     {
-        $this->assertEquals(1, $this->client->getCrawler()->filter('alert-message[type="danger"], alert-message[type="error"]')->count());
+        $this->assertEquals($count, $this->client->getCrawler()->filter('.alerts alert-element[type="danger"], .alerts alert-element[type="error"]')->count());
+    }
+
+    /**
+     * Vérifie si on a un message d'erreur via le texte.
+     */
+    public function expectErrorAlertMessage(string $message): void
+    {
+        $this->assertStringContainsString($message, $this->client->getCrawler()->filter('alerts alert-element[type="danger"], .alerts alert-element[type="error"]')->text());
     }
 
     /**
      * Vérifie si on a un message de succès.
      */
-    public function expectSuccessAlert(): void
+    public function expectSuccessAlert(?string $message = null): void
     {
-        $this->expectAlert('success');
+        $this->expectAlert('success', $message);
     }
 
     public function expectFormErrors(?int $expectedErrors = null): void
@@ -110,12 +119,34 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         $this->client->loginUser($user);
     }
 
+    protected function checkLoggedIn()
+    {
+        $this->getRequest();
+        $security = self::getContainer()->get(Security::class);
+        dd(true === self::getContainer()->get('security.authorization_checker')->isGranted('ROLE_USER'));
+        dd($security->isGranted('IS_AUTHENTICATED_FULLY'));
+//        if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
+
+            //            return true;        }
+//        dd($security->isGranted('ROLE_USER'));
+//        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+
+        return false;
+    }
+
     public function setCsrf(string $key): string
     {
         $csrf = uniqid();
         self::getContainer()->get(TokenStorageInterface::class)->setToken($key, $csrf);
 
         return $csrf;
+    }
+
+    protected function getRequest(): Request
+    {
+        $this->ensureSessionIsAvailable();
+        $this->client->request('GET', '/contact');
+        return $this->client->getRequest();
     }
 
     protected function getSession(): SessionInterface

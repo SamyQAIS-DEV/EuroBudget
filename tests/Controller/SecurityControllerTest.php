@@ -5,10 +5,12 @@ namespace App\Tests\Controller;
 use App\Entity\User;
 use App\Tests\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class SecurityControllerTest extends WebTestCase
 {
     private const SIGNIN_PATH = '/connexion';
+    private const LOGIN_CHECK_PATH = '/login-link-check';
     private const PAGE_TITLE = 'Connexion';
     private const TITLE = 'Se connecter';
     private const SIGNIN_BUTTON = 'Se connecter';
@@ -18,7 +20,7 @@ class SecurityControllerTest extends WebTestCase
 
     public function testSEO(): void
     {
-        $crawler = $this->client->request('GET', self::SIGNIN_PATH);
+        $this->client->request('GET', self::SIGNIN_PATH);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertPageTitleContains(self::PAGE_TITLE);
         $this->expectH1(self::TITLE);
@@ -38,8 +40,8 @@ class SecurityControllerTest extends WebTestCase
         $this->expectFormErrors(0);
         self::assertEmailCount(1);
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
-        // TODO Checker message
-        //        $this->expectAlert('success');
+        $this->client->followRedirect();
+        $this->expectSuccessAlert('Login link sent');
     }
 
     public function testLoginNotExistingEmail(): void
@@ -73,48 +75,28 @@ class SecurityControllerTest extends WebTestCase
         self::assertEmailCount(0);
     }
 
-    // TODO
-//    public function testConfirmationTokenInvalid(): void
-//    {
-//        /** @var User[] $users */
-//        $users = $this->loadFixtures(['users']);
-//        $user = $users['user_unconfirmed'];
-//
-//        $this->client->request('GET', self::CONFIRMATION_PATH.$user->getId().'?token=azeazeaze');
-//        $this->assertResponseRedirects(self::SIGNIN_PATH);
-//        $this->client->followRedirect();
-//        $this->expectErrorAlert();
-//    }
+    public function testConfirmationTokenInvalid(): void
+    {
+        $this->users = $this->loadFixtureFiles(['users']);
+        $user = $this->users['user1'];
+        $this->client->request('GET', self::LOGIN_CHECK_PATH . '?user=' . $user->getEmail() . '&expires=11111&hash=wronghash');
+        self::assertResponseRedirects(self::SIGNIN_PATH);
+        $this->client->followRedirect();
+        $this->expectErrorAlert();
+    }
 
-    // TODO
-//    public function testConfirmationTokenValid(): void
-//    {
-//        /** @var User[] $users */
-//        $users = $this->loadFixtures(['users']);
-//        $user = $users['user_unconfirmed'];
-//        $user->setCreatedAt(new \DateTime());
-//        $this->em->flush();
-//
-//        $this->client->request('GET', self::CONFIRMATION_PATH.$user->getId().'?token='.$user->getConfirmationToken());
-//        $this->assertResponseRedirects();
-//        $this->client->followRedirect();
-//        $this->expectSuccessAlert();
-//    }
+    public function testConfirmationTokenValid(): void
+    {
+        $this->users = $this->loadFixtureFiles(['users']);
+        $user = $this->users['user1'];
+        $this->client->request('GET', self::SIGNIN_PATH);
 
-    // TODO
-//    public function testConfirmationTokenExpire(): void
-//    {
-//        /** @var User[] $users */
-//        $users = $this->loadFixtures(['users']);
-//        $user = $users['user_unconfirmed'];
-//        $user->setCreatedAt(new \DateTime('-1 day'));
-//        $this->em->flush();
-//
-//        $this->client->request('GET', self::CONFIRMATION_PATH.$user->getId().'?token='.$user->getConfirmationToken());
-//        $this->assertResponseRedirects(self::SIGNIN_PATH);
-//        $this->client->followRedirect();
-//        $this->expectErrorAlert();
-//    }
+        $loginLinkHandler = self::getContainer()->get(LoginLinkHandlerInterface::class);
+        $loginLink = $loginLinkHandler->createLoginLink($user, $this->getRequest());
+
+        $this->client->request('GET', $loginLink->getUrl());
+        self::assertResponseRedirects('/');
+    }
 
     public function testRedirectIfLogged(): void
     {

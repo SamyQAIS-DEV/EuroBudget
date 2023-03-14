@@ -63,7 +63,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute(self::REGISTER_ROUTE_NAME);
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('auth/register.html.twig', [
             'registrationForm' => $form->createView(),
             'menu' => 'register',
             'oauth_registration' => $request->get('oauth'),
