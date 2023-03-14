@@ -6,7 +6,6 @@ use App\Tests\WebTestCase;
 
 class SocialLoginControllerTest extends WebTestCase
 {
-
     private array $users = [];
 
     public function setUp(): void

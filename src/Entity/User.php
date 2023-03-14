@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Attribute\Encrypted;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -9,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], repositoryMethod: 'findEncryptedProperty')]
 class User implements UserInterface
 {
     use SocialLoggableTrait;
@@ -23,6 +24,7 @@ class User implements UserInterface
     #[Assert\NotBlank]
     #[Assert\Length(min: 5, max: 100)]
     #[Assert\Email]
+    #[Encrypted]
     private ?string $email = null;
 
     #[ORM\Column]

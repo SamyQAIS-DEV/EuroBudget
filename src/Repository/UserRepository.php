@@ -3,24 +3,17 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<User>
- *
- * @method User|null find($id, $lockMode = null, $lockVersion = null)
- * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
- * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @extends AbstractRepository<User>
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends AbstractRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private readonly EncryptorInterface $encryptor)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($registry, User::class, $encryptor);
     }
 
     public function findOneByEmail(string $email): ?User
@@ -34,9 +27,9 @@ class UserRepository extends ServiceEntityRepository
     public function findForAuth(string $email): ?User
     {
         return $this->createQueryBuilder('u')
-            ->where('LOWER(u.email) = :email')
+            ->where('u.email = :email')
             ->setMaxResults(1)
-            ->setParameter('email', mb_strtolower($email))
+            ->setParameter('email', mb_strtolower($this->encryptor->encrypt($email)))
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -55,7 +48,7 @@ class UserRepository extends ServiceEntityRepository
             ->orWhere("u.{$service}Id = :serviceId")
             ->setMaxResults(1)
             ->setParameters([
-                'email' => $email,
+                'email' => mb_strtolower($this->encryptor->encrypt($email)),
                 'serviceId' => $serviceId,
             ])
             ->getQuery()

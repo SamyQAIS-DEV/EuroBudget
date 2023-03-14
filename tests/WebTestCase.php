@@ -119,21 +119,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         $this->client->loginUser($user);
     }
 
-    protected function checkLoggedIn()
-    {
-        $this->getRequest();
-        $security = self::getContainer()->get(Security::class);
-        dd(true === self::getContainer()->get('security.authorization_checker')->isGranted('ROLE_USER'));
-        dd($security->isGranted('IS_AUTHENTICATED_FULLY'));
-//        if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
-
-            //            return true;        }
-//        dd($security->isGranted('ROLE_USER'));
-//        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-
-        return false;
-    }
-
     public function setCsrf(string $key): string
     {
         $csrf = uniqid();
