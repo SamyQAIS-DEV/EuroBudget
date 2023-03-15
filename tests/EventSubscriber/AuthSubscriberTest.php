@@ -5,12 +5,19 @@ namespace App\Tests\EventSubscriber;
 use App\Entity\User;
 use App\Event\LoginLinkRequestedEvent;
 use App\EventSubscriber\AuthSubscriber;
+use App\Service\LoginLinkService;
 use App\Service\MailerService;
 use App\Tests\EventSubscriberTest;
-use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class AuthSubscriberTest extends EventSubscriberTest
 {
+    private LoginLinkService $loginLinkService;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->loginLinkService = $this->getContainer()->get(LoginLinkService::class);
+    }
     public function testEventSubscription(): void
     {
         $this->assertArrayHasKey(LoginLinkRequestedEvent::class, AuthSubscriber::getSubscribedEvents());
@@ -18,11 +25,10 @@ class AuthSubscriberTest extends EventSubscriberTest
 
     public function testSendEmail(): void
     {
-        $user = (new User())
-            ->setEmail('test@samyqais.fr');
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtureFiles(['users']);
         $mailer = self::getContainer()->get(MailerService::class);
-        $loginLinkHandler = $this->createMock(LoginLinkHandlerInterface::class);
-        $subscriber = new AuthSubscriber($mailer, $loginLinkHandler);
+        $subscriber = new AuthSubscriber($mailer, $this->loginLinkService);
         $event = new LoginLinkRequestedEvent($user);
         $this->dispatch($subscriber, $event);
 

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -11,14 +12,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserRepository extends AbstractRepository
 {
-    public function __construct(ManagerRegistry $registry, private readonly EncryptorInterface $encryptor)
-    {
-        parent::__construct($registry, User::class, $encryptor);
+    public function __construct(
+        ManagerRegistry $registry,
+        EncryptedPropertiesAccessor $encryptedPropertiesAccessor,
+        private readonly EncryptorInterface $encryptor
+    ) {
+        parent::__construct($registry, User::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
     public function findOneByEmail(string $email): ?User
     {
-        return $this->findOneBy(['email' => $this->encryptor->encrypt($email)]);
+        return $this->findOneBy(['email' => $email]);
     }
 
     /**

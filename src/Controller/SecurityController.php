@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
             $user = $userRepository->findOneByEmail($email);
             if ($user === null) {
                 // TODO : TRAD
-                $this->addFlash('danger', 'This email does not exist');
+                $this->addFlash('error', 'This email does not exist');
 
                 return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
             }
@@ -58,23 +58,22 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/auth/check/{id<\d+>}/{token}', name: self::CHECK_ROUTE_NAME)]
+    #[Route(path: '/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
     public function check(
         Request $request,
-        User $user,
         #[MapEntity(mapping: ['token' => 'token'])]
         ?LoginLinkToken $loginLink,
         UserAuthenticatorInterface $authenticator,
         Authenticator $appAuthenticator,
     ): Response
     {
-        if (!$loginLink || $loginLink->isExpired() || $loginLink->getUser() !== $user) {
+        if (!$loginLink || $loginLink->isExpired()) {
             $this->addFlash('error', 'Token Expired');
 
             return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
         }
 
-        return $authenticator->authenticateUser($user, $appAuthenticator, $request) ?: $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
+        return $authenticator->authenticateUser($loginLink->getUser(), $appAuthenticator, $request) ?: $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
     }
 
     #[Route(path: '/logout', name: self::LOGOUT_ROUTE_NAME)]

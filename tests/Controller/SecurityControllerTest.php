@@ -2,26 +2,33 @@
 
 namespace App\Tests\Controller;
 
+use App\Controller\SecurityController;
+use App\Entity\LoginLinkToken;
 use App\Entity\User;
-use App\Service\Encryptors\EncryptorInterface;
 use App\Tests\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class SecurityControllerTest extends WebTestCase
 {
-    private const LOGIN_ROUTE_PATH = '/connexion';
-    private const CHECK_ROUTE_PATH = '/auth/check';
     private const PAGE_TITLE = 'Connexion';
     private const TITLE = 'Se connecter';
     private const SIGNIN_BUTTON = 'Se connecter';
 
+    private Router $router;
+
     /** @var User[] */
     private array $users = [];
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->router = $this->client->getContainer()->get('router');
+    }
+
     public function testSEO(): void
     {
-        $this->client->request('GET', self::LOGIN_ROUTE_PATH);
+        $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertPageTitleContains(self::PAGE_TITLE);
         $this->expectH1(self::TITLE);
@@ -30,7 +37,7 @@ class SecurityControllerTest extends WebTestCase
     public function testLoginExistingEmailSendMail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $crawler = $this->client->request('GET', self::LOGIN_ROUTE_PATH);
+        $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
             'login_form' => [
@@ -48,7 +55,7 @@ class SecurityControllerTest extends WebTestCase
     public function testLoginNotExistingEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $crawler = $this->client->request('GET', self::LOGIN_ROUTE_PATH);
+        $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
             'login_form' => [
@@ -64,7 +71,7 @@ class SecurityControllerTest extends WebTestCase
     public function testWithLongEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $crawler = $this->client->request('GET', self::LOGIN_ROUTE_PATH);
+        $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
             'login_form' => [
@@ -76,36 +83,42 @@ class SecurityControllerTest extends WebTestCase
         self::assertEmailCount(0);
     }
 
-    public function testConfirmationTokenInvalid(): void
+    public function testNotFoundLoginLink(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
-        $user = $this->users['user1'];
-        $this->client->request('GET', self::CHECK_ROUTE_PATH . '?user=' . $user->getEmail() . '&expires=11111&hash=wronghash');
-        self::assertResponseRedirects(self::LOGIN_ROUTE_PATH);
+        $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => 'coucou']);
+        $this->client->request('GET', $route);
+        self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $this->client->followRedirect();
-        $this->expectErrorAlert();
+        $this->expectErrorAlert('Token Expired');
+    }
+
+    public function testExpiredLoginLink(): void
+    {
+        /** @var LoginLinkToken $loginLink */
+        ['user2_token' => $loginLink] = $this->loadFixtureFiles(['login-link-tokens']);
+        $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
+        $this->client->request('GET', $route);
+        self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
+        $this->client->followRedirect();
+        $this->expectErrorAlert('Token Expired');
     }
 
     public function testConfirmationTokenValid(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
-        $user = $this->users['user1'];
-        $encryptor = self::getContainer()->get(EncryptorInterface::class);
-        $user->setEmail($encryptor->encrypt($user->getEmail()));
-        $this->client->request('GET', self::LOGIN_ROUTE_PATH);
-
-        $loginLinkHandler = self::getContainer()->get(LoginLinkHandlerInterface::class);
-        $loginLink = $loginLinkHandler->createLoginLink($user, $this->getRequest());
-
-        $this->client->request('GET', $loginLink->getUrl());
+        /** @var LoginLinkToken $loginLink */
+        ['user1_token' => $loginLink] = $this->loadFixtureFiles(['login-link-tokens']);
+        $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
+        $this->client->request('GET', $route);
         self::assertResponseRedirects('/');
+        $this->client->followRedirect();
+        $this->expectSuccessAlert('Connecté');
     }
 
     public function testRedirectIfLogged(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
         $this->login($this->users['user1']);
-        $this->client->request('GET', self::LOGIN_ROUTE_PATH);
+        $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         self::assertResponseRedirects('/');
     }
 }

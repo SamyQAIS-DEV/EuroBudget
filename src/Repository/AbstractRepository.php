@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -12,9 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @template T of object
  *
  * @method T|null find($id, $lockMode = null, $lockVersion = null)
- * @method T|null findOneBy(array $criteria, array $orderBy = null)
  * @method T[]    findAll()
- * @method T[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 abstract class AbstractRepository extends ServiceEntityRepository
 {
@@ -26,22 +25,36 @@ abstract class AbstractRepository extends ServiceEntityRepository
     public function __construct(
         ManagerRegistry $registry,
         string $entityClass,
+        private readonly EncryptedPropertiesAccessor $encryptedPropertiesAccessor,
         private readonly EncryptorInterface $encryptor
     ) {
         parent::__construct($registry, $entityClass);
     }
 
-    public function findEncryptedProperty(array $conditions): array
+    public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null): array
     {
-        return $this->findEncryptedPropertyQuery($conditions)->getResult();
+        return $this->findByQuery($criteria)->getResult();
     }
 
     /**
      * @return T|null
      */
-    public function findOneEncryptedProperty(array $conditions): ?object
+    public function findOneBy(array $criteria, ?array $orderBy = null): ?object
     {
-        return $this->findEncryptedPropertyQuery($conditions)->setMaxResults(1)->getOneOrNullResult();
+        return $this->findByQuery($criteria)->setMaxResults(1)->getOneOrNullResult();
+    }
+
+    public function findByOr(array $criteria): array
+    {
+        return $this->findByQuery($criteria, 'OR')->getResult();
+    }
+
+    /**
+     * @return T|null
+     */
+    public function findOneByOr(array $criteria, ?array $orderBy = null): ?object
+    {
+        return $this->findByQuery($criteria, 'OR')->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function findByCaseInsensitive(array $conditions): array
@@ -57,17 +70,21 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findByCaseInsensitiveQuery($conditions)->setMaxResults(1)->getOneOrNullResult();
     }
 
-    private function findEncryptedPropertyQuery(array $conditions): Query
+    private function findByQuery(array $criteria, $conditionType = 'AND'): Query
     {
-        $conditionString = [];
+        $encryptedProperties = $this->encryptedPropertiesAccessor->getProperties(new User());
+        $criteriaString = [];
         $parameters = [];
-        foreach ($conditions as $key => $value) {
-            $conditionString[] = "o.$key = :$key";
-            $parameters[$key] = $this->encryptor->encrypt((string) $value);
+        foreach ($criteria as $field => $value) {
+            if (array_key_exists($field, $encryptedProperties) && $value) {
+                $value = $this->encryptor->encrypt($value);
+            }
+            $criteriaString[] = "o.$field = :$field";
+            $parameters[$field] = $value;
         }
 
         return $this->createQueryBuilder('o')
-            ->where(implode(' AND ', $conditionString))
+            ->where(implode(' ' . $conditionType . ' ', $criteriaString))
             ->setParameters($parameters)
             ->getQuery();
     }

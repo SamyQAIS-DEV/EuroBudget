@@ -22,7 +22,7 @@ class AbstractRepositoryTest extends RepositoryTestCase
         $this->assertSame(6, $this->repository->count([]));
         $user = $this->users['user1'];
         $conditions = ['email' => $user->getEmail()];
-        $usersFromRepo = $this->repository->findEncryptedProperty($conditions);
+        $usersFromRepo = $this->repository->findBy($conditions);
         $this->assertInstanceOf(User::class, $usersFromRepo[0]);
     }
 
@@ -32,7 +32,7 @@ class AbstractRepositoryTest extends RepositoryTestCase
         $this->assertSame(6, $this->repository->count([]));
         $user = $this->users['user1'];
         $conditions = ['email' => $user->getEmail()];
-        $userFromRepo = $this->repository->findOneEncryptedProperty($conditions);
+        $userFromRepo = $this->repository->findOneBy($conditions);
         $this->assertInstanceOf(User::class, $userFromRepo);
     }
 }

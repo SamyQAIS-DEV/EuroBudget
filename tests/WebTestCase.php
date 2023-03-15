@@ -59,14 +59,6 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     }
 
     /**
-     * Vérifie si on a un message d'erreur.
-     */
-    public function expectErrorAlert(int $count = 1): void
-    {
-        $this->assertEquals($count, $this->client->getCrawler()->filter('.alerts alert-element[type="danger"], .alerts alert-element[type="error"]')->count());
-    }
-
-    /**
      * Vérifie si on a un message d'erreur via le texte.
      */
     public function expectErrorAlertMessage(string $message): void
@@ -80,6 +72,14 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     public function expectSuccessAlert(?string $message = null): void
     {
         $this->expectAlert('success', $message);
+    }
+
+    /**
+     * Vérifie si on a un message d'erreur.
+     */
+    public function expectErrorAlert(?string $message = null): void
+    {
+        $this->expectAlert('error', $message);
     }
 
     public function expectFormErrors(?int $expectedErrors = null): void

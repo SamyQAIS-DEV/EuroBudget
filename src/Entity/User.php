@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], repositoryMethod: 'findEncryptedProperty')]
+#[UniqueEntity(fields: ['email'])]
 class User implements UserInterface
 {
     use SocialLoggableTrait;
