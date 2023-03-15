@@ -3,6 +3,7 @@
 namespace App\Tests\Controller;
 
 use App\Entity\User;
+use App\Service\Encryptors\EncryptorInterface;
 use App\Tests\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
@@ -89,6 +90,8 @@ class SecurityControllerTest extends WebTestCase
     {
         $this->users = $this->loadFixtureFiles(['users']);
         $user = $this->users['user1'];
+        $encryptor = self::getContainer()->get(EncryptorInterface::class);
+        $user->setEmail($encryptor->encrypt($user->getEmail()));
         $this->client->request('GET', self::SIGNIN_PATH);
 
         $loginLinkHandler = self::getContainer()->get(LoginLinkHandlerInterface::class);

@@ -64,7 +64,7 @@ class RegistrationControllerTest extends WebTestCase
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
         $form->setValues([
             'registration_form' => [
-                'email' => strtoupper($this->users['user1']->getEmail()),
+                'email' => $this->users['user1']->getEmail(),
                 'agreeTerms' => 1
             ],
         ]);

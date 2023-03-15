@@ -3,11 +3,7 @@
 namespace App\Tests\EventSubscriber;
 
 use App\Entity\User;
-use App\EventSubscriber\DoctrineEncryptSubscriber;
-use App\Service\Encryptors\EntityEncryptor;
 use App\Tests\EventSubscriberTest;
-use Doctrine\ORM\Event\PostLoadEventArgs;
-use Doctrine\ORM\Events;
 
 class DoctrineEncryptSubscriberTest extends EventSubscriberTest
 {

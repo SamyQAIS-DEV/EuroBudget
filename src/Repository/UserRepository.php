@@ -18,7 +18,7 @@ class UserRepository extends AbstractRepository
 
     public function findOneByEmail(string $email): ?User
     {
-        return $this->findOneBy(['email' => $email]);
+        return $this->findOneBy(['email' => $this->encryptor->encrypt($email)]);
     }
 
     /**
@@ -29,7 +29,7 @@ class UserRepository extends AbstractRepository
         return $this->createQueryBuilder('u')
             ->where('u.email = :email')
             ->setMaxResults(1)
-            ->setParameter('email', mb_strtolower($this->encryptor->encrypt($email)))
+            ->setParameter('email', $this->encryptor->encrypt($email))
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -48,7 +48,7 @@ class UserRepository extends AbstractRepository
             ->orWhere("u.{$service}Id = :serviceId")
             ->setMaxResults(1)
             ->setParameters([
-                'email' => mb_strtolower($this->encryptor->encrypt($email)),
+                'email' => $this->encryptor->encrypt($email),
                 'serviceId' => $serviceId,
             ])
             ->getQuery()

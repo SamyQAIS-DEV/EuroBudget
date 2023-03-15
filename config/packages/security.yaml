@@ -23,7 +23,7 @@ security:
 
             login_link:
                 check_route: login_link_check
-                signature_properties: [ 'id', 'email' ]
+                signature_properties: ['id']
                 max_uses: 1
                 lifetime: 600 # 10min
                 success_handler: App\Security\Authentication\AuthenticationSuccessHandler
