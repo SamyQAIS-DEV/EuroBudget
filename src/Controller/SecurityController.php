@@ -2,18 +2,26 @@
 
 namespace App\Controller;
 
-use App\Event\UserCreatedEvent;
+use App\Entity\LoginLinkToken;
+use App\Entity\User;
+use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
+use App\Security\Authentication\Authenticator;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class SecurityController extends AbstractController
 {
-    public const LOGIN_ROUTE_NAME = 'login';
+    public const LOGIN_ROUTE_NAME = 'auth_login';
+    public const CHECK_ROUTE_NAME = 'auth_check';
+    public const LOGOUT_ROUTE_NAME = 'auth_logout';
 
     #[Route('/connexion', name: self::LOGIN_ROUTE_NAME)]
     public function login(
@@ -38,7 +46,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
             }
 
-            $dispatcher->dispatch(new UserCreatedEvent($user));
+            $dispatcher->dispatch(new LoginLinkRequestedEvent($user));
             // TODO : TRAD
             $this->addFlash('success', 'Login link sent');
 
@@ -50,12 +58,26 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/login-link-check', name: 'login_link_check')]
-    public function loginLinkCheck(): void
+    #[Route(path: '/auth/check/{id<\d+>}/{token}', name: self::CHECK_ROUTE_NAME)]
+    public function check(
+        Request $request,
+        User $user,
+        #[MapEntity(mapping: ['token' => 'token'])]
+        ?LoginLinkToken $loginLink,
+        UserAuthenticatorInterface $authenticator,
+        Authenticator $appAuthenticator,
+    ): Response
     {
+        if (!$loginLink || $loginLink->isExpired() || $loginLink->getUser() !== $user) {
+            $this->addFlash('error', 'Token Expired');
+
+            return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
+        }
+
+        return $authenticator->authenticateUser($user, $appAuthenticator, $request) ?: $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
     }
 
-    #[Route(path: '/logout', name: 'logout')]
+    #[Route(path: '/logout', name: self::LOGOUT_ROUTE_NAME)]
     public function logout(): void
     {
     }

@@ -5,8 +5,8 @@ namespace App\Security\Authentication;
 use App\Controller\HomeController;
 use App\Controller\SecurityController;
 use App\Repository\UserRepository;
+use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +40,7 @@ class Authenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = (string) $request->request->get('email', '');
+        $email = (string) $request->request->get('token', '');
 
         return new SelfValidatingPassport(
             new UserBadge($email, fn (string $email) => $this->userRepository->findForAuth($email)),
@@ -64,6 +64,8 @@ class Authenticator extends AbstractAuthenticator
                 // Do nothing
             }
         }
+        $request->getSession()->getBag('flashes')->add('success','Connecté');
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
@@ -73,5 +75,7 @@ class Authenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+        $request->getSession()->getBag('flashes')->add('danger','Lien expiré');
+        dd('onAuthenticationFailure');
     }
 }

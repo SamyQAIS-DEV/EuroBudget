@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Event\UserCreatedEvent;
+use App\Event\LoginLinkRequestedEvent;
 use App\Form\RegistrationFormType;
 use App\Security\Authentication\Authenticator;
 use App\Service\SocialLoginService;
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    public const REGISTER_ROUTE_NAME = 'register';
+    public const REGISTER_ROUTE_NAME = 'auth_register';
 
     #[Route('/inscription', name: self::REGISTER_ROUTE_NAME)]
     public function register(
@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
             $user->setEmail(strtolower($user->getEmail()));
             $entityManager->persist($user);
             $entityManager->flush();
-            $dispatcher->dispatch(new UserCreatedEvent($user, $isOauthUser));
+            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser));
 
             if ($isOauthUser) {
                 // TODO : TRAD

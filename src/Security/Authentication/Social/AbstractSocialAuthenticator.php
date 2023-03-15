@@ -5,6 +5,7 @@ namespace App\Security\Authentication\Social;
 use App\Controller\HomeController;
 use App\Controller\RegistrationController;
 use App\Controller\SecurityController;
+use App\Controller\Social\SocialLoginController;
 use App\Entity\User;
 use App\Infrastructure\Social\Exception\UserAuthenticatedException;
 use App\Infrastructure\Social\Exception\UserOauthNotFoundException;
@@ -17,7 +18,6 @@ use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
-use League\OAuth2\Client\Token\AccessTokenInterface;
 use RuntimeException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -54,7 +54,9 @@ abstract class AbstractSocialAuthenticator extends OAuth2Authenticator
         if ('' === $this->serviceName) {
             throw new RuntimeException('You must set a $serviceName property (for instance "github", "discord")');
         }
-        return $request->attributes->get('_route') === 'oauth_check' && $request->get('service') === $this->serviceName;
+
+        return $request->attributes->get('_route') === SocialLoginController::CHECK_ROUTE_NAME &&
+            $request->get('service') === $this->serviceName;
     }
 
     public function authenticate(Request $request): Passport

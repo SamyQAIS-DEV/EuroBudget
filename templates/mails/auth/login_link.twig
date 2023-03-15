@@ -14,7 +14,7 @@
 
 {#    {% endapply %}#}
 
-    {{ e.button('Se connecter', loginUrl) }}
+    {{ e.button('Se connecter', url('auth_check', {id: id, token: token}))) }}
 
 {#    {% apply markdown_email %}#}
         Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer cet email.

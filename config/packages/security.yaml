@@ -21,14 +21,6 @@ security:
                 - App\Security\Authentication\Social\GithubAuthenticator
                 - App\Security\Authentication\Social\DiscordAuthenticator
 
-            login_link:
-                check_route: login_link_check
-                signature_properties: ['id']
-                max_uses: 1
-                lifetime: 600 # 10min
-                success_handler: App\Security\Authentication\AuthenticationSuccessHandler
-                failure_handler: App\Security\Authentication\AuthenticationFailureHandler
-
             remember_me:
                 secret: '%kernel.secret%'
                 always_remember_me: true
@@ -37,7 +29,7 @@ security:
                 samesite: strict
 
             logout:
-                path: logout
+                path: auth_logout
                 target: home # where to redirect after logout
 
     # Easy way to control access for large sections of your site

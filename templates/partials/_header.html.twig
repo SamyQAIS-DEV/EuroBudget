@@ -17,10 +17,10 @@
         <li class="header__menu">
             <ul id="menu">
                 {% if app.user %}
-                    <li><a href="{{ path('logout') }}" title="Déconnexion" class="menu__link">Déconnexion</a></li>
+                    <li><a href="{{ path('auth_logout') }}" title="Déconnexion" class="menu__link">Déconnexion</a></li>
                 {% else %}
-                    <li><a href="{{ path('login') }}" title="Connexion" class="menu__link">Connexion</a></li>
-                    <li><a href="{{ path('register') }}" title="Inscription" class="menu__link">Inscription</a></li>
+                    <li><a href="{{ path('auth_login') }}" title="Connexion" class="menu__link">Connexion</a></li>
+                    <li><a href="{{ path('auth_register') }}" title="Inscription" class="menu__link">Inscription</a></li>
                 {% endif %}
             </ul>
         </li>

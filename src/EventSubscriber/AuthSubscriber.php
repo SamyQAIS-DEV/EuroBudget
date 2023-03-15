@@ -2,18 +2,19 @@
 
 namespace App\EventSubscriber;
 
-use App\Event\UserCreatedEvent;
+use App\Entity\LoginLinkToken;
+use App\Event\LoginLinkRequestedEvent;
 use App\Helper\TimeHelper;
+use App\Service\LoginLinkService;
 use App\Service\MailerService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class AuthSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly MailerService $mailer,
-        private readonly LoginLinkHandlerInterface $loginLinkHandler
+        private readonly LoginLinkService $loginLinkService,
     ) {
     }
 
@@ -23,25 +24,26 @@ class AuthSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            UserCreatedEvent::class => 'onRegister'
+            LoginLinkRequestedEvent::class => 'onLoginLinkRequested'
         ];
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    public function onRegister(UserCreatedEvent $event): void
+    public function onLoginLinkRequested(LoginLinkRequestedEvent $event): void
     {
         if ($event->isUsingOauth()) {
             return;
         }
         $user = $event->getUser();
-        $loginLink = $this->loginLinkHandler->createLoginLink($user);
+        $loginLink = $this->loginLinkService->createLoginLink($user);
 
         $email = $this->mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
-            'username' => $user->getUserIdentifier(),
+            'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'loginUrl' => $loginLink->getUrl()
+            'id' => $event->getUser()->getId(),
+            'username' => $user->getUserIdentifier()
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);

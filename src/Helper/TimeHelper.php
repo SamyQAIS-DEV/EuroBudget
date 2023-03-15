@@ -2,7 +2,8 @@
 
 namespace App\Helper;
 
-use DateTimeImmutable;
+use DateTime;
+use DateTimeInterface;
 
 class TimeHelper
 {
@@ -24,11 +25,11 @@ class TimeHelper
     /**
      * Génère une durée restante au format "30 min".
      */
-    public static function leftTime(DateTimeImmutable $expiresAt, bool $unixTimestamp = false): string
+    public static function leftTime(DateTimeInterface $expiresAt, bool $unixTimestamp = false): string
     {
-        $now = new DateTimeImmutable();
+        $now = new DateTime();
         if ($unixTimestamp) {
-            $now = new DateTimeImmutable('@' . time());
+            $now = new DateTime('@' . time());
         }
         $duration = $expiresAt->getTimestamp() - $now->getTimestamp();
 

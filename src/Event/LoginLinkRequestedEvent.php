@@ -4,7 +4,7 @@ namespace App\Event;
 
 use App\Entity\User;
 
-class UserCreatedEvent
+class LoginLinkRequestedEvent
 {
     public function __construct(
         private readonly User $user,
