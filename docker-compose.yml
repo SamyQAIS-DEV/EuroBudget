@@ -33,6 +33,13 @@ services:
             - "3325:3306"
         working_dir: /app
 
+    node:
+        image: andrewmackrodt/nodejs:16
+        volumes:
+            - ./:/app
+            - ~/.cache/yarn:/root/.cache/yarn
+        working_dir: /app
+
     maildev:
         image: maildev/maildev
         ports:
