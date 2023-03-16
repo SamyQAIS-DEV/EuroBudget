@@ -1,0 +1,7 @@
+include:
+    - templates.yaml
+
+App\Entity\User:
+    user{1..5} (extends user):
+    admin (extends user):
+        email: samyqais@email.com
