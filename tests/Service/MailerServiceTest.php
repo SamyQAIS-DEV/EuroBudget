@@ -18,7 +18,7 @@ class MailerServiceTest extends KernelTestCase
     public function testSubject(): void
     {
         $email = $this->mailer->createEmail('mails/base.html.twig', 'Votre lien de connexion !', [])
-            ->to('test@email.com');
+            ->to('test@domain.fr');
         $this->assertSame('EuroBudget | Votre lien de connexion !', $email->getSubject());
     }
 }

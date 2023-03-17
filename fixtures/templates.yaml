@@ -1,4 +1,4 @@
 App\Entity\User:
     user (template):
-        email: johndoe<current()>\@email.com
+        email: user<current()>\@domain.fr
         # createdAt: <dateTimeThisYear()>

@@ -6,9 +6,9 @@ export class CommentsElement extends HTMLElement {
     connectedCallback() {
         const element = this as HTMLElement;
         const root = ReactDOM.createRoot(element);
-        const target = element.getAttribute('target');
+        const userId = element.getAttribute('user-id');
         root.render(
-            <Comments target={parseInt(target, 10)} />
+            <Comments userId={parseInt(userId, 10)} />
         );
     }
 }

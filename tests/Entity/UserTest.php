@@ -41,6 +41,6 @@ class UserTest extends WebTestCase
     private function getValidEntity(): User
     {
         return (new User())
-            ->setEmail('validuser@email.com');
+            ->setEmail('validuser@domain.fr');
     }
 }
