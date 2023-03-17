@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -20,7 +21,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
+    .addEntry('app', './assets/index.ts')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -57,13 +58,26 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment if you use React
-    //.enableReactPreset()
+    .enableReactPreset()
+
+    .addAliases({
+        "@components": path.resolve(__dirname, 'assets/components'),
+        // "@contexts": path.resolve(__dirname, 'assets/contexts'),
+        // "@elements": path.resolve(__dirname, 'assets/elements'),
+        // "@entities": path.resolve(__dirname, 'assets/entities'),
+        // "@enums": path.resolve(__dirname, 'assets/enums'),
+        // "@functions": path.resolve(__dirname, 'assets/functions'),
+        // "@helpers": path.resolve(__dirname, 'assets/helpers'),
+        // "@prototypes": path.resolve(__dirname, 'assets/prototypes'),
+        // "@resources": path.resolve(__dirname, 'assets/resources'),
+        // "@services": path.resolve(__dirname, 'assets/services'),
+    })
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
