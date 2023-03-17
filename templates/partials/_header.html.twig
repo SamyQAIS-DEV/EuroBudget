@@ -1,26 +1,25 @@
-<header class="header">
-    <div class="nav__logo">
-        <a href="{{ path('home') }}" title="Accueil">Accueil</a>
-    </div>
-
-    <div class="nav__menu">
-        <ul class="nav__list">
-            <li class="nav__item">
-                <a href="#" title="Item" class="nav__link">
-                    <small class="nav__name">Item</small>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="nav__side">
-        <ul id="user-menu">
-            {% if app.user %}
-                <li><a href="{{ path('auth_logout') }}" title="Déconnexion" class="menu__link">Déconnexion</a></li>
-            {% else %}
-                <li><a href="{{ path('auth_login') }}" title="Connexion" class="menu__link">Connexion</a></li>
-                <li><a href="{{ path('auth_register') }}" title="Inscription" class="menu__link">Inscription</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</header>
+<nav class="header" id="header">
+    <ul class="header-nav">
+        <li class="header__home">
+            <a href="{{ path('home') }}" title="{{ 'Accueil'|trans }}" {{ menu_active('home') }}>
+                {{ icon('logo') }}
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Item 1">
+                I <span>Item 1</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Item 2">
+                I <span>Item 2</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="Item 3">
+                I <span>Item 3</span>
+            </a>
+        </li>
+    </ul>
+    {% include 'partials/header-side.html.twig' %}
+</nav>

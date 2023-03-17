@@ -3,7 +3,9 @@
 {% block title "Accueil" %}
 
 {% block body %}
-    <h1>Accueil</h1>
+    <main class="home p5">
+        <h1>Accueil</h1>
 
-    <comments-area user-id="{{ app.user.id }}"></comments-area>
+        <comments-area user-id="{{ app.user.id }}"></comments-area>
+    </main>
 {% endblock %}

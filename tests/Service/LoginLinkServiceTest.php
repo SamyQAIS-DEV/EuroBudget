@@ -32,4 +32,6 @@ class LoginLinkServiceTest extends TestCase
         $loginLink = $this->service->createLoginLink($user);
         $this->assertInstanceOf(LoginLinkToken::class, $loginLink);
     }
+
+    // TODO : Test Login Link already existing
 }

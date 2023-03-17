@@ -1,0 +1,33 @@
+<ul class="header-side">
+    <li class="header__notification">
+        Notifs
+    </li>
+    <li class="header__search">
+        Search
+    </li>
+    {% if app.user %}
+        <li class="header__account">
+            <a href="#" title="Profile" {{ menu_active('profile') }}>
+                {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
+            </a>
+        </li>
+          <li class="header__logout">
+              <a href="{{ path('auth_logout') }}" title="Déconnexion" data-turbolinks="false">
+                  {{ icon('dollar-sign') }} <span>Déconnexion</span>
+              </a>
+          </li>
+    {% else %}
+        <li class="header-side__auth">
+            <a href="{{ path('auth_register') }}" title="Inscription" {{ menu_active('registration') }}>
+                {{ icon('dollar-sign') }} <span>Inscription</span>
+            </a>
+            <span class="text-muted">·</span>
+            <a href="{{ path('auth_login', {redirect: app.request.pathInfo}) }}" title="Connexion" {{ menu_active('login') }}>
+                <span>Connexion</span>
+            </a>
+        </li>
+    {% endif %}
+    <li class="header__burger">
+        <button id="js-burger"><span>Afficher le menu</span></button>
+    </li>
+</ul>

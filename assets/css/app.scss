@@ -1,0 +1,55 @@
+// Variables
+// ==================
+:root {
+    --color: #333333;
+    --color-light-light: #33333399;
+    --color-inversed: #f5f5f5;
+    --contrast: #287bff;
+    --background: #f5f5f5;
+    --header-background: #287bff99;
+    --gap: 20px;
+    --space: 8px;
+    --border: #b1b1b1;
+    --border-light: #99999999;
+    --shadow: #999999;
+    --card-padding: 16px;
+    --red: #f25353;
+    --green: #41cf7c;
+    --yellow: #feb32b;
+}
+
+// Dark mode
+// =============
+//@include dark {
+
+//}
+
+// Outils
+// ==================
+@import 'tools/reset';
+@import 'tools/functions';
+@import 'tools/mixins';
+@import 'tools/layout';
+@import 'tools/typography';
+@import 'tools/animations';
+
+// Generic
+// ==================
+body {
+    font-family: $font;
+    font-size: 16px;
+    color: var(--color);
+    line-height: 1.6;
+    background: var(--background);
+    scroll-margin: 100px 0 0 0;
+    word-break: break-word;
+}
+
+::selection {
+    background: var(--contrast);
+    color: #fff;
+}
+
+// Modules
+// ==================
+@import 'modules/header';

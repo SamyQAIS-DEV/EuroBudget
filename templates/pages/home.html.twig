@@ -3,7 +3,9 @@
 {% block title "Accueil" %}
 
 {% block body %}
-    <h1>Accueil</h1>
+    <main class="homepage py5">
+        <h1>Accueil</h1>
 
-    <h2>Créez vous un compte afin de profiter de ce site <a href="{{ path('auth_register') }}" title="Inscription">ici</a>.</h2>
+        <h2>Créez vous un compte afin de profiter de ce site <a href="{{ path('auth_register') }}" title="Inscription">ici</a> ou <a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a>.</h2>
+    </main>
 {% endblock %}
