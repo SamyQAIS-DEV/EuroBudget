@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
 {
     use PHPUnitTrait;
+    use FixturesTrait;
 
     protected KernelBrowser $client;
     protected EntityManagerInterface $em;

@@ -6,32 +6,32 @@ use App\Entity\LoginLinkToken;
 use App\Entity\User;
 use App\Service\LoginLinkService;
 use App\Service\TokenGeneratorService;
+use App\Tests\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
-use PHPUnit\Framework\TestCase;
 
-class LoginLinkServiceTest extends TestCase
+class LoginLinkServiceTest extends KernelTestCase
 {
-    private LoginLinkService $service;
+    private LoginLinkService $loginLinkService;
 
     public function setUp(): void
     {
         parent::setUp();
-        $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->getMock();
-        $generator = $this->getMockBuilder(TokenGeneratorService::class)->disableOriginalConstructor()->getMock();
-
-        $this->service = new LoginLinkService(
-            $entityManager,
-            $generator
-        );
-        parent::setUp();
+        $this->loginLinkService = self::getContainer()->get(LoginLinkService::class);
     }
 
     public function testCreateLoginLink(): void
     {
-        $user = $this->createMock(User::class);
-        $loginLink = $this->service->createLoginLink($user);
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        $loginLink = $this->loginLinkService->createLoginLink($user);
         $this->assertInstanceOf(LoginLinkToken::class, $loginLink);
     }
 
-    // TODO : Test Login Link already existing
+    public function testCreateAlreadyExistingLoginLink(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-link-tokens']);
+        $loginLink = $this->loginLinkService->createLoginLink($user);
+        $this->assertInstanceOf(LoginLinkToken::class, $loginLink);
+    }
 }

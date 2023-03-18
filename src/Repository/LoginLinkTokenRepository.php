@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\LoginLinkToken;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,28 @@ class LoginLinkTokenRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, LoginLinkToken::class);
+    }
+
+    public function cleanByUser(User $user): ?LoginLinkToken
+    {
+        $query = $this->createQueryBuilder('l')
+            ->where('l.user = :user')
+            ->setParameter('user', $user);
+
+        $loginLink = $query->getQuery()->getOneOrNullResult();
+        $query->delete(LoginLinkToken::class, 'l')->getQuery()->execute();
+
+        return $loginLink;
+    }
+
+    public function getByUser(User $user): ?LoginLinkToken
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
 
     public function save(LoginLinkToken $entity, bool $flush = false): void
@@ -38,29 +61,4 @@ class LoginLinkTokenRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return LoginLinkToken[] Returns an array of LoginLinkToken objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?LoginLinkToken
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

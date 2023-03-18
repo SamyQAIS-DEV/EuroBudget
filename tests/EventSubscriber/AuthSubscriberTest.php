@@ -16,8 +16,9 @@ class AuthSubscriberTest extends EventSubscriberTest
     public function setUp(): void
     {
         parent::setUp();
-        $this->loginLinkService = $this->getContainer()->get(LoginLinkService::class);
+        $this->loginLinkService = self::getContainer()->get(LoginLinkService::class);
     }
+
     public function testEventSubscription(): void
     {
         $this->assertArrayHasKey(LoginLinkRequestedEvent::class, AuthSubscriber::getSubscribedEvents());
@@ -27,6 +28,19 @@ class AuthSubscriberTest extends EventSubscriberTest
     {
         /** @var User $user */
         ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        $mailer = self::getContainer()->get(MailerService::class);
+        $subscriber = new AuthSubscriber($mailer, $this->loginLinkService);
+        $event = new LoginLinkRequestedEvent($user);
+        $this->dispatch($subscriber, $event);
+
+        $email = self::getMailerMessage();
+        $this->assertSame('EuroBudget | Votre lien de connexion !', $email->getSubject());
+    }
+
+    public function testSendEmailAlreadyExistingToken(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-link-tokens']);
         $mailer = self::getContainer()->get(MailerService::class);
         $subscriber = new AuthSubscriber($mailer, $this->loginLinkService);
         $event = new LoginLinkRequestedEvent($user);

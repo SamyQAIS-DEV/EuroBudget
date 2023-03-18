@@ -11,6 +11,6 @@ class HomeControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/');
 
         self::assertResponseIsSuccessful();
-        $this->expectH1('Hello HomeController! ✅');
+        $this->expectH1('EuroBudget est une plateforme de gestion de comptes en banques');
     }
 }

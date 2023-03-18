@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\LoginLinkToken;
-use App\Entity\User;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
