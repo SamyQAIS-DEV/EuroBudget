@@ -12,8 +12,13 @@ class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('icon', [TwigExtensionRuntime::class, 'svgIcon'], ['is_safe' => ['html']]),
-            new TwigFunction('menu_active', [TwigExtensionRuntime::class, 'menuActive'], ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('icon', [TwigExtensionRuntime::class, 'svgIcon'], [
+                'is_safe' => ['html']
+            ]),
+            new TwigFunction('menu_active', [TwigExtensionRuntime::class, 'menuActive'], [
+                'is_safe' => ['html'],
+                'needs_context' => true
+            ]),
         ];
     }
 }

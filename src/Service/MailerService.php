@@ -24,6 +24,7 @@ class MailerService
         $this->twig->addGlobal('format', 'text');
         $text = $this->twig->render($template, array_merge($data, ['layout' => 'mails/base.text.twig']));
 
+        // TODO Sender email in env
         return (new Email())
             ->from(new Address('noreply@samyqais.fr', 'SamyQais'))
             ->html($html)

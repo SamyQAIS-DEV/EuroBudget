@@ -105,7 +105,7 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
     {
         $crawler = $this->client->getCrawler();
         $this->assertEquals(
-            $title.' | SamyQais',
+            $title.' | EuroBudget',
             $crawler->filter('title')->text(),
             '<title> missmatch',
         );
