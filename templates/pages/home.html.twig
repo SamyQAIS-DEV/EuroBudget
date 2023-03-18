@@ -4,8 +4,10 @@
 
 {% block body %}
     <main class="homepage py5">
-        <h1>Accueil</h1>
+        <div class="container">
+            <h1>Accueil</h1>
 
-        <h2>Créez vous un compte afin de profiter de ce site <a href="{{ path('auth_register') }}" title="Inscription">ici</a> ou <a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a>.</h2>
+            <h2>Créez vous un compte afin de profiter de ce site <a href="{{ path('auth_register') }}" title="Inscription">ici</a> ou <a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a>.</h2>
+        </div>
     </main>
 {% endblock %}

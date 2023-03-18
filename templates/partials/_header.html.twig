@@ -1,23 +1,29 @@
 <nav class="header" id="header">
+    <div class="header__home">
+        <a href="{{ path('home') }}" title="{{ 'Accueil'|trans }}" {{ menu_active('home') }}>
+            {{ icon('logo') }}
+        </a>
+    </div>
+
     <ul class="header-nav">
-        <li class="header__home">
+        <li>
             <a href="{{ path('home') }}" title="{{ 'Accueil'|trans }}" {{ menu_active('home') }}>
-                {{ icon('logo') }}
+                {{ icon('home') }} <span>{{ 'Accueil'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="#" title="Item 1">
-                I <span>Item 1</span>
+            <a href="#" title="{{ 'Transactions'|trans }}" {{ menu_active('operations') }}>
+                {{ icon('server') }} <span>{{ 'Transactions'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="#" title="Item 2">
-                I <span>Item 2</span>
+            <a href="#" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
+                {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="#" title="Item 3">
-                I <span>Item 3</span>
+            <a href="#" title="{{ 'Categories'|trans }}" {{ menu_active('categories') }}>
+                {{ icon('layers') }} <span>{{ 'Categories'|trans }}</span>
             </a>
         </li>
     </ul>

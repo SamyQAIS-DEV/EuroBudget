@@ -1,33 +1,30 @@
 <ul class="header-side">
     <li class="header__notification">
-        Notifs
+        {{ icon('bell') }} <span>{{ 'Notifications'|trans }}</span>
     </li>
     <li class="header__search">
-        Search
+        {{ icon('search') }} <span>{{ 'Search'|trans }}</span>
     </li>
     {% if app.user %}
         <li class="header__account">
-            <a href="#" title="Profile" {{ menu_active('profile') }}>
+            <a href="#" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
                 {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
             </a>
         </li>
           <li class="header__logout">
-              <a href="{{ path('auth_logout') }}" title="Déconnexion" data-turbolinks="false">
-                  {{ icon('dollar-sign') }} <span>Déconnexion</span>
+              <a href="{{ path('auth_logout') }}" title="{{ 'Logout'|trans }}" data-turbolinks="false">
+                  {{ icon('log-out') }} <span>{{ 'Logout'|trans }}</span>
               </a>
           </li>
     {% else %}
         <li class="header-side__auth">
-            <a href="{{ path('auth_register') }}" title="Inscription" {{ menu_active('registration') }}>
-                {{ icon('dollar-sign') }} <span>Inscription</span>
+            <a href="{{ path('auth_register') }}" title="{{ 'Registration'|trans }}" {{ menu_active('registration') }}>
+                {{ icon('log-in') }} <span>{{ 'Registration'|trans }}</span>
             </a>
             <span class="text-muted">·</span>
-            <a href="{{ path('auth_login', {redirect: app.request.pathInfo}) }}" title="Connexion" {{ menu_active('login') }}>
-                <span>Connexion</span>
+            <a href="{{ path('auth_login', {redirect: app.request.pathInfo}) }}" title="{{ 'Login'|trans }}" {{ menu_active('login') }}>
+                <span>{{ 'Login'|trans }}</span>
             </a>
         </li>
     {% endif %}
-    <li class="header__burger">
-        <button id="js-burger"><span>Afficher le menu</span></button>
-    </li>
 </ul>
