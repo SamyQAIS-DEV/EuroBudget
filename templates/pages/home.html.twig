@@ -5,9 +5,15 @@
 {% block body %}
     <main class="homepage py5">
         <div class="container">
-            <h1>Accueil</h1>
+            <h1 class="hero-title"><strong>EuroBudget</strong> est une plateforme de gestion des comptes</h1>
 
-            <h2>Créez vous un compte afin de profiter de ce site <a href="{{ path('auth_register') }}" title="Inscription">ici</a> ou <a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a>.</h2>
+            <div class="dashboard__image ma">
+                <img src="/images/dashboard.jpg" alt="EuroBudget dashboard">
+            </div>
+
+            <p class="hero-text">
+                Créez vous un compte afin de profiter de ce site <strong><a href="{{ path('auth_register') }}" title="Inscription">ici</a></strong> ou <strong><a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a></strong>.
+            </p>
         </div>
     </main>
 {% endblock %}

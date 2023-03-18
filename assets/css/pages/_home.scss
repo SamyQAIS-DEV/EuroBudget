@@ -1,0 +1,11 @@
+.dashboard__image {
+    margin-top: space(3);
+    width: 80%;
+}
+
+.dashboard__image img {
+    //@extend %card;
+    //@extend %card-hoverable;
+    object-fit: cover;
+    border-radius: border-radius(2);
+}

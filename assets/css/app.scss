@@ -9,6 +9,7 @@
     --header-background: #287bff99;
     --gap: 20px;
     --space: 8px;
+    --border-radius: 8px;
     --border: #b1b1b1;
     --border-light: #99999999;
     --shadow: #999999;
@@ -53,3 +54,7 @@ body {
 // Modules
 // ==================
 @import 'modules/header';
+
+// Pages
+// ==================
+@import 'pages/home';
