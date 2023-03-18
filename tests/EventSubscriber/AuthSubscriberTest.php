@@ -40,7 +40,7 @@ class AuthSubscriberTest extends EventSubscriberTest
     public function testSendEmailAlreadyExistingToken(): void
     {
         /** @var User $user */
-        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-link-tokens']);
+        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-links']);
         $mailer = self::getContainer()->get(MailerService::class);
         $subscriber = new AuthSubscriber($mailer, $this->loginLinkService);
         $event = new LoginLinkRequestedEvent($user);

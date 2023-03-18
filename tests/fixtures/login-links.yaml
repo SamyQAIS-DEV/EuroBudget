@@ -1,12 +1,12 @@
 include:
   - users.yaml
 
-App\Entity\LoginLinkToken:
-    user1_token:
+App\Entity\LoginLink:
+    user1_login_link:
         user: '@user1'
         token: somerandomtokenhere
         createdAt: <(new DateTime())>
-    user2_token:
+    user2_login_link:
         user: '@user2'
         token: somerandomtokenhereagain
         createdAt: <(new DateTime('-40 minutes'))>

@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Entity\User;
-use App\Repository\LoginLinkTokenRepository;
+use App\Repository\LoginLinkRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -13,14 +13,14 @@ class LoginLinkService
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly TokenGeneratorService $generator,
-        private readonly LoginLinkTokenRepository $loginLinkTokenRepository,
+        private readonly LoginLinkRepository $loginLinkRepository,
     ) {
     }
 
-    public function createLoginLink(User $user): LoginLinkToken
+    public function createLoginLink(User $user): LoginLink
     {
-        $this->loginLinkTokenRepository->cleanByUser($user);
-        $loginLink = new LoginLinkToken();
+        $this->loginLinkRepository->cleanByUser($user);
+        $loginLink = new LoginLink();
         $this->entityManager->persist($loginLink);
 
         $loginLink->setUser($user)

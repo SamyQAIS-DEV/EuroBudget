@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LoginLinkTokenRepository;
+use App\Repository\LoginLinkRepository;
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LoginLinkTokenRepository::class)]
-class LoginLinkToken
+#[ORM\Entity(repositoryClass: LoginLinkRepository::class)]
+class LoginLink
 {
     final public const EXPIRE_IN = 30;
 

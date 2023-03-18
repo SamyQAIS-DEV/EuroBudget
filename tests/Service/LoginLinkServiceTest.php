@@ -2,7 +2,7 @@
 
 namespace App\Tests\Service;
 
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Entity\User;
 use App\Service\LoginLinkService;
 use App\Service\TokenGeneratorService;
@@ -24,14 +24,14 @@ class LoginLinkServiceTest extends KernelTestCase
         /** @var User $user */
         ['user1' => $user] = $this->loadFixtureFiles(['users']);
         $loginLink = $this->loginLinkService->createLoginLink($user);
-        $this->assertInstanceOf(LoginLinkToken::class, $loginLink);
+        $this->assertInstanceOf(LoginLink::class, $loginLink);
     }
 
     public function testCreateAlreadyExistingLoginLink(): void
     {
         /** @var User $user */
-        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-link-tokens']);
+        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-links']);
         $loginLink = $this->loginLinkService->createLoginLink($user);
-        $this->assertInstanceOf(LoginLinkToken::class, $loginLink);
+        $this->assertInstanceOf(LoginLink::class, $loginLink);
     }
 }

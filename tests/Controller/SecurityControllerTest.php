@@ -3,7 +3,7 @@
 namespace App\Tests\Controller;
 
 use App\Controller\SecurityController;
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Entity\User;
 use App\Tests\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -94,8 +94,8 @@ class SecurityControllerTest extends WebTestCase
 
     public function testExpiredLoginLink(): void
     {
-        /** @var LoginLinkToken $loginLink */
-        ['user2_token' => $loginLink] = $this->loadFixtureFiles(['login-link-tokens']);
+        /** @var LoginLink $loginLink */
+        ['user2_login_link' => $loginLink] = $this->loadFixtureFiles(['login-links']);
         $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
         $this->client->request('GET', $route);
         self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
@@ -105,8 +105,8 @@ class SecurityControllerTest extends WebTestCase
 
     public function testConfirmationTokenValid(): void
     {
-        /** @var LoginLinkToken $loginLink */
-        ['user1_token' => $loginLink] = $this->loadFixtureFiles(['login-link-tokens']);
+        /** @var LoginLink $loginLink */
+        ['user1_login_link' => $loginLink] = $this->loadFixtureFiles(['login-links']);
         $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
         $this->client->request('GET', $route);
         self::assertResponseRedirects('/');

@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Event\LoginLinkRequestedEvent;
 use App\Helper\TimeHelper;
 use App\Service\LoginLinkService;

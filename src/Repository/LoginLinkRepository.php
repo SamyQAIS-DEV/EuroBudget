@@ -2,39 +2,39 @@
 
 namespace App\Repository;
 
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<LoginLinkToken>
+ * @extends ServiceEntityRepository<LoginLink>
  *
- * @method LoginLinkToken|null find($id, $lockMode = null, $lockVersion = null)
- * @method LoginLinkToken|null findOneBy(array $criteria, array $orderBy = null)
- * @method LoginLinkToken[]    findAll()
- * @method LoginLinkToken[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method LoginLink|null find($id, $lockMode = null, $lockVersion = null)
+ * @method LoginLink|null findOneBy(array $criteria, array $orderBy = null)
+ * @method LoginLink[]    findAll()
+ * @method LoginLink[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LoginLinkTokenRepository extends ServiceEntityRepository
+class LoginLinkRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LoginLinkToken::class);
+        parent::__construct($registry, LoginLink::class);
     }
 
-    public function cleanByUser(User $user): ?LoginLinkToken
+    public function cleanByUser(User $user): ?LoginLink
     {
         $query = $this->createQueryBuilder('l')
             ->where('l.user = :user')
             ->setParameter('user', $user);
 
         $loginLink = $query->getQuery()->getOneOrNullResult();
-        $query->delete(LoginLinkToken::class, 'l')->getQuery()->execute();
+        $query->delete(LoginLink::class, 'l')->getQuery()->execute();
 
         return $loginLink;
     }
 
-    public function getByUser(User $user): ?LoginLinkToken
+    public function getByUser(User $user): ?LoginLink
     {
         return $this->createQueryBuilder('l')
             ->where('l.user = :user')
@@ -44,7 +44,7 @@ class LoginLinkTokenRepository extends ServiceEntityRepository
             ;
     }
 
-    public function save(LoginLinkToken $entity, bool $flush = false): void
+    public function save(LoginLink $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -53,7 +53,7 @@ class LoginLinkTokenRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(LoginLinkToken $entity, bool $flush = false): void
+    public function remove(LoginLink $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

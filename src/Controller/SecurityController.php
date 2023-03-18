@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\LoginLinkToken;
+use App\Entity\LoginLink;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
@@ -61,7 +61,7 @@ class SecurityController extends AbstractController
     public function check(
         Request $request,
         #[MapEntity(mapping: ['token' => 'token'])]
-        ?LoginLinkToken $loginLink,
+        ?LoginLink $loginLink,
         UserAuthenticatorInterface $authenticator,
         Authenticator $appAuthenticator,
     ): Response
