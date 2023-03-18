@@ -2,11 +2,11 @@
 // ==================
 :root {
     --color: #333333;
-    --color-light-light: #33333399;
+    --color-light: #33333399;
     --color-inversed: #f5f5f5;
     --contrast: #287bff;
     --background: #f5f5f5;
-    --header-background: #287bff99;
+    --background-light: #f5f5f599;
     --gap: 20px;
     --space: 8px;
     --border-radius: 8px;
@@ -19,12 +19,6 @@
     --yellow: #feb32b;
 }
 
-// Dark mode
-// =============
-//@include dark {
-
-//}
-
 // Outils
 // ==================
 @import 'tools/reset';
@@ -33,6 +27,17 @@
 @import 'tools/layout';
 @import 'tools/typography';
 @import 'tools/animations';
+
+// Dark mode
+// =============
+@include dark {
+    --color: #f5f5f5;
+    --color-light: #f5f5f599;
+    --color-inversed: #20232f;
+    --contrast: #03eefc;
+    --background: #20232f;
+    --background-light: #313743;
+}
 
 // Generic
 // ==================
