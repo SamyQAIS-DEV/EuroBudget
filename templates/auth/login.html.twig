@@ -3,13 +3,18 @@
 {% block title "Connexion" %}
 
 {% block body %}
-    <h1>Se connecter</h1>
 
-    {{ form_start(loginForm) }}
-        {{ form_row(loginForm.email) }}
+    <main class="home py5">
+        <div class="container">
+            <h1>Se connecter</h1>
 
-    <button type="submit" class="btn">Se connecter</button>
-    {{ form_end(loginForm) }}
+            {{ form_start(loginForm) }}
+                {{ form_row(loginForm.email) }}
 
-    {% include 'auth/_social_login_buttons.html.twig' %}
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            {{ form_end(loginForm) }}
+
+            {% include 'auth/_social_login_buttons.html.twig' %}
+        </div>
+    </main>
 {% endblock %}

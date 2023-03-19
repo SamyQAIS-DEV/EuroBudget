@@ -1,2 +1,6 @@
-<a href="{{ path('oauth_connect', {service: 'github'}) }}">Se connecter avec GitHub</a>
-<a href="{{ path('oauth_connect', {service: 'discord'}) }}">Se connecter avec Discord</a>
+<a href="{{ path('oauth_connect', {service: 'github'}) }}" class="btn-social btn-github">
+    {{ icon('github') }} Se connecter avec GitHub
+</a>
+<a href="{{ path('oauth_connect', {service: 'discord'}) }}" class="btn-social btn-discord">
+    {{ icon('discord') }} Se connecter avec Discord
+</a>

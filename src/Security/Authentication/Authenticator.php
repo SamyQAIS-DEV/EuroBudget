@@ -6,7 +6,6 @@ use App\Controller\HomeController;
 use App\Controller\SecurityController;
 use App\Repository\LoginLinkRepository;
 use App\Repository\UserRepository;
-use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,6 +63,7 @@ class Authenticator extends AbstractAuthenticator
         TokenInterface $token,
         string $firewallName
     ): RedirectResponse {
+        // TODO Tester redirection after login
         if ($redirect = $request->get('redirect')) {
             try {
                 $this->urlMatcher->match($redirect);
@@ -84,7 +84,7 @@ class Authenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $request->getSession()->getBag('flashes')->add('danger','Lien expiré');
-        dd('onAuthenticationFailure');
+        $request->getSession()->getFlashBag()->add('danger','Lien expiré');
+        return new RedirectResponse($this->urlGenerator->generate(SecurityController::LOGIN_ROUTE_NAME));
     }
 }
