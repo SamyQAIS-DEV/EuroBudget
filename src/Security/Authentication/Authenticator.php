@@ -4,6 +4,7 @@ namespace App\Security\Authentication;
 
 use App\Controller\HomeController;
 use App\Controller\SecurityController;
+use App\Repository\LoginLinkRepository;
 use App\Repository\UserRepository;
 use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -27,6 +28,7 @@ class Authenticator extends AbstractAuthenticator
 
     public function __construct(
         private readonly UserRepository $userRepository,
+        private readonly LoginLinkRepository $loginLinkRepository,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly UrlMatcherInterface $urlMatcher
@@ -35,15 +37,22 @@ class Authenticator extends AbstractAuthenticator
 
     public function supports(Request $request): bool
     {
-        return false;
+        return $request->attributes->get('_route') === SecurityController::CHECK_ROUTE_NAME;
     }
 
     public function authenticate(Request $request): Passport
     {
-        $email = (string) $request->request->get('token', '');
+        $token = (string) $request->attributes->get('token', '');
+        $loginLink = $this->loginLinkRepository->findOneBy(['token' => $token]);
+        if (!$loginLink || $loginLink->isExpired()) {
+            throw new AuthenticationException();
+        }
+
+        $user = $loginLink->getUser();
+        $userLoader = fn () => $user;
 
         return new SelfValidatingPassport(
-            new UserBadge($email, fn (string $email) => $this->userRepository->findForAuth($email)),
+            new UserBadge($user->getUserIdentifier(), $userLoader),
             [
                 new RememberMeBadge(),
             ]

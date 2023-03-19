@@ -2,19 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\LoginLink;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
-use App\Security\Authentication\Authenticator;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -58,21 +53,9 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
-    public function check(
-        Request $request,
-        #[MapEntity(mapping: ['token' => 'token'])]
-        ?LoginLink $loginLink,
-        UserAuthenticatorInterface $authenticator,
-        Authenticator $appAuthenticator,
-    ): Response
+    public function check(): Response
     {
-        if (!$loginLink || $loginLink->isExpired()) {
-            $this->addFlash('error', 'Token Expired');
-
-            return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
-        }
-
-        return $authenticator->authenticateUser($loginLink->getUser(), $appAuthenticator, $request) ?: $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
+        throw $this->createNotFoundException();
     }
 
     #[Route(path: '/logout', name: self::LOGOUT_ROUTE_NAME)]
