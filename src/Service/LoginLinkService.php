@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Entity\LoginLink;
 use App\Entity\User;
 use App\Repository\LoginLinkRepository;
-use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
 class LoginLinkService
@@ -19,12 +19,12 @@ class LoginLinkService
 
     public function createLoginLink(User $user): LoginLink
     {
-        $this->loginLinkRepository->cleanByUser($user);
+        $this->loginLinkRepository->cleanFor($user);
         $loginLink = new LoginLink();
         $this->entityManager->persist($loginLink);
 
         $loginLink->setUser($user)
-            ->setCreatedAt(new DateTime())
+            ->setCreatedAt(new DateTimeImmutable())
             ->setToken($this->generator->generate());
         $this->entityManager->flush();
 

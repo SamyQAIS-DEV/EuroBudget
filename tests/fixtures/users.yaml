@@ -1,7 +1,13 @@
-App\Entity\User:
-    user{1..5}:
-        email: user<current()>\@domain.fr
+include:
+    - ../../fixtures/templates.yaml
 
-    github_user:
-        githubId: 12345
+App\Entity\User:
+    user{1..5} (extends user):
+
+    github_user (extends user):
         email: github_user@domain.fr
+        githubId: 12345
+
+    premium_user (extends user):
+        email: premium_user@domain.fr
+        premiumEnd: <(new DateTimeImmutable('+1 month'))>

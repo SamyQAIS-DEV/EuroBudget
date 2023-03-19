@@ -5,8 +5,8 @@ App\Entity\LoginLink:
     user1_login_link:
         user: '@user1'
         token: somerandomtokenhere
-        createdAt: <(new DateTime())>
+        createdAt: <(new DateTimeImmutable())>
     user2_login_link:
         user: '@user2'
         token: somerandomtokenhereagain
-        createdAt: <(new DateTime('-40 minutes'))>
+        createdAt: <(new DateTimeImmutable('-40 minutes'))>

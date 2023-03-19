@@ -89,7 +89,7 @@ class SecurityControllerTest extends WebTestCase
         $this->client->request('GET', $route);
         self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $this->client->followRedirect();
-        $this->expectErrorAlert('Token Expired');
+        $this->expectErrorAlert('Lien expiré');
     }
 
     public function testExpiredLoginLink(): void
@@ -100,7 +100,7 @@ class SecurityControllerTest extends WebTestCase
         $this->client->request('GET', $route);
         self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $this->client->followRedirect();
-        $this->expectErrorAlert('Token Expired');
+        $this->expectErrorAlert('Lien expiré');
     }
 
     public function testConfirmationTokenValid(): void

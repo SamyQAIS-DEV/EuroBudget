@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'])]
 class User implements UserInterface
 {
+    use PremiumTrait;
     use SocialLoggableTrait;
 
     #[ORM\Id]

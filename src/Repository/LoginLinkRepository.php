@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\LoginLink;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,7 +23,7 @@ class LoginLinkRepository extends ServiceEntityRepository
         parent::__construct($registry, LoginLink::class);
     }
 
-    public function cleanByUser(User $user): ?LoginLink
+    public function cleanFor(User $user): ?LoginLink
     {
         $query = $this->createQueryBuilder('l')
             ->where('l.user = :user')
@@ -32,33 +33,5 @@ class LoginLinkRepository extends ServiceEntityRepository
         $query->delete(LoginLink::class, 'l')->getQuery()->execute();
 
         return $loginLink;
-    }
-
-    public function getByUser(User $user): ?LoginLink
-    {
-        return $this->createQueryBuilder('l')
-            ->where('l.user = :user')
-            ->setParameter('user', $user)
-            ->getQuery()
-            ->getOneOrNullResult()
-            ;
-    }
-
-    public function save(LoginLink $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    public function remove(LoginLink $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 }

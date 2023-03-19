@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LoginLinkRepository;
-use DateTime;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,22 +24,19 @@ class LoginLink
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private User $user;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private DateTime $createdAt;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private DateTimeImmutable $createdAt;
 
     public function isExpired(): bool
     {
-        $expirationDate = new DateTime('-' . self::EXPIRE_IN . ' minutes');
+        $expirationDate = new DateTimeImmutable('-' . self::EXPIRE_IN . ' minutes');
 
         return $this->getCreatedAt() < $expirationDate;
     }
 
-    public function getExpiresAt(): DateTime
+    public function getExpiresAt(): DateTimeImmutable
     {
-        $expirationDate = clone $this->createdAt;
-        $expirationDate->modify('+' . self::EXPIRE_IN . ' minutes');
-
-        return $expirationDate;
+        return $this->createdAt->modify('+' . self::EXPIRE_IN . ' minutes');
     }
 
     public function getId(): ?int
@@ -71,12 +68,12 @@ class LoginLink
         return $this;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 

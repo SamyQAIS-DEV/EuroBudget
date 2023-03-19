@@ -84,7 +84,7 @@ class Authenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $request->getSession()->getFlashBag()->add('danger','Lien expiré');
+        $request->getSession()->getFlashBag()->add('error','Lien expiré');
         return new RedirectResponse($this->urlGenerator->generate(SecurityController::LOGIN_ROUTE_NAME));
     }
 }
