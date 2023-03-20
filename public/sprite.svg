@@ -1,675 +1,679 @@
 <html>
 <body>
 <svg display="none" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="activity" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-airplay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="activity" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
     </symbol>
 
-    <symbol id="airplay" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-airplay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="airplay" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/>
         <path d="M12 15l5 6H7l5-6z"/>
     </symbol>
 
-    <symbol id="alert-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-alert-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="alert-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 8v4M12 16h.01"/>
     </symbol>
 
-    <symbol id="alert-octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-alert-octagon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="alert-octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2zM12 8v4M12 16h.01"/>
     </symbol>
 
-    <symbol id="alert-triangle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-alert-triangle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="alert-triangle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/>
     </symbol>
 
-     <symbol id="align-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-align-center" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <symbol id="align-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 10H6M21 6H3M21 14H3M18 18H6"/>
     </symbol>
 
-    <symbol id="align-justify" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-align-justify" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="align-justify" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 10H3M21 6H3M21 14H3M21 18H3"/>
     </symbol>
 
-    <symbol id="align-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-align-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="align-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 10H3M21 6H3M21 14H3M17 18H3"/>
     </symbol>
 
-    <symbol id="align-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-align-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="align-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 10H7M21 6H3M21 14H3M21 18H7"/>
     </symbol>
 
-    <symbol id="anchor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-anchor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="anchor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="5" r="3"/>
         <path d="M12 22V8M5 12H2a10 10 0 0 0 20 0h-3"/>
     </symbol>
 
-    <symbol id="aperture" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-aperture" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="aperture" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>
     </symbol>
 
-    <symbol id="archive" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-archive" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="archive" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/>
     </symbol>
 
-    <symbol id="arrow-down-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-down-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-down-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 12l4 4 4-4M12 8v8"/>
     </symbol>
 
-    <symbol id="arrow-down-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-down-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-down-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 7L7 17M17 17H7V7"/>
     </symbol>
 
-    <symbol id="arrow-down-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-down-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-down-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 7l10 10M17 7v10H7"/>
     </symbol>
 
-    <symbol id="arrow-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 5v14M19 12l-7 7-7-7"/>
     </symbol>
 
-    <symbol id="arrow-left-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-left-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-left-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 8l-4 4 4 4M16 12H8"/>
     </symbol>
 
-    <symbol id="arrow-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
     </symbol>
 
-    <symbol id="arrow-right-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-right-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 16l4-4-4-4M8 12h8"/>
     </symbol>
 
-    <symbol id="arrow-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 12h14M12 5l7 7-7 7"/>
     </symbol>
 
-    <symbol id="arrow-up-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-up-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-up-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M16 12l-4-4-4 4M12 16V8"/>
     </symbol>
 
-    <symbol id="arrow-up-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-up-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-up-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 17L7 7M7 17V7h10"/>
     </symbol>
 
-    <symbol id="arrow-up-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-up-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-up-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 17L17 7M7 7h10v10"/>
     </symbol>
 
-    <symbol id="arrow-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-arrow-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 19V5M5 12l7-7 7 7"/>
     </symbol>
 
-    <symbol id="at-sign" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-at-sign" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="at-sign" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="4"/>
         <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/>
     </symbol>
 
-    <symbol id="award" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-award" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="award" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="8" r="7"/>
         <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/>
     </symbol>
 
-    <symbol id="bar-chart-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bar-chart-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bar-chart-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 20V10M12 20V4M6 20v-6"/>
     </symbol>
     
-    <symbol id="bar-chart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bar-chart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bar-chart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 20V10M18 20V4M6 20v-4"/>
     </symbol>
 
-    <symbol id="battery-charging" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-battery-charging" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="battery-charging" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19M23 13v-2M11 6l-4 6h6l-4 6"/>
     </symbol>
 
-    <symbol id="battery" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-battery" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="battery" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="6" width="18" height="12" rx="2" ry="2"/>
         <path d="M23 13v-2"/>
     </symbol>
 
-    <symbol id="bell-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bell-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bell-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.73 21a2 2 0 0 1-3.46 0M18.63 13A17.89 17.89 0 0 1 18 8M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14M18 8a6 6 0 0 0-9.33-5M1 1l22 22"/>
     </symbol>
 
-    <symbol id="bell" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bell" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bell" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
     </symbol>
 
-    <symbol id="bluetooth" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bluetooth" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bluetooth" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6.5 6.5l11 11L12 23V1l5.5 5.5-11 11"/>
     </symbol>
 
-    <symbol id="bold" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bold" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bold" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6zM6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
     </symbol>
 
-    <symbol id="book-open" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-book-open" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="book-open" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
     </symbol>
 
-    <symbol id="book" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-book" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="book" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
     </symbol>
 
-    <symbol id="bookmark" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-bookmark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="bookmark" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
     </symbol>
 
-    <symbol id="box" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-box" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="box" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
         <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
     </symbol>
 
-    <symbol id="briefcase" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-briefcase" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="briefcase" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
     </symbol>
 
-    <symbol id="calendar" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-calendar" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="calendar" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
         <path d="M16 2v4M8 2v4M3 10h18"/>
     </symbol>
 
-    <symbol id="camera-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-camera-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="camera-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1l22 22M21 21H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3m3-3h6l2 3h4a2 2 0 0 1 2 2v9.34m-7.72-2.06a4 4 0 1 1-5.56-5.56"/>
     </symbol>
 
-    <symbol id="camera" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-camera" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="camera" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
         <circle cx="12" cy="13" r="4"/>
     </symbol>
 
-    <symbol id="cast" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cast" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cast" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6M2 20h.01"/>
     </symbol>
 
-    <symbol id="check-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-check-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="check-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
         <path d="M22 4L12 14.01l-3-3"/>
     </symbol>
 
-    <symbol id="check-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-check-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="check-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 11l3 3L22 4"/>
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
     </symbol>
 
-    <symbol id="check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 6L9 17l-5-5"/>
     </symbol>
 
-    <symbol id="chevron-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevron-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevron-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 9l6 6 6-6"/>
     </symbol>
 
-    <symbol id="chevron-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevron-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevron-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 18l-6-6 6-6"/>
     </symbol>
 
-    <symbol id="chevron-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevron-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevron-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 18l6-6-6-6"/>
     </symbol>
 
-    <symbol id="chevron-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevron-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevron-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 15l-6-6-6 6"/>
     </symbol>
 
-    <symbol id="chevrons-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevrons-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevrons-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
     </symbol>
 
-    <symbol id="chevrons-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevrons-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevrons-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/>
     </symbol>
 
-    <symbol id="chevrons-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevrons-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevrons-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 17l5-5-5-5M6 17l5-5-5-5"/>
     </symbol>
 
-    <symbol id="chevrons-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chevrons-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevrons-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 11l-5-5-5 5M17 18l-5-5-5 5"/>
     </symbol>
 
-    <symbol id="chrome" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-chrome" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chrome" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <circle cx="12" cy="12" r="4"/>
         <path d="M21.17 8H12M3.95 6.06L8.54 14M10.88 21.94L15.46 14"/>
     </symbol>
 
-    <symbol id="circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
     </symbol>
 
-    <symbol id="clipboard" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-clipboard" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="clipboard" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
     </symbol>
 
-    <symbol id="clock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-clock" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="clock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 6v6l4 2"/>
     </symbol>
     
-    <symbol id="cloud-drizzle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud-drizzle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud-drizzle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 19v2M8 13v2M16 19v2M16 13v2M12 21v2M12 15v2M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/>
     </symbol>
 
-    <symbol id="cloud-lightning" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud-lightning" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud-lightning" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/>
         <path d="M13 11l-4 6h6l-4 6"/>
     </symbol>
 
-    <symbol id="cloud-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3M1 1l22 22"/>
     </symbol>
 
-    <symbol id="cloud-rain" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud-rain" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud-rain" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 13v8M8 13v8M12 15v8M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/>
     </symbol>
 
-    <symbol id="cloud-snow" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud-snow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud-snow" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25M8 16h.01M8 20h.01M12 18h.01M12 22h.01M16 16h.01M16 20h.01"/>
     </symbol>
 
-    <symbol id="cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cloud" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
     </symbol>
 
-    <symbol id="code" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-code" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="code" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
     </symbol>
 
-    <symbol id="codepen" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-codepen" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="codepen" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2l10 6.5v7L12 22 2 15.5v-7L12 2zM12 22v-6.5"/>
         <path d="M22 8.5l-10 7-10-7"/>
         <path d="M2 15.5l10-7 10 7M12 2v6.5"/>
     </symbol>
 
-    <symbol id="codesandbox" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-codesandbox" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="codesandbox" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
         <path d="M7.5 4.21l4.5 2.6 4.5-2.6M7.5 19.79V14.6L3 12M21 12l-4.5 2.6v5.19M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
     </symbol>
 
-    <symbol id="coffee" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-coffee" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="coffee" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
     </symbol>
 
-    <symbol id="columns" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-columns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="columns" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"/>
     </symbol>
 
-    <symbol id="command" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-command" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="command" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
     </symbol>
 
-    <symbol id="compass" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-compass" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="compass" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
     </symbol>
 
-    <symbol id="copy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-copy" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="copy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
     </symbol>
 
-    <symbol id="corner-down-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-down-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-down-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 10l-5 5 5 5"/>
         <path d="M20 4v7a4 4 0 0 1-4 4H4"/>
     </symbol>
 
-    <symbol id="corner-down-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-down-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-down-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 10l5 5-5 5"/>
         <path d="M4 4v7a4 4 0 0 0 4 4h12"/>
     </symbol>
 
-    <symbol id="corner-left-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-left-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-left-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 15l-5 5-5-5"/>
         <path d="M20 4h-7a4 4 0 0 0-4 4v12"/>
     </symbol>
 
-    <symbol id="corner-left-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-left-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-left-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 9L9 4 4 9"/>
         <path d="M20 20h-7a4 4 0 0 1-4-4V4"/>
     </symbol>
 
-    <symbol id="corner-right-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-right-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-right-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 15l5 5 5-5"/>
         <path d="M4 4h7a4 4 0 0 1 4 4v12"/>
     </symbol>
 
-    <symbol id="corner-right-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-right-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-right-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 9l5-5 5 5"/>
         <path d="M4 20h7a4 4 0 0 0 4-4V4"/>
     </symbol>
 
-    <symbol id="corner-up-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-up-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-up-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 14L4 9l5-5"/>
         <path d="M20 20v-7a4 4 0 0 0-4-4H4"/>
     </symbol>
 
-    <symbol id="corner-up-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-corner-up-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="corner-up-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 14l5-5-5-5"/>
         <path d="M4 20v-7a4 4 0 0 1 4-4h12"/>
     </symbol>
 
-    <symbol id="cpu" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-cpu" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="cpu" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
         <path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
     </symbol>
 
-    <symbol id="credit-card" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-credit-card" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="credit-card" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
         <path d="M1 10h22"/>
     </symbol>
 
-    <symbol id="crop" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-crop" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="crop" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"/>
         <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"/>
     </symbol>
 
-    <symbol id="crosshair" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-crosshair" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="crosshair" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/>
     </symbol>
 
-    <symbol id="database" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-database" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="database" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="12" cy="5" rx="9" ry="3"/>
         <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
         <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
     </symbol>
 
-    <symbol id="delete" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-delete" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="delete" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM18 9l-6 6M12 9l6 6"/>
     </symbol>
 
-    <symbol id="disc" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-disc" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="disc" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <circle cx="12" cy="12" r="3"/>
     </symbol>
 
-    <symbol id="divide-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-divide-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="divide-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 12h8M12 16h0M12 8h0"/>
         <circle cx="12" cy="12" r="10"/>
     </symbol>
 
-    <symbol id="divide-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-divide-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="divide-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M8 12h8M12 16h0M12 8h0"/>
     </symbol>
 
-    <symbol id="divide" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-divide" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="divide" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="6" r="2"/>
         <path d="M5 12h14"/>
         <circle cx="12" cy="18" r="2"/>
     </symbol>
 
-    <symbol id="dollar-sign" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-dollar-sign" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="discord" fill="currentColor" class="bi bi-discord" viewBox="0 0 48 48">
+        <path d="M 31.845703 7.0332031 C 31.571975 7.0271225 31.299556 7.046358 31.033203 7.0898438 C 29.435088 7.3507584 28.030508 8.4695888 27.488281 10.091797 C 27.370384 10.444321 27.264005 10.796966 27.175781 11.154297 C 25.826782 11.030712 24.699008 11.007813 24 11.007812 C 23.300992 11.007812 22.173218 11.030712 20.824219 11.154297 C 20.736067 10.797605 20.629411 10.445663 20.511719 10.09375 C 19.969492 8.471542 18.564912 7.3527115 16.966797 7.0917969 C 16.434092 7.0048284 15.87903 7.0144079 15.328125 7.1308594 C 13.118088 7.5982452 9.9617245 8.5051099 7.4726562 10.525391 A 1.50015 1.50015 0 0 0 7.3945312 10.59375 C 6.6089575 11.326512 6.0671471 12.315967 5.3984375 13.710938 C 4.7297279 15.105906 4.0361619 16.860751 3.3984375 18.861328 C 2.1229888 22.862483 1.0742188 27.837935 1.0742188 32.769531 A 1.50015 1.50015 0 0 0 1.2675781 33.505859 C 3.613117 37.667886 8.7053413 39.246064 11.824219 39.875 C 13.544661 40.221791 15.316939 39.515364 16.34375 38.091797 L 17.580078 36.376953 C 19.428026 36.763851 21.567209 37.019531 24 37.019531 C 26.432791 37.019531 28.571974 36.763851 30.419922 36.376953 L 31.654297 38.089844 C 32.680716 39.514931 34.455173 40.219871 36.175781 39.873047 C 39.294659 39.244111 44.38493 37.665933 46.730469 33.503906 A 1.50015 1.50015 0 0 0 46.923828 32.767578 C 46.923828 27.835982 45.877011 22.860401 44.601562 18.859375 C 43.963839 16.858862 43.268305 15.103975 42.599609 13.708984 C 41.930913 12.313994 41.388626 11.324567 40.603516 10.591797 A 1.50015 1.50015 0 0 0 40.525391 10.523438 C 38.036503 8.5033004 34.881138 7.5963178 32.669922 7.1289062 C 32.394469 7.0706805 32.119432 7.0392837 31.845703 7.0332031 z M 31.769531 10.03125 C 31.861361 10.034073 31.955281 10.044679 32.048828 10.064453 C 34.002862 10.477501 36.746684 11.357206 38.580078 12.822266 C 38.703057 12.946693 39.310378 13.787237 39.894531 15.005859 C 40.488742 16.245463 41.142287 17.887669 41.742188 19.769531 C 42.900822 23.40412 43.814735 27.941895 43.878906 32.302734 C 42.219626 34.826111 38.165354 36.410702 35.582031 36.931641 C 35.01064 37.046816 34.443424 36.82685 34.089844 36.335938 L 33.509766 35.533203 C 34.110146 35.329457 34.674845 35.117908 35.177734 34.904297 C 37.691844 33.836383 39.082031 32.671875 39.082031 32.671875 A 1.5004047 1.5004047 0 1 0 37.134766 30.388672 C 37.134766 30.388672 36.18725 31.217945 34.005859 32.144531 C 31.824469 33.071117 28.505584 34.019531 24 34.019531 C 19.494416 34.019531 16.175531 33.071117 13.994141 32.144531 C 11.81275 31.217945 10.865234 30.388672 10.865234 30.388672 A 1.50015 1.50015 0 0 0 9.90625 30.015625 A 1.50015 1.50015 0 0 0 8.9179688 32.671875 C 8.9179688 32.671875 10.308156 33.836383 12.822266 34.904297 C 13.325155 35.117908 13.889854 35.329457 14.490234 35.533203 L 13.910156 36.337891 C 13.554968 36.830323 12.987573 37.050756 12.416016 36.935547 C 9.8326922 36.414607 5.7784209 34.828063 4.1191406 32.304688 C 4.1833118 27.943831 5.0972239 23.40619 6.2558594 19.771484 C 6.85576 17.889562 7.5112721 16.247343 8.1054688 15.007812 C 8.6896043 13.789271 9.2954195 12.948182 9.4179688 12.824219 C 11.251211 11.359285 13.995991 10.479481 15.949219 10.066406 C 16.697598 9.9082126 17.418985 10.305866 17.666016 11.044922 C 17.730238 11.236954 17.776769 11.414706 17.826172 11.59375 C 15.590745 12.037313 13.096912 12.807641 10.734375 14.210938 A 1.50015 1.50015 0 1 0 12.265625 16.789062 C 16.622816 14.200985 22.007572 14.007813 24 14.007812 C 25.992428 14.007812 31.377184 14.200984 35.734375 16.789062 A 1.50015 1.50015 0 1 0 37.265625 14.210938 C 34.902434 12.807252 32.40777 12.037244 30.171875 11.59375 C 30.221382 11.414209 30.267598 11.23563 30.332031 11.042969 C 30.548183 10.396295 31.12672 10.01149 31.769531 10.03125 z M 17.535156 22 A 3.465 3.96 0 0 0 17.535156 29.919922 A 3.465 3.96 0 0 0 17.535156 22 z M 30.445312 22 A 3.5 4 0 0 0 30.445312 30 A 3.5 4 0 0 0 30.445312 22 z" />
+    </symbol>
+
+    <symbol id="dollar-sign" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
     </symbol>
 
-    <symbol id="download-cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-download-cloud" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="download-cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 17l4 4 4-4M12 12v9"/>
         <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
     </symbol>
 
-    <symbol id="download" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-download" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="download" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
     </symbol>
 
-    <symbol id="dribbble" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-dribbble" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="dribbble" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
     </symbol>
 
-    <symbol id="droplet" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-droplet" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="droplet" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
     </symbol>
 
-    <symbol id="edit-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-edit-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="edit-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
     </symbol>
 
-    <symbol id="edit-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-edit-3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="edit-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
     </symbol>
 
-    <symbol id="edit" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-edit" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="edit" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
     </symbol>
 
-    <symbol id="external-link" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-external-link" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="external-link" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
     </symbol>
 
-    <symbol id="eye-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-eye-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="eye-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/>
     </symbol>
 
-    <symbol id="eye" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-eye" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="eye" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
         <circle cx="12" cy="12" r="3"/>
     </symbol>
 
-    <symbol id="facebook" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-facebook" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="facebook" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
     </symbol>
 
-    <symbol id="fast-forward" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-fast-forward" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="fast-forward" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 19l9-7-9-7v14zM2 19l9-7-9-7v14z"/>
     </symbol>
 
-    <symbol id="feather" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-feather" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="feather" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5zM16 8L2 22M17.5 15H9"/>
     </symbol>
 
-    <symbol id="figma" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-figma" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="figma" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5zM12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/>
         <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0zM5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0zM5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/>
     </symbol>
 
-    <symbol id="file-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-file-minus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="file-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <path d="M14 2v6h6M9 15h6"/>
     </symbol>
 
-    <symbol id="file-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-file-plus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="file-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <path d="M14 2v6h6M12 18v-6M9 15h6"/>
     </symbol>
 
-    <symbol id="file-text" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-file-text" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="file-text" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
     </symbol>
 
-    <symbol id="file" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-file" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="file" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
         <path d="M13 2v7h7"/>
     </symbol>
 
-    <symbol id="film" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-film" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="film" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
         <path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/>
     </symbol>
 
-    <symbol id="filter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-filter" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="filter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
     </symbol>
 
-    <symbol id="flag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-flag" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="flag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>
     </symbol>
 
-    <symbol id="folder-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-folder-minus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="folder-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2zM9 14h6"/>
     </symbol>
 
-    <symbol id="folder-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-folder-plus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="folder-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2zM12 11v6M9 14h6"/>
     </symbol>
 
-    <symbol id="folder" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-folder" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="folder" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
     </symbol>
 
-    <symbol id="framer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-framer" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="framer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 16V9h14V2H5l14 14h-7m-7 0l7 7v-7m-7 0h7"/>
     </symbol>
 
-    <symbol id="frown" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-frown" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="frown" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01"/>
     </symbol>
 
-    <symbol id="gift" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-gift" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="gift" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
     </symbol>
 
-    <symbol id="git-branch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-git-branch" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="git-branch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 3v12"/>
         <circle cx="18" cy="6" r="3"/>
         <circle cx="6" cy="18" r="3"/>
         <path d="M18 9a9 9 0 0 1-9 9"/>
     </symbol>
 
-    <symbol id="git-commit" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-git-commit" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="git-commit" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="4"/>
         <path d="M1.05 12H7M17.01 12h5.95"/>
     </symbol>
 
-    <symbol id="git-merge" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-git-merge" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="git-merge" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="18" r="3"/>
         <circle cx="6" cy="6" r="3"/>
         <path d="M6 21V9a9 9 0 0 0 9 9"/>
     </symbol>
 
-    <symbol id="git-pull-request" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-git-pull-request" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="git-pull-request" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="18" r="3"/>
         <circle cx="6" cy="6" r="3"/>
         <path d="M13 6h3a2 2 0 0 1 2 2v7M6 9v12"/>
     </symbol>
 
-    <symbol id="github" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-github" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="github" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
     </symbol>
 
-    <symbol id="gitlab" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-gitlab" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="gitlab" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/>
     </symbol>
 
-    <symbol id="globe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-globe" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="globe" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
     </symbol>
 
-    <symbol id="grid" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-grid" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="grid" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
     </symbol>
 
-    <symbol id="hard-drive" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-hard-drive" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="hard-drive" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 12H2M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11zM6 16h.01M10 16h.01"/>
     </symbol>
 
-    <symbol id="hash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-hash" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="hash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
     </symbol>
 
-    <symbol id="headphones" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-headphones" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="headphones" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
         <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
     </symbol>
 
-    <symbol id="heart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-heart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="heart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </symbol>
 
-    <symbol id="help-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-help-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="help-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
     </symbol>
 
-    <symbol id="hexagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-hexagon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="hexagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
     </symbol>
 
-    <symbol id="home" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-home" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="home" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
         <path d="M9 22V12h6v10"/>
     </symbol>
 
-    <symbol id="image" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-image" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="image" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <circle cx="8.5" cy="8.5" r="1.5"/>
         <path d="M21 15l-5-5L5 21"/>
     </symbol>
 
-    <symbol id="inbox" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-inbox" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="inbox" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
         <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
     </symbol>
 
-    <symbol id="info" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-info" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="info" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 16v-4M12 8h.01"/>
     </symbol>
 
-    <symbol id="instagram" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-instagram" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="instagram" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/>
     </symbol>
 
-    <symbol id="italic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-italic" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="italic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 4h-9M14 20H5M15 4L9 20"/>
     </symbol>
 
-    <symbol id="key" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-key" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="key" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
     </symbol>
 
-    <symbol id="layers" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-layers" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="layers" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
     </symbol>
 
-    <symbol id="layout" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-layout" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="layout" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M3 9h18M9 21V9"/>
     </symbol>
 
-    <symbol id="life-buoy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-life-buoy" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="life-buoy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <circle cx="12" cy="12" r="4"/>
         <path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M14.83 9.17l3.53-3.53M4.93 19.07l4.24-4.24"/>
     </symbol>
 
-    <symbol id="link-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-link-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="link-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3M8 12h8"/>
     </symbol>
 
-    <symbol id="link" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-link" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="link" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
     </symbol>
 
-    <symbol id="linkedin" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-linkedin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="linkedin" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
         <circle cx="4" cy="4" r="2"/>
     </symbol>
 
-    <symbol id="list" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-list" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="list" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
     </symbol>
 
-    <symbol id="loader" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-loader" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="loader" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
     </symbol>
 
-    <symbol id="lock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-lock" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="lock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
     </symbol>
@@ -678,641 +682,641 @@
         <path d="M225 16.227l-8.113 36.412q-24.143-19.79-54.618-19.79-41.359 0-65.006 23.747-23.648 23.747-28.398 53.233h134.96l-5.144 26.715H65.699l-.396 7.717.396 18.206h127.243l-5.145 26.715H69.855q7.52 40.172 32.553 59.07 25.033 18.898 56.497 18.898 37.203 0 57.982-19.59v40.962Q192.348 300 162.269 300 53.034 300 30.475 189.182H0l5.739-26.715h20.58q-.395-4.75-.395-17.81v-8.113H0l5.739-26.715h23.153q10.29-54.618 47.691-82.223Q113.984 0 163.061 0 199.868 0 225 16.227z"/>
     </symbol>
 
-    <symbol id="log-in" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-log-in" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="log-in" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
     </symbol>
 
-    <symbol id="log-out" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-log-out" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="log-out" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
     </symbol>
 
-    <symbol id="mail" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-mail" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="mail" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
         <path d="M22 6l-10 7L2 6"/>
     </symbol>
 
-    <symbol id="map-pin" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-map-pin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="map-pin" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
         <circle cx="12" cy="10" r="3"/>
     </symbol>
 
-    <symbol id="map" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-map" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="map" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/>
     </symbol>
 
-    <symbol id="maximize-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-maximize-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="maximize-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
     </symbol>
 
-    <symbol id="maximize" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-maximize" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="maximize" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
     </symbol>
 
-    <symbol id="meh" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-meh" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="meh" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 15h8M9 9h.01M15 9h.01"/>
     </symbol>
 
-    <symbol id="menu" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-menu" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="menu" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 12h18M3 6h18M3 18h18"/>
     </symbol>
 
-    <symbol id="message-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-message-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="message-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
     </symbol>
 
-    <symbol id="message-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-message-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="message-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </symbol>
 
-    <symbol id="mic-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-mic-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="mic-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1l22 22M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/>
         <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23M12 19v4M8 23h8"/>
     </symbol>
 
-    <symbol id="mic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-mic" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="mic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
         <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
     </symbol>
 
-    <symbol id="minimize-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-minimize-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="minimize-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/>
     </symbol>
 
-    <symbol id="minimize" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-minimize" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="minimize" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
     </symbol>
 
-    <symbol id="minus-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-minus-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="minus-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 12h8"/>
     </symbol>
 
-    <symbol id="minus-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-minus-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="minus-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M8 12h8"/>
     </symbol>
 
-    <symbol id="minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-minus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 12h14"/>
     </symbol>
 
-    <symbol id="monitor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-monitor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="monitor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
         <path d="M8 21h8M12 17v4"/>
     </symbol>
 
-    <symbol id="moon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="moon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
     </symbol>
 
-    <symbol id="more-horizontal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-more-horizontal" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="more-horizontal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="1"/>
         <circle cx="19" cy="12" r="1"/>
         <circle cx="5" cy="12" r="1"/>
     </symbol>
 
-    <symbol id="more-vertical" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-more-vertical" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="more-vertical" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="1"/>
         <circle cx="12" cy="5" r="1"/>
         <circle cx="12" cy="19" r="1"/>
     </symbol>
 
-    <symbol id="mouse-pointer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-mouse-pointer" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="mouse-pointer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3zM13 13l6 6"/>
     </symbol>
 
-    <symbol id="move" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-move" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="move" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/>
     </symbol>
 
-    <symbol id="music" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-music" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="music" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 18V5l12-2v13"/>
         <circle cx="6" cy="18" r="3"/>
         <circle cx="18" cy="16" r="3"/>
     </symbol>
 
-    <symbol id="navigation-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-navigation-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="navigation-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2l7 19-7-4-7 4 7-19z"/>
     </symbol>
 
-    <symbol id="navigation" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-navigation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="navigation" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 11l19-9-9 19-2-8-8-2z"/>
     </symbol>
 
-    <symbol id="octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-octagon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2z"/>
     </symbol>
 
-    <symbol id="package" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-package" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="package" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
         <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
     </symbol>
 
-    <symbol id="paperclip" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-paperclip" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="paperclip" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
     </symbol>
 
-    <symbol id="pause-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-pause-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pause-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M10 15V9M14 15V9"/>
     </symbol>
 
-    <symbol id="pause" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-pause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pause" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
     </symbol>
 
-    <symbol id="pen-tool" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-pen-tool" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pen-tool" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 19l7-7 3 3-7 7-3-3z"/>
         <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586"/>
         <circle cx="11" cy="11" r="2"/>
     </symbol>
 
-    <symbol id="percent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-percent" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="percent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 5L5 19"/>
         <circle cx="6.5" cy="6.5" r="2.5"/>
         <circle cx="17.5" cy="17.5" r="2.5"/>
     </symbol>
 
-    <symbol id="phone-call" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-call" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-call" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="phone-forwarded" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-forwarded" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-forwarded" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 1l4 4-4 4M15 5h8M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="phone-incoming" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-incoming" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-incoming" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 2v6h6M23 1l-7 7M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="phone-missed" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-missed" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-missed" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 1l-6 6M17 1l6 6M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="phone-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91M23 1L1 23"/>
     </symbol>
 
-    <symbol id="phone-outgoing" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone-outgoing" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone-outgoing" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 7V1h-6M16 8l7-7M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-phone" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <symbol id="pie-chart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-pie-chart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pie-chart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/>
     </symbol>
 
-    <symbol id="play-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-play-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="play-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M10 8l6 4-6 4V8z"/>
     </symbol>
 
-    <symbol id="play" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-play" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="play" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 3l14 9-14 9V3z"/>
     </symbol>
 
-    <symbol id="plus-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-plus-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="plus-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 8v8M8 12h8"/>
     </symbol>
 
-    <symbol id="plus-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-plus-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="plus-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M12 8v8M8 12h8"/>
     </symbol>
 
-    <symbol id="plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-plus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 5v14M5 12h14"/>
     </symbol>
 
-    <symbol id="pocket" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-pocket" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pocket" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"/>
         <path d="M8 10l4 4 4-4"/>
     </symbol>
 
-    <symbol id="power" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-power" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="power" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"/>
     </symbol>
 
-    <symbol id="printer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-printer" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="printer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
         <path d="M6 14h12v8H6z"/>
     </symbol>
 
-    <symbol id="radio" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-radio" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="radio" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="2"/>
         <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
     </symbol>
 
-    <symbol id="refresh-ccw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-refresh-ccw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="refresh-ccw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 4v6h6M23 20v-6h-6"/>
         <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
     </symbol>
 
-    <symbol id="refresh-cw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-refresh-cw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="refresh-cw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 4v6h-6M1 20v-6h6"/>
         <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
     </symbol>
 
-    <symbol id="repeat" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-repeat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="repeat" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 1l4 4-4 4"/>
         <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/>
         <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
     </symbol>
 
-    <symbol id="rewind" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-rewind" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="rewind" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 19l-9-7 9-7v14zM22 19l-9-7 9-7v14z"/>
     </symbol>
 
-    <symbol id="rotate-ccw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-rotate-ccw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="rotate-ccw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 4v6h6"/>
         <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
     </symbol>
 
-    <symbol id="rotate-cw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-rotate-cw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="rotate-cw" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 4v6h-6"/>
         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
     </symbol>
 
-    <symbol id="rss" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-rss" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="rss" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/>
         <circle cx="5" cy="19" r="1"/>
     </symbol>
 
-    <symbol id="save" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-save" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="save" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
         <path d="M17 21v-8H7v8M7 3v5h8"/>
     </symbol>
 
-    <symbol id="scissors" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-scissors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="scissors" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="6" cy="6" r="3"/>
         <circle cx="6" cy="18" r="3"/>
         <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/>
     </symbol>
 
-    <symbol id="search" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-search" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="search" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="11" cy="11" r="8"/>
         <path d="M21 21l-4.35-4.35"/>
     </symbol>
 
-    <symbol id="send" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-send" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="send" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
     </symbol>
 
-    <symbol id="server" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-server" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="server" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
         <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
         <path d="M6 6h.01M6 18h.01"/>
     </symbol>
 
-    <symbol id="settings" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-settings" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="settings" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="3"/>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
     </symbol>
 
-    <symbol id="share-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-share-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="share-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="5" r="3"/>
         <circle cx="6" cy="12" r="3"/>
         <circle cx="18" cy="19" r="3"/>
         <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
     </symbol>
 
-    <symbol id="share" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-share" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="share" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
     </symbol>
 
-    <symbol id="shield-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-shield-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="shield-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.69 14a6.9 6.9 0 0 0 .31-2V5l-8-3-3.16 1.18M4.73 4.73L4 5v7c0 6 8 10 8 10a20.29 20.29 0 0 0 5.62-4.38M1 1l22 22"/>
     </symbol>
 
-    <symbol id="shield" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-shield" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="shield" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
     </symbol>
 
-    <symbol id="shopping-bag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-shopping-bag" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="shopping-bag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>
     </symbol>
 
-    <symbol id="shopping-cart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-shopping-cart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="shopping-cart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="9" cy="21" r="1"/>
         <circle cx="20" cy="21" r="1"/>
         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
     </symbol>
 
-    <symbol id="shuffle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-shuffle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="shuffle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
     </symbol>
 
-    <symbol id="sidebar" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-sidebar" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sidebar" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M9 3v18"/>
     </symbol>
 
-    <symbol id="skip-back" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-skip-back" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="skip-back" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M19 20L9 12l10-8v16zM5 19V5"/>
     </symbol>
 
-    <symbol id="skip-forward" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-skip-forward" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="skip-forward" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 4l10 8-10 8V4zM19 5v14"/>
     </symbol>
 
-    <symbol id="slack" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-slack" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="slack" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5zM20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5zM3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14zM14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5zM15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5zM8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
     </symbol>
 
-    <symbol id="slash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-slash" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="slash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M4.93 4.93l14.14 14.14"/>
     </symbol>
 
-    <symbol id="sliders" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-sliders" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sliders" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>
     </symbol>
 
-    <symbol id="smartphone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-smartphone" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="smartphone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
         <path d="M12 18h.01"/>
     </symbol>
 
-    <symbol id="smile" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-smile" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="smile" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
     </symbol>
 
-    <symbol id="speaker" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-speaker" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="speaker" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
         <circle cx="12" cy="14" r="4"/>
         <path d="M12 6h.01"/>
     </symbol>
 
-    <symbol id="square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
     </symbol>
 
-    <symbol id="star" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="star" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
     </symbol>
 
-    <symbol id="stop-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-stop-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="stop-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M9 9h6v6H9z"/>
     </symbol>
 
-    <symbol id="sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="5"/>
         <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
     </symbol>
 
-    <symbol id="sunrise" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-sunrise" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sunrise" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 18a5 5 0 0 0-10 0M12 2v7M4.22 10.22l1.42 1.42M1 18h2M21 18h2M18.36 11.64l1.42-1.42M23 22H1M8 6l4-4 4 4"/>
     </symbol>
 
-    <symbol id="sunset" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-sunset" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sunset" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 18a5 5 0 0 0-10 0M12 9V2M4.22 10.22l1.42 1.42M1 18h2M21 18h2M18.36 11.64l1.42-1.42M23 22H1M16 5l-4 4-4-4"/>
     </symbol>
 
-    <symbol id="tablet" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-tablet" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="tablet" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
         <path d="M12 18h.01"/>
     </symbol>
 
-    <symbol id="tag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-tag" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="tag" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01"/>
     </symbol>
 
-    <symbol id="target" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-target" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="target" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <circle cx="12" cy="12" r="6"/>
         <circle cx="12" cy="12" r="2"/>
     </symbol>
 
-    <symbol id="terminal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-terminal" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="terminal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 17l6-6-6-6M12 19h8"/>
     </symbol>
 
-    <symbol id="thermometer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-thermometer" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="thermometer" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
     </symbol>
 
-    <symbol id="thumbs-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-thumbs-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="thumbs-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
     </symbol>
 
-    <symbol id="thumbs-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-thumbs-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="thumbs-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
     </symbol>
 
-    <symbol id="toggle-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-toggle-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="toggle-left" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="5" width="22" height="14" rx="7" ry="7"/>
         <circle cx="8" cy="12" r="3"/>
     </symbol>
 
-    <symbol id="toggle-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-toggle-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="toggle-right" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="5" width="22" height="14" rx="7" ry="7"/>
         <circle cx="16" cy="12" r="3"/>
     </symbol>
 
-    <symbol id="tool" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-tool" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="tool" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
     </symbol>
 
-    <symbol id="trash-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-trash-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trash-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>
     </symbol>
 
-    <symbol id="trash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-trash" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trash" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
     </symbol>
 
-    <symbol id="trello" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-trello" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trello" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M7 7h3v9H7zM14 7h3v5h-3z"/>
     </symbol>
 
-    <symbol id="trending-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-trending-down" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trending-down" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 18l-9.5-9.5-5 5L1 6"/>
         <path d="M17 18h6v-6"/>
     </symbol>
 
-    <symbol id="trending-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-trending-up" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trending-up" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 6l-9.5 9.5-5-5L1 18"/>
         <path d="M17 6h6v6"/>
     </symbol>
 
-    <symbol id="triangle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-triangle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="triangle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
     </symbol>
 
-    <symbol id="truck" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-truck" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="truck" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/>
         <circle cx="5.5" cy="18.5" r="2.5"/>
         <circle cx="18.5" cy="18.5" r="2.5"/>
     </symbol>
 
-    <symbol id="tv" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-tv" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="tv" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
         <path d="M17 2l-5 5-5-5"/>
     </symbol>
 
-    <symbol id="twitch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-twitch" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="twitch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/>
     </symbol>
 
-    <symbol id="twitter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-twitter" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="twitter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
     </symbol>
 
-    <symbol id="type" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-type" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="type" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
     </symbol>
 
-    <symbol id="umbrella" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-umbrella" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="umbrella" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>
     </symbol>
 
-    <symbol id="underline" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-underline" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="underline" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3M4 21h16"/>
     </symbol>
 
-    <symbol id="unlock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-unlock" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="unlock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
         <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
     </symbol>
 
-    <symbol id="upload-cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-upload-cloud" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="upload-cloud" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 16l-4-4-4 4M12 12v9"/>
         <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
         <path d="M16 16l-4-4-4 4"/>
     </symbol>
 
-    <symbol id="upload" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-upload" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="upload" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
     </symbol>
 
-    <symbol id="user-check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-user-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="user-check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="8.5" cy="7" r="4"/>
         <path d="M17 11l2 2 4-4"/>
     </symbol>
 
-    <symbol id="user-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-user-minus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="user-minus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="8.5" cy="7" r="4"/>
         <path d="M23 11h-6"/>
     </symbol>
 
-    <symbol id="user-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-user-plus" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="user-plus" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="8.5" cy="7" r="4"/>
         <path d="M20 8v6M23 11h-6"/>
     </symbol>
 
-    <symbol id="user-x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-user-x" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="user-x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="8.5" cy="7" r="4"/>
         <path d="M18 8l5 5M23 8l-5 5"/>
     </symbol>
 
-    <symbol id="user" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-user" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="user" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
     </symbol>
 
-    <symbol id="users" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-users" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="users" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
     </symbol>
 
-    <symbol id="video-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-video-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="video-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10M1 1l22 22"/>
     </symbol>
 
-    <symbol id="video" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-video" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="video" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M23 7l-7 5 7 5V7z"/>
         <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
     </symbol>
 
-    <symbol id="voicemail" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-voicemail" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="voicemail" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="5.5" cy="11.5" r="4.5"/>
         <circle cx="18.5" cy="11.5" r="4.5"/>
         <path d="M5.5 16h13"/>
     </symbol>
 
-    <symbol id="volume-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-volume-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="volume-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07"/>
     </symbol>
 
-    <symbol id="volume-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-volume-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="volume-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
     </symbol>
 
-    <symbol id="volume-x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-volume-x" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="volume-x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>
     </symbol>
 
-    <symbol id="volume" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-volume" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="volume" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 5L6 9H2v6h4l5 4V5z"/>
     </symbol>
 
-    <symbol id="watch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-watch" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="watch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="7"/>
         <path d="M12 9v3l1.5 1.5M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"/>
     </symbol>
 
-    <symbol id="wifi-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-wifi-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="wifi-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
     </symbol>
 
-    <symbol id="wifi" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-wifi" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="wifi" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
     </symbol>
 
-    <symbol id="wind" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-wind" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="wind" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
     </symbol>
 
-    <symbol id="x-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-x-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="x-circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"/>
         <path d="M15 9l-6 6M9 9l6 6"/>
     </symbol>
 
-    <symbol id="x-octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-x-octagon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="x-octagon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2zM15 9l-6 6M9 9l6 6"/>
     </symbol>
 
-    <symbol id="x-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-x-square" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="x-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <path d="M9 9l6 6M15 9l-6 6"/>
     </symbol>
 
-    <symbol id="x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-x" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="x" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 6L6 18M6 6l12 12"/>
     </symbol>
 
-    <symbol id="youtube" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-youtube" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="youtube" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
         <path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z"/>
     </symbol>
 
-    <symbol id="zap-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-zap-off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="zap-off" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12.41 6.75L13 2l-2.43 2.92M18.57 12.91L21 10h-5.34M8 8l-5 6h9l-1 8 5-6M1 1l22 22"/>
     </symbol>
 
-    <symbol id="zap" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-zap" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="zap" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
     </symbol>
 
-    <symbol id="zoom-in" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-zoom-in" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="zoom-in" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="11" cy="11" r="8"/>
         <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
     </symbol>
 
-    <symbol id="zoom-out" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="afeather afeather-zoom-out" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="zoom-out" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="11" cy="11" r="8"/>
         <path d="M21 21l-4.35-4.35M8 11h6"/>
     </symbol>

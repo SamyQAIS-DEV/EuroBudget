@@ -42,7 +42,7 @@
 }
 
 .header-nav {
-    height: 26px;
+    //height: 26px;
     margin-top: -5px;
     margin-bottom: -5px;
     flex-wrap: wrap;
@@ -54,20 +54,26 @@
 }
 
 .header-nav li {
+    //height: 26px;
     display: flex;
     align-items: center;
-    height: 26px;
     white-space: nowrap;
+}
+
+.header a {
+    padding: space(1) space(2);
+    border-radius: 50px;
 }
 
 .header a:hover,
 .header button:hover,
 .header a[aria-current] {
-    color: var(--contrast);
+    background: var(--color);
+    color: var(--background);
 }
 
 .header-nav > * + * {
-    margin-left: space(5);
+    margin-left: space(1);
 }
 
 .header-side {
@@ -88,9 +94,9 @@
     align-items: center;
     height: 16px;
     justify-content: flex-start;
-    border-right: 1px solid var(--border);
-    margin-right: space(2);
-    padding-right: space(1);
+    //border-right: 1px solid var(--border);
+    //margin-right: space(2);
+    //padding-right: space(1);
     margin-top: 5px;
     margin-bottom: 5px;
 
@@ -99,6 +105,11 @@
         height: 26px;
         display: flex;
         align-items: center;
+    }
+
+    a:hover {
+        background: transparent;
+        color: var(--contrast);
     }
 }
 
@@ -143,6 +154,21 @@
 }
 
 @include down(985) {
+    .header-nav {
+        position: fixed;
+        bottom: 0;
+        bottom: env(safe-area-inset-bottom);
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        height: 4rem;
+        padding: calc(2 * var(--space));
+        border-top: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: var(--background-transparent);
+    }
+
     .header-nav > * + * {
         margin-left: space(4);
     }
@@ -151,33 +177,17 @@
     }
 }
 
-@include down(950) {
-    .header-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        justify-content: space-around;
-        height: 4rem;
-        padding: calc(2 * var(--space));
-        border-top: 1px solid var(--border);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        background: var(--background-transparent);
+@include down(450) {
+    body {
+        background: blue;
+    }
+    .header .header-nav span {
+        display: none;
     }
 }
 
-@include down(450) {
-body {
-    background: blue;
-}
-.header .header-nav span {
-    display: none;
-}
-}
-
 @include down(600) {
-.header__account span {
-    display: none;
-}
+    .header__account span {
+        display: none;
+    }
 }
