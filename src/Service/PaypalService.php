@@ -8,10 +8,10 @@ class PaypalService
 {
     public function createPayment(string $orderId): Payment
     {
-//        try {
+        try {
 
-//        } catch (HttpException $e) {
-//            throw PaymentFailedException::fromPaypalHttpException($e);
-//        }
+        } catch (HttpException $e) {
+            throw PaymentFailedException::fromPaypalHttpException($e);
+        }
     }
 }
