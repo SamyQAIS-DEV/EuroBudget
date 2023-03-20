@@ -8,3 +8,15 @@ App\Entity\User:
     github_user  (extends user):
         githubId: 12345
         email: github_user@domain.fr
+
+App\Entity\Plan:
+    plan1:
+        name: Compte premium 1 mois
+        price: 5
+        duration: 1
+#        stripe_id: price_1HfQctFCMNgisvowhVOcdXr1
+    plan12:
+        name: Compte premium 12 mois
+        price: 50
+        duration: 12
+#        stripe_id: price_1HfQd2FCMNgisvowxxEQMysm

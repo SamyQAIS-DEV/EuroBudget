@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PlanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PremiumController extends AbstractController
 {
     #[Route('/premium', name: 'premium')]
-    public function index(): Response
+    public function index(PlanRepository $planRepository): Response
     {
-        return $this->render('pages/premium.html.twig', [
+        $plans = $planRepository->findAll();
+        dd($plans);
 
+        return $this->render('pages/premium.html.twig', [
+            'plans' => $plans,
             'menu' => 'premium',
         ]);
     }
