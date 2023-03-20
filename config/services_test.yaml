@@ -1,5 +1,5 @@
 parameters:
-    admin_prefix:  '%env(resolve:ADMIN_PREFIX)%'
+    admin_prefix: '%env(resolve:ADMIN_PREFIX)%'
 
 services:
 #  App\Tests\Infrastructure\Mercure\PublisherStub:

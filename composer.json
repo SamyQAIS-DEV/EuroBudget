@@ -15,7 +15,7 @@
         "erusev/parsedown": "^1.7",
         "knpuniversity/oauth2-client-bundle": "^2.13",
         "league/oauth2-github": "^3.1",
-        "paypal/paypal-checkout-sdk": "*",
+        "paypal/paypal-checkout-sdk": "^1.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.16",
         "sensio/framework-extra-bundle": "^6.1",

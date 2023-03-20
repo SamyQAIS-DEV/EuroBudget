@@ -6,6 +6,8 @@
 parameters:
     secret_key: '%env(SECRET_KEY)%'
     mail_prefix_subject: '%env(MAIL_PREFIX_SUBJECT)%'
+    paypal_id: '%env(resolve:PAYPAL_ID)%'
+    paypal_secret: '%env(resolve:PAYPAL_SECRET)%'
     encrypted_suffix: '<ENC>'
     enable_encryption: '%env(default:default_enable_encryption:bool:ENABLE_ENCRYPTION)%'
     default_enable_encryption: 'true'
@@ -37,3 +39,17 @@ services:
             $suffix: '%encrypted_suffix%'
         calls:
             -   setEnableEncryption: [ '%enable_encryption%' ]
+
+    App\Twig\Runtime\TwigPaymentExtensionRuntime:
+        arguments: [ '%paypal_id%' ]
+
+    paypal_sandbox_environment:
+        class: PayPalCheckoutSdk\Core\SandboxEnvironment
+        arguments: [ "%paypal_id%", "%paypal_secret%" ]
+
+    paypal_production_environment:
+        class: PayPalCheckoutSdk\Core\ProductionEnvironment
+        arguments: [ "%paypal_id%", "%paypal_secret%" ]
+
+    PayPalCheckoutSdk\Core\PayPalHttpClient:
+        arguments: [ "@paypal_sandbox_environment" ]

@@ -1,10 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {useJsonFetch} from '@hooks/useJsonFetch';
 
-// type CommentsType = {
-//     target: number;
-// } & PropsWithChildren;
-
 type CommentsType = {
     userId: number;
 };
