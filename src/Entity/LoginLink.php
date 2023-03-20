@@ -13,7 +13,7 @@ class LoginLink
     final public const EXPIRE_IN = 30;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 

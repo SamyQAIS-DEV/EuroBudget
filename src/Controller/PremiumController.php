@@ -13,7 +13,7 @@ class PremiumController extends AbstractController
     public function index(PlanRepository $planRepository): Response
     {
         $plans = $planRepository->findAll();
-        dd($plans);
+//        dd($plans);
 
         return $this->render('pages/premium.html.twig', [
             'plans' => $plans,

@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Transaction
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 

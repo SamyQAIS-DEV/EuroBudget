@@ -6,12 +6,13 @@ use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 
 trait FixturesTrait
 {
-    public function loadFixtures(array $files): array
+    private function loadFixtures(array $files): array
     {
+        // TODO
         $databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $data = $databaseTool->loadFixtures($files);
 
-        dd($data);
+//        dd($data);
         return $data;
     }
 
