@@ -3,18 +3,20 @@
 {% block title "Connexion" %}
 
 {% block body %}
-
     <main class="home py5">
-        <div class="container">
-            <h1>Se connecter</h1>
+        <div class="auth-container flex end">
+            <img src="{{ asset('images/auth_background.png') }}" alt="Auth Background">
+            <div class="form">
+                <h1>Se connecter</h1>
 
-            {{ form_start(loginForm) }}
+                {{ form_start(loginForm) }}
                 {{ form_row(loginForm.email) }}
 
-            <button type="submit" class="btn btn-primary">Se connecter</button>
-            {{ form_end(loginForm) }}
+                <button type="submit" class="btn btn-primary">Se connecter</button>
+                {{ form_end(loginForm) }}
 
-            {% include 'auth/_social_login_buttons.html.twig' %}
+                {% include 'auth/_social_login_buttons.html.twig' %}
+            </div>
         </div>
     </main>
 {% endblock %}

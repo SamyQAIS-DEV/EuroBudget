@@ -35,7 +35,7 @@
     --color: #f5f5f5;
     --color-light: #f5f5f599;
     --color-inversed: #20232f;
-    --contrast: #456dbe;
+    --contrast: #5987e8;
     --background: #1f1e24;
     --background-light: #2e2e36;
     --background-transparent: rgba(0, 0, 0, 0.65);
@@ -66,3 +66,4 @@ body {
 // Pages
 // ==================
 @import 'pages/home';
+@import 'pages/auth';
