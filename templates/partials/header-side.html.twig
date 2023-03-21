@@ -7,7 +7,7 @@
     </li>
     {% if app.user %}
         <li class="header__account">
-            <a href="#" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
+            <a href="{{ path('user_profil') }}" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
                 {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
             </a>
         </li>

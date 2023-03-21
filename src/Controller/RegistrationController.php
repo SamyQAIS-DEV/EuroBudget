@@ -8,7 +8,6 @@ use App\Form\RegistrationFormType;
 use App\Security\Authentication\Authenticator;
 use App\Service\SocialLoginService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
