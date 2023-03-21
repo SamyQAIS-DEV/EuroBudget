@@ -1,6 +1,9 @@
-import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
+import React, {PropsWithChildren, Ref, useEffect, useRef, useState} from 'react';
 import {useToggle} from '@hooks/useToggle';
 import * as scriptjs from 'scriptjs';
+import {jsonFetch} from '@functions/api';
+
+declare const window: any;
 
 type PremiumButtonType = {
     plan: number;
@@ -24,7 +27,7 @@ export const PremiumButton = ({
     }
 
     return (
-        <PaymentMethods plan={plan} price={price} description={description} paypalId={paypalId}/>
+        <PaymentMethods plan={plan} onPaypalApproval={() => console.log('onPaypalApproval')} price={price} description={description} paypalId={paypalId}/>
     );
 };
 
@@ -57,13 +60,15 @@ const PaymentMethods = ({
                         onClick={() => setMethod(PAYMENT_CARD)}
                         // className={classNames('btn-secondary btn-small', method === PAYMENT_CARD && 'active')}
                     >
-                        <img src="/images/payment-methods.png" width="76" className="mr1"/>
+                        Carte
+                        {/*<img src="/images/payment-methods.png" width="76" className="mr1"/>*/}
                     </button>
                     <button
                         onClick={() => setMethod(PAYMENT_PAYPAL)}
                         // className={classNames('btn-secondary btn-small', method === PAYMENT_PAYPAL && 'active')}
                     >
-                        <img src="/images/paypal.svg" width="20" className="mr1"/>
+                        Paypal
+                        {/*<img src="/images/paypal.svg" width="20" className="mr1"/>*/}
                     </button>
                 </div>
             </div>
@@ -83,31 +88,41 @@ const PaymentMethods = ({
     );
 };
 
-const PaymentPaypal = ({planId, price, description, paypalId}) => {
-    const container = useRef(null);
-    const approveRef = useRef(null);
+type PaymentPaypalType = {
+    planId: number;
+    price: number;
+    description: string;
+    onApprove: () => void;
+    paypalId: string;
+};
+
+const PaymentPaypal = ({
+    planId,
+    price,
+    description,
+    paypalId
+}: PaymentPaypalType) => {
+    const container = useRef<HTMLDivElement>(null);
+    const approveRef = useRef<(orderId: string) => void>(null);
     const currency = 'EUR';
     const [country, setCountry] = useState(null);
     const [loading, toggleLoading] = useToggle(false);
     // const vat = country ? vatPrice(price, country) : null;
     const vat = 0.2;
 
-    useEffect(() => {
-        console.log(container);
-    }, [container]);
-
-    // approveRef.current = async orderId => {
-    //     toggleLoading();
-    //     try {
-    //         await jsonFetch(`/api/premium/paypal/${orderId}`, {method: 'POST'});
-    //         await redirect('?success=1');
-    //     } catch (e) {
-    //         if (e instanceof ApiError) {
-    //             flash(e.name, 'danger', null);
-    //         }
-    //     }
-    //     toggleLoading();
-    // };
+    approveRef.current = async (orderId: string) => {
+        toggleLoading();
+        try {
+            await jsonFetch(`/api/premium/paypal/${orderId}`, {method: 'POST'});
+            // await redirect('?success=1');
+        } catch (e) {
+            console.error(e.name);
+            // if (e instanceof ApiError) {
+            //     flash(e.name, 'danger', null);
+            // }
+        }
+        toggleLoading();
+    };
 
     useEffect(() => {
         if (vat === null) {
@@ -187,7 +202,8 @@ const PaymentPaypal = ({planId, price, description, paypalId}) => {
             {/*>*/}
             {/*    Pays de résidence*/}
             {/*</Field>*/}
-            {country && <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />}
+            {/*{country && <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />}*/}
+            <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />
             {loading && (
                 // <button className='btn-primary btn-block' loading>
                 <button className='btn-primary btn-block'>
