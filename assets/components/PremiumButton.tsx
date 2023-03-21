@@ -1,24 +1,25 @@
-import React, {PropsWithChildren, Ref, useEffect, useRef, useState} from 'react';
+import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
 import {useToggle} from '@hooks/useToggle';
 import * as scriptjs from 'scriptjs';
 import {jsonFetch} from '@functions/api';
+import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 
 declare const window: any;
 
-type PremiumButtonType = {
-    plan: number;
+type PremiumButtonProps = {
+    planId: number;
     price: number;
     duration: number;
     paypalId: string;
 } & PropsWithChildren;
 
 export const PremiumButton = ({
-    plan,
+    planId,
     price,
     duration,
     paypalId,
     children,
-}: PremiumButtonType) => {
+}: PremiumButtonProps) => {
     const [payment, togglePayment] = useToggle(false);
     const description = `Compte premium ${duration} mois`;
 
@@ -27,15 +28,15 @@ export const PremiumButton = ({
     }
 
     return (
-        <PaymentMethods plan={plan} onPaypalApproval={() => console.log('onPaypalApproval')} price={price} description={description} paypalId={paypalId}/>
+        <PaymentMethods planId={planId} onPaypalApproval={() => console.log('onPaypalApproval')} price={price} description={description} paypalId={paypalId}/>
     );
 };
 
 const PAYMENT_CARD = 'CARD';
 const PAYMENT_PAYPAL = 'PAYPAL';
 
-type PaymentMethodsType = {
-    plan: number;
+type PaymentMethodsProps = {
+    planId: number;
     onPaypalApproval: any;
     description: string;
     price: number;
@@ -43,12 +44,12 @@ type PaymentMethodsType = {
 } & PropsWithChildren;
 
 const PaymentMethods = ({
-    plan,
+    planId,
     onPaypalApproval,
     description,
     price,
-    paypalId
-}: PaymentMethodsType) => {
+    paypalId,
+}: PaymentMethodsProps) => {
     const [method, setMethod] = useState(PAYMENT_PAYPAL);
 
     return (
@@ -74,21 +75,20 @@ const PaymentMethods = ({
             </div>
             {method === PAYMENT_PAYPAL ? (
                 <PaymentPaypal
-                    planId={plan}
+                    planId={planId}
                     price={price}
                     description={description}
                     onApprove={onPaypalApproval}
                     paypalId={paypalId}
                 />
             ) : (
-                <></>
-                // <PaymentCard plan={plan}/>
+                <PaymentCard />
             )}
         </div>
     );
 };
 
-type PaymentPaypalType = {
+type PaymentPaypalProps = {
     planId: number;
     price: number;
     description: string;
@@ -100,8 +100,8 @@ const PaymentPaypal = ({
     planId,
     price,
     description,
-    paypalId
-}: PaymentPaypalType) => {
+    paypalId,
+}: PaymentPaypalProps) => {
     const container = useRef<HTMLDivElement>(null);
     const approveRef = useRef<(orderId: string) => void>(null);
     const currency = 'EUR';
@@ -113,8 +113,8 @@ const PaymentPaypal = ({
     approveRef.current = async (orderId: string) => {
         toggleLoading();
         try {
-            await jsonFetch(`/api/premium/paypal/${orderId}`, {method: 'POST'});
-            // await redirect('?success=1');
+            await jsonFetch(`/api/premium/paypal/${orderId}`, {}, HttpRequestMethodEnum.POST);
+            // await redirect('?success=1'); // TODO Afficher modal succes ou rediriger
         } catch (e) {
             console.error(e.name);
             // if (e instanceof ApiError) {
@@ -203,10 +203,10 @@ const PaymentPaypal = ({
             {/*    Pays de résidence*/}
             {/*</Field>*/}
             {/*{country && <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />}*/}
-            <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />
+            <div style={{minHeight: 52, display: loading ? 'none' : null}} ref={container}/>
             {loading && (
                 // <button className='btn-primary btn-block' loading>
-                <button className='btn-primary btn-block'>
+                <button className="btn-primary btn-block">
                     Chargement...
                 </button>
             )}
@@ -214,40 +214,10 @@ const PaymentPaypal = ({
     );
 };
 
-/*function PaymentCard({plan, publicKey}) {
-    const [subscription, toggleSubscription] = useToggle(true);
-    const [loading, toggleLoading] = useToggle(false);
-    const startPayment = async () => {
-        toggleLoading();
-        try {
-            const Stripe = await importScript('https://js.stripe.com/v3/', 'Stripe');
-            const stripe = new Stripe(publicKey);
-            const {id} = await jsonFetch(`/api/premium/${plan}/stripe/checkout?subscription=${subscription ? '1' : '0'}`, {
-                method: 'POST',
-            });
-            stripe.redirectToCheckout({sessionId: id});
-        } catch (e) {
-            flash(e instanceof ApiError ? e.name : e, 'error');
-            toggleLoading();
-        }
-    };
-
+const PaymentCard = () => {
     return (
-        <Stack gap={2}>
-            <Stack gap={1}>
-                <Checkbox id={'subscription' + plan} name="subscription" checked={subscription} onChange={toggleSubscription}>
-                    Renouveler automatiquement
-                </Checkbox>
-                {subscription && <p className="text-small text-muted">
-                    Le renouvellement automatique est activé, vous serez prélevé automatiquement à la fin de chaque période.
-                    Vous pourrez interrompre l'abonnement à tout moment depuis <a
-                    href="/profil/edit" target="_blank">votre compte</a>.
-                </p>}
-            </Stack>
-            <PrimaryButton size="block" onClick={startPayment} loading={loading}>
-                {subscription ? 'S\'abonner via' : 'Payer via '}
-                <img src="/images/stripe.svg" height="20" style={{marginLeft: '.4rem'}}/>
-            </PrimaryButton>
-        </Stack>
+        <div>
+            <p>Ce moyen de paiement n'est pas encore disponible.</p>
+        </div>
     );
-};*/
+};

@@ -5,6 +5,7 @@ App\Entity\User:
     user{1..5} (extends user):
     admin (extends user):
         email: samyqais@domain.fr
+        roles: ['ROLE_ADMIN']
     github_user  (extends user):
         githubId: 12345
         email: github_user@domain.fr

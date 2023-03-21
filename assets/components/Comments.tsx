@@ -1,11 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import {useJsonFetch} from '@hooks/useJsonFetch';
 
-type CommentsType = {
+type CommentsProps = {
     userId: number;
 };
 
-export const Comments = ({ userId }: CommentsType) => {
+export const Comments = ({ userId }: CommentsProps) => {
     const {data, isLoading, isError, isDone, fetch} = useJsonFetch('https://jsonplaceholder.typicode.com/users');
     const element = useRef<HTMLDivElement>(null);
 

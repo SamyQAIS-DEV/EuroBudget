@@ -41,6 +41,8 @@ security:
         - { path: '^/$', role: PUBLIC_ACCESS } # Allow Homepage
         - { path: '^/inscription$', role: PUBLIC_ACCESS } # Allow Registration page
         - { path: '^/connexion$', role: PUBLIC_ACCESS } # Allow Login page
+        - { path: '^/oauth', role: PUBLIC_ACCESS } # Allow Oauth pages
+        - { path: '^/auth', role: PUBLIC_ACCESS } # Allow Auth pages
         - { path: '^/', role: ROLE_USER } # Disallow all other pages
         - { path: '^/admin', roles: ROLE_ADMIN }
 
