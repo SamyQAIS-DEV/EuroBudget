@@ -3,11 +3,18 @@ include:
 
 App\Entity\User:
     user{1..5} (extends user):
-    admin (extends user):
-        email: samyqais@domain.fr
-    github_user  (extends user):
-        githubId: 12345
+
+    admin_user (extends user):
+        email: admin@domain.fr
+        roles: [ 'ROLE_ADMIN' ]
+
+    github_user (extends user):
         email: github_user@domain.fr
+        githubId: 12345
+
+    premium_user (extends user):
+        email: premium_user@domain.fr
+        premiumEnd: <(new DateTimeImmutable('+1 month'))>
 
 App\Entity\Plan:
     plan1:

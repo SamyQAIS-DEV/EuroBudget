@@ -4,23 +4,26 @@ namespace App\Repository;
 
 use App\Entity\LoginLink;
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query;
+use App\Service\Encryptors\EncryptedPropertiesAccessor;
+use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<LoginLink>
+ * @extends AbstractRepository<LoginLink>
  *
  * @method LoginLink|null find($id, $lockMode = null, $lockVersion = null)
  * @method LoginLink|null findOneBy(array $criteria, array $orderBy = null)
  * @method LoginLink[]    findAll()
  * @method LoginLink[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LoginLinkRepository extends ServiceEntityRepository
+class LoginLinkRepository extends AbstractRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, LoginLink::class);
+    public function __construct(
+        ManagerRegistry $registry,
+        EncryptedPropertiesAccessor $encryptedPropertiesAccessor,
+        private readonly EncryptorInterface $encryptor
+    ) {
+        parent::__construct($registry, LoginLink::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
     public function cleanFor(User $user): ?LoginLink

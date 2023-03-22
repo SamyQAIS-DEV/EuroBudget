@@ -22,18 +22,17 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     public function handle(Request $request, AccessDeniedException $accessDeniedException): Response
     {
         $attributes = $accessDeniedException->getAttributes();
+        $session = $request->getSession();
         if (count($attributes) > 0) {
             $attribute = $attributes[0];
             if (in_array($attribute, [
                 CategoryVoter::ACCESS
             ])) {
-                $session = $request->getSession();
-                if ($session instanceof Session) {
-                    $session->getFlashBag()->add('error', 'Vous devez être premium pour pouvoir accéder aux catégories');
-                }
+                $session->getFlashBag()->add('error', 'Vous devez être premium pour pouvoir accéder aux catégories');
 
                 return new RedirectResponse($this->urlGenerator->generate('premium'));
             }
+
         }
 
         if (in_array('application/json', $request->getAcceptableContentTypes())) {

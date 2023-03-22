@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title 'Dashboard' %}
+
+{% block body %}
+    <div class="stack-large">
+        <section class="stack" style="--gap: 1;">
+            <div class="flex">
+                <h1 class="dashboard-title">
+                    {{ icon('star') }} Abonnements
+                </h1>
+            </div>
+            <div class="dashboard-card">
+                <a href="#monthly" aria-controls="monthly">24 derniers mois</a>
+                <line-chart id="monthly" points="{{ months | json_encode }}" x="date" y="amount" hidden></line-chart>
+            </div>
+        </section>
+
+        <div class="grid2" style="--gap: 4">
+            <div class="stack-large">
+                <section class="stack" style="--gap: 1">
+                    <div class="flex">
+                        <h1 class="dashboard-title">{{ icon('star') }} Actions</h1>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="flex">
+                            <form action="#" method="post">
+                                <button class="btn btn-small btn-danger">{{ icon('trash') }} Vider le cache</button>
+                            </form>
+{#                            <form action="#" method="post">#}
+{#                                <button class="btn btn-small btn-secondary">{{ icon('comments') }} Détecter le spam</button>#}
+{#                            </form>#}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="stack" style="--gap: 1">
+                    <div class="flex">
+                        <h1 class="dashboard-title">{{ icon('edit') }} <a href="https://www.mail-tester.com/" rel="noreferrer">Tester les emails</a></h1>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <form action="#" method="post" class="flex stretch">
+                            <div class="form-group" style="width: 100%">
+                                <input class="form-control" placeholder="Email" name="email">
+                            </div>
+                            <button class="btn btn-secondary">Envoyer</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<aside class="dashboard-sidebar">
+    <div class="dashboard-sidebar__wrapper">
+        <ul class="dashboard-sidebar__main">
+            <li><a href="{{ path('admin_home') }}" {{ menu_active('home') }}>{{ icon('home') }} Dashboard</a></li>
+
+            <li class="title">Tutoriels</li>
+            <li><a href="#" {{ menu_active('course') }}>{{ icon('video') }} Tutoriels</a></li>
+            <li><a href="#" {{ menu_active('cursus') }}>{{ icon('video') }} Cursus</a></li>
+
+            <li class="title">Premium</li>
+{#            <li><a href="{{ path('admin_user_index') }}" {{ menu_active('user') }}>{{ icon('user') }} Utilisateurs</a></li>#}
+{#            <li><a href="{{ path('admin_transaction_index') }}" {{ menu_active('transaction') }}>{{ icon('refund') }}#} Transactions</a></li>
+{#            <li><a href="{{ path('admin_plan_index') }}" {{ menu_active('plan') }}>{{ icon('star') }} Formules</a></li>#}
+
+            <li class="sep"></li>
+
+            <li class="title">Divers</li>
+{#            <li><a href="{{ path('admin_badge_index') }}" {{ menu_active('badge') }}>{{ icon('badge') }} Badges</a></li>#}
+{#            <li><a href="{{ path('admin_option_index') }}" {{ menu_active('option') }}>{{ icon('edit') }} Options</a></li>#}
+{#            <li><a href="{{ path('admin_stats') }}" {{ menu_active('stats') }}>{{ icon('chart') }} Stats</a></li>#}
+        </ul>
+    </div>
+</aside>

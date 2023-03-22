@@ -51,13 +51,13 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
+    #[Route('/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
     public function check(): Response
     {
         throw $this->createNotFoundException();
     }
 
-    #[Route(path: '/logout', name: self::LOGOUT_ROUTE_NAME)]
+    #[Route('/logout', name: self::LOGOUT_ROUTE_NAME)]
     public function logout(): void
     {
     }

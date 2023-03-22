@@ -10,6 +10,11 @@
             <a href="{{ path('user_profil') }}" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
                 {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_home') }}" class="mla">
+                    {{ icon('edit') }} Administration
+                </a>
+            {% endif %}
         </li>
           <li class="header__logout">
               <a href="{{ path('auth_logout') }}" title="{{ 'Logout'|trans }}" data-turbolinks="false">
