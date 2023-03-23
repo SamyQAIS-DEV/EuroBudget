@@ -2,11 +2,11 @@ import React from 'react';
 import {classNames} from '@functions/dom';
 import {useCopyToClipBoard} from '@hooks/useCopyToClipBoard';
 
-type CopyType = {
+type CopyProps = {
     text: string;
 };
 
-export const Copy = ({text}: CopyType) => {
+export const Copy = ({text}: CopyProps) => {
     const [copied, copyToClipBoard] = useCopyToClipBoard(text);
 
     const className = classNames('btn', copied ? 'btn-primary' : 'btn-secondary');
