@@ -1,5 +1,5 @@
 import './css/admin.scss';
 
-import {LineChart} from './elements/admin/LineChart';
+import {LineChartElement} from './elements/admin/LineChartElement';
 
-customElements.define('line-chart', LineChart);
+customElements.define('line-chart', LineChartElement);

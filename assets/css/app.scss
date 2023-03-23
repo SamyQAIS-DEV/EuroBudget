@@ -52,7 +52,7 @@ body {
     scroll-behavior: smooth;
     scroll-margin: 100px 0 0 0;
     word-break: break-word;
-    transition: background 0.5s, color 0.2s;
+    //transition: background 0.5s, color 0.2s;
 
     @include down(985) {
         //margin-bottom: 100px;
@@ -67,6 +67,7 @@ body {
 // Modules
 // ==================
 @import 'modules/header';
+@import 'modules/footer';
 @import 'modules/btn';
 @import 'modules/card';
 @import 'modules/form';

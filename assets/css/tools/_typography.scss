@@ -61,6 +61,10 @@ h1 {
     font-size: 32px;
     line-height: 1.2;
 
+    strong {
+        color: var(--contrast);
+    }
+
     & ~ * {
         margin-top: space(3);
     }
@@ -77,6 +81,10 @@ h2 {
     font-style: normal;
     font-size: 32px;
     line-height: 1.2;
+
+    strong {
+        color: var(--contrast);
+    }
 
     & ~ * {
         margin-top: space(2.5);

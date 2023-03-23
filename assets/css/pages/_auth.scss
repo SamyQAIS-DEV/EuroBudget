@@ -1,6 +1,9 @@
 .auth-container {
     @extend %container;
     position: relative;
+    @include up(985) {
+        justify-content: flex-end;
+    }
 }
 
 .auth-container img {
@@ -10,18 +13,19 @@
     height: auto;
     opacity: 0.3;
     z-index: -1;
+    @include down(985) {
+        display: none;
+    }
 }
 
 .auth-container .card {
-    position: absolute;
-    top: 10%;
-    right: 15%;
-    width: 400px;
-
-    @include down(450) {
-        top: 0;
-        right: 10%;
-        max-width: 80%;
+    min-width: 450px;
+    width: 80%;
+    @include up(985) {
+        position: absolute;
+        top: 10%;
+        right: 15%;
+        width: 400px;
     }
 }
 
