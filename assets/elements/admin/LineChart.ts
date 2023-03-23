@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto';
+import {ChartConfiguration, ChartType, DefaultDataPoint} from 'chart.js';
 
 /**
  * Crée un graphique avec des lignes
@@ -12,7 +13,10 @@ import Chart from 'chart.js/auto';
  * @property {ShadowRoot} root
  * @property {Chart} chart
  */
-/*export class LineChart extends HTMLElement {
+export class LineChart extends HTMLElement {
+    private root: ShadowRoot;
+    private chart: Chart<ChartType, DefaultDataPoint<ChartType>, unknown>;
+
     static get observedAttributes() {
         return ['hidden'];
     }
@@ -36,6 +40,9 @@ import Chart from 'chart.js/auto';
         const yKey = this.getAttribute('y') || 'y';
         const ctx = this.root.querySelector('canvas');
         this.chart = new Chart(ctx, {
+            type: 'line'
+        } as ChartConfiguration);
+        /*this.chart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: points.map((point) => point[xKey]),
@@ -84,7 +91,7 @@ import Chart from 'chart.js/auto';
                 },
                 responsiveAnimationDuration: 0,
             },
-        });
+        });*/
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -98,4 +105,3 @@ import Chart from 'chart.js/auto';
         this.innerHTML = '';
     }
 }
-*/

@@ -6,11 +6,11 @@
     <div class="stack-large">
         <section class="stack" style="--gap: 1;">
             <div class="flex">
-                <h1 class="dashboard-title">
+                <h3>
                     {{ icon('star') }} Abonnements
-                </h1>
+                </h3>
             </div>
-            <div class="dashboard-card">
+            <div class="card">
                 <a href="#monthly" aria-controls="monthly">24 derniers mois</a>
                 <line-chart id="monthly" points="{{ months | json_encode }}" x="date" y="amount" hidden></line-chart>
             </div>
@@ -20,10 +20,10 @@
             <div class="stack-large">
                 <section class="stack" style="--gap: 1">
                     <div class="flex">
-                        <h1 class="dashboard-title">{{ icon('star') }} Actions</h1>
+                        <h3>{{ icon('star') }} Actions</h3>
                     </div>
 
-                    <div class="dashboard-card">
+                    <div class="card">
                         <div class="flex">
                             <form action="#" method="post">
                                 <button class="btn btn-small btn-danger">{{ icon('trash') }} Vider le cache</button>
@@ -37,16 +37,21 @@
 
                 <section class="stack" style="--gap: 1">
                     <div class="flex">
-                        <h1 class="dashboard-title">{{ icon('edit') }} <a href="https://www.mail-tester.com/" rel="noreferrer">Tester les emails</a></h1>
+                        <h3>{{ icon('edit') }} Tester les emails</h3>
                     </div>
-
-                    <div class="dashboard-card">
-                        <form action="#" method="post" class="flex stretch">
+                    <div class="card">
+                        <h3>Envoyer un email de test</h3>
+                        <form action="{{ path('admin_mailtest') }}" method="post" class="stack">
                             <div class="form-group" style="width: 100%">
                                 <input class="form-control" placeholder="Email" name="email">
                             </div>
-                            <button class="btn btn-secondary">Envoyer</button>
+                            <button class="btn btn-secondary">Tester</button>
                         </form>
+
+                        <div>
+                            <h3>Prévisualiser le mail d'inscription</h3>
+                            <a target="_blank" href="{{ path('admin_mailpreview') }}" class="btn btn-secondary">Tester</a>
+                        </div>
                     </div>
                 </section>
             </div>

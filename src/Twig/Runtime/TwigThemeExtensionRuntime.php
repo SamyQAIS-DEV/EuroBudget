@@ -16,7 +16,7 @@ class TwigThemeExtensionRuntime implements RuntimeExtensionInterface
     {
         $request = $this->requestStack->getCurrentRequest();
         if ($request instanceof Request) {
-            return $request->cookies->get('theme');
+            return (string) $request->cookies->get('theme');
         }
 
         return '';
