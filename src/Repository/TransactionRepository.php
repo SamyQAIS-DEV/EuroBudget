@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Transaction;
+use App\Entity\User;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use DateTimeImmutable;
@@ -25,6 +26,19 @@ class TransactionRepository extends AbstractRepository
         private readonly EncryptorInterface $encryptor
     ) {
         parent::__construct($registry, Transaction::class, $encryptedPropertiesAccessor, $encryptor);
+    }
+
+    /**
+     * @return Transaction[]
+     */
+    public function findFor(User $user): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.author = :user')
+            ->orderBy('t.createdAt', 'DESC')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
     public function getMonthlyRevenues(): array

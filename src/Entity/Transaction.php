@@ -6,10 +6,13 @@ use App\Repository\TransactionRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Intl\Countries;
 
 #[ORM\Entity(repositoryClass: TransactionRepository::class)]
 class Transaction
 {
+    final public const PAYPAL = 'paypal';
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     #[ORM\Column(type: Types::INTEGER)]
@@ -57,6 +60,26 @@ class Transaction
 
     #[ORM\Column(type: Types::FLOAT)]
     private ?float $fee = null;
+
+    public function getFullName(): string
+    {
+        return $this->lastname.' '.$this->firstname;
+    }
+
+    public function getDescription(): string
+    {
+        return "Compte premium {$this->duration} mois";
+    }
+
+    public function getCountry(): ?string
+    {
+        return Countries::getNames()[$this->countryCode] ?? null;
+    }
+
+    public function isPaypal(): bool
+    {
+        return self::PAYPAL === $this->method;
+    }
 
     public function getId(): ?int
     {

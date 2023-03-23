@@ -10,7 +10,7 @@ class ProfileControllerTest extends WebTestCase
     {
         ['user1' => $user] = $this->loadFixtureFiles(['users']);
         $this->login($user);
-        $crawler = $this->client->request('GET', '/profile');
+        $crawler = $this->client->request('GET', '/profil');
         self::assertResponseStatusCodeSame(200);
         $this->expectTitle('Mon profil');
         $this->expectH1('Mon profil');
@@ -18,7 +18,7 @@ class ProfileControllerTest extends WebTestCase
 
     public function testProfileUnauthenticated(): void
     {
-        $this->client->request('GET', "/profile");
+        $this->client->request('GET', "/profil");
         self::assertResponseRedirects('/connexion');
     }
 }
