@@ -5,15 +5,15 @@
     --color-light: #33333399;
     --color-inversed: #f5f5f5;
     --contrast: #287bff;
-    --background: #f5f5f5;
-    --background-light: #f5f5f599;
+    --background: #f4f4f4;
+    --background-light: #ffffff;
     --background-transparent: rgba(255, 255, 255, 0.85);
     --gap: 20px;
     --space: 8px;
     --border-radius: 8px;
     --border: #b1b1b1;
     --border-light: #99999999;
-    --shadow: #999999;
+    --shadow: rgba(0, 0, 0, 0.2);
     --card-padding: 16px;
     --red: #f25353;
     --green: #41cf7c;
@@ -49,8 +49,14 @@ body {
     color: var(--color);
     line-height: 1.6;
     background: var(--background);
+    scroll-behavior: smooth;
     scroll-margin: 100px 0 0 0;
     word-break: break-word;
+    transition: background 0.5s, color 0.2s;
+
+    @include down(985) {
+        margin-bottom: 100px;
+    }
 }
 
 ::selection {
@@ -60,8 +66,12 @@ body {
 
 // Modules
 // ==================
-@import 'modules/btn';
 @import 'modules/header';
+@import 'modules/btn';
+@import 'modules/card';
+@import 'modules/form';
+@import 'modules/switch';
+@import 'modules/scrollbar';
 
 // Pages
 // ==================

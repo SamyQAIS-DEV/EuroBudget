@@ -1,0 +1,105 @@
+
+input:disabled {
+    opacity: 0.7;
+}
+
+form {
+    background: inherit;
+}
+
+form > * + * {
+    margin-top: space(3);
+}
+
+// Champs texte
+// ==================
+.form-group {
+    position: relative;
+    background: inherit;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+%input {
+    background: inherit;
+    color: inherit;
+    border: 2px solid var(--contrast);
+    border-radius: var(--border-radius);
+    padding: 0 space(2);
+    display: block;
+    width: 100%;
+    outline: none;
+    min-height: 48px;
+    line-height: 40px;
+}
+.form-group textarea {
+    min-height: 150px;
+}
+.form-group label {
+    background: inherit;
+    display: block;
+    margin-bottom: space(1);
+}
+
+.form-group label::before {
+    content: attr(title);
+    position: absolute;
+    background: inherit;
+    top: 5px;
+    left: 15px;
+    line-height: 35px;
+    color: var(--border);
+    transition: 0.3s;
+}
+
+.form-group input {
+    &:focus {
+        outline: 0;
+        border-color: var(--contrast);
+    }
+    &:focus + label::before,
+    &:valid + label::before {
+        line-height: 20px;
+        font-size: 0.7rem;
+        top: -10px;
+        padding: 0 space(1);
+        left: space(1);
+        color: var(--contrast);
+    }
+}
+
+// Validation
+// ==================
+.form-error {
+    color: var(--red);
+    font-size: 0.8em;
+    margin-top: 0.5em;
+    line-height: 1.2;
+
+    //* > * {
+    //    margin-top: 0.5em;
+    //}
+}
+.form-group input.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: var(--red);
+}
+
+.invalid-feedback {
+    color: var(--red);
+    margin-top: space(1);
+    font-size: 0.9em;
+}
+
+// Accessibilité
+// ==================
+.form-group input:focus,
+.form-check input:focus + label::before,
+select:focus,
+textarea:focus,
+form button:focus,
+input:focus + label .switch,
+%input-active {
+    border: 2px solid var(--border);
+}

@@ -1,6 +1,5 @@
-import { HttpRequestMethodEnum } from "@enums/HttpEnum";
+import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 // import { flash } from "@functions/flash";
-import { AlertEnum } from "@enums/AlertEnum";
 
 /**
  * @param {RequestInfo} url
@@ -9,27 +8,27 @@ import { AlertEnum } from "@enums/AlertEnum";
  * @return {Promise<Object>}
  * @throws ApiError
  */
-export const jsonFetch = async (url: RequestInfo, body?: object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET) => {
+export const jsonFetch = async <T extends unknown>(url: RequestInfo, body?: object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET): Promise<T> => {
     const params = {
         method: method,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
         },
-        body: method === 'GET' ? undefined : JSON.stringify(body)
+        body: method === 'GET' ? undefined : JSON.stringify(body),
     };
 
     const response = await fetch(url, params);
     if (response.status === 204) {
         return null;
     }
-    const data = await response.json()
+    const data = await response.json() as T;
     if (response.ok) {
         return data;
     }
     throw new ApiError(data, response.status);
-}
+};
 
 /**
  * @param {RequestInfo} url
@@ -60,25 +59,26 @@ export class ApiError {
     private data?: any;
     private status?: number;
 
-    constructor (data, status) {
+    constructor(data, status) {
         this.data = data;
         this.status = status;
     }
 
     // Récupère la liste de violation pour un champ donné
-    violationsFor (field) {
-        return this.data.violations.filter(v => v.propertyPath === field).map(v => v.message);
+    violationsFor(field) {
+        return this.data.violations.filter(v => v.propertyPath === field)
+            .map(v => v.message);
     }
 
-    get name () {
+    get name() {
         return `${this.data.title}. ${this.data.detail || ''}`;
     }
 
     // Renvoie les violations indexées par propertyPath
-    get violations () {
+    get violations() {
         if (!this.data.violations) {
             return {
-                main: `${this.data.title} ${this.data.detail || ''}`
+                main: `${this.data.title} ${this.data.detail || ''}`,
             };
         }
         return this.data.violations.reduce((acc, violation) => {

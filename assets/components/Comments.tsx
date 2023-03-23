@@ -10,7 +10,7 @@ type CommentsType = {
 };
 
 export const Comments = ({ userId }: CommentsType) => {
-    const {data, isLoading, isError, isDone, fetch} = useJsonFetch('https://jsonplaceholder.typicode.com/users');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<{}>('https://jsonplaceholder.typicode.com/users');
     const element = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

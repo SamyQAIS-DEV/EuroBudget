@@ -1,0 +1,8 @@
+.card,
+%card {
+    background: var(--background-light);
+    color: var(--color);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding);
+    transition: 0.3s;
+}

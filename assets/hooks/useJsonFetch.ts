@@ -2,26 +2,32 @@ import {useCallback, useState} from 'react';
 import {jsonFetch} from '@functions/api';
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 
-type useQueryState = {
-    data: any;
+type FetchFn<T> = (
+    localUrl?: string,
+    localParams?: object,
+    localMethod?: HttpRequestMethodEnum
+) => Promise<T>;
+
+type State<T> = {
+    data?: T;
     isLoading: boolean;
     isError: boolean;
     isDone: boolean;
 };
 
-export const useJsonFetch = (url: string, params: object = {}, method?: HttpRequestMethodEnum) => {
-    const [state, setState] = useState<useQueryState>({
+export const useJsonFetch = <T>(url: string, params: object = {}, method?: HttpRequestMethodEnum): [State<T>, FetchFn<T>] => {
+    const [state, setState] = useState<State<T>>({
         data: null,
         isLoading: false,
         isError: false,
         isDone: false
     });
 
-    const fetch = useCallback(
+    const fetch: FetchFn<T> = useCallback(
         async (localUrl?: string, localParams?: object, localMethod?: HttpRequestMethodEnum) => {
             setState(s => ({ ...s, isLoading: true, isError: false, isDone: false }));
             try {
-                const response = await jsonFetch(localUrl || url, localParams || params, localMethod || method);
+                const response = await jsonFetch<T>(localUrl || url, localParams || params, localMethod || method);
                 setState(s => ({ ...s, data: response, isLoading: false, isError: false, isDone: true }));
                 return response;
             } catch (e) {
@@ -32,5 +38,5 @@ export const useJsonFetch = (url: string, params: object = {}, method?: HttpRequ
         [url, params]
     );
 
-    return {...state, fetch};
+    return [{...state}, fetch];
 };
