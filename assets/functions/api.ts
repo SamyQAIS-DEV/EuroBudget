@@ -1,23 +1,25 @@
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 // import { flash } from "@functions/flash";
 
+const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+};
+
 /**
  * @param {RequestInfo} url
- * @param {object} body
+ * @param body
  * @param {string} method
  * @return {Promise<Object>}
  * @throws ApiError
  */
-export const jsonFetch = async <T extends unknown>(url: RequestInfo, body?: object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET): Promise<T> => {
-    const params = {
+export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: object = {}, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET): Promise<T> => {
+    const params: RequestInit = {
+        headers: headers,
         method: method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-        },
-        body: method === 'GET' ? undefined : JSON.stringify(body),
-    };
+        body: method === HttpRequestMethodEnum.GET ? undefined : JSON.stringify(body)
+    }
 
     const response = await fetch(url, params);
     if (response.status === 204) {
