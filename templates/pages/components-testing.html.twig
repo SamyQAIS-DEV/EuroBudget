@@ -5,7 +5,7 @@
 {% block body %}
     <main class="home pt5">
         <div class="container">
-            <h1 class="hero-title">{{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}<strong> {{ app.user.userIdentifier }}</strong></h1>
+            <components-testing user-id="{{ app.user.id }}"></components-testing>
         </div>
     </main>
 {% endblock %}

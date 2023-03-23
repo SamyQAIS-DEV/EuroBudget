@@ -17,14 +17,10 @@ const handleIntersect = function(entries, observer) {
 };
 const observer = new IntersectionObserver(handleIntersect, options);
 
-// document.addEventListener('turbolinks:load', () => { // TODO
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade')
         .forEach(r => {
             observer.observe(r);
-        });
+        })
+    ;
 });
-
-// document.addEventListener('turbolinks:before-render', () => {
-//   observer.takeRecords();
-// });

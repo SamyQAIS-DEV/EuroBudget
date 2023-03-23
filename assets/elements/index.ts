@@ -1,9 +1,9 @@
-import {CommentsElement} from './CommentsElement';
+import {ComponentsTestingElement} from './ComponentsTestingElement';
 import {SwitchElement} from './SwitchElement';
 import {ThemeSwitcherElement} from './ThemeSwitcherElement';
 
 // Custom Elements
-customElements.define('comments-area', CommentsElement);
+customElements.define('components-testing', ComponentsTestingElement);
 customElements.define('theme-switcher', ThemeSwitcherElement);
 
 // CustomElement étendus

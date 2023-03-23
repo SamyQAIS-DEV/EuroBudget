@@ -13,8 +13,7 @@ declare global {
 
 import './modules/scrollreveal';
 
-// TODO
-// document.addEventListener('turbolinks:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-// });
+});
 
