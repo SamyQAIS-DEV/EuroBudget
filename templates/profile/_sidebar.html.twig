@@ -1,6 +1,6 @@
 <aside class="sidebar container sticky">
-    <div class="sidebar__avatar avatar">
-        <img src="{{ user | avatar }}" alt="">
+    <div class="sidebar__avatar">
+        <img class="avatar ma" src="{{ user | avatar }}" alt="Avatar">
     </div>
     <a href="{{ path('user_profile') }}" {% if active == 'profile' %}aria-selected="true"{% endif %}>
         {{ icon('user') }} Profil
