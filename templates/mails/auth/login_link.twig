@@ -6,7 +6,7 @@
 
     {% apply markdown_email %}
 
-    {{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }} {{ username }} !
+    {{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}&nbsp;<strong>{{ username }}</strong>&nbsp;!
     ===============================
 
     Vous avez demandé un lien de connexion. Vous pouvez l'utiliser en cliquant sur le bouton ci-dessous.
