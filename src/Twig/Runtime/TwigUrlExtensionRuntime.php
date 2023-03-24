@@ -4,12 +4,17 @@ namespace App\Twig\Runtime;
 
 use App\Entity\User;
 use Twig\Extension\RuntimeExtensionInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelperInterface;
 
 class TwigUrlExtensionRuntime implements RuntimeExtensionInterface
 {
+    public function __construct(
+        private readonly UploaderHelperInterface $uploaderHelper
+    ) {
+    }
+
     public function avatarPath(User $user): string
     {
-        return '/images/default.png'; // TODO
         if (null === $user->getAvatarName()) {
             return '/images/default.png';
         }

@@ -13,7 +13,6 @@ export class SwitchElement extends HTMLInputElement {
         const className = element.getAttribute('class');
         const checked = element.getAttribute('checked');
         const disabled = element.getAttribute('disabled');
-        console.log(checked);
         root.render(
             <Switch
                 id={id}

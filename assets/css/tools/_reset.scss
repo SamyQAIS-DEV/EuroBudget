@@ -112,6 +112,11 @@ input {
     font-family: inherit;
 }
 
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
 pre {
     font-family: monospace;
 }
