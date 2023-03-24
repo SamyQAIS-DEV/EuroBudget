@@ -1,17 +1,18 @@
-import React, {ComponentProps} from 'react';
+import React, {PropsWithChildren} from 'react';
 import {Modal} from '@components/Modal';
 import {classNames} from '@functions/dom';
 
 type AlertModalProps = {
     show: boolean;
     onClose: () => void;
-} & ComponentProps<any>;
+    className?: string;
+} & PropsWithChildren;
 
 export const AlertModal = ({
     show,
-    className,
     onClose,
-    children
+    className,
+    children,
 }: AlertModalProps) => {
     className = classNames('modal-alert', className);
 

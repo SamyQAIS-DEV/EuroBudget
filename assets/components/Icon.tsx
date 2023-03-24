@@ -1,11 +1,10 @@
-import React, {ComponentProps} from 'react';
+import React, {HTMLProps, PropsWithChildren} from 'react';
 import {classNames} from '@functions/dom';
 
 type IconProps = {
-    show: boolean;
-    closable?: boolean;
-    onClose: () => void;
-} & ComponentProps<any>;
+    name: string;
+    size?: number;
+} & PropsWithChildren & HTMLProps<any>;
 
 export const Icon = ({
     name,
@@ -18,7 +17,7 @@ export const Icon = ({
 
     return (
         <svg className={className} width={size} height={size} {...props}>
-            <use xlinkHref={href} />
+            <use xlinkHref={href}/>
         </svg>
     );
 };

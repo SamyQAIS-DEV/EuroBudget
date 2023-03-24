@@ -17,7 +17,7 @@ export class SwitchElement extends HTMLInputElement {
             <Switch
                 id={id}
                 name={name}
-                required={required}
+                required={required !== null && required !== undefined && required !== "false"}
                 className={className}
                 label={label}
                 defaultChecked={checked !== null && checked !== undefined && checked !== "false"}

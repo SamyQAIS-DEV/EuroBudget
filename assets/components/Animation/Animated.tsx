@@ -1,18 +1,19 @@
-import React, {ComponentProps, CSSProperties, Ref, useEffect, useState} from 'react';
+import React, {CSSProperties, HTMLProps, PropsWithChildren, Ref, useEffect, useState} from 'react';
 
 type AnimatedProps = {
     show: boolean;
     animationName: string;
     style?: CSSProperties;
     forwardedRef?: Ref<HTMLDivElement>
-} & ComponentProps<any>;
+} & PropsWithChildren & HTMLProps<HTMLDivElement>;
 
 export const Animated = ({
     show,
     animationName,
     style = {},
-    children,
     forwardedRef = null,
+    className,
+    children,
     ...props
 }: AnimatedProps) => {
     const [shouldRender, setRender] = useState<boolean>(show);

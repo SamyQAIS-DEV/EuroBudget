@@ -1,14 +1,22 @@
-import React, {ComponentProps} from 'react';
+import React, {HTMLProps, PropsWithChildren} from 'react';
 import {classNames} from '@functions/dom';
 
-export const Switch = ({label, className, ...props}: ComponentProps<any>) => {
+type SwitchProps = {
+    label: string;
+} & PropsWithChildren & HTMLProps<HTMLInputElement>;
+
+export const Switch = ({
+    label,
+    className,
+    ...props
+}: SwitchProps) => {
     className = classNames(className, 'switch-checkbox');
 
     return (
         <label className="switch">
             <input className={className} type="checkbox" {...props} />
             <i></i>
-            <span className='switch-label'>{label}</span>
+            <span className="switch-label">{label}</span>
         </label>
     );
 };

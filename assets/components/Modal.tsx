@@ -1,4 +1,4 @@
-import React, {ComponentProps, useEffect, useRef} from 'react';
+import React, {PropsWithChildren, useEffect, useRef} from 'react';
 import {Animated} from '@components/Animation/Animated';
 import {classNames} from '@functions/dom';
 import {useOnClickOutside} from '@hooks/useOnClickOutside';
@@ -9,15 +9,15 @@ type ModalProps = {
     show: boolean;
     closable?: boolean;
     onClose?: () => void;
-} & ComponentProps<any>;
+    className?: string;
+} & PropsWithChildren;
 
 export const Modal = ({
     show,
-    className,
     closable = true,
     onClose,
+    className,
     children,
-    ...props
 }: ModalProps) => {
     const ref = useRef(null);
     const wrapperClassName = 'modal-dialog';
@@ -50,7 +50,7 @@ export const Modal = ({
 
     return (
         <Animated show={show} animationName="modal" className={wrapperClassName}>
-            <Animated show={show} animationName="modalSlide" className={className} forwardedRef={ref} {...props}>
+            <Animated show={show} animationName="modalSlide" className={className} forwardedRef={ref}>
                 {closable === true && (
                     <button className="modal-close" onClick={handleClose}>
                         <Icon name="x"/>

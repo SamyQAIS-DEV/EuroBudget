@@ -1,4 +1,4 @@
-import React, {ComponentProps} from 'react';
+import React, {HTMLProps, PropsWithChildren} from 'react';
 import {Modal} from '@components/Modal';
 import {classNames} from '@functions/dom';
 
@@ -6,14 +6,15 @@ type ConfirmModalProps = {
     show: boolean;
     onCancel: () => void;
     onConfirm: () => void;
-} & ComponentProps<any>;
+    className?: string;
+} & PropsWithChildren;
 
 export const ConfirmModal = ({
     show,
-    className,
     onCancel,
     onConfirm,
-    children
+    className,
+    children,
 }: ConfirmModalProps) => {
     className = classNames('modal-alert', className);
 
