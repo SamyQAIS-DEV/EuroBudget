@@ -266,9 +266,30 @@
     margin-left: space(4);
 }
 
+// Layout
+// ==================
+.layout-sidebar {
+    @extend %container;
+    --gap: 5;
+    display: grid;
+    gap: calc(var(--gap) * var(--space));
+    grid-template-columns: 1fr;
+
+    & > * {
+        min-width: 0;
+    }
+
+    @include up(1100) {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
 .sticky {
-    position: sticky;
-    top: space(3);
+    @include up(1100) {
+        position: sticky;
+        top: space(3);
+        align-self: start;
+    }
 }
 
 // Spaces

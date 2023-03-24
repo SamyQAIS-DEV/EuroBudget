@@ -1,0 +1,15 @@
+<aside class="sidebar container sticky">
+    <div class="sidebar__avatar avatar">
+        <img src="{{ user | avatar }}" alt="">
+    </div>
+    <a href="{{ path('user_profile') }}" {% if active == 'profile' %}aria-selected="true"{% endif %}>
+        {{ icon('user') }} Profil
+    </a>
+    {#    <a href="{{ path('user_edit') }}" {% if active == 'edit' %}aria-selected="true"{% endif %}> #}
+    {#        {{ icon('user') }} #}
+    {#        Editer #}
+    {#    </a> #}
+    <a href="{{ path('user_transactions') }}" {% if active == 'transactions' %}aria-selected="true"{% endif %}>
+        {{ icon('inbox') }} Mes factures
+    </a>
+</aside>
