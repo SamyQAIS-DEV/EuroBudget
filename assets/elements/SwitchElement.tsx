@@ -11,15 +11,18 @@ export class SwitchElement extends HTMLInputElement {
         const name = element.getAttribute('name');
         const required = element.getAttribute('required');
         const className = element.getAttribute('class');
-        const value = element.getAttribute('value');
+        const checked = element.getAttribute('checked');
+        const disabled = element.getAttribute('disabled');
+        console.log(checked);
         root.render(
             <Switch
                 id={id}
                 name={name}
                 required={required}
                 className={className}
-                value={value}
                 label={label}
+                defaultChecked={checked !== null && checked !== undefined && checked !== "false"}
+                disabled={disabled !== null && disabled !== undefined && disabled !== "false"}
             />
         );
     }

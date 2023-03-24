@@ -7,7 +7,8 @@
     --contrast: #287bff;
     --background: #f4f4f4;
     --background-light: #ffffff;
-    --background-transparent: rgba(255, 255, 255, 0.85);
+    --background-transparent: transparent;
+    --blur: 12px;
     --gap: 20px;
     --space: 8px;
     --border-radius: 8px;
@@ -72,6 +73,7 @@ body {
 @import 'modules/btn';
 @import 'modules/card';
 @import 'modules/form';
+@import 'modules/modal';
 @import 'modules/sidebar';
 @import 'modules/switch';
 @import 'modules/scrollbar';

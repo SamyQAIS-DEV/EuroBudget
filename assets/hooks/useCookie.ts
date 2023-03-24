@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {cookie} from '@functions/cookie';
 
 type UpdateCookieFn = (
     name: string,
     value?: string,
-    expiresInDays?: number
+    expiresInDays?: number,
 ) => void;
 
 export const useCookie = (name: string, defaultValue?: string): [string, UpdateCookieFn] => {
@@ -14,11 +14,11 @@ export const useCookie = (name: string, defaultValue?: string): [string, UpdateC
     const updateCookie: UpdateCookieFn = async (
         name,
         value,
-        expiresInDays
+        expiresInDays,
     ) => {
         setCookie(value);
         cookie(name, value, expiresInDays);
-    }
+    };
 
     return [theCookie, updateCookie];
 };
