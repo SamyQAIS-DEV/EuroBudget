@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Dto\AvatarDto;
+use App\Enum\AlertEnum;
 use App\Service\ProfileService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +20,9 @@ class AvatarController extends AbstractController
         $data = new AvatarDto($request->files->get('avatar'), $user);
         try {
             $profileService->updateAvatar($data);
-            $this->addFlash('success', 'Avatar mis à jour');
+            $this->addAlert(AlertEnum::SUCCESS, 'Avatar mis à jour');
         } catch (\Exception $exception) {
-            $this->addFlash('error', $exception->getMessage());
+            $this->addAlert(AlertEnum::ERROR, $exception->getMessage());
         }
 
         return $this->redirectToRoute('user_profile');

@@ -73,7 +73,7 @@
     }
 }
 
-.btn-danger {
+.btn-error {
     @extend %btn;
     background: var(--red);
 }
@@ -229,7 +229,7 @@
     }
 }
 
-.rounded-button.danger {
+.rounded-button.error {
     --icon-background: var(--red);
 }
 

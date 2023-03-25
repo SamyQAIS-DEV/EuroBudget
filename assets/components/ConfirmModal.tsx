@@ -6,8 +6,7 @@ type ConfirmModalProps = {
     show: boolean;
     onCancel: () => void;
     onConfirm: () => void;
-    className?: string;
-} & PropsWithChildren;
+} & PropsWithChildren & HTMLProps<HTMLDivElement>;
 
 export const ConfirmModal = ({
     show,

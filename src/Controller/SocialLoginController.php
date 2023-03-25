@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Enum\AlertEnum;
 use App\Service\AuthService;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -50,7 +51,7 @@ class SocialLoginController extends AbstractController
         $authService->getUser()->$method(null);
         $entityManager->flush();
         // TODO : TRAD
-        $this->addFlash('success', 'Votre compte a bien été dissocié de ' . $service);
+        $this->addAlert(AlertEnum::SUCCESS, 'Votre compte a bien été dissocié de ' . $service);
 
         return $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
     }

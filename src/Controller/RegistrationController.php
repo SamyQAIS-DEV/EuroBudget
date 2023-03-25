@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\RegistrationFormType;
 use App\Security\Authentication\Authenticator;
@@ -46,8 +47,8 @@ class RegistrationController extends AbstractController
 
             if ($isOauthUser) {
                 // TODO : TRAD
-                $this->addFlash(
-                    'success',
+                $this->addAlert(
+                    AlertEnum::SUCCESS,
                     'Votre compte a bien été créé.'
                 );
 
@@ -55,8 +56,8 @@ class RegistrationController extends AbstractController
             }
 
             // TODO : TRAD
-            $this->addFlash(
-                'success',
+            $this->addAlert(
+                AlertEnum::SUCCESS,
                 'Un message avec un lien de connexion vous a été envoyé par mail. Ce site n\'utilise pas de mot de passe.'
             );
 

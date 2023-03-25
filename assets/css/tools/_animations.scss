@@ -33,6 +33,32 @@
     }
 }
 
+@keyframes alertFloatingIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+@keyframes alertFloatingOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes alertProgessIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
 // ScrollReveal
 // ==================
 .fade {

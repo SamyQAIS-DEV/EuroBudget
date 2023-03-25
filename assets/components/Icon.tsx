@@ -13,7 +13,7 @@ export const Icon = ({
     ...props
 }: IconProps) => {
     const href = `/sprite.svg#${name}`;
-    className = classNames(className, `icon icon-${name}`);
+    className = classNames(`icon icon-${name}`, className);
 
     return (
         <svg className={className} width={size} height={size} {...props}>

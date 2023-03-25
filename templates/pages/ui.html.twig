@@ -32,7 +32,7 @@
                 veniam voluptates?
             </p>
             <div>
-                <span class="text-danger">Texte d'alerte .text-danger</span>
+                <span class="text-error">Texte d'alerte .text-error</span>
                 <span class="text-muted">Texte d'alerte .text-muted</span>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <div class="hstack">
                     <button class="btn-primary">Bouton .btn-primary</button>
                     <button class="btn-secondary">Bouton .btn-secondary</button>
-                    <button class="btn-danger">Bouton .btn-danger</button>
+                    <button class="btn-error">Bouton .btn-error</button>
                     <button class="btn-secondary" disabled>Bouton [disabled]</button>
                     <button class="btn-primary-outlined">Bouton .btn-primary-outlined</button>
                 </div>
@@ -294,23 +294,31 @@
         </div>
 
         <div>
-            <h1 class="">Alertes (TODO)</h1>
-            <alert-message type="info" duration="50000">
-                <strong>Ceci est un exemple alert-message[type=info]</strong><br/>
+            <h1 class="">Alertes</h1>
+            <alert-element type="info" duration="3000" floating>
+                <strong>Ceci est un exemple alert-element[type=info]</strong><br/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
-            </alert-message>
-            <alert-message type="success">
-                <strong>Ceci est un exemple alert-message[type=success]</strong><br/>
+            </alert-element>
+            <alert-element type="info" duration="10000" floating>
+                <strong>Ceci est un exemple alert-element[type=info]</strong><br/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
-            </alert-message>
-            <alert-message type="danger">
-                <strong>Ceci est un exemple alert-message[type=danger]</strong><br/>
+            </alert-element>
+            <alert-element type="info" duration="100000">
+                <strong>Ceci est un exemple alert-element[type=info][duration=100000]</strong><br/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
-            </alert-message>
-            <alert-message type="warning">
-                <strong>Ceci est un exemple alert-message[type=warning]</strong><br/>
+            </alert-element>
+            <alert-element type="success">
+                <strong>Ceci est un exemple alert-element[type=success]</strong><br/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
-            </alert-message>
+            </alert-element>
+            <alert-element type="warning">
+                <strong>Ceci est un exemple alert-element[type=warning]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="error">
+                <strong>Ceci est un exemple alert-element[type=error]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
         </div>
 
         <div>

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Helper\TimeHelper;
 use App\Repository\TransactionRepository;
@@ -27,7 +28,7 @@ class PageController extends AbstractController
     public function testMail(EventDispatcherInterface $dispatcher): RedirectResponse
     {
         $dispatcher->dispatch(new LoginLinkRequestedEvent($this->getUserOrThrow(), false));
-        $this->addFlash('success', "L'email de test a bien été envoyé");
+        $this->addAlert(AlertEnum::SUCCESS, "L'email de test a bien été envoyé");
 
         return $this->redirectToRoute('admin_home');
     }

@@ -4,6 +4,7 @@ namespace App\Security\Authentication;
 
 use App\Controller\HomeController;
 use App\Controller\SecurityController;
+use App\Enum\AlertEnum;
 use App\Repository\LoginLinkRepository;
 use App\Repository\UserRepository;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -73,7 +74,7 @@ class Authenticator extends AbstractAuthenticator
                 // Do nothing
             }
         }
-        $request->getSession()->getBag('flashes')->add('success','Connecté');
+        $request->getSession()->getBag('flashes')->add(AlertEnum::SUCCESS->value,'Connecté');
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);

@@ -1,12 +1,11 @@
-import React, {PropsWithChildren} from 'react';
+import React, {HTMLProps, PropsWithChildren} from 'react';
 import {Modal} from '@components/Modal';
 import {classNames} from '@functions/dom';
 
 type AlertModalProps = {
     show: boolean;
     onClose: () => void;
-    className?: string;
-} & PropsWithChildren;
+} & PropsWithChildren & HTMLProps<HTMLDivElement>;
 
 export const AlertModal = ({
     show,

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
@@ -34,14 +35,14 @@ class SecurityController extends AbstractController
             $user = $userRepository->findOneByEmail($email);
             if ($user === null) {
                 // TODO : TRAD
-                $this->addFlash('error', 'This email does not exist');
+                $this->addAlert(AlertEnum::ERROR, 'This email does not exist');
 
                 return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
             }
 
             $dispatcher->dispatch(new LoginLinkRequestedEvent($user));
             // TODO : TRAD
-            $this->addFlash('success', 'Login link sent');
+            $this->addAlert(AlertEnum::SUCCESS, 'Login link sent');
 
             return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
         }

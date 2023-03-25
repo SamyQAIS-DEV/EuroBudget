@@ -45,7 +45,7 @@ export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: objec
 //     } catch (error) {
 //         // On catch l'erreur pour vérifier si c'est une erreur API puis on rethrow derrière car dans tous les cas on recatch derrière
 //         if (error instanceof ApiError && 'main' in error.violations) {
-//             flash(error.name, AlertEnum.DANGER, 10);
+//             flash(error.name, AlertEnum.ERROR, 10);
 //         }
 //         throw error;
 //     }

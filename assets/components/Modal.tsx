@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, useEffect, useRef} from 'react';
+import React, {HTMLProps, PropsWithChildren, useEffect, useRef} from 'react';
 import {Animated} from '@components/Animation/Animated';
 import {classNames} from '@functions/dom';
 import {useOnClickOutside} from '@hooks/useOnClickOutside';
@@ -9,8 +9,7 @@ type ModalProps = {
     show: boolean;
     closable?: boolean;
     onClose?: () => void;
-    className?: string;
-} & PropsWithChildren;
+} & PropsWithChildren & HTMLProps<HTMLDivElement>;
 
 export const Modal = ({
     show,

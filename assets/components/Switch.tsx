@@ -10,7 +10,7 @@ export const Switch = ({
     className,
     ...props
 }: SwitchProps) => {
-    className = classNames(className, 'switch-checkbox');
+    className = classNames('switch-checkbox', className);
 
     return (
         <label className="switch">

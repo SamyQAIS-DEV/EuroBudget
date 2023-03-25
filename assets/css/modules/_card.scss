@@ -1,5 +1,6 @@
 .card,
 %card {
+    position: relative;
     background: var(--background-light);
     color: var(--color);
     border-radius: space(2);
@@ -87,7 +88,7 @@
 .is-completed .card,
 .card.selectable:hover {
     position: relative;
-    box-shadow: 0 0 0 2px var(--green);
+    border: 2px solid var(--green);
 }
 
 .card.is-completed::after,
@@ -108,7 +109,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    border-radius: 0 space(2) 0 space(2);
+    border-radius: 0 space(1.5) 0 space(1.5);
     width: 35px;
     height: 35px;
     background: var(--green);

@@ -3,6 +3,7 @@ import React, {CSSProperties, HTMLProps, PropsWithChildren, Ref, useEffect, useS
 type AnimatedProps = {
     show: boolean;
     animationName: string;
+    duration?: number;
     style?: CSSProperties;
     forwardedRef?: Ref<HTMLDivElement>
 } & PropsWithChildren & HTMLProps<HTMLDivElement>;
@@ -10,6 +11,7 @@ type AnimatedProps = {
 export const Animated = ({
     show,
     animationName,
+    duration = 300,
     style = {},
     forwardedRef = null,
     className,
@@ -18,7 +20,7 @@ export const Animated = ({
 }: AnimatedProps) => {
     const [shouldRender, setRender] = useState<boolean>(show);
     style = {
-        animation: `${show ? `${animationName}In` : `${animationName}Out`} .3s both`,
+        animation: `${show ? `${animationName}In` : `${animationName}Out`} ${duration}ms both`,
         ...style,
     };
 
@@ -33,6 +35,7 @@ export const Animated = ({
     return (
         shouldRender && (
             <div
+                className={className}
                 style={style}
                 onAnimationEnd={onAnimationEnd}
                 ref={forwardedRef}
