@@ -112,6 +112,11 @@ input {
     font-family: inherit;
 }
 
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
 pre {
     font-family: monospace;
 }
@@ -160,6 +165,8 @@ table {
 
 img {
     max-width: 100%;
+    pointer-events: none;
+    user-select: none;
 }
 
 a {

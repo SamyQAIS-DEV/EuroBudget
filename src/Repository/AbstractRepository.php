@@ -83,10 +83,13 @@ abstract class AbstractRepository extends ServiceEntityRepository
             $parameters[$field] = $value;
         }
 
-        return $this->createQueryBuilder('o')
-            ->where(implode(' ' . $conditionType . ' ', $criteriaString))
-            ->setParameters($parameters)
-            ->getQuery();
+        $qb = $this->createQueryBuilder('o');
+        if (count($criteriaString) > 0) {
+            $qb->where(implode(' ' . $conditionType . ' ', $criteriaString))
+                ->setParameters($parameters);
+        }
+
+        return $qb->getQuery();
     }
 
     private function findByCaseInsensitiveQuery(array $conditions): Query
@@ -95,7 +98,7 @@ abstract class AbstractRepository extends ServiceEntityRepository
         $parameters = [];
         foreach ($conditions as $k => $v) {
             $conditionString[] = "LOWER(o.$k) = :$k";
-            $parameters[$k] = strtolower((string) $v);
+            $parameters[$k] = strtolower((string)$v);
         }
 
         return $this->createQueryBuilder('o')
@@ -107,7 +110,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
     public function save(object $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -116,7 +118,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
     public function remove(object $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }

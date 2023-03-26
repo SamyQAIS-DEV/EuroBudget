@@ -1,11 +1,11 @@
-<div class="alerts">
+<div id="floating-alerts">
     {% for type, messages in app.flashes %}
-        <div class={{ type }}>
+        <div class="{{ type }}">
             {% for message in messages %}
                 <alert-element
                     floating
                     type="{{ type }}"
-                    {% if duration is defined and type == 'success' %} duration="{{ duration }}"{% endif %}
+                    {% if duration is defined %} duration="{{ duration }}"{% endif %}
                 >
                     {{ message | nl2br }}
                 </alert-element>

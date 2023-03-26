@@ -5,7 +5,6 @@ namespace App\Security\Authentication\Social;
 use App\Controller\HomeController;
 use App\Controller\RegistrationController;
 use App\Controller\SecurityController;
-use App\Controller\Social\SocialLoginController;
 use App\Entity\User;
 use App\Infrastructure\Social\Exception\UserAuthenticatedException;
 use App\Infrastructure\Social\Exception\UserOauthNotFoundException;
@@ -55,7 +54,7 @@ abstract class AbstractSocialAuthenticator extends OAuth2Authenticator
             throw new RuntimeException('You must set a $serviceName property (for instance "github", "discord")');
         }
 
-        return $request->attributes->get('_route') === SocialLoginController::CHECK_ROUTE_NAME &&
+        return $request->attributes->get('_route') === \App\Controller\SocialLoginController::CHECK_ROUTE_NAME &&
             $request->get('service') === $this->serviceName;
     }
 

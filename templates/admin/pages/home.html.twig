@@ -1,0 +1,51 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title 'Dashboard' %}
+
+{% block body %}
+    <div class="stack-large">
+        <section class="stack" style="--gap: 1;">
+            <div class="flex">
+                <h3>
+                    {{ icon('star') }} Abonnements
+                </h3>
+            </div>
+            <div class="card">
+                <a href="#monthly" aria-controls="monthly">24 derniers mois</a>
+                <line-chart id="monthly" points="{{ months | json_encode }}" x="date" y="amount" hidden></line-chart>
+            </div>
+        </section>
+
+        <div class="grid2" style="--gap: 4">
+            <div class="stack-large">
+                <section class="stack" style="--gap: 1">
+                    <div class="flex">
+                        <h3>{{ icon('star') }} Actions</h3>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex">
+                            <form action="#" method="post">
+                                <button class="btn btn-small btn-error">{{ icon('trash') }} Vider le cache</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="stack" style="--gap: 1">
+                    <div class="flex">
+                        <h3>{{ icon('edit') }} Tester les emails</h3>
+                    </div>
+                    <div class="card">
+                        <form action="{{ path('admin_mailtest') }}" method="post" class="stack">
+                            <div class="form-group" style="width: 100%">
+                                <input class="form-control" placeholder="Email" name="email">
+                            </div>
+                            <button class="btn btn-secondary">Envoyer un email de test</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,35 +1,36 @@
-import { HttpRequestMethodEnum } from "@enums/HttpEnum";
+import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 // import { flash } from "@functions/flash";
-import { AlertEnum } from "@enums/AlertEnum";
+
+const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+};
 
 /**
  * @param {RequestInfo} url
- * @param {object} body
+ * @param body
  * @param {string} method
  * @return {Promise<Object>}
  * @throws ApiError
  */
-export const jsonFetch = async (url: RequestInfo, body?: object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET) => {
-    const params = {
+export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: object = {}, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET): Promise<T> => {
+    const params: RequestInit = {
+        headers: headers,
         method: method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: method === 'GET' ? undefined : JSON.stringify(body)
-    };
+        body: method === HttpRequestMethodEnum.GET ? undefined : JSON.stringify(body)
+    }
 
     const response = await fetch(url, params);
     if (response.status === 204) {
         return null;
     }
-    const data = await response.json()
+    const data = await response.json() as T;
     if (response.ok) {
         return data;
     }
     throw new ApiError(data, response.status);
-}
+};
 
 /**
  * @param {RequestInfo} url
@@ -44,7 +45,7 @@ export const jsonFetch = async (url: RequestInfo, body?: object, method: HttpReq
 //     } catch (error) {
 //         // On catch l'erreur pour vérifier si c'est une erreur API puis on rethrow derrière car dans tous les cas on recatch derrière
 //         if (error instanceof ApiError && 'main' in error.violations) {
-//             flash(error.name, AlertEnum.DANGER, 10);
+//             flash(error.name, AlertEnum.ERROR, 10);
 //         }
 //         throw error;
 //     }
@@ -60,25 +61,26 @@ export class ApiError {
     private data?: any;
     private status?: number;
 
-    constructor (data, status) {
+    constructor(data, status) {
         this.data = data;
         this.status = status;
     }
 
     // Récupère la liste de violation pour un champ donné
-    violationsFor (field) {
-        return this.data.violations.filter(v => v.propertyPath === field).map(v => v.message);
+    violationsFor(field) {
+        return this.data.violations.filter(v => v.propertyPath === field)
+            .map(v => v.message);
     }
 
-    get name () {
+    get name() {
         return `${this.data.title}. ${this.data.detail || ''}`;
     }
 
     // Renvoie les violations indexées par propertyPath
-    get violations () {
+    get violations() {
         if (!this.data.violations) {
             return {
-                main: `${this.data.title} ${this.data.detail || ''}`
+                main: `${this.data.title} ${this.data.detail || ''}`,
             };
         }
         return this.data.violations.reduce((acc, violation) => {

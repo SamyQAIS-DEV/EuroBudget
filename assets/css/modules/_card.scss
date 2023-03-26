@@ -1,0 +1,116 @@
+.card,
+%card {
+    position: relative;
+    background: var(--background-light);
+    color: var(--color);
+    border-radius: space(2);
+    box-shadow: 0 0 8px var(--shadow);
+    padding: var(--card-padding);
+    transition: 0.3s;
+}
+
+%card-hoverable {
+    &:hover {
+        border-color: var(--contrast);
+        box-shadow: 0 3px 8px var(--shadow);
+    }
+}
+
+.card .icon {
+    vertical-align: middle;
+    transform: translateY(-2px);
+}
+
+// Carte
+// =============
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.card__body {
+    padding: var(--card-padding);
+}
+
+.card__icons {
+    display: flex;
+    flex: none;
+    align-items: center;
+}
+.card__description p {
+    color: var(--color-light)
+}
+.card__title {
+    font-family: $font-alt;
+    line-height: 1.3;
+    font-size: 16px;
+    font-weight: bold;
+}
+.card__icons > * + * {
+    margin-left: space(1);
+}
+.card__icons img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    object-fit: contain;
+}
+.card a {
+    position: relative;
+    z-index: 3;
+}
+.card a:not([class^='btn']):not([class^='pill']):hover {
+    color: var(--contrast);
+}
+.card__link {
+    display: block;
+    position: absolute !important;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    z-index: 2 !important;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    border-radius: space(2.5);
+    cursor: pointer;
+}
+.card__link:hover {
+    border: 2px solid var(--contrast);
+}
+
+// Complété
+// =============
+.card.selectable:hover {
+    cursor: pointer;
+}
+.card.is-completed,
+.is-completed .card,
+.card.selectable:hover {
+    position: relative;
+    border: 2px solid var(--green);
+}
+
+.card.is-completed::after,
+.is-completed .card::after,
+.card.selectable:hover::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: url('/assets/images/check.svg') no-repeat;
+}
+.card.is-completed::before,
+.is-completed .card::before,
+.card.selectable:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 space(1.5) 0 space(1.5);
+    width: 35px;
+    height: 35px;
+    background: var(--green);
+}

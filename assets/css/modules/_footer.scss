@@ -1,0 +1,8 @@
+.footer {
+    @extend %container;
+    margin-top: auto;
+    padding-top: space(5);
+    padding-bottom: 75px;
+    background: var(--background-light);
+    gap: space(4);
+}

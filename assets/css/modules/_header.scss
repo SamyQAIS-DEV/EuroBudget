@@ -180,9 +180,6 @@
 }
 
 @include down(450) {
-    body {
-        background: blue;
-    }
     .header .header-nav span {
         display: none;
     }

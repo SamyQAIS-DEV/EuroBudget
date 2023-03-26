@@ -4,6 +4,10 @@ include:
 App\Entity\User:
     user{1..5} (extends user):
 
+    admin_user (extends user):
+        email: admin@domain.fr
+        roles: ['ROLE_ADMIN']
+
     github_user (extends user):
         email: github_user@domain.fr
         githubId: 12345

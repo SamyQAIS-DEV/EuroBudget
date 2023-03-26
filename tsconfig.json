@@ -1,34 +1,44 @@
 {
-  "compilerOptions": {
-    "module": "es6",
-    "noImplicitAny": false,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "jsx": "react",
-    "target": "es6",
-    "checkJs": false,
-    "baseUrl": "assets/",
-    "paths": {
-      "@components/*": ["components/*"],
-//      "@contexts/*": ["contexts/*"],
-//      "@elements/*": ["elements/*"],
-//      "@entities/*": ["entities/*"],
-      "@enums/*": ["enums/*"],
-      "@functions/*": ["functions/*"],
-//      "@helpers/*": ["helpers/*"],
-      "@hooks/*": ["hooks/*"],
-//      "@prototypes/*": ["prototypes/*"],
-//      "@resources/*": ["resources/*"],
-//      "@services/*": ["services/*"],
-    }
-  },
-  "include": [
-    "assets/**/*.ts",
-    "assets/**/*.tsx",
-    "assets/**/*.js",
-    "assets/**/*.jsx"
-  ]
+    "compilerOptions": {
+        "module": "es6",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "jsx": "react",
+        "target": "es6",
+//        "target": "esnext",
+//        "lib": ["esnext", "dom"],
+        "checkJs": false,
+        "baseUrl": "assets/",
+        "paths": {
+            "@components/*": [
+                "components/*"
+            ],
+            //      "@contexts/*": ["contexts/*"],
+            //      "@elements/*": ["elements/*"],
+            //      "@entities/*": ["entities/*"],
+            "@enums/*": [
+                "enums/*"
+            ],
+            "@functions/*": [
+                "functions/*"
+            ],
+            //      "@helpers/*": ["helpers/*"],
+            "@hooks/*": [
+                "hooks/*"
+            ]
+            //      "@prototypes/*": ["prototypes/*"],
+            //      "@resources/*": ["resources/*"],
+            //      "@services/*": ["services/*"],
+        }
+    },
+    "include": [
+        "assets/**/*.ts",
+        "assets/**/*.tsx",
+        "assets/**/*.js",
+        "assets/**/*.jsx"
+    ]
 }

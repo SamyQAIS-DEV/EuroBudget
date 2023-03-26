@@ -51,9 +51,9 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
      */
     public function expectAlert(string $type, ?string $message = null, int $count = 1): void
     {
-        $this->assertEquals($count, $this->client->getCrawler()->filter('.alerts alert-element[type="' . $type . '"]')->count());
+        $this->assertEquals($count, $this->client->getCrawler()->filter('#floating-alerts alert-element[type="' . $type . '"]')->count());
         if ($message) {
-            $this->assertStringContainsString($message, $this->client->getCrawler()->filter('.alerts alert-element[type="' . $type . '"]')->text());
+            $this->assertStringContainsString($message, $this->client->getCrawler()->filter('#floating-alerts alert-element[type="' . $type . '"]')->text());
         }
     }
 
@@ -62,7 +62,7 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
      */
     public function expectErrorAlertMessage(string $message): void
     {
-        $this->assertStringContainsString($message, $this->client->getCrawler()->filter('alerts alert-element[type="danger"], .alerts alert-element[type="error"]')->text());
+        $this->assertStringContainsString($message, $this->client->getCrawler()->filter('#floating-alerts alert-element[type="error"], .alerts alert-element[type="error"]')->text());
     }
 
     /**

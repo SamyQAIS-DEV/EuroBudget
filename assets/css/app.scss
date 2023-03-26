@@ -2,22 +2,27 @@
 // ==================
 :root {
     --color: #333333;
-    --color-light: #33333399;
+    --color-light: #33333333;
     --color-inversed: #f5f5f5;
     --contrast: #287bff;
-    --background: #f5f5f5;
-    --background-light: #f5f5f599;
-    --background-transparent: rgba(255, 255, 255, 0.85);
+    --contrast-transparent: #287bff33;
+    --background: #f4f4f4;
+    --background-light: #ffffff;
+    --background-transparent: transparent;
+    --blur: 12px;
     --gap: 20px;
     --space: 8px;
     --border-radius: 8px;
     --border: #b1b1b1;
-    --border-light: #99999999;
-    --shadow: #999999;
+    --border-light: #99999933;
+    --shadow: rgba(0, 0, 0, 0.2);
     --card-padding: 16px;
     --red: #f25353;
+    --red-transparent: #f2535333;
     --green: #41cf7c;
+    --green-transparent: #41cf7c33;
     --yellow: #feb32b;
+    --yellow-transparent: #feb32b33;
 }
 
 // Outils
@@ -49,8 +54,14 @@ body {
     color: var(--color);
     line-height: 1.6;
     background: var(--background);
+    scroll-behavior: smooth;
     scroll-margin: 100px 0 0 0;
     word-break: break-word;
+    //transition: background 0.5s, color 0.2s;
+
+    @include down(985) {
+        //margin-bottom: 100px;
+    }
 }
 
 ::selection {
@@ -60,10 +71,20 @@ body {
 
 // Modules
 // ==================
-@import 'modules/btn';
 @import 'modules/header';
+@import 'modules/footer';
+@import 'modules/alert';
+@import 'modules/avatar';
+@import 'modules/btn';
+@import 'modules/card';
+@import 'modules/form';
+@import 'modules/modal';
+@import 'modules/sidebar';
+@import 'modules/switch';
+@import 'modules/scrollbar';
 
 // Pages
 // ==================
 @import 'pages/home';
 @import 'pages/auth';
+@import 'pages/profile';

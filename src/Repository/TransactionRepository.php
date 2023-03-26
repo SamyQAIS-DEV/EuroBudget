@@ -3,64 +3,80 @@
 namespace App\Repository;
 
 use App\Entity\Transaction;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\User;
+use App\Service\Encryptors\EncryptedPropertiesAccessor;
+use App\Service\Encryptors\EncryptorInterface;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Transaction>
+ * @extends AbstractRepository<Transaction>
  *
  * @method Transaction|null find($id, $lockMode = null, $lockVersion = null)
  * @method Transaction|null findOneBy(array $criteria, array $orderBy = null)
  * @method Transaction[]    findAll()
  * @method Transaction[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TransactionRepository extends ServiceEntityRepository
+class TransactionRepository extends AbstractRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Transaction::class);
+    // TODO Test this repo
+    public function __construct(
+        ManagerRegistry $registry,
+        EncryptedPropertiesAccessor $encryptedPropertiesAccessor,
+        private readonly EncryptorInterface $encryptor
+    ) {
+        parent::__construct($registry, Transaction::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
-    public function save(Transaction $entity, bool $flush = false): void
+    /**
+     * @return Transaction[]
+     */
+    public function findFor(User $user): array
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        return $this->createQueryBuilder('t')
+            ->where('t.author = :user')
+            ->orderBy('t.createdAt', 'DESC')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
-    public function remove(Transaction $entity, bool $flush = false): void
+    public function getMonthlyRevenues(): array
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        return $this->aggregateRevenus();
     }
 
-//    /**
-//     * @return Transaction[] Returns an array of Transaction objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    private function aggregateRevenus(): array
+    {
+        return array_reverse($this->createQueryBuilder('t')
+            ->select(
+                "EXTRACT(MONTH from t.createdAt) as date",
+                "EXTRACT(YEAR_MONTH from t.createdAt) as fulldate",
+                'SUM(t.price - t.tax - t.fee) as amount'
+            )
+            ->groupBy('fulldate', 'date')
+//            ->where('t.refunded = false') // TODO
+            ->orderBy('fulldate', 'DESC')
+            ->getQuery()
+            ->getResult());
+    }
 
-//    public function findOneBySomeField($value): ?Transaction
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getMonthlyReport(int $year): array
+    {
+        return $this->createQueryBuilder('t')
+            ->select(
+                't.method as method',
+                'EXTRACT(MONTH FROM t.createdAt) as month',
+                'ROUND(SUM(t.price) * 100) / 100 as price',
+                'ROUND(SUM(t.tax) * 100) / 100 as tax',
+                'ROUND(SUM(t.fee) * 100) / 100 as fee',
+            )
+            ->groupBy('month', 't.method')
+//            ->where('t.refunded = false') // TODO
+            ->andWhere('EXTRACT(YEAR FROM t.createdAt) = :year')
+            ->setParameter('year', $year)
+            ->orderBy('month', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

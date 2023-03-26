@@ -1,5 +1,8 @@
-.welcome-container {
+.homepage {
     @extend %container;
+}
+
+.welcome-container {
     position: relative;
 }
 
@@ -8,37 +11,21 @@
     height: auto;
     opacity: 0.3;
     z-index: -1;
-}
 
-//.welcome-container::after {
-//    content: '';
-//    position: absolute;
-//    width: 100%;
-//    height: 100vh;
-//    top: 0;
-//    left: 0;
-//    right: 0;
-//    background: url('/assets/images/homepage_background.png') no-repeat;
-//    background-size: 100% auto;
-//    opacity: 0.3;
-//    z-index: -1;
-//}
+    @include down(985) {
+        display: none;
+    }
+}
 
 .welcome-container .hero-title {
-    position: absolute;
-    top: 25%;
-    left: 20%;
-    width: 45%;
-}
-
-.dashboard__image {
-    margin-top: space(3);
-    width: 80%;
+    @include up(985) {
+        position: absolute;
+        top: 25%;
+        left: 20%;
+        width: 45%;
+    }
 }
 
 .dashboard__image img {
-    //@extend %card;
-    //@extend %card-hoverable;
-    object-fit: cover;
     border-radius: border-radius(2);
 }

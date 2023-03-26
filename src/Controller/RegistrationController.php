@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\RegistrationFormType;
 use App\Security\Authentication\Authenticator;
 use App\Service\SocialLoginService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,12 +43,12 @@ class RegistrationController extends AbstractController
             $user->setEmail(strtolower($user->getEmail()));
             $entityManager->persist($user);
             $entityManager->flush();
-            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser));
+            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser, true));
 
             if ($isOauthUser) {
                 // TODO : TRAD
-                $this->addFlash(
-                    'success',
+                $this->addAlert(
+                    AlertEnum::SUCCESS,
                     'Votre compte a bien été créé.'
                 );
 
@@ -56,8 +56,8 @@ class RegistrationController extends AbstractController
             }
 
             // TODO : TRAD
-            $this->addFlash(
-                'success',
+            $this->addAlert(
+                AlertEnum::SUCCESS,
                 'Un message avec un lien de connexion vous a été envoyé par mail. Ce site n\'utilise pas de mot de passe.'
             );
 

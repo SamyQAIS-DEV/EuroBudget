@@ -17,6 +17,17 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
 
+        dql:
+            numeric_functions:
+                RANDOM: DoctrineExtensions\Query\Sqlite\Random
+                ROUND: DoctrineExtensions\Query\Mysql\Round
+            datetime_functions:
+                EXTRACT: DoctrineExtensions\Query\Postgresql\ExtractFunction
+                NOW: DoctrineExtensions\Query\Mysql\Now
+            string_functions:
+                LPAD: DoctrineExtensions\Query\Mysql\Lpad
+                CAST: DoctrineExtensions\Query\Mysql\Cast
+
 when@test:
     doctrine:
         dbal:

@@ -4,12 +4,16 @@ namespace App\Entity;
 
 use App\Attribute\Encrypted;
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'])]
 class User implements UserInterface
@@ -29,8 +33,22 @@ class User implements UserInterface
     #[Encrypted]
     private string $email;
 
+    #[Vich\UploadableField(mapping: "avatars", fileNameProperty: "avatarName")]
+    private ?File $avatarFile = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $avatarName = null;
+
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\Column]
+    private DateTimeImmutable $updatedAt;
+
+    public function __construct()
+    {
+        $this->updatedAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -47,6 +65,46 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(?File $avatarFile): self
+    {
+        $this->avatarFile = $avatarFile;
+
+        return $this;
+    }
+
+    public function getAvatarName(): ?string
+    {
+        return $this->avatarName;
+    }
+
+    public function setAvatarName(?string $avatarName): self
+    {
+        $this->avatarName = $avatarName;
+
+        return $this;
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            $this->id,
+            $this->email,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        [
+            $this->id,
+            $this->email,
+        ] = $data;
     }
 
     /**
@@ -88,5 +146,17 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

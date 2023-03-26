@@ -6,18 +6,18 @@
 
     {% apply markdown_email %}
 
-    Bonjour {{ username }} !
-    ===============================
+        `{{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}` {{ username }} !
+        ===============================
 
-    Quelqu'un a demandé à un lien de connexion. Vous pouvez l'utiliser en cliquant sur le bouton ci-dessous.
-    Le lien de connexion expire dans **{{ leftTime }}**.
+        Vous avez demandé un lien de connexion. Vous pouvez l'utiliser en cliquant sur le bouton ci-dessous.
+        Le lien de connexion expire dans **{{ leftTime }}**.
 
     {% endapply %}
 
     {{ e.button('Se connecter', url('auth_check', {token: token})) }}
 
     {% apply markdown_email %}
-    Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer cet email.
+        Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer cet email.
     {% endapply %}
 
 {% endblock %}

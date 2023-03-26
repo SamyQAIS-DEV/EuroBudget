@@ -40,6 +40,10 @@ services:
         calls:
             -   setEnableEncryption: [ '%enable_encryption%' ]
 
+    App\Twig\Runtime\TwigUrlExtensionRuntime:
+        arguments:
+            $uploaderHelper: '@Vich\UploaderBundle\Templating\Helper\UploaderHelper'
+
     App\Twig\Runtime\TwigPaymentExtensionRuntime:
         arguments: [ '%paypal_id%' ]
 
