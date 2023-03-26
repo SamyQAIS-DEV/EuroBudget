@@ -1,0 +1,65 @@
+table {
+    width: 100%;
+    line-height: 1;
+    text-align: left;
+}
+
+table thead tr {
+}
+
+table thead th {
+    text-transform: uppercase;
+    opacity: 0.5;
+    padding: space(2);
+    background: var(--border-light);
+}
+
+table thead th:first-child {
+    border-radius: space(1) 0 0 space(1);
+}
+
+table thead th:last-child {
+    border-radius: 0 space(1) space(1) 0;
+}
+
+table thead th:last-child {
+    text-align: right;
+}
+
+table td {
+    vertical-align: middle;
+    padding: space(2);
+}
+
+table td:first-child {
+    padding-left: 0 !important;
+}
+
+table td:last-child {
+    padding-right: 0 !important;
+}
+
+table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+table a:not([class^="btn"]) svg,
+table button:not([class^="btn"]) svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    opacity: 0.15;
+    transition: 0.3s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+table a:not([class^='btn']):hover {
+    color: var(--contrast);
+}
+
+table tbody > a {
+    display: table-row;
+}

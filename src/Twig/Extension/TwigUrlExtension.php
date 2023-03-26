@@ -9,6 +9,13 @@ use Twig\TwigFunction;
 
 class TwigUrlExtension extends AbstractExtension
 {
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('url', [TwigUrlExtensionRuntime::class, 'urlFor']),
+        ];
+    }
+
     public function getFilters(): array
     {
         return [

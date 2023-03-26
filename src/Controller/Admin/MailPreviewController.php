@@ -20,7 +20,9 @@ class MailPreviewController extends AbstractController
     #[Route('', name: 'index')]
     public function index(TransactionRepository $transactionRepository): Response
     {
-        return $this->render('admin/pages/mail-preview.html.twig');
+        return $this->render('admin/pages/mail-preview.html.twig', [
+            'menu' => 'mail',
+        ]);
     }
 
     #[Route(path: '/registration', name: 'registration', methods: ['GET'])]

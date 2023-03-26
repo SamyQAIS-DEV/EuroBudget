@@ -286,7 +286,7 @@
 
 .sticky {
     @include up(1100) {
-        position: sticky;
+        position: sticky !important;
         top: space(3);
         align-self: start;
     }
