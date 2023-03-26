@@ -4,15 +4,15 @@
 
 {% block body %}
 
-{#  {% apply markdown_email %}#}
+    {% apply markdown_email %}
 
-    Suppression de votre compte sur EuroBudget.fr
-    ===============================
+        Suppression de votre compte sur EuroBudget.fr
+        ===============================
 
-    Vous venez de demander la suppression de votre compte sur EuroBudget.fr. Cette suppression sera effective dans **{{ days }} jours**. Si vous êtes à l'origine de cette demande vous pouvez ignorer cet email.
+        Vous venez de demander la suppression de votre compte sur EuroBudget.fr. Cette suppression s'effectuera dans **{{ days }} jours**.
 
-{#  {% endapply %}#}
+    {% endapply %}
 
-  {{ e.button('Annuler la suppression', url('user_edit')) }}
+    {{ e.button('Annuler la suppression', url('user_profile')) }}
 
 {% endblock %}

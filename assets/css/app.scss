@@ -2,9 +2,10 @@
 // ==================
 :root {
     --color: #333333;
-    --color-light: #33333399;
+    --color-light: #33333333;
     --color-inversed: #f5f5f5;
     --contrast: #287bff;
+    --contrast-transparent: #287bff33;
     --background: #f4f4f4;
     --background-light: #ffffff;
     --background-transparent: transparent;
@@ -13,12 +14,15 @@
     --space: 8px;
     --border-radius: 8px;
     --border: #b1b1b1;
-    --border-light: #99999999;
+    --border-light: #99999933;
     --shadow: rgba(0, 0, 0, 0.2);
     --card-padding: 16px;
     --red: #f25353;
+    --red-transparent: #f2535333;
     --green: #41cf7c;
+    --green-transparent: #41cf7c33;
     --yellow: #feb32b;
+    --yellow-transparent: #feb32b33;
 }
 
 // Outils

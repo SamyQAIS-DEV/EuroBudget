@@ -56,7 +56,7 @@
     border: 2px solid var(--contrast);
 
     .alert__progress {
-        background: var(--contrast);
+        background: var(--contrast-transparent);
     }
 
     strong,
@@ -69,7 +69,7 @@
     border: 2px solid var(--green);
 
     .alert__progress {
-        background: var(--green);
+        background: var(--green-transparent);
     }
 
     strong,
@@ -82,7 +82,7 @@
     border: 2px solid var(--yellow);
 
     .alert__progress {
-        background: var(--yellow);
+        background: var(--yellow-transparent);
     }
 
     strong,
@@ -95,7 +95,7 @@
     border: 2px solid var(--red);
 
     .alert__progress {
-        background: var(--red);
+        background: var(--red-transparent);
     }
 
     strong,
@@ -110,7 +110,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--background-transparent);
     transform-origin: 0 100%;
     z-index: -1;
 }

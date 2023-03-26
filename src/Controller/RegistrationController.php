@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
             $user->setEmail(strtolower($user->getEmail()));
             $entityManager->persist($user);
             $entityManager->flush();
-            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser));
+            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser, true));
 
             if ($isOauthUser) {
                 // TODO : TRAD

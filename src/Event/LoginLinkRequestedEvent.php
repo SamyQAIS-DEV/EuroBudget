@@ -8,7 +8,8 @@ class LoginLinkRequestedEvent
 {
     public function __construct(
         private readonly User $user,
-        private readonly bool $usingOauth = false
+        private readonly bool $usingOauth = false,
+        private readonly bool $registration = false
     ) {
     }
 
@@ -20,5 +21,10 @@ class LoginLinkRequestedEvent
     public function isUsingOauth(): bool
     {
         return $this->usingOauth;
+    }
+
+    public function isRegistration(): bool
+    {
+        return $this->registration;
     }
 }

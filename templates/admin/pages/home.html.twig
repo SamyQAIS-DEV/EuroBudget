@@ -28,9 +28,6 @@
                             <form action="#" method="post">
                                 <button class="btn btn-small btn-error">{{ icon('trash') }} Vider le cache</button>
                             </form>
-{#                            <form action="#" method="post">#}
-{#                                <button class="btn btn-small btn-secondary">{{ icon('comments') }} Détecter le spam</button>#}
-{#                            </form>#}
                         </div>
                     </div>
                 </section>
@@ -40,18 +37,12 @@
                         <h3>{{ icon('edit') }} Tester les emails</h3>
                     </div>
                     <div class="card">
-                        <h3>Envoyer un email de test</h3>
                         <form action="{{ path('admin_mailtest') }}" method="post" class="stack">
                             <div class="form-group" style="width: 100%">
                                 <input class="form-control" placeholder="Email" name="email">
                             </div>
-                            <button class="btn btn-secondary">Tester</button>
+                            <button class="btn btn-secondary">Envoyer un email de test</button>
                         </form>
-
-                        <div>
-                            <h3>Prévisualiser le mail d'inscription</h3>
-                            <a target="_blank" href="{{ path('admin_mailpreview') }}" class="btn btn-secondary">Tester</a>
-                        </div>
                     </div>
                 </section>
             </div>

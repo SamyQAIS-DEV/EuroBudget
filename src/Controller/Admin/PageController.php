@@ -18,7 +18,7 @@ class PageController extends AbstractController
     #[Route('', name: 'home')]
     public function index(TransactionRepository $transactionRepository): Response
     {
-        return $this->render('admin/home.html.twig', [
+        return $this->render('admin/pages/home.html.twig', [
             'months' => $transactionRepository->getMonthlyRevenues(),
             'menu' => 'home',
         ]);
@@ -31,19 +31,5 @@ class PageController extends AbstractController
         $this->addAlert(AlertEnum::SUCCESS, "L'email de test a bien été envoyé");
 
         return $this->redirectToRoute('admin_home');
-    }
-
-    #[Route(path: '/mailpreview', name: 'mailpreview', methods: ['GET'])]
-    public function previewMail(LoginLinkService $loginLinkService, MailerService $mailer): Response
-    {
-        $user = $this->getUserOrThrow();
-        $loginLink = $loginLinkService->createLoginLink($user);
-        $email = $mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
-            'token' => $loginLink->getToken(),
-            'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'username' => $user->getUserIdentifier()
-        ]);
-//        dd($email->getHtmlBody());
-        return new Response($email->getHtmlBody());
     }
 }

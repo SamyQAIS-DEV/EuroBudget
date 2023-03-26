@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title 'Prévisualiser les mails' %}
+
+{% block body %}
+    <div class="stack-large">
+        <div class="grid2" style="--gap: 4">
+            <div class="stack-large">
+                <section class="stack" style="--gap: 1">
+                    <div class="flex">
+                        <h3>{{ icon('mail') }} Prévisualiser les mails</h3>
+                    </div>
+                    <div class="card">
+                        <div class="stack">
+                            <a target="_blank" href="{{ path('admin_mailpreview_registration') }}" class="btn btn-secondary">Prévisualiser le mail d'inscription</a>
+                            <a target="_blank" href="{{ path('admin_mailpreview_loginlink') }}" class="btn btn-secondary">Prévisualiser le mail de demande de lien de connexion</a>
+                            <a target="_blank" href="{{ path('admin_mailpreview_delete_account') }}" class="btn btn-secondary">Prévisualiser le mail d'inscription</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

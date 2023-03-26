@@ -24,7 +24,7 @@ form > * + * {
 %input {
     background: inherit;
     color: inherit;
-    border: 2px solid var(--contrast);
+    border: 2px solid var(--border);
     border-radius: var(--border-radius);
     padding: 0 space(2);
     display: block;
@@ -101,5 +101,5 @@ textarea:focus,
 form button:focus,
 input:focus + label .switch,
 %input-active {
-    border: 2px solid var(--border);
+    border: 2px solid var(--contrast);
 }

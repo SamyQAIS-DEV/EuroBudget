@@ -39,7 +39,13 @@ class AuthSubscriber implements EventSubscriberInterface
         $user = $event->getUser();
         $loginLink = $this->loginLinkService->createLoginLink($user);
 
-        $email = $this->mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
+        $template = 'mails/auth/login_link.twig';
+        $subject = 'Votre lien de connexion !';
+        if ($event->isRegistration()) {
+            $template = 'mails/auth/registration.twig';
+            $subject = 'Votre inscription !';
+        }
+        $email = $this->mailer->createEmail($template, $subject, [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
             'username' => $user->getUserIdentifier()
