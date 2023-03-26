@@ -70,7 +70,7 @@ Encore
     .addAliases({
         "@components": path.resolve(__dirname, 'assets/components'),
         // "@contexts": path.resolve(__dirname, 'assets/contexts'),
-        // "@elements": path.resolve(__dirname, 'assets/elements'),
+        "@elements": path.resolve(__dirname, 'assets/elements'),
         // "@entities": path.resolve(__dirname, 'assets/entities'),
         "@enums": path.resolve(__dirname, 'assets/enums'),
         "@functions": path.resolve(__dirname, 'assets/functions'),

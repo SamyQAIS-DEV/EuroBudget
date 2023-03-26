@@ -1,8 +1,10 @@
 import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
 import {useToggle} from '@hooks/useToggle';
 import * as scriptjs from 'scriptjs';
-import {jsonFetch} from '@functions/api';
+import {jsonFetchOrFlash} from '@functions/api';
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
+import {Button} from '@components/Button';
+import {classNames} from '@functions/dom';
 
 declare const window: any;
 
@@ -24,7 +26,7 @@ export const PremiumButton = ({
     const description = `Compte premium ${duration} mois`;
 
     if (payment === false) {
-        return <button onClick={togglePayment}>{children}</button>;
+        return <Button onClick={togglePayment}>{children}</Button>;
     }
 
     return (
@@ -57,20 +59,20 @@ const PaymentMethods = ({
             <div className="form-group mb2">
                 <label>Méthode de paiement</label>
                 <div className="btn-group">
-                    <button
+                    <Button
                         onClick={() => setMethod(PAYMENT_CARD)}
-                        // className={classNames('btn-secondary btn-small', method === PAYMENT_CARD && 'active')}
+                        className={classNames('btn-secondary btn-small', method === PAYMENT_CARD && 'active')}
                     >
                         Carte
                         {/*<img src="/images/payment-methods.png" width="76" className="mr1"/>*/}
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={() => setMethod(PAYMENT_PAYPAL)}
-                        // className={classNames('btn-secondary btn-small', method === PAYMENT_PAYPAL && 'active')}
+                        className={classNames('btn-secondary btn-small', method === PAYMENT_PAYPAL && 'active')}
                     >
                         Paypal
                         {/*<img src="/images/paypal.svg" width="20" className="mr1"/>*/}
-                    </button>
+                    </Button>
                 </div>
             </div>
             {method === PAYMENT_PAYPAL ? (
@@ -82,7 +84,7 @@ const PaymentMethods = ({
                     paypalId={paypalId}
                 />
             ) : (
-                <PaymentCard />
+                <PaymentCard/>
             )}
         </div>
     );
@@ -113,13 +115,10 @@ const PaymentPaypal = ({
     approveRef.current = async (orderId: string) => {
         toggleLoading();
         try {
-            await jsonFetch(`/api/premium/paypal/${orderId}`, {}, HttpRequestMethodEnum.POST);
-            // await redirect('?success=1'); // TODO Afficher modal succes ou rediriger
+            await jsonFetchOrFlash(`/api/premium/paypal/${orderId}`, {}, HttpRequestMethodEnum.POST);
+            window.location.replace('/profil?payment_success=1');
         } catch (e) {
             console.error(e.name);
-            // if (e instanceof ApiError) {
-            //     flash(e.name, 'danger', null);
-            // }
         }
         toggleLoading();
     };
@@ -205,10 +204,9 @@ const PaymentPaypal = ({
             {/*{country && <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />}*/}
             <div style={{minHeight: 52, display: loading ? 'none' : null}} ref={container}/>
             {loading && (
-                // <button className='btn-primary btn-block' loading>
-                <button className="btn-primary btn-block">
+                <Button className="btn-primary" loading={true}>
                     Chargement...
-                </button>
+                </Button>
             )}
         </div>
     );

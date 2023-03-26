@@ -12,8 +12,6 @@ class PageControllerTest extends WebTestCase
         $this->login($user);
         $crawler = $this->client->request('GET', '/admin');
         self::assertResponseStatusCodeSame(200);
-//        $this->expectTitle('Devenir premium');
-//        $this->expectH1('Devenir premium');
     }
 
     public function testPageAsUser(): void
@@ -21,10 +19,8 @@ class PageControllerTest extends WebTestCase
         ['user1' => $user] = $this->loadFixtureFiles(['users']);
         $this->login($user);
         $crawler = $this->client->request('GET', '/admin');
-        // TODO
-//        self::assertResponseRedirects('/error');
-//        $this->client->followRedirect();
-//        $this->expectErrorAlert('Vous n\'avez pas le droit d\'accéder à cette page');
+        $this->expectH1('Accès interdit');
+        $this->expectBodyContains('Vous n\'avez pas le droit d\'accéder à cette page');
     }
 
     public function testUnauthenticated(): void

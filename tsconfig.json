@@ -18,7 +18,7 @@
                 "components/*"
             ],
             //      "@contexts/*": ["contexts/*"],
-            //      "@elements/*": ["elements/*"],
+                  "@elements/*": ["elements/*"],
             //      "@entities/*": ["entities/*"],
             "@enums/*": [
                 "enums/*"

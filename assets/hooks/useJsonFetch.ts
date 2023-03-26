@@ -1,5 +1,5 @@
 import {useCallback, useState} from 'react';
-import {jsonFetch} from '@functions/api';
+import {jsonFetch, jsonFetchOrFlash} from '@functions/api';
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
 
 type FetchFn<T> = (
@@ -27,7 +27,7 @@ export const useJsonFetch = <T>(url: string, body?: object, method?: HttpRequest
         async (localUrl?: string, localBody?: object, localMethod?: HttpRequestMethodEnum) => {
             setState(s => ({ ...s, isLoading: true, isError: false, isDone: false }));
             try {
-                const response = await jsonFetch<T>(localUrl || url, localBody || body, localMethod || method);
+                const response = await jsonFetchOrFlash<T>(localUrl || url, localBody || body, localMethod || method);
                 setState(s => ({ ...s, data: response, isLoading: false, isError: false, isDone: true }));
                 return response;
             } catch (e) {

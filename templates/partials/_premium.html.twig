@@ -1,16 +1,18 @@
-{% for plan in plans %}
-    <div class="card pricing" id="plan{{ plan.id }}">
-        <div class="pricing__price">{{ plan.price }}<sup>€ TTC</sup></div>
-        <div class="pricing__item">
-            Accéder aux <strong>catégories</strong>
+<div class="premium grid2">
+    {% for plan in plans %}
+        <div class="card pricing" id="plan{{ plan.id }}">
+            <div class="pricing__price">{{ plan.price }}<sup>€ TTC</sup></div>
+            <div class="pricing__item">
+                Accéder aux <strong>catégories</strong>
+            </div>
+            <div class="pricing__item">
+                ajouter <strong>plus de 10</strong> opérations par mois
+            </div>
+            <div class="pricing__action">
+                <premium-button plan-id="{{ plan.id }}" price="{{ plan.price }}" duration="{{ plan.duration }}" paypal-id="{{ paypalClientId() }}">
+                    Devenir premium ({{ plan.name }})
+                </premium-button>
+            </div>
         </div>
-        <div class="pricing__item">
-            ajouter <strong>plus de 10</strong> opérations par mois
-        </div>
-        <div class="pricing__action">
-            <premium-button plan-id="{{ plan.id }}" price="{{ plan.price }}" duration="{{ plan.duration }}" paypal-id="{{ paypalClientId() }}">
-                Devenir premium ({{ plan.name }})
-            </premium-button>
-        </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>

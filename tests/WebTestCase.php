@@ -100,12 +100,42 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         );
     }
 
+    public function expectH2(string $title): void
+    {
+        $crawler = $this->client->getCrawler();
+        $this->assertEquals(
+            $title,
+            $crawler->filter('h2')->text(),
+            '<h1> missmatch'
+        );
+    }
+
+    public function expectH3(string $title): void
+    {
+        $crawler = $this->client->getCrawler();
+        $this->assertEquals(
+            $title,
+            $crawler->filter('h3')->text(),
+            '<h1> missmatch'
+        );
+    }
+
     public function expectTitle(string $title): void
     {
         $crawler = $this->client->getCrawler();
         $this->assertEquals(
             $title . ' | EuroBudget',
             $crawler->filter('title')->text(),
+            '<title> missmatch',
+        );
+    }
+
+    public function expectBodyContains(string $string): void
+    {
+        $crawler = $this->client->getCrawler();
+        $this->assertStringContainsString(
+            $string,
+            $crawler->filter('body')->text(),
             '<title> missmatch',
         );
     }

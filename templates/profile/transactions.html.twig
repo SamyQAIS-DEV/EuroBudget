@@ -7,7 +7,7 @@
         {% include 'profile/_sidebar.html.twig' with {active: 'transactions', user: app.user} %}
 
         <main>
-            <h2 class="mb3">{{ icon('inbox') }} Mes factures</h2>
+            <h1 class="mb3">{{ icon('inbox') }} Mes factures</h1>
             {% if transactions is empty %}
                 <div class="py4 text-muted text-center h3">
                     Vous n'avez aucune facture

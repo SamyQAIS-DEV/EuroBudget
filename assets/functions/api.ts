@@ -1,4 +1,6 @@
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
+import {AlertEnum} from '@enums/AlertEnum';
+import {addFlash} from '../elements/AlertElement';
 // import { flash } from "@functions/flash";
 
 const headers: HeadersInit = {
@@ -39,17 +41,16 @@ export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: objec
  * @return {Promise<Object>}
  * @throws ApiError
  */
-// export const jsonFetchOrFlash = async (url: RequestInfo, body?: Object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET) => {
-//     try {
-//         return await this.jsonFetch(url, body, method);
-//     } catch (error) {
-//         // On catch l'erreur pour vérifier si c'est une erreur API puis on rethrow derrière car dans tous les cas on recatch derrière
-//         if (error instanceof ApiError && 'main' in error.violations) {
-//             flash(error.name, AlertEnum.ERROR, 10);
-//         }
-//         throw error;
-//     }
-// }
+export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body?: Object, method: HttpRequestMethodEnum = HttpRequestMethodEnum.GET): Promise<T> => {
+    try {
+        return await jsonFetch<T>(url, body, method);
+    } catch (error) {
+        if (error instanceof ApiError && 'main' in error.violations) {
+            addFlash(error.name, AlertEnum.ERROR, 10);
+        }
+        throw error;
+    }
+}
 
 /**
  * Représente une erreur d'API

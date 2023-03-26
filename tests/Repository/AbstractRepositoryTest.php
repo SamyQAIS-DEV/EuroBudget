@@ -19,7 +19,7 @@ class AbstractRepositoryTest extends RepositoryTestCase
     public function testFindEncryptedPropertyExistingEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $this->assertSame(7, $this->repository->count([]));
+        $this->assertSame(8, $this->repository->count([]));
         $user = $this->users['user1'];
         $conditions = ['email' => $user->getEmail()];
         $usersFromRepo = $this->repository->findBy($conditions);
@@ -29,7 +29,7 @@ class AbstractRepositoryTest extends RepositoryTestCase
     public function testFindOneEncryptedPropertyExistingEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $this->assertSame(7, $this->repository->count([]));
+        $this->assertSame(8, $this->repository->count([]));
         $user = $this->users['user1'];
         $conditions = ['email' => $user->getEmail()];
         $userFromRepo = $this->repository->findOneBy($conditions);

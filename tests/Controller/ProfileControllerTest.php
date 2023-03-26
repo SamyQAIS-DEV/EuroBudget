@@ -13,7 +13,7 @@ class ProfileControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/profil');
         self::assertResponseStatusCodeSame(200);
         $this->expectTitle('Mon profil');
-        $this->expectH1('Mon profil');
+        $this->expectH2('Mon profil');
     }
 
     public function testProfileUnauthenticated(): void

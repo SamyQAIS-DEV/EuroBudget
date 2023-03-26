@@ -7,6 +7,7 @@ import {Animated} from '@components/Animation/Animated';
 import {ConfirmModal} from '@components/ConfirmModal';
 import {AlertModal} from '@components/AlertModal';
 import {Modal} from '@components/Modal';
+import {addFlash} from '@elements/AlertElement';
 
 type ComponentsTestingProps = {
     userId: number;
@@ -44,6 +45,7 @@ export const ComponentsTesting = ({userId}: ComponentsTestingProps) => {
             <h2>useJsonFetch</h2>
             {isDone && data.toString()}
             <button className="btn-secondary" onClick={() => fetch()}>Reload</button>
+            <button className="btn-secondary" onClick={() => addFlash('test')}>addFlash</button>
             <hr/>
             <h2>useNetworkStatus</h2>
             <NetworkStatus/>

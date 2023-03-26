@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Alert} from '@components/Alert';
+import {AlertEnum} from '@enums/AlertEnum';
 
 export class AlertElement extends HTMLElement {
     connectedCallback() {
@@ -16,11 +17,28 @@ export class AlertElement extends HTMLElement {
             <Alert
                 type={type}
                 duration={duration !== null ? parseInt(duration) : undefined}
-                floating={floating !== null && floating !== undefined && floating !== "false"}
+                floating={floating !== null && floating !== undefined && floating !== 'false'}
                 onClose={handleClose}
             >
                 {element.innerHTML}
-            </Alert>
+            </Alert>,
         );
     }
 }
+
+/**
+ *
+ * @param message
+ * @param type
+ * @param duration in ms
+ */
+export const addFlash = (message: string, type: AlertEnum = AlertEnum.SUCCESS, duration?: number) => {
+    const alert = document.createElement('alert-element');
+    if (duration) {
+        alert.setAttribute('duration', String(duration));
+    }
+    alert.setAttribute('type', type);
+    alert.setAttribute('floating', String(true));
+    alert.innerText = message;
+    document.querySelector('#floating-alerts').appendChild(alert);
+};
