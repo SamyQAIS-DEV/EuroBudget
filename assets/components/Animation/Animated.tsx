@@ -20,7 +20,7 @@ export const Animated = ({
 }: AnimatedProps) => {
     const [shouldRender, setRender] = useState<boolean>(show);
     style = {
-        animation: `${show ? `${animationName}In` : `${animationName}Out`} ${duration}ms both`,
+        animation: `${duration}ms ease-in-out ${show ? `${animationName}In` : `${animationName}Out`} both`,
         ...style,
     };
 

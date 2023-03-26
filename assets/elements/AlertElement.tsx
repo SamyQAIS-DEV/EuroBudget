@@ -9,11 +9,15 @@ export class AlertElement extends HTMLElement {
         const type = element.getAttribute('type');
         const duration = element.getAttribute('duration');
         const floating = element.getAttribute('floating');
+        const handleClose = () => {
+            element.remove();
+        };
         root.render(
             <Alert
                 type={type}
                 duration={duration !== null ? parseInt(duration) : undefined}
                 floating={floating !== null && floating !== undefined && floating !== "false"}
+                onClose={handleClose}
             >
                 {element.innerHTML}
             </Alert>

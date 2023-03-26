@@ -9,12 +9,14 @@ type AlertProps = {
     type: string;
     duration?: number;
     floating?: boolean;
+    onClose?: () => void;
 } & PropsWithChildren<any> & HTMLProps<HTMLDivElement>;
 
 export const Alert = ({
     type,
     duration,
     floating = false,
+    onClose = () => {},
     className,
     children,
 }: AlertProps) => {
@@ -22,10 +24,15 @@ export const Alert = ({
     className = classNames(`alert alert-${type}`, floating && 'floating', className);
     const animationName = floating === true ? 'alertFloating' : 'slide';
 
+    const handleClose = () => {
+        setShow(false);
+        onClose();
+    };
+
     useEffect(() => {
         if (duration) {
             setTimeout(() => {
-                setShow(false);
+                handleClose();
             }, duration);
         }
     }, []);
@@ -43,7 +50,7 @@ export const Alert = ({
         <Animated className={className} show={show} animationName={animationName}>
             <Icon name={icon} className="alert-icon"/>
             <div dangerouslySetInnerHTML={{__html: children}}></div>
-            <button className="alert-close" onClick={close}>
+            <button className="alert-close" onClick={handleClose}>
                 <Icon name="x-circle"/>
             </button>
             {duration && (
