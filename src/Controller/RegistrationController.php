@@ -43,6 +43,7 @@ class RegistrationController extends AbstractController
             $user->setEmail(strtolower($user->getEmail()));
             $entityManager->persist($user);
             $entityManager->flush();
+            // TODO Créer compte en banque par défaut
             $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser, true));
 
             if ($isOauthUser) {

@@ -11,6 +11,9 @@ class DepositAccountResource
     public ?int $id = null;
 
     #[Groups(['read'])]
+    public ?string $title = '';
+
+    #[Groups(['read'])]
     public ?float $amount = null;
 
     #[Groups(['read'])]
@@ -41,6 +44,7 @@ class DepositAccountResource
         $resource = new self();
         $creator = $depositAccount->getCreator();
         $resource->id = $depositAccount->getId();
+        $resource->title = $depositAccount->getTitle();
         $resource->amount = $depositAccount->getAmount();
         $resource->creatorId = $creator->getId();
         $resource->color = $depositAccount->getColor();

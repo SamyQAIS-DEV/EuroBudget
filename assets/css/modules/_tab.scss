@@ -1,0 +1,24 @@
+.tabs {
+    align-items: center;
+    display: flex;
+    overflow: auto;
+}
+
+.tabs .tab {
+    border-bottom: 2px solid transparent;
+    display: block;
+    min-width: fit-content !important;
+    opacity: 0.5;
+    padding: space(1) space(2);
+    text-transform: capitalize;
+    transition: 0.3s;
+    margin: 2px;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+        border-color: var(--contrast);
+        font-weight: bold;
+        opacity: 1;
+    }
+}

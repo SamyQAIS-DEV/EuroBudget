@@ -2,8 +2,9 @@ import React, {useEffect} from 'react';
 import {Loader} from '@components/Animation/Loader';
 import {useJsonFetch} from '@hooks/useJsonFetch';
 import {Button} from '@components/Button';
+import {Operation} from '@components/Operation/Operation';
 
-type Operation = {
+export type OperationEntity = {
     id: number;
     label: string;
     amount: number;
@@ -18,7 +19,7 @@ type OperationListProps = {
 };
 
 export const OperationList = ({year, month}: OperationListProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<Operation[]>('/api/operations/current-month');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<OperationEntity[]>(true, '/api/operations/current-month');
 
     useEffect(() => {
         if (!year || !month) {
@@ -40,19 +41,13 @@ export const OperationList = ({year, month}: OperationListProps) => {
     }
 
     return (
-        <div id="operation-list">
-            <h2>Operations List</h2>
-            <div className="operations">
-                {data.map((operation: Operation) => (
-                    <div key={operation.id} className="year">
-                        <p>{operation.label}</p>
-                        <p>{operation.amount}</p>
-                        <p>{operation.date}</p>
-                        <p>{operation.type}</p>
-                        <p>{operation.past}</p>
-                    </div>
+        <section id="operation-list">
+            <p><strong>{data.length}</strong> opération{data.length > 0 && 's'} ce mois-ci</p>
+            <div className="operations list-group p0">
+                {data.map((operation) => (
+                    <Operation key={operation.id} operation={operation}/>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };

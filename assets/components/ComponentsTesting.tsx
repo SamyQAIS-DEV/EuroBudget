@@ -4,9 +4,9 @@ import {NetworkStatus} from '@components//NetworkStatus';
 import {SearchInput} from '@components/SearchInput';
 import {Copy} from '@components/Copy';
 import {Animated} from '@components/Animation/Animated';
-import {ConfirmModal} from '@components/ConfirmModal';
-import {AlertModal} from '@components/AlertModal';
-import {Modal} from '@components/Modal';
+import {ConfirmModal} from '@components/Modal/ConfirmModal';
+import {AlertModal} from '@components/Modal/AlertModal';
+import {Modal} from '@components/Modal/Modal';
 import {addFlash} from '@elements/AlertElement';
 
 type ComponentsTestingProps = {
@@ -14,17 +14,11 @@ type ComponentsTestingProps = {
 };
 
 export const ComponentsTesting = ({userId}: ComponentsTestingProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<any>('https://jsonplaceholder.typicode.com/users');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<any>(false, 'https://jsonplaceholder.typicode.com/users');
     const [showDiv, setDiv] = useState<boolean>(false);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showAlertModal, setShowAlertModal] = useState<boolean>(false);
     const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
-
-    // useEffect(() => {
-    //     if (!isDone) {
-    //         fetch();
-    //     }
-    // }, [isDone]);
 
     if (isLoading) {
         return (

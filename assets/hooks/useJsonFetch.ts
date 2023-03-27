@@ -17,7 +17,12 @@ type State<T> = {
     isDone: boolean;
 };
 
-export const useJsonFetch = <T>(url: string, autoFetch: boolean = true, body?: object, method?: HttpRequestMethodEnum): [State<T>, FetchFn<T>] => {
+export const useJsonFetch = <T>(
+    autoFetch: boolean,
+    url: string,
+    body?: object,
+    method?: HttpRequestMethodEnum
+): [State<T>, FetchFn<T>] => {
     const [state, setState] = useState<State<T>>({
         data: null,
         isLoading: autoFetch,
@@ -34,10 +39,9 @@ export const useJsonFetch = <T>(url: string, autoFetch: boolean = true, body?: o
                 return response;
             } catch (error) {
                 if (error instanceof ApiError && 'main' in error.violations) {
-                    addFlash(error.name, AlertEnum.ERROR, 10000);
+                    addFlash(error.name, AlertEnum.ERROR);
                 }
             }
-            console.log('setstate error true');
             setState(s => ({ ...s, isLoading: false, isError: true, isDone: true }));
         },
         [url, body]

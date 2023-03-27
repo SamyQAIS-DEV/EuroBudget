@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {FavoriteDepositAccountRecap} from '@components/FavoriteDepositAccountRecap';
+import {DepositAccountRecap} from '@components/DepositAccount/DepositAccountRecap';
 import {MonthsList} from '@components/MonthsList';
-import {OperationList} from '@components/OperationList';
+import {OperationList} from '@components/Operation/OperationList';
 
-export const DepositAccountRecap = () => {
+export const FavoriteDepositAccountRecap = () => {
     const [year, setYear] = useState<string>(null);
     const [month, setMonth] = useState<string>(null);
 
@@ -12,9 +12,12 @@ export const DepositAccountRecap = () => {
         setMonth(month);
     };
 
+    const style = {};
+    style['--gap'] = 5;
+
     return (
-        <div id="deposit-account-recap">
-            <FavoriteDepositAccountRecap/>
+        <div className="stack mt3" style={style}>
+            <DepositAccountRecap/>
             <MonthsList onSelect={handleMonthSelected}/>
             <OperationList year={year} month={month}/>
         </div>

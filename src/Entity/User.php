@@ -46,7 +46,7 @@ class User implements UserInterface
     private DateTimeImmutable $updatedAt;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: true)] // TODO : remove nullable and redo fixtures
+    #[ORM\JoinColumn(nullable: true)]
     private DepositAccount $favoriteDepositAccount;
 
     public function __construct()

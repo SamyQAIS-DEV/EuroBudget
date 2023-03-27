@@ -2,8 +2,8 @@
 
 namespace App\Security\Authentication\Social;
 
-use App\Infrastructure\Social\Exception\UserAuthenticatedException;
-use App\Infrastructure\Social\Exception\UserOauthNotFoundException;
+use App\Exception\UserAuthenticatedException;
+use App\Exception\UserOauthNotFoundException;
 use App\Service\SocialLoginService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

@@ -2,8 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Repository\OperationRepository;
-use App\Resource\DepositAccountResource;
+use App\Service\DepositAccountService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +12,7 @@ use Throwable;
 class DepositAccountController extends AbstractController
 {
     public function __construct(
-        private readonly OperationRepository $operationRepository
+        private readonly DepositAccountService $depositAccountService
     ) {
     }
 
@@ -21,13 +20,7 @@ class DepositAccountController extends AbstractController
     public function favoriteRecap(): JsonResponse
     {
         try {
-            $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-            $operationsRecap = $this->operationRepository->findForRecap($favoriteDepositAccount->getId());
-            $resource = DepositAccountResource::fromDepositAccount(
-                $favoriteDepositAccount,
-                $operationsRecap['waitingOperationsNb'],
-                $operationsRecap['waitingAmount']
-            );
+            $resource = $this->depositAccountService->getRecap();
 
             return $this->json(data: $resource, context: ['groups' => ['read']]);
         } catch (Throwable $e) {

@@ -16,7 +16,7 @@ type MonthsListProps = {
 export const MonthsList = ({
     onSelect
 }: MonthsListProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<YearMonth[]>('/api/operations/years-months');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<YearMonth[]>(true, '/api/operations/years-months');
     const [selectedYear, setSelectedYear] = useState<string>(null);
     const [selectedMonth, setSelectedMonth] = useState<string>(null);
 
@@ -56,9 +56,8 @@ export const MonthsList = ({
     }
 
     return (
-        <div id="months-list">
-            <h2>Months List</h2>
-            <div className="tabs years hide-scrollbar">
+        <section id="months-list">
+            <div className="tabs years mb1 overflow-visible">
                 {data.map((yearMonth: YearMonth) => {
                     const year = yearMonth.path.split('/')[0];
                     if (!renderedYears.includes(year)) {
@@ -67,13 +66,14 @@ export const MonthsList = ({
                             <MonthsListItem
                                 key={'year_' + year}
                                 label={year}
+                                count={yearMonth.count}
                                 active={year === selectedYear} onSelect={handleYearSelected}
                             />
                         );
                     }
                 } )}
             </div>
-            <div className="tabs months hide-scrollbar">
+            <div className="tabs months overflow-visible">
                 {data.map((yearMonth: YearMonth) => {
                     const year = yearMonth.path.split('/')[0];
                     const month = yearMonth.path.split('/')[1];
@@ -82,28 +82,31 @@ export const MonthsList = ({
                             <MonthsListItem
                                 key={'month_' + month}
                                 label={month}
+                                count={yearMonth.count}
                                 active={month === selectedMonth} onSelect={handleMonthSelected}
                             />
                         );
                     }
                 } )}
             </div>
-        </div>
+        </section>
     );
 };
 
 type MonthsListItemProps = {
     label: string;
+    count: number;
     active: boolean;
     onSelect: (year: string) => void;
 };
 
-const MonthsListItem = ({label, active, onSelect}: MonthsListItemProps) =>  {
+const MonthsListItem = ({label, count, active, onSelect}: MonthsListItemProps) =>  {
     return (
         <div key={'year_' + label}
-             className={classNames('tab year', active && 'active')}
+             className={classNames('tab year relative', active && 'active')}
              onClick={() => onSelect(label)}
         >
+            <span className='bullet'>{count}</span>
             {label}
         </div>
     );

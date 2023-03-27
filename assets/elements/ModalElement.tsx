@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {Modal} from '@components/Modal';
+import {Modal} from '@components/Modal/Modal';
 
 export class ModalElement extends HTMLElement {
     connectedCallback() {

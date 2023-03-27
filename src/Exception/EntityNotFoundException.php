@@ -9,7 +9,7 @@ class EntityNotFoundException extends CustomUserMessageAuthenticationException
     public function __construct(
         string $message = 'La ressource nécessaire n\'a pas été trouvée.',
         array $messageData = [],
-        int $code = 404,
+        int $code = 0,
         \Throwable $previous = null
     ) {
         parent::__construct($message, $messageData, $code, $previous);

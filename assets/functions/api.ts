@@ -46,7 +46,7 @@ export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body
         return await jsonFetch<T>(url, body, method);
     } catch (error) {
         if (error instanceof ApiError && 'main' in error.violations) {
-            addFlash(error.name, AlertEnum.ERROR, 10000);
+            addFlash(error.name, AlertEnum.ERROR);
         }
     }
 }
@@ -73,7 +73,7 @@ export class ApiError {
     }
 
     get name() {
-        return `${this.data.title}. ${this.data.detail || ''}`;
+        return `${this.data.title}.\n${this.data.detail || ''}`;
     }
 
     // Renvoie les violations indexées par propertyPath

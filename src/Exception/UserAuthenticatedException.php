@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Social\Exception;
+namespace App\Exception;
 
 use App\Entity\User;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;

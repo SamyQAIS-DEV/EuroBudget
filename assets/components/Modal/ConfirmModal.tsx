@@ -1,5 +1,5 @@
 import React, {HTMLProps, PropsWithChildren} from 'react';
-import {Modal} from '@components/Modal';
+import {Modal} from '@components/Modal/Modal';
 import {classNames} from '@functions/dom';
 
 type ConfirmModalProps = {

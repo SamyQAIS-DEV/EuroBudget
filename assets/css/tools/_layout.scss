@@ -36,6 +36,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow: hidden;
 }
 
 .page-wrapper::before {
@@ -149,6 +150,15 @@
     display: none;
 }
 
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
 // Largeur
 // =============
 .w100 {
@@ -189,7 +199,12 @@
 }
 
 .grid.fit {
-    grid-template-columns: repeat(auto-fit, minmax(var(--col, 275px), 1fr));
+    text-align: center;
+    grid-template-columns: 1fr;
+
+    @include up(730) {
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    }
 }
 
 .grid .full,
