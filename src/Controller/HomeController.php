@@ -18,14 +18,14 @@ class HomeController extends AbstractController
         }
 
         return $this->render('pages/home.html.twig', [
-            'menu' => 'home'
+            'menu' => 'home',
         ]);
     }
 
     public function homeLogged(): Response
     {
         return $this->render('pages/home-logged.html.twig', [
-            'menu' => 'home'
+            'menu' => 'home',
         ]);
     }
 }

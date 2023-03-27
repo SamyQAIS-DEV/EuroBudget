@@ -45,6 +45,10 @@ class User implements UserInterface
     #[ORM\Column]
     private DateTimeImmutable $updatedAt;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: true)] // TODO : remove nullable and redo fixtures
+    private DepositAccount $favoriteDepositAccount;
+
     public function __construct()
     {
         $this->updatedAt = new DateTimeImmutable();
@@ -156,6 +160,18 @@ class User implements UserInterface
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getFavoriteDepositAccount(): DepositAccount
+    {
+        return $this->favoriteDepositAccount;
+    }
+
+    public function setFavoriteDepositAccount(DepositAccount $favoriteDepositAccount): self
+    {
+        $this->favoriteDepositAccount = $favoriteDepositAccount;
 
         return $this;
     }

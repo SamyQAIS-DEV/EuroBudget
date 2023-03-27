@@ -8,9 +8,9 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "jsx": "react",
-        "target": "es6",
-//        "target": "esnext",
-//        "lib": ["esnext", "dom"],
+//        "target": "es6",
+        "target": "esnext",
+        "lib": ["esnext", "dom"],
         "checkJs": false,
         "baseUrl": "assets/",
         "paths": {

@@ -6,6 +6,8 @@
     <main class="home py5">
         <div class="container">
             <h1 class="hero-title">{{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}<strong> {{ app.user.userIdentifier }}</strong> !</h1>
+
+            <depositaccount-recap></depositaccount-recap>
         </div>
     </main>
 {% endblock %}

@@ -6,6 +6,7 @@ import {NetworkStatusElement} from './NetworkStatusElement';
 import {SwitchElement} from './SwitchElement';
 import {AutoSubmitElement} from './AutoSubmitElement';
 import {PremiumButtonElement} from './PremiumButtonElement';
+import {DepositAccountRecapElement} from './DepositAccountRecapElement';
 
 // Custom Elements
 customElements.define('components-testing', ComponentsTestingElement);
@@ -14,6 +15,7 @@ customElements.define('modal-element', ModalElement);
 customElements.define('theme-switcher', ThemeSwitcherElement);
 customElements.define('network-status', NetworkStatusElement);
 customElements.define('premium-button', PremiumButtonElement);
+customElements.define('depositaccount-recap', DepositAccountRecapElement);
 
 // CustomElement étendus
 customElements.define('input-switch', SwitchElement, { extends: 'input' })

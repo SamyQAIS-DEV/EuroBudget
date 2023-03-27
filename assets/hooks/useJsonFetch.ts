@@ -1,6 +1,8 @@
-import {useCallback, useState} from 'react';
-import {jsonFetch, jsonFetchOrFlash} from '@functions/api';
+import {useCallback, useEffect, useState} from 'react';
+import {ApiError, jsonFetch, jsonFetchOrFlash} from '@functions/api';
 import {HttpRequestMethodEnum} from '@enums/HttpEnum';
+import {addFlash} from '@elements/AlertElement';
+import {AlertEnum} from '@enums/AlertEnum';
 
 type FetchFn<T> = (
     localUrl?: string,
@@ -15,10 +17,10 @@ type State<T> = {
     isDone: boolean;
 };
 
-export const useJsonFetch = <T>(url: string, body?: object, method?: HttpRequestMethodEnum): [State<T>, FetchFn<T>] => {
+export const useJsonFetch = <T>(url: string, autoFetch: boolean = true, body?: object, method?: HttpRequestMethodEnum): [State<T>, FetchFn<T>] => {
     const [state, setState] = useState<State<T>>({
         data: null,
-        isLoading: false,
+        isLoading: autoFetch,
         isError: false,
         isDone: false
     });
@@ -27,16 +29,25 @@ export const useJsonFetch = <T>(url: string, body?: object, method?: HttpRequest
         async (localUrl?: string, localBody?: object, localMethod?: HttpRequestMethodEnum) => {
             setState(s => ({ ...s, isLoading: true, isError: false, isDone: false }));
             try {
-                const response = await jsonFetchOrFlash<T>(localUrl || url, localBody || body, localMethod || method);
+                const response = await jsonFetch<T>(localUrl || url, localBody || body, localMethod || method);
                 setState(s => ({ ...s, data: response, isLoading: false, isError: false, isDone: true }));
                 return response;
-            } catch (e) {
-                setState(s => ({ ...s, isLoading: false, isError: true, isDone: true }));
+            } catch (error) {
+                if (error instanceof ApiError && 'main' in error.violations) {
+                    addFlash(error.name, AlertEnum.ERROR, 10000);
+                }
             }
-            setState(s => ({ ...s, isLoading: false, isError: false, isDone: true }));
+            console.log('setstate error true');
+            setState(s => ({ ...s, isLoading: false, isError: true, isDone: true }));
         },
         [url, body]
     );
+
+    useEffect(() => {
+        if (autoFetch) {
+            fetch();
+        }
+    }, []);
 
     return [{...state}, fetch];
 };

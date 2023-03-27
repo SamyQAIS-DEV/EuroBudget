@@ -16,6 +16,18 @@ App\Entity\User:
         email: premium_user@domain.fr
         premiumEnd: <(new DateTimeImmutable('+1 month'))>
 
+App\Entity\DepositAccount:
+    depositAccount{1..5} (extends depositAccount):
+
+App\Entity\Operation:
+    operation{1..10} (extends operation):
+
+    previous_month_operation{1..10} (extends operation):
+        date: <(new DateTimeImmutable('-1 month'))>
+
+    previous_year_operation{1..20} (extends operation):
+        date: <(new DateTimeImmutable('-1 year'))>
+
 App\Entity\Plan:
     plan1:
         name: Compte premium 3 mois
