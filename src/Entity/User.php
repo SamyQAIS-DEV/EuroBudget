@@ -33,10 +33,13 @@ class User implements UserInterface
     #[Encrypted]
     private string $email;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private bool $emailVerified = false;
+
     #[Vich\UploadableField(mapping: "avatars", fileNameProperty: "avatarName")]
     private ?File $avatarFile = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $avatarName = null;
 
     #[ORM\Column]
@@ -67,6 +70,18 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function isEmailVerified(): ?bool
+    {
+        return $this->emailVerified;
+    }
+
+    public function setEmailVerified(bool $emailVerified): self
+    {
+        $this->emailVerified = $emailVerified;
 
         return $this;
     }

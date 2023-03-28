@@ -50,7 +50,7 @@ class RegistrationControllerTest extends WebTestCase
         ]);
         $this->client->submit($form);
         $this->expectFormErrors(0);
-        self::assertEmailCount(1);
+        self::assertEmailCount(2);
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
         $this->assertSame(10, $this->repository->count([]));
         $this->client->followRedirect();
@@ -178,7 +178,7 @@ class RegistrationControllerTest extends WebTestCase
         $this->client->submit($form);
         $this->expectFormErrors(0);
         self::assertResponseRedirects('/');
-        self::assertEmailCount(0);
+        self::assertEmailCount(1);
         $this->assertSame(10, $this->repository->count([]));
     }
 }

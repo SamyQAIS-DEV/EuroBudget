@@ -8,33 +8,33 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class DepositAccountResource
 {
     #[Groups(['read'])]
-    public ?int $id = null;
+    public int $id;
 
     #[Groups(['read'])]
-    public ?string $title = '';
+    public string $title;
 
     #[Groups(['read'])]
-    public ?float $amount = null;
+    public float $amount;
 
     #[Groups(['read'])]
-    public ?int $creatorId = null;
+    public int $creatorId;
 
     #[Groups(['read'])]
-    public ?string $color = '';
+    public string $color;
 
     #[Groups(['read'])]
-    public ?int $waitingOperationsNb = null;
+    public int $waitingOperationsNb;
 
     #[Groups(['read'])]
-    public ?float $waitingAmount = null;
+    public float $waitingAmount;
 
     #[Groups(['read'])]
-    public ?float $finalAmount = null;
+    public float $finalAmount;
 
     /**
      * Garde une trace de l'entité qui a servi à créer la resource.
      */
-    public ?DepositAccount $entity = null;
+    public DepositAccount $entity;
 
     public static function fromDepositAccount(
         DepositAccount $depositAccount,

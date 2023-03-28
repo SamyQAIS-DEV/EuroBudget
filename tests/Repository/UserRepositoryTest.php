@@ -19,7 +19,7 @@ class UserRepositoryTest extends RepositoryTestCase
     public function testFindForAuthExistingEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $this->assertSame(8, $this->repository->count([]));
+        $this->assertSame(9, $this->repository->count([]));
         $user = $this->users['user1'];
         $userFromRepo = $this->repository->findForAuth($user->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
@@ -28,7 +28,7 @@ class UserRepositoryTest extends RepositoryTestCase
     public function testFindForOauthExistingEmail(): void
     {
         $this->users = $this->loadFixtureFiles(['users']);
-        $this->assertSame(8, $this->repository->count([]));
+        $this->assertSame(9, $this->repository->count([]));
         $githubUser = $this->users['github_user'];
         $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
