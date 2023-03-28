@@ -16,6 +16,7 @@ form > * + * {
 .form-group {
     position: relative;
     background: inherit;
+    margin-bottom: space(3);
 }
 
 .form-group input,
@@ -50,7 +51,7 @@ form > * + * {
     left: 15px;
     line-height: 35px;
     color: var(--border);
-    transition: 0.3s;
+    transition: all 0.3s, background 0s;
 }
 
 .form-group input {
@@ -60,9 +61,9 @@ form > * + * {
     }
     &:focus + label::before,
     &:valid + label::before {
-        line-height: 20px;
+        line-height: 1;
         font-size: 0.7rem;
-        top: -10px;
+        top: -5px;
         padding: 0 space(1);
         left: space(1);
         color: var(--contrast);

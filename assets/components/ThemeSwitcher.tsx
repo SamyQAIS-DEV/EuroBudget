@@ -6,6 +6,6 @@ export const ThemeSwitcher = () => {
     const {theme, isDarkTheme, toggle, enable, disable} = useTheme();
 
     return (
-        <Switch checked={isDarkTheme} onChange={toggle} label='Thème' />
+        <Switch id='theme-switcher' checked={isDarkTheme} onChange={toggle} label='Thème' />
     );
 };
