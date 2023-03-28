@@ -2,11 +2,15 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\DepositAccount;
 use App\Entity\LoginLink;
 use App\Event\LoginLinkRequestedEvent;
+use App\Event\UserCreatedEvent;
 use App\Helper\TimeHelper;
 use App\Service\LoginLinkService;
 use App\Service\MailerService;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
@@ -15,6 +19,8 @@ class AuthSubscriber implements EventSubscriberInterface
     public function __construct(
         private readonly MailerService $mailer,
         private readonly LoginLinkService $loginLinkService,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly EventDispatcherInterface $dispatcher
     ) {
     }
 
@@ -24,7 +30,8 @@ class AuthSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            LoginLinkRequestedEvent::class => 'onLoginLinkRequested'
+            LoginLinkRequestedEvent::class => 'onLoginLinkRequested',
+            UserCreatedEvent::class => 'onUserCreated',
         ];
     }
 
@@ -33,24 +40,37 @@ class AuthSubscriber implements EventSubscriberInterface
      */
     public function onLoginLinkRequested(LoginLinkRequestedEvent $event): void
     {
-        if ($event->isUsingOauth()) {
-            return;
-        }
         $user = $event->getUser();
         $loginLink = $this->loginLinkService->createLoginLink($user);
 
-        $template = 'mails/auth/login_link.twig';
-        $subject = 'Votre lien de connexion !';
-        if ($event->isRegistration()) {
-            $template = 'mails/auth/registration.twig';
-            $subject = 'Votre inscription !';
-        }
-        $email = $this->mailer->createEmail($template, $subject, [
+        $email = $this->mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
             'username' => $user->getUserIdentifier()
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);
+    }
+
+    public function onUserCreated(UserCreatedEvent $event): void
+    {
+        $user = $event->getUser();
+        $depositAccount = new DepositAccount();
+        $depositAccount->setTitle('Compte de ' . $user->getUserIdentifier())
+            ->setCreator($user);
+        $user->setFavoriteDepositAccount($depositAccount);
+        $this->entityManager->persist($depositAccount);
+
+        $email = $this->mailer->createEmail('mails/auth/registration.twig', 'Votre inscription !', [
+            'isUsingOauth' => $event->isUsingOauth(),
+            'username' => $user->getUserIdentifier()
+        ])
+            ->to($user->getEmail());
+        $this->mailer->send($email);
+
+        if ($event->isUsingOauth()) {
+            return;
+        }
+        $this->dispatcher->dispatch(new LoginLinkRequestedEvent($user));
     }
 }

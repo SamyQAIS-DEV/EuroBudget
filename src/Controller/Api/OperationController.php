@@ -40,6 +40,11 @@ class OperationController extends AbstractController
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
         $yearsMonths = $this->operationRepository->findYearsMonths($favoriteDepositAccount->getId());
 
+        $currentMonth = (new DateTime())->format('Y/m');
+        if (!in_array($currentMonth, $yearsMonths, true)) {
+            $yearsMonths[] = ['path' => $currentMonth, 'count' => 0];
+        }
+
         return $this->json(data: $yearsMonths, context: ['groups' => ['read']]);
     }
 }

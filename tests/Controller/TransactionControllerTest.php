@@ -17,7 +17,7 @@ class TransactionControllerTest extends WebTestCase
         $this->login($user);
         $this->client->request('GET', '/profil/factures');
         self::assertResponseStatusCodeSame(200);
-        $this->expectH2('Mes factures');
+        $this->expectH1('Mes factures');
         $this->expectTitle('Mes factures');
     }
 }

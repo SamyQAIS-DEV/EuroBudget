@@ -1,11 +1,11 @@
 include:
-    - ../../fixtures/templates.yaml
+    - deposit-accounts.yaml
 
 App\Entity\User:
     user{1..5} (extends user):
 
     admin_user (extends user):
-        email: admin@domain.fr
+        email: admin_user@domain.fr
         roles: ['ROLE_ADMIN']
 
     github_user (extends user):
@@ -15,3 +15,6 @@ App\Entity\User:
     premium_user (extends user):
         email: premium_user@domain.fr
         premiumEnd: <(new DateTimeImmutable('+1 month'))>
+
+    no_deposit_account_user (extends user):
+        email: no_deposit_account_user@domain.fr

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
+use App\Event\UserCreatedEvent;
 use App\Form\RegistrationFormType;
 use App\Security\Authentication\Authenticator;
 use App\Service\SocialLoginService;
@@ -39,28 +40,18 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $user->setCreatedAt(new \DateTime());
             $user->setEmail(strtolower($user->getEmail()));
             $entityManager->persist($user);
             $entityManager->flush();
-            // TODO Créer compte en banque par défaut
-            $dispatcher->dispatch(new LoginLinkRequestedEvent($user, $isOauthUser, true));
+            $dispatcher->dispatch(new UserCreatedEvent($user, $isOauthUser));
 
             if ($isOauthUser) {
-                // TODO : TRAD
-                $this->addAlert(
-                    AlertEnum::SUCCESS,
-                    'Votre compte a bien été créé.'
-                );
+                $this->addAlert(AlertEnum::SUCCESS,'Votre compte a bien été créé.');
 
                 return $authenticator->authenticateUser($user, $appAuthenticator, $request) ?: $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);
             }
 
-            // TODO : TRAD
-            $this->addAlert(
-                AlertEnum::SUCCESS,
-                'Un message avec un lien de connexion vous a été envoyé par mail. Ce site n\'utilise pas de mot de passe.'
-            );
+            $this->addAlert( AlertEnum::SUCCESS,'Un message avec un lien de connexion vous a été envoyé par mail. Ce site n\'utilise pas de mot de passe.');
 
             return $this->redirectToRoute(self::REGISTER_ROUTE_NAME);
         }

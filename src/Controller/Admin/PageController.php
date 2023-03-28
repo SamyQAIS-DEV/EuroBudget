@@ -27,7 +27,7 @@ class PageController extends AbstractController
     #[Route(path: '/mailtest', name: 'mailtest', methods: ['POST'])]
     public function testMail(EventDispatcherInterface $dispatcher): RedirectResponse
     {
-        $dispatcher->dispatch(new LoginLinkRequestedEvent($this->getUserOrThrow(), false));
+        $dispatcher->dispatch(new LoginLinkRequestedEvent($this->getUserOrThrow()));
         $this->addAlert(AlertEnum::SUCCESS, "L'email de test a bien été envoyé");
 
         return $this->redirectToRoute('admin_home');

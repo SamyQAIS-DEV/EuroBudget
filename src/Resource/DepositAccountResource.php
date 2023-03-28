@@ -39,7 +39,7 @@ class DepositAccountResource
     public static function fromDepositAccount(
         DepositAccount $depositAccount,
         int $waitingOperationsNb,
-        float $waitingAmount
+        ?float $waitingAmount
     ): self {
         $resource = new self();
         $creator = $depositAccount->getCreator();
@@ -48,8 +48,8 @@ class DepositAccountResource
         $resource->amount = $depositAccount->getAmount();
         $resource->creatorId = $creator->getId();
         $resource->color = $depositAccount->getColor();
-        $resource->waitingOperationsNb = $waitingOperationsNb;
-        $resource->waitingAmount = $waitingAmount;
+        $resource->waitingOperationsNb = $waitingOperationsNb ?? 0;
+        $resource->waitingAmount = $waitingAmount ?? 0;
         $resource->finalAmount = $resource->amount - $resource->waitingAmount;
         $resource->entity = $depositAccount;
 

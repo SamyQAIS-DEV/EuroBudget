@@ -9,15 +9,11 @@
         Bienvenue sur EuroBudget.fr {{ username }} !
         ===============================
 
-        Vous venez de créer un compte sur EuroBudget.fr. Si vous n'êtes pas déjà connecté, il vous suffit simplement de cliquer sur le bouton ci-dessous.
-        Le lien de connexion expire dans **{{ leftTime }}**.
+        Vous venez de créer un compte sur EuroBudget.fr. Merci !
+        {% if isUsingOauth is same as(false) %}
+            Un mail avec un lien de connexion vous a été envoyé.
+        {% endif %}
 
-    {% endapply %}
-
-    {{ e.button('Se connecter', url('auth_check', {token: token})) }}
-
-    {% apply markdown_email %}
-        Si vous n'êtes pas à l'origine de la création de ce compte ne tenez pas compte de cet email, le compte sera automatiquement supprimé.
     {% endapply %}
 
 {% endblock %}

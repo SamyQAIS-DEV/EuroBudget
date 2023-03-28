@@ -1,0 +1,5 @@
+include:
+    - ../../fixtures/templates.yaml
+
+App\Entity\DepositAccount:
+    depositAccount{1..5} (extends depositAccount):
