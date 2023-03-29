@@ -8,13 +8,14 @@ import {ConfirmModal} from '@components/Modal/ConfirmModal';
 import {AlertModal} from '@components/Modal/AlertModal';
 import {Modal} from '@components/Modal/Modal';
 import {addFlash} from '@elements/AlertElement';
+import {jsonFetch} from '@functions/api';
 
 type ComponentsTestingProps = {
     userId: number;
 };
 
 export const ComponentsTesting = ({userId}: ComponentsTestingProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<any>(false, 'https://jsonplaceholder.typicode.com/users');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<any>(false, () => jsonFetch('https://jsonplaceholder.typicode.com/users'));
     const [showDiv, setDiv] = useState<boolean>(false);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showAlertModal, setShowAlertModal] = useState<boolean>(false);

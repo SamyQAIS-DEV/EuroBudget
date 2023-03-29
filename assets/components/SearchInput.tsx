@@ -7,7 +7,7 @@ export const SearchInput = () => {
     const [debouncedValue, isWaiting] = useDebounce<string>(value, 400);
 
     useEffect(() => {
-        // console.log('search for : ' + debouncedValue);
+        console.log('search for : ' + debouncedValue);
     }, [debouncedValue]);
 
     return (

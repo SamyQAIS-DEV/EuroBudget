@@ -32,11 +32,10 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
                 return new RedirectResponse($this->urlGenerator->generate('premium'));
             }
-
         }
 
         if (in_array('application/json', $request->getAcceptableContentTypes())) {
-            return new JsonResponse(null, Response::HTTP_FORBIDDEN);
+            return new JsonResponse($accessDeniedException->getMessage(), Response::HTTP_FORBIDDEN);
         }
 
         return new Response($this->twig->render('bundles/TwigBundle/Exception/error403.html.twig'), Response::HTTP_FORBIDDEN);

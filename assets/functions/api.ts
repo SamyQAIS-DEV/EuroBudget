@@ -48,6 +48,7 @@ export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body
         if (error instanceof ApiError && 'main' in error.violations) {
             addFlash(error.name, AlertEnum.ERROR);
         }
+        throw error;
     }
 }
 

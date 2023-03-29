@@ -8,18 +8,28 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "jsx": "react",
-//        "target": "es6",
+        //        "target": "es6",
         "target": "esnext",
-        "lib": ["esnext", "dom"],
+        "lib": [
+            "esnext",
+            "dom"
+        ],
         "checkJs": false,
         "baseUrl": "assets/",
         "paths": {
+            "@api/*": [
+                "api/*"
+            ],
             "@components/*": [
                 "components/*"
             ],
-            //      "@contexts/*": ["contexts/*"],
-                  "@elements/*": ["elements/*"],
-            //      "@entities/*": ["entities/*"],
+            //"@contexts/*": ["contexts/*"],
+            "@elements/*": [
+                "elements/*"
+            ],
+            "@entities/*": [
+                "entities/*"
+            ],
             "@enums/*": [
                 "enums/*"
             ],

@@ -2,6 +2,7 @@ import React from 'react';
 import {useJsonFetch} from '@hooks/useJsonFetch';
 import {Loader} from '@components/Animation/Loader';
 import {Button} from '@components/Button';
+import {jsonFetch} from '@functions/api';
 
 type DepositAccountResource = {
     id: number;
@@ -15,7 +16,7 @@ type DepositAccountResource = {
 };
 
 export const DepositAccountRecap = () => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<DepositAccountResource>(true, '/api/deposit-accounts/favorite-recap');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<DepositAccountResource>(true, () => jsonFetch('/api/deposit-accounts/favorite-recap')); // TODO Use api file
 
     if (isLoading) {
         return <Loader/>;

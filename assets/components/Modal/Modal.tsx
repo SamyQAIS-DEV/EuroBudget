@@ -4,6 +4,7 @@ import {classNames} from '@functions/dom';
 import {useOnClickOutside} from '@hooks/useOnClickOutside';
 import {useOnKeyUp} from '@hooks/useOnKeyUp';
 import {Icon} from '@components/Icon';
+import {createPortal} from 'react-dom';
 
 type ModalProps = {
     show: boolean;
@@ -47,7 +48,7 @@ export const Modal = ({
     useOnKeyUp('Escape', handleClose);
     useOnClickOutside('mousedown', ref, handleClickOutside);
 
-    return (
+    return createPortal(
         <Animated show={show} animationName="modal" className={wrapperClassName}>
             <Animated show={show} animationName="modalSlide" className={className} forwardedRef={ref}>
                 {closable === true && (
@@ -57,6 +58,7 @@ export const Modal = ({
                 )}
                 {children}
             </Animated>
-        </Animated>
+        </Animated>,
+        document.querySelector('body'),
     );
 };

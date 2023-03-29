@@ -33,7 +33,11 @@
     .loader {
         width: 16px;
         height: 16px;
-        margin-right: space(1);
+        margin: 0;
+    }
+
+    span {
+        margin-left: space(1);
     }
 }
 

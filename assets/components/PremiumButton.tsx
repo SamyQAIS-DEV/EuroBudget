@@ -108,7 +108,7 @@ const PaymentPaypal = ({
     const approveRef = useRef<(orderId: string) => void>(null);
     const currency = 'EUR';
     const [country, setCountry] = useState(null);
-    const [loading, toggleLoading] = useToggle(false);
+    const [isLoading, toggleLoading] = useToggle(false);
     // const vat = country ? vatPrice(price, country) : null;
     const vat = 0.2;
 
@@ -201,9 +201,9 @@ const PaymentPaypal = ({
             {/*>*/}
             {/*    Pays de résidence*/}
             {/*</Field>*/}
-            {/*{country && <div style={{ minHeight: 52, display: loading ? 'none' : null }} ref={container} />}*/}
-            <div style={{minHeight: 52, display: loading ? 'none' : null}} ref={container}/>
-            {loading && (
+            {/*{country && <div style={{ minHeight: 52, display: isLoading ? 'none' : null }} ref={container} />}*/}
+            <div style={{minHeight: 52, display: isLoading ? 'none' : null}} ref={container}/>
+            {isLoading && (
                 <Button className="btn-primary" loading={true}>
                     Chargement...
                 </Button>

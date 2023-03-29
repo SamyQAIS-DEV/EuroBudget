@@ -68,10 +68,11 @@ Encore
     .enableReactPreset()
 
     .addAliases({
+        "@api": path.resolve(__dirname, 'assets/api'),
         "@components": path.resolve(__dirname, 'assets/components'),
         // "@contexts": path.resolve(__dirname, 'assets/contexts'),
         "@elements": path.resolve(__dirname, 'assets/elements'),
-        // "@entities": path.resolve(__dirname, 'assets/entities'),
+        "@entities": path.resolve(__dirname, 'assets/entities'),
         "@enums": path.resolve(__dirname, 'assets/enums'),
         "@functions": path.resolve(__dirname, 'assets/functions'),
         // "@helpers": path.resolve(__dirname, 'assets/helpers'),

@@ -3,6 +3,7 @@ import {useJsonFetch} from '@hooks/useJsonFetch';
 import {Loader} from '@components/Animation/Loader';
 import {Button} from '@components/Button';
 import {classNames} from '@functions/dom';
+import {jsonFetch} from '@functions/api';
 
 type YearMonth = {
     path: string,
@@ -16,7 +17,7 @@ type MonthsListProps = {
 export const MonthsList = ({
     onSelect
 }: MonthsListProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<YearMonth[]>(true, '/api/operations/years-months');
+    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<YearMonth[]>(true, () => jsonFetch<YearMonth[]>('/api/operations/years-months')); // TODO Use api file
     const [selectedYear, setSelectedYear] = useState<string>(null);
     const [selectedMonth, setSelectedMonth] = useState<string>(null);
 

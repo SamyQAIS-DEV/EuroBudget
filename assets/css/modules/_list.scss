@@ -11,11 +11,15 @@
     justify-content: space-between;
     align-items: center;
     padding: space(3);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--background);
     transition: 0.3s;
 
     &:last-child {
         border-bottom: none;
+    }
+
+    .actions button:not(:last-child) {
+        margin-right: space(1);
     }
 }
 
