@@ -31,21 +31,21 @@ class OperationVoterTest extends KernelTestCase
 
     public function testPost(): void
     {
-        $this->operationRepository->method('countForYearAndMonthByUser')->willReturn(OperationVoter::MONTHLY_QUOTA - 1);
+        $this->operationRepository->method('countForYearAndMonth')->willReturn(OperationVoter::MONTHLY_QUOTA - 1);
         $this->token->method('getUser')->willReturn($this->getUser());
         $this->assertSame(VoterInterface::ACCESS_GRANTED, $this->voter->vote($this->token, null, [OperationVoter::POST]));
     }
 
     public function testPostExceedsMonthlyQuota(): void
     {
-        $this->operationRepository->method('countForYearAndMonthByUser')->willReturn(OperationVoter::MONTHLY_QUOTA + 1);
+        $this->operationRepository->method('countForYearAndMonth')->willReturn(OperationVoter::MONTHLY_QUOTA + 1);
         $this->token->method('getUser')->willReturn($this->getUser());
         $this->assertSame(VoterInterface::ACCESS_DENIED, $this->voter->vote($this->token, null, [OperationVoter::POST]));
     }
 
     public function testPostExceedsMonthlyQuotaPremium(): void
     {
-        $this->operationRepository->method('countForYearAndMonthByUser')->willReturn(OperationVoter::MONTHLY_QUOTA + 1);
+        $this->operationRepository->method('countForYearAndMonth')->willReturn(OperationVoter::MONTHLY_QUOTA + 1);
         $this->token->method('getUser')->willReturn($this->getUser()->setPremiumEnd(new DateTimeImmutable('+1 day')));
         $this->assertSame(VoterInterface::ACCESS_GRANTED, $this->voter->vote($this->token, null, [OperationVoter::POST]));
     }
@@ -76,6 +76,8 @@ class OperationVoterTest extends KernelTestCase
 
     private function getUser(): User
     {
-        return (new User())->setId(0)->setEmail('johndoe@domain.fr');
+        $depositAccount = $this->createMock(DepositAccount::class);
+        $depositAccount->method('getId')->willReturn(0);
+        return (new User())->setId(0)->setEmail('johndoe@domain.fr')->setFavoriteDepositAccount($depositAccount);
     }
 }
