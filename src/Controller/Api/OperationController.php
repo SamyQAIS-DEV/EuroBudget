@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Operation;
+use App\Enum\AlertEnum;
 use App\Exception\OperationUnauthorizedException;
 use App\Repository\OperationRepository;
 use App\Security\Voter\OperationVoter;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route(path: '/operations', name: 'operations_')]
@@ -34,6 +36,19 @@ class OperationController extends AbstractController
         return $this->json(data: $operations, context: ['groups' => ['read']]);
     }
 
+    #[Route(path: '/years-months', name: 'years_months', methods: ['GET'])]
+    public function yearsMonths(): JsonResponse
+    {
+        $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
+        $yearsMonths = $this->operationRepository->findYearsMonths($favoriteDepositAccount->getId());
+        $currentMonth = (new DateTime())->format('Y/m');
+        if (count($yearsMonths) === 0 || !$this->monthInArray($currentMonth, $yearsMonths)) {
+            $yearsMonths = [['path' => $currentMonth, 'count' => 0], ...$yearsMonths];
+        }
+
+        return $this->json(data: $yearsMonths, context: ['groups' => ['read']]);
+    }
+
     #[Route(path: '/{year}/{month}', name: 'for_month', methods: ['GET'])]
     public function forMonth(int $year, int $month): JsonResponse
     {
@@ -43,13 +58,18 @@ class OperationController extends AbstractController
         return $this->json(data: $operations, context: ['groups' => ['read']]);
     }
 
-    #[Route(path: '', name: 'update', methods: ['POST'])]
+    #[Route(path: '', name: 'post', methods: ['POST'])]
     public function post(Request $request): JsonResponse
     {
         if (!$this->isGranted(OperationVoter::POST)) {
-            return new JsonResponse(['title' => 'Vous ne pouvez pas modifier cette opération.'], Response::HTTP_FORBIDDEN);
+            $this->addAlert(AlertEnum::WARNING, 'Vous ne pouvez pas ajouter plus d\'opération ce mois-ci sans être premium.');
+
+            return new JsonResponse(['redirect' => $this->generateUrl('premium')], Response::HTTP_MOVED_PERMANENTLY);
         }
-        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json');
+        /** @var Operation $operation */
+        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', [AbstractNormalizer::GROUPS => ['write']]);
+        // TODO Service
+        $operation->setCreator($this->getUser())->setDepositAccount($this->getUser()->getFavoriteDepositAccount());
         // TODO Validator
         $this->entityManager->persist($operation);
         $this->entityManager->flush();
@@ -63,7 +83,7 @@ class OperationController extends AbstractController
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas modifier cette opération.'], Response::HTTP_FORBIDDEN);
         }
-        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', ['object_to_populate' => $operation]);
+        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $operation]);
         // TODO Validator
         $this->entityManager->persist($operation);
         $this->entityManager->flush();
@@ -75,26 +95,13 @@ class OperationController extends AbstractController
     public function delete(Operation $operation): JsonResponse
     {
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
-            return new JsonResponse(['title' => 'Vous ne pouvez pas modifier cette opération.'], Response::HTTP_FORBIDDEN);
+            return new JsonResponse(['title' => 'Vous ne pouvez pas supprimer cette opération.'], Response::HTTP_FORBIDDEN);
         }
         // TODO Validator
         $this->entityManager->remove($operation);
         $this->entityManager->flush();
 
         return $this->json(null);
-    }
-
-    #[Route(path: '/years-months', name: 'years_months', methods: ['GET'])]
-    public function yearsMonths(): JsonResponse
-    {
-        $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $yearsMonths = $this->operationRepository->findYearsMonths($favoriteDepositAccount->getId());
-        $currentMonth = (new DateTime())->format('Y/m');
-        if (count($yearsMonths) === 0 || !$this->monthInArray($currentMonth, $yearsMonths)) {
-            $yearsMonths = [['path' => $currentMonth, 'count' => 0], ...$yearsMonths];
-        }
-
-        return $this->json(data: $yearsMonths, context: ['groups' => ['read']]);
     }
 
     private function monthInArray(string $month, array $yearsMonths): bool

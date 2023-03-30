@@ -8,7 +8,7 @@ class ProfileControllerTest extends WebTestCase
 {
     public function testProfile(): void
     {
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $crawler = $this->client->request('GET', '/profil');
         self::assertResponseStatusCodeSame(200);

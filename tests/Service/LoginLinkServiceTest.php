@@ -22,7 +22,7 @@ class LoginLinkServiceTest extends KernelTestCase
     public function testCreateLoginLink(): void
     {
         /** @var User $user */
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $loginLink = $this->loginLinkService->createLoginLink($user);
         $this->assertInstanceOf(LoginLink::class, $loginLink);
     }
@@ -30,7 +30,7 @@ class LoginLinkServiceTest extends KernelTestCase
     public function testCreateAlreadyExistingLoginLink(): void
     {
         /** @var User $user */
-        ['user1' => $user] = $this->loadFixtureFiles(['users', 'login-links']);
+        ['user1' => $user] = $this->loadFixtures(['users', 'login-links']);
         $loginLink = $this->loginLinkService->createLoginLink($user);
         $this->assertInstanceOf(LoginLink::class, $loginLink);
     }

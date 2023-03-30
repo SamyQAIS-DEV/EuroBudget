@@ -63,7 +63,7 @@ class Transaction
 
     public function getFullName(): string
     {
-        return $this->lastname.' '.$this->firstname;
+        return $this->lastname . ' ' . $this->firstname;
     }
 
     public function getDescription(): string

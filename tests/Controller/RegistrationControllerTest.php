@@ -38,7 +38,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testRegisterSendEmail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $crawler = $this->client->request('GET', self::SIGNUP_PATH);
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
@@ -59,7 +59,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testRegisterDepositAccountCreation(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $crawler = $this->client->request('GET', self::SIGNUP_PATH);
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
@@ -81,7 +81,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testRegisterExistingEmail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $crawler = $this->client->request('GET', self::SIGNUP_PATH);
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
@@ -100,7 +100,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testWithLongEmail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $crawler = $this->client->request('GET', self::SIGNUP_PATH);
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
@@ -118,7 +118,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testRedirectIfLogged(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->login($this->users['user1']);
         $this->client->request('GET', self::SIGNUP_PATH);
         self::assertResponseRedirects('/');
@@ -126,7 +126,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testGithubOauthExistingEmailRegistration(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         // Simulates an oauth session
         $this->client->request('GET', self::SIGNUP_PATH);
@@ -155,7 +155,7 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testGithubOauthRegistration(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         // Simulates an oauth session
         $this->client->request('GET', self::SIGNUP_PATH);

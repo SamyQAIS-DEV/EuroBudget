@@ -79,7 +79,29 @@ class OperationRepository extends AbstractRepository
         ], $rows);
     }
 
+    public function countForYearAndMonth(int $id, int $year, int $month): int
+    {
+        $start = new DateTimeImmutable("01-{$month}-{$year}");
+        $end = $start->modify('+1 month');
+
+        return $this->findByDepositAccountIdQueryBuilder($id)
+            ->select('COUNT(o.id)')
+            ->andWhere('o.date >= :start AND o.date < :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     private function findByDepositAccountIdQueryBuilder(int $id): QueryBuilder
+    {
+        return $this->createQueryBuilder('o')
+            ->innerJoin('o.depositAccount', 'd')
+            ->where('d.id = :id')
+            ->setParameter('id', $id);
+    }
+
+    private function findByUserIdQueryBuilder(int $id): QueryBuilder
     {
         return $this->createQueryBuilder('o')
             ->innerJoin('o.depositAccount', 'd')

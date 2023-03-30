@@ -8,7 +8,7 @@ class PageControllerTest extends WebTestCase
 {
     public function testPageAsAdmin(): void
     {
-        ['admin_user' => $user] = $this->loadFixtureFiles(['users']);
+        ['admin_user' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $crawler = $this->client->request('GET', '/admin');
         self::assertResponseStatusCodeSame(200);
@@ -16,7 +16,7 @@ class PageControllerTest extends WebTestCase
 
     public function testPageAsUser(): void
     {
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $crawler = $this->client->request('GET', '/admin');
         $this->expectH1('Accès interdit');

@@ -1,4 +1,4 @@
-import {HttpRequestMethodEnum} from '@enums/HttpEnum';
+import {HttpRequestMethodEnum, HttpResponseCodeEnum} from '@enums/HttpEnum';
 import {AlertEnum} from '@enums/AlertEnum';
 import {addFlash} from '../elements/AlertElement';
 // import { flash } from "@functions/flash";
@@ -27,9 +27,12 @@ export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: objec
     if (response.status === 204) {
         return null;
     }
-    const data = await response.json() as T;
     if (response.ok) {
-        return data;
+        return await response.json() as T;
+    }
+    const data = await response.json();
+    if (response.status === HttpResponseCodeEnum.HTTP_MOVED_PERMANENTLY && data.redirect) {
+        window.location.href = data.redirect;
     }
     throw new ApiError(data, response.status);
 };
@@ -45,7 +48,7 @@ export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body
     try {
         return await jsonFetch<T>(url, body, method);
     } catch (error) {
-        if (error instanceof ApiError && 'main' in error.violations) {
+        if (error instanceof ApiError && 'main' in error.violations && error.name) {
             addFlash(error.name, AlertEnum.ERROR);
         }
         throw error;
@@ -74,7 +77,10 @@ export class ApiError {
     }
 
     get name() {
-        return `${this.data.title}.\n${this.data.detail || ''}`;
+        if (this.data.title && this.data.detail) {
+            return `${this.data.title}\n${this.data.detail || ''}`;
+        }
+        return '';
     }
 
     // Renvoie les violations indexées par propertyPath

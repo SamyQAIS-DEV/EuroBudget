@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
 class Operation
@@ -18,15 +19,15 @@ class Operation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING,length: 255)]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private string $label;
 
     #[ORM\Column(type: Types::FLOAT)]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private float $amount;
 
     #[ORM\Column(type: Types::STRING, length: 1)]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private string $type = '-';
 
     #[ORM\ManyToOne]
@@ -38,11 +39,11 @@ class Operation
     private DepositAccount $depositAccount;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private DateTimeImmutable $date;
 
     #[ORM\Column]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private ?bool $past = null;
 
     public function getId(): ?int

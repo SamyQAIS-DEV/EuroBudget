@@ -32,7 +32,7 @@ class UserTest extends WebTestCase
 
     public function testInvalidUsedEmailEntity(): void
     {
-        $this->loadFixtureFiles(['users']);
+        $this->loadFixtures(['users']);
         $entity = $this->getValidEntity()->setEmail('user1@domain.fr');
         $errors = $this->validator->validate($entity);
         $this->assertCount(1, $errors);

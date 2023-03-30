@@ -13,7 +13,7 @@ class TransactionControllerTest extends WebTestCase
 
     public function testIndex(): void
     {
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $this->client->request('GET', '/profil/factures');
         self::assertResponseStatusCodeSame(200);

@@ -13,7 +13,7 @@ class DoctrineEncryptSubscriberTest extends EventSubscriberTest
     public function setUp(): void
     {
         parent::setUp();
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
     }
 
     public function testPostLoad(): void

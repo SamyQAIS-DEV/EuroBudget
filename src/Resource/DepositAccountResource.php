@@ -38,7 +38,7 @@ class DepositAccountResource
 
     public static function fromDepositAccount(
         DepositAccount $depositAccount,
-        int $waitingOperationsNb,
+        ?int $waitingOperationsNb,
         ?float $waitingAmount
     ): self {
         $resource = new self();

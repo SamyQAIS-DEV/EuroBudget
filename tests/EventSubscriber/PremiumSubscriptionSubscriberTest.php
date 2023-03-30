@@ -26,7 +26,7 @@ class PremiumSubscriptionSubscriberTest extends EventSubscriberTest
     public function testSendEmail(): void
     {
         /** @var User $user */
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $subscriber = new PremiumSubscriptionSubscriber($this->mailerService);
         $event = new PremiumSubscriptionEvent($user);
         $this->dispatch($subscriber, $event);

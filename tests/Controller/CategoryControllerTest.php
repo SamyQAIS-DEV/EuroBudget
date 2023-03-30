@@ -9,7 +9,7 @@ class CategoryControllerTest extends WebTestCase
 {
     public function testPremiumSuccess()
     {
-        ['premium_user' => $user] = $this->loadFixtureFiles(['users']);
+        ['premium_user' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $this->client->request('GET', '/categories');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -25,7 +25,7 @@ class CategoryControllerTest extends WebTestCase
 
     public function testIndexAuthenticatedWithoutPremium(): void
     {
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $this->client->request('GET', "/categories");
         self::assertResponseRedirects('/premium');

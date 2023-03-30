@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
@@ -18,15 +20,16 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 
     protected KernelBrowser $client;
     protected EntityManagerInterface $em;
+    protected SerializerInterface $serializer;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->client = self::createClient();
         /** @var EntityManagerInterface $em */
-        $em = self::getContainer()->get(EntityManagerInterface::class);
-        $this->em = $em;
+        $this->em = self::getContainer()->get(EntityManagerInterface::class);
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
+        $this->serializer = self::getContainer()->get(SerializerInterface::class);
         parent::setUp();
     }
 
@@ -36,12 +39,12 @@ class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
         parent::tearDown();
     }
 
-    public function jsonRequest(string $method, string $url, ?array $data = null): string
+    public function jsonRequest(string $method, string $url, $data = null): string
     {
         $this->client->request($method, $url, [], [], [
             'CONTENT_TYPE' => 'application/json',
             'HTTP_ACCEPT' => 'application/json',
-        ], $data ? json_encode($data, JSON_THROW_ON_ERROR) : null);
+        ], $data ? $this->serializer->serialize($data, 'json', [AbstractNormalizer::GROUPS => ['write']]) : null);
 
         return $this->client->getResponse()->getContent();
     }

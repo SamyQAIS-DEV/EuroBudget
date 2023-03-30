@@ -36,7 +36,7 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLoginExistingEmailSendMail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
@@ -54,7 +54,7 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLoginNotExistingEmail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
@@ -70,7 +70,7 @@ class SecurityControllerTest extends WebTestCase
 
     public function testWithLongEmail(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $crawler = $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         $form = $crawler->selectButton(self::SIGNIN_BUTTON)->form();
         $form->setValues([
@@ -95,7 +95,7 @@ class SecurityControllerTest extends WebTestCase
     public function testExpiredLoginLink(): void
     {
         /** @var LoginLink $loginLink */
-        ['user2_login_link' => $loginLink] = $this->loadFixtureFiles(['login-links']);
+        ['user2_login_link' => $loginLink] = $this->loadFixtures(['login-links']);
         $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
         $this->client->request('GET', $route);
         self::assertResponseRedirects($this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
@@ -106,7 +106,7 @@ class SecurityControllerTest extends WebTestCase
     public function testConfirmationTokenValid(): void
     {
         /** @var LoginLink $loginLink */
-        ['user1_login_link' => $loginLink] = $this->loadFixtureFiles(['login-links']);
+        ['user1_login_link' => $loginLink] = $this->loadFixtures(['login-links']);
         $route = $this->router->generate(SecurityController::CHECK_ROUTE_NAME, ['token' => $loginLink->getToken()]);
         $this->client->request('GET', $route);
         self::assertResponseRedirects('/');
@@ -116,7 +116,7 @@ class SecurityControllerTest extends WebTestCase
 
     public function testRedirectIfLogged(): void
     {
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
         $this->login($this->users['user1']);
         $this->client->request('GET', $this->router->generate(SecurityController::LOGIN_ROUTE_NAME));
         self::assertResponseRedirects('/');

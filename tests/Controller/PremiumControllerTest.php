@@ -9,7 +9,7 @@ class PremiumControllerTest extends WebTestCase
 {
     public function testPremium(): void
     {
-        ['user1' => $user] = $this->loadFixtureFiles(['users']);
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->login($user);
         $crawler = $this->client->request('GET', '/premium');
         self::assertResponseStatusCodeSame(200);

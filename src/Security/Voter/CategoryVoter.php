@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class CategoryVoter extends Voter
 {
-    public const ACCESS = 'ACCESS';
+    public const ACCESS = 'ACCESS_CATEGORIES';
 
     protected function supports(string $attribute, mixed $subject): bool
     {

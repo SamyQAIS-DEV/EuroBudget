@@ -11,7 +11,7 @@ class SocialLoginControllerTest extends WebTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->users = $this->loadFixtureFiles(['users']);
+        $this->users = $this->loadFixtures(['users']);
     }
 
     public function testConnectGithub(): void
