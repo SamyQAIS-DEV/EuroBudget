@@ -19,7 +19,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TransactionRepository extends AbstractRepository
 {
-    // TODO Test this repo
     public function __construct(
         ManagerRegistry $registry,
         EncryptedPropertiesAccessor $encryptedPropertiesAccessor,

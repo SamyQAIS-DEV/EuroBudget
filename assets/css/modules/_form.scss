@@ -45,8 +45,10 @@ form > * + * {
 
 .form-group label::before {
     content: attr(title);
+    cursor: text;
     position: absolute;
     background: inherit;
+    width: calc(100% - 30px);
     top: 5px;
     left: 15px;
     line-height: 35px;
@@ -55,7 +57,8 @@ form > * + * {
 }
 
 .form-group input {
-    &:focus {
+    &:focus,
+    &:valid {
         outline: 0;
         border-color: var(--contrast);
     }
@@ -63,6 +66,7 @@ form > * + * {
     &:valid + label::before {
         line-height: 1;
         font-size: 0.7rem;
+        width: auto;
         top: -5px;
         padding: 0 space(1);
         left: space(1);
@@ -84,7 +88,10 @@ form > * + * {
 }
 .form-group input.is-invalid,
 .form-group textarea.is-invalid {
-    border-color: var(--red);
+    border-color: var(--red) !important;
+    & + label::before {
+        color: var(--red) !important;
+    }
 }
 
 .invalid-feedback {

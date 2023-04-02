@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route(path: '/operations', name: 'operations_')]
 class OperationController extends AbstractController
@@ -22,6 +23,7 @@ class OperationController extends AbstractController
     public function __construct(
         private readonly OperationRepository $operationRepository,
         private readonly EntityManagerInterface $entityManager,
+        private readonly ValidatorInterface $validator,
         private readonly SerializerInterface $serializer
     ) {
     }
@@ -70,7 +72,10 @@ class OperationController extends AbstractController
         $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', [AbstractNormalizer::GROUPS => ['write']]);
         // TODO Service
         $operation->setCreator($this->getUser())->setDepositAccount($this->getUser()->getFavoriteDepositAccount());
-        // TODO Validator
+        $errors = $this->validator->validate($operation);
+        if (count($errors) > 0) {
+            return $this->json($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
         $this->entityManager->persist($operation);
         $this->entityManager->flush();
 

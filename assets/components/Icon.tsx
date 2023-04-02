@@ -1,10 +1,10 @@
-import React, {HTMLProps, PropsWithChildren} from 'react';
+import React, {HTMLProps} from 'react';
 import {classNames} from '@functions/dom';
 
 type IconProps = {
     name: string;
     size?: number;
-} & PropsWithChildren & HTMLProps<any>;
+} & HTMLProps<any>;
 
 export const Icon = ({
     name,

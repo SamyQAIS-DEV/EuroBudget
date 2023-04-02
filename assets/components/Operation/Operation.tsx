@@ -7,6 +7,8 @@ import {Button} from '@components/Button';
 import {ButtonEnum} from '@enums/ButtonEnum';
 import {Loader} from '@components/Animation/Loader';
 import {Operation as OperationEntity} from '@entities/Operation';
+import {OperationForm} from '@components/Operation/OperationForm';
+import {formatDate} from '@functions/date';
 
 type OperationProps = {
     operation: OperationEntity;
@@ -39,9 +41,9 @@ export const Operation = ({
         onCloseEdition();
     };
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (newOperation: OperationEntity) => {
         setIsLoading(true);
-        await onUpdate(operation);
+        await onUpdate(newOperation);
         setIsLoading(false);
     };
 
@@ -76,7 +78,7 @@ export const Operation = ({
                     <Switch id={String(operation.id)} checked={operation.past} label="Opération passée" onChange={handlePastChanged}/>
                 </div>
                 {/*<div className="operation__date"><small>{formatDate(createdAt)}</small></div>*/}
-                <div className="operation__date"><small>{operation.date}</small></div>
+                <div className="operation__date"><small>{formatDate(operation.date)}</small></div>
                 <div className="operation__actions actions">
                     <Button onClick={handleEdit} title="Éditer l'opération">
                         {isLoading ? <Loader/> : <Icon name="edit"/>}
@@ -88,9 +90,7 @@ export const Operation = ({
             </div>
             <Modal show={editing} onClose={handleClose}>
                 Édition d'une opération
-                Form
-                <Button onClick={handleUpdate}>handleUpdate</Button>
-                {/*<OperationForm formId="operation-form" onSubmit={handleSubmit} onSuccess={handleSuccess} operation={operation}/>*/}
+                <OperationForm operation={operation} onSubmit={handleUpdate} />
             </Modal>
         </>
     );

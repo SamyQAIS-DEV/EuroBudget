@@ -34,7 +34,6 @@ class SecurityController extends AbstractController
             $email = $form->get('email')->getData();
             $user = $userRepository->findOneByEmail($email);
             if ($user === null) {
-                // TODO : TRAD
                 $this->addAlert(AlertEnum::ERROR, 'This email does not exist');
 
                 return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);

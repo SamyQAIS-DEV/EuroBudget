@@ -5,12 +5,12 @@ import {Loader} from '@components/Animation/Loader';
 
 type ButtonProps = {
     type?: ButtonEnum;
-    loading?: boolean;
+    isLoading?: boolean;
 } & PropsWithChildren<any> & HTMLProps<HTMLButtonElement>;
 
 export const Button = ({
     type = ButtonEnum.PRIMARY,
-    loading = false,
+    isLoading = false,
     className,
     children,
     ...props
@@ -18,8 +18,8 @@ export const Button = ({
     className = classNames(`btn-${type}`, className);
 
     return (
-        <button className={className} disabled={loading} {...props}>
-            {loading && <Loader className="icon"/>}
+        <button className={className} disabled={isLoading} {...props}>
+            {isLoading && <Loader className="icon"/>}
             {children}
         </button>
     );

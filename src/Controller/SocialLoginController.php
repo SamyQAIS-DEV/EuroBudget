@@ -50,7 +50,6 @@ class SocialLoginController extends AbstractController
         $method = 'set' . ucfirst($service) . 'Id';
         $authService->getUser()->$method(null);
         $entityManager->flush();
-        // TODO : TRAD
         $this->addAlert(AlertEnum::SUCCESS, 'Votre compte a bien été dissocié de ' . $service);
 
         return $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);

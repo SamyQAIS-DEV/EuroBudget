@@ -1,7 +1,7 @@
 App\Entity\User:
     user (template):
         email: user<current()>\@domain.fr
-        favoriteDepositAccount: '@depositAccount*'
+        favoriteDepositAccount: '@depositAccount<current()>'
 
 App\Entity\DepositAccount:
     depositAccount (template):

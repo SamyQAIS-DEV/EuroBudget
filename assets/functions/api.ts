@@ -1,7 +1,6 @@
 import {HttpRequestMethodEnum, HttpResponseCodeEnum} from '@enums/HttpEnum';
 import {AlertEnum} from '@enums/AlertEnum';
-import {addFlash} from '../elements/AlertElement';
-// import { flash } from "@functions/flash";
+import {addFlash} from '@elements/AlertElement';
 
 const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -20,8 +19,8 @@ export const jsonFetch = async <T extends unknown>(url: RequestInfo, body: objec
     const params: RequestInit = {
         headers: headers,
         method: method,
-        body: method === HttpRequestMethodEnum.GET ? undefined : JSON.stringify(body)
-    }
+        body: method === HttpRequestMethodEnum.GET ? undefined : JSON.stringify(body),
+    };
 
     const response = await fetch(url, params);
     if (response.status === 204) {
@@ -48,12 +47,14 @@ export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body
     try {
         return await jsonFetch<T>(url, body, method);
     } catch (error) {
-        if (error instanceof ApiError && 'main' in error.violations && error.name) {
+        if (error instanceof ApiError) {
             addFlash(error.name, AlertEnum.ERROR);
+        } else {
+            addFlash(error.detail, AlertEnum.ERROR);
         }
         throw error;
     }
-}
+};
 
 /**
  * Représente une erreur d'API
@@ -63,7 +64,7 @@ export const jsonFetchOrFlash = async <T extends unknown>(url: RequestInfo, body
  */
 export class ApiError {
     private data?: any;
-    private status?: number;
+    public status?: number;
 
     constructor(data, status) {
         this.data = data;
@@ -77,7 +78,7 @@ export class ApiError {
     }
 
     get name() {
-        if (this.data.title && this.data.detail) {
+        if (this.data.title || this.data.detail) {
             return `${this.data.title}\n${this.data.detail || ''}`;
         }
         return '';
@@ -90,11 +91,12 @@ export class ApiError {
                 main: `${this.data.title} ${this.data.detail || ''}`,
             };
         }
+
         return this.data.violations.reduce((acc, violation) => {
             if (acc[violation.propertyPath]) {
-                acc[violation.propertyPath].push(violation.message);
+                acc[violation.propertyPath].push(violation.title);
             } else {
-                acc[violation.propertyPath] = [violation.message];
+                acc[violation.propertyPath] = [violation.title];
             }
             return acc;
         }, {});

@@ -7,7 +7,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
 class Operation
@@ -20,6 +20,7 @@ class Operation
 
     #[ORM\Column(type: Types::STRING,length: 255)]
     #[Groups(['read', 'write'])]
+    #[Assert\Length(min: 3, max: 50)]
     private string $label;
 
     #[ORM\Column(type: Types::FLOAT)]

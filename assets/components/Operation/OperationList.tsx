@@ -7,6 +7,7 @@ import {Icon} from '@components/Icon';
 import {Modal} from '@components/Modal/Modal';
 import {Operation as OperationEntity} from '@entities/Operation';
 import {addOperation, deleteOperation, findOperationsForCurrentMonth, findOperationsForMonth, updateOperation, updatePastOperation} from '@api/operations';
+import {OperationForm} from '@components/Operation/OperationForm';
 
 type OperationListProps = {
     year: string;
@@ -99,12 +100,13 @@ export const OperationList = ({
     return (
         <section id="operation-list">
             <p><strong>{data.length}</strong> opération{data.length > 0 && 's'} ce mois-ci</p>
-            <Button className="mb1" onClick={handleCreate}>
+            <Button className="mb1" onClick={handleCreating}>
                 <Icon name="edit" title="Créer une opération"/><span>Créer une opération</span>
             </Button>
             <Modal show={state.creating} onClose={handleCloseCreating}>
                 Création d'une opération
-                Form
+                <OperationForm onSubmit={handleCreate} />
+                {/*<Button onClick={handleUpdate}>handleUpdate</Button>*/}
                 {/*<OperationForm formId="operation-form" onSubmit={handleSubmit} onSuccess={handleSuccess} operation={operation}/>*/}
             </Modal>
             <div className="operations list-group p0">
