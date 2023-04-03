@@ -3,18 +3,22 @@ include:
 
 App\Entity\User:
     user{1..5} (extends user):
+        favoriteDepositAccount: '@depositAccount<current()>'
 
-    admin_user{1..1} (extends user):
+    admin_user (extends user):
         email: admin@domain.fr
         roles: [ 'ROLE_ADMIN' ]
+        favoriteDepositAccount: '@depositAccount*'
 
-    github_user{1..1} (extends user):
+    github_user (extends user):
         email: github_user@domain.fr
+        favoriteDepositAccount: '@depositAccount*'
         githubId: 12345
 
-    premium_user{1..1} (extends user):
+    premium_user (extends user):
         email: premium_user@domain.fr
         premiumEnd: <(new DateTimeImmutable('+1 month'))>
+        favoriteDepositAccount: '@depositAccount*'
 
 App\Entity\DepositAccount:
     depositAccount{1..5} (extends depositAccount):

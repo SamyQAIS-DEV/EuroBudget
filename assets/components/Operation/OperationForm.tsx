@@ -41,7 +41,7 @@ export const OperationForm = ({
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className='grid2'>
             <FormField
                 type="text"
                 name="label"
@@ -67,9 +67,7 @@ export const OperationForm = ({
                 required
                 defaultValue={formatDate(item.date, '-', true)}
             />
-            <div className="full">
-                <FormButton>Ajouter</FormButton>
-            </div>
+            <FormButton>Ajouter</FormButton>
         </Form>
     );
 };

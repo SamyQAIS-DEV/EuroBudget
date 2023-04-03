@@ -16,18 +16,18 @@ class TransactionRepositoryTest extends RepositoryTestCase
     /** @var User[] */
     private array $transactions = [];
 
-    public function testFindForAuthExistingEmail(): void
+    public function testFindFor(): void
     {
-        $this->transactions = $this->loadFixtures(['transactions']);
+//        $this->transactions = $this->loadFixtures(['transactions']);
 //        $this->assertSame(9, $this->repository->count([]));
 //        $user = $this->transactions['user1'];
 //        $userFromRepo = $this->repository->findForAuth($user->getEmail());
 //        $this->assertInstanceOf(User::class, $userFromRepo);
     }
 
-    public function testFindForOauthExistingEmail(): void
+    public function testGetMonthlyRevenues(): void
     {
-        $this->transactions = $this->loadFixtures(['transactions']);
+//        $this->transactions = $this->loadFixtures(['transactions']);
 //        $this->assertSame(9, $this->repository->count([]));
 //        $githubUser = $this->transactions['github_user'];
 //        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());

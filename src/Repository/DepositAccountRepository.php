@@ -27,21 +27,4 @@ class DepositAccountRepository extends AbstractRepository
     ) {
         parent::__construct($registry, DepositAccount::class, $encryptedPropertiesAccessor, $encryptor);
     }
-
-    /**
-     * @param int $id
-     * @return DepositAccount|null
-     * @throws NonUniqueResultException
-     */
-    public function findPartial(int $id)
-    {
-        return $this->createQueryBuilder('d')
-            ->select('partial d.{id, amount, color}, partial u.{id}')
-            ->innerJoin('d.creator', 'u')
-            ->where('u.id = :id')
-            ->setParameter('id', $id)
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
 }

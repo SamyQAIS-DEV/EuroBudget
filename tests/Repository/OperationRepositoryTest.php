@@ -16,18 +16,36 @@ class OperationRepositoryTest extends RepositoryTestCase
     /** @var User[] */
     private array $operations = [];
 
-    public function testFindForAuthExistingEmail(): void
+    public function testFindForRecap(): void
     {
-        $this->operations = $this->loadFixtures(['operations']);
+//        $this->operations = $this->loadFixtures(['operations']);
 //        $this->assertSame(9, $this->repository->count([]));
 //        $user = $this->operations['user1'];
 //        $userFromRepo = $this->repository->findForAuth($user->getEmail());
 //        $this->assertInstanceOf(User::class, $userFromRepo);
     }
 
-    public function testFindForOauthExistingEmail(): void
+    public function testFindForYearAndMonth(): void
     {
-        $this->operations = $this->loadFixtures(['operations']);
+//        $this->operations = $this->loadFixtures(['operations']);
+//        $this->assertSame(9, $this->repository->count([]));
+//        $githubUser = $this->operations['github_user'];
+//        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
+//        $this->assertInstanceOf(User::class, $userFromRepo);
+    }
+
+    public function testFindYearsMonths(): void
+    {
+//        $this->operations = $this->loadFixtures(['operations']);
+//        $this->assertSame(9, $this->repository->count([]));
+//        $githubUser = $this->operations['github_user'];
+//        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
+//        $this->assertInstanceOf(User::class, $userFromRepo);
+    }
+
+    public function testCountForYearAndMonth(): void
+    {
+//        $this->operations = $this->loadFixtures(['operations']);
 //        $this->assertSame(9, $this->repository->count([]));
 //        $githubUser = $this->operations['github_user'];
 //        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());

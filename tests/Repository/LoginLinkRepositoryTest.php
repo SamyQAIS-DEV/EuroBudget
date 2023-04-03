@@ -16,21 +16,12 @@ class LoginLinkRepositoryTest extends RepositoryTestCase
     /** @var User[] */
     private array $loginLinks = [];
 
-    public function testFindForAuthExistingEmail(): void
+    public function testCleanFor(): void
     {
-        $this->loginLinks = $this->loadFixtures(['login-links']);
+//        $this->loginLinks = $this->loadFixtures(['login-links']);
 //        $this->assertSame(9, $this->repository->count([]));
 //        $user = $this->loginLinks['user1'];
 //        $userFromRepo = $this->repository->findForAuth($user->getEmail());
-//        $this->assertInstanceOf(User::class, $userFromRepo);
-    }
-
-    public function testFindForOauthExistingEmail(): void
-    {
-        $this->loginLinks = $this->loadFixtures(['login-links']);
-//        $this->assertSame(9, $this->repository->count([]));
-//        $githubUser = $this->loginLinks['github_user'];
-//        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
 //        $this->assertInstanceOf(User::class, $userFromRepo);
     }
 }

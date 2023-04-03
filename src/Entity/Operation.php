@@ -25,6 +25,7 @@ class Operation
 
     #[ORM\Column(type: Types::FLOAT)]
     #[Groups(['read', 'write'])]
+    #[Assert\Positive]
     private float $amount;
 
     #[ORM\Column(type: Types::STRING, length: 1)]
@@ -45,7 +46,7 @@ class Operation
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]
-    private ?bool $past = null;
+    private bool $past = false;
 
     public function getId(): ?int
     {
@@ -124,7 +125,7 @@ class Operation
         return $this;
     }
 
-    public function isPast(): ?bool
+    public function isPast(): bool
     {
         return $this->past;
     }
