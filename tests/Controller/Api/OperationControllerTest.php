@@ -33,6 +33,18 @@ class OperationControllerTest extends WebTestCase
         $this->assertSame(1, $items[0]->count);
     }
 
+    public function testYearsMonthsWithoutOperations(): void
+    {
+        ['admin_user' => $user] = $this->data;
+        $this->login($user);
+        $now = new DateTime();
+        $content = $this->jsonRequest('GET', '/api/operations/years-months');
+        $items = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
+        $this->assertCount(1, $items);
+        $this->assertSame($now->format('Y/m'), $items[0]->path);
+        $this->assertSame(1, $items[0]->count);
+    }
+
     public function testCurrentMonth(): void
     {
         ['user1' => $user] = $this->data;

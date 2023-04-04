@@ -21,15 +21,18 @@ class Operation
     #[ORM\Column(type: Types::STRING,length: 255)]
     #[Groups(['read', 'write'])]
     #[Assert\Length(min: 3, max: 50)]
+    #[Assert\NotBlank]
     private string $label;
 
     #[ORM\Column(type: Types::FLOAT)]
     #[Groups(['read', 'write'])]
     #[Assert\Positive]
+    #[Assert\NotNull]
     private float $amount;
 
     #[ORM\Column(type: Types::STRING, length: 1)]
     #[Groups(['read', 'write'])]
+    #[Assert\NotBlank]
     private string $type = '-';
 
     #[ORM\ManyToOne]
@@ -42,11 +45,18 @@ class Operation
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     #[Groups(['read', 'write'])]
+    #[Assert\NotNull]
     private DateTimeImmutable $date;
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]
+    #[Assert\NotNull]
     private bool $past = false;
+
+    public function __construct()
+    {
+        $this->date = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

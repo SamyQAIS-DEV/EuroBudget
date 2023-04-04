@@ -4,9 +4,11 @@ namespace App\Controller\Api;
 
 use App\Entity\Operation;
 use App\Enum\AlertEnum;
+use App\Exception\OperationServiceException;
 use App\Exception\OperationUnauthorizedException;
 use App\Repository\OperationRepository;
 use App\Security\Voter\OperationVoter;
+use App\Service\OperationService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route(path: '/operations', name: 'operations_')]
 class OperationController extends AbstractController
@@ -23,7 +24,7 @@ class OperationController extends AbstractController
     public function __construct(
         private readonly OperationRepository $operationRepository,
         private readonly EntityManagerInterface $entityManager,
-        private readonly ValidatorInterface $validator,
+        private readonly OperationService $operationService,
         private readonly SerializerInterface $serializer
     ) {
     }
@@ -33,7 +34,11 @@ class OperationController extends AbstractController
     {
         $now = new DateTime();
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $operations = $this->operationRepository->findForYearAndMonth($favoriteDepositAccount->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $operations = $this->operationRepository->findForYearAndMonth(
+            $favoriteDepositAccount->getId(),
+            (int) $now->format('Y'),
+            (int) $now->format('m')
+        );
 
         return $this->json(data: $operations, context: ['groups' => ['read']]);
     }
@@ -69,15 +74,17 @@ class OperationController extends AbstractController
             return new JsonResponse(['redirect' => $this->generateUrl('premium')], Response::HTTP_MOVED_PERMANENTLY);
         }
         /** @var Operation $operation */
-        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', [AbstractNormalizer::GROUPS => ['write']]);
-        // TODO Service
-        $operation->setCreator($this->getUser())->setDepositAccount($this->getUser()->getFavoriteDepositAccount());
-        $errors = $this->validator->validate($operation);
-        if (count($errors) > 0) {
-            return $this->json($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
+        $operation = $this->serializer->deserialize(
+            $request->getContent(),
+            Operation::class,
+            'json',
+            [AbstractNormalizer::GROUPS => ['write']]
+        );
+        try {
+            $operation = $this->operationService->create($operation, $this->getUser());
+        } catch (OperationServiceException $exception) {
+            return $this->json($exception->getErrors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        $this->entityManager->persist($operation);
-        $this->entityManager->flush();
 
         return $this->json(data: $operation, context: ['groups' => ['read']]);
     }
@@ -88,10 +95,17 @@ class OperationController extends AbstractController
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas modifier cette opération.'], Response::HTTP_FORBIDDEN);
         }
-        $operation = $this->serializer->deserialize($request->getContent(), Operation::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $operation]);
-        // TODO Validator
-        $this->entityManager->persist($operation);
-        $this->entityManager->flush();
+        $operation = $this->serializer->deserialize(
+            $request->getContent(),
+            Operation::class,
+            'json',
+            [AbstractNormalizer::OBJECT_TO_POPULATE => $operation]
+        );
+        try {
+            $operation = $this->operationService->update($operation);
+        } catch (OperationServiceException $exception) {
+            return $this->json($exception->getErrors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         return $this->json(data: $operation, context: ['groups' => ['read']]);
     }
@@ -102,9 +116,8 @@ class OperationController extends AbstractController
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas supprimer cette opération.'], Response::HTTP_FORBIDDEN);
         }
-        // TODO Validator
-        $this->entityManager->remove($operation);
-        $this->entityManager->flush();
+
+        $this->operationService->delete($operation);
 
         return $this->json(null);
     }

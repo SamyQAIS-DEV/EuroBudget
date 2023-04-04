@@ -24,7 +24,6 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
         $previous = $authException ? $authException->getPrevious() : null;
-
         // On redirige le traitement de cette situation vers le AccessDeniedHandler
         if ($authException instanceof InsufficientAuthenticationException &&
             $previous instanceof AccessDeniedException &&
