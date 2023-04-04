@@ -2,9 +2,11 @@
 
 namespace App\Tests\Repository;
 
+use App\Entity\Transaction;
 use App\Entity\User;
 use App\Repository\TransactionRepository;
 use App\Tests\RepositoryTestCase;
+use DateTime;
 
 /**
  * @property TransactionRepository $repository
@@ -13,24 +15,30 @@ class TransactionRepositoryTest extends RepositoryTestCase
 {
     protected $repositoryClass = TransactionRepository::class;
 
-    /** @var User[] */
-    private array $transactions = [];
+    private array $data = [];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->data = $this->loadFixtures(['users', 'transactions']);
+    }
 
     public function testFindFor(): void
     {
-//        $this->transactions = $this->loadFixtures(['transactions']);
-//        $this->assertSame(9, $this->repository->count([]));
-//        $user = $this->transactions['user1'];
-//        $userFromRepo = $this->repository->findForAuth($user->getEmail());
-//        $this->assertInstanceOf(User::class, $userFromRepo);
+        /** @var User $user */
+        $user = $this->data['user1'];
+        $transactions = $this->repository->findFor($user);
+        $this->assertCount(1, $transactions);
+        $this->assertInstanceOf(Transaction::class, $transactions[0]);
     }
 
     public function testGetMonthlyRevenues(): void
     {
-//        $this->transactions = $this->loadFixtures(['transactions']);
-//        $this->assertSame(9, $this->repository->count([]));
-//        $githubUser = $this->transactions['github_user'];
-//        $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
-//        $this->assertInstanceOf(User::class, $userFromRepo);
+        $revenues = $this->repository->getMonthlyRevenues();
+        $now = new DateTime();
+        $this->assertCount(1, $revenues);
+        $this->assertSame((int) $now->format('n'), $revenues[0]['date']);
+        $this->assertSame((int) $now->format('Ym'), $revenues[0]['fulldate']);
+        $this->assertIsNumeric($revenues[0]['amount']);
     }
 }

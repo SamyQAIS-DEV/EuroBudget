@@ -1,5 +1,5 @@
 include:
-    - ../../fixtures/templates.yaml
+    - users.yaml
 
 App\Entity\Operation:
     operation{1..5}:

@@ -13,23 +13,26 @@ class UserRepositoryTest extends RepositoryTestCase
 {
     protected $repositoryClass = UserRepository::class;
 
-    /** @var User[] */
-    private array $users = [];
+    private array $data = [];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->data = $this->loadFixtures(['users']);
+    }
 
     public function testFindForAuthExistingEmail(): void
     {
-        $this->users = $this->loadFixtures(['users']);
+        $user = $this->data['user1'];
         $this->assertSame(9, $this->repository->count([]));
-        $user = $this->users['user1'];
         $userFromRepo = $this->repository->findForAuth($user->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
     }
 
     public function testFindForOauthExistingEmail(): void
     {
-        $this->users = $this->loadFixtures(['users']);
+        $githubUser = $this->data['github_user'];
         $this->assertSame(9, $this->repository->count([]));
-        $githubUser = $this->users['github_user'];
         $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
     }

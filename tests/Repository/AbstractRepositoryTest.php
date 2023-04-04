@@ -13,14 +13,18 @@ class AbstractRepositoryTest extends RepositoryTestCase
 {
     protected $repositoryClass = UserRepository::class;
 
-    /** @var User[] */
-    private array $users = [];
+    private array $data = [];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->data = $this->loadFixtures(['users']);
+    }
 
     public function testFindEncryptedPropertyExistingEmail(): void
     {
-        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
-        $user = $this->users['user1'];
+        $user = $this->data['user1'];
         $conditions = ['email' => $user->getEmail()];
         $usersFromRepo = $this->repository->findBy($conditions);
         $this->assertInstanceOf(User::class, $usersFromRepo[0]);
@@ -28,9 +32,8 @@ class AbstractRepositoryTest extends RepositoryTestCase
 
     public function testFindOneEncryptedPropertyExistingEmail(): void
     {
-        $this->users = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
-        $user = $this->users['user1'];
+        $user = $this->data['user1'];
         $conditions = ['email' => $user->getEmail()];
         $userFromRepo = $this->repository->findOneBy($conditions);
         $this->assertInstanceOf(User::class, $userFromRepo);

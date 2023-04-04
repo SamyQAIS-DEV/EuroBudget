@@ -2,7 +2,7 @@
 
 namespace App\Tests\Repository;
 
-use App\Entity\User;
+use App\Entity\LoginLink;
 use App\Repository\LoginLinkRepository;
 use App\Tests\RepositoryTestCase;
 
@@ -13,15 +13,21 @@ class LoginLinkRepositoryTest extends RepositoryTestCase
 {
     protected $repositoryClass = LoginLinkRepository::class;
 
-    /** @var User[] */
-    private array $loginLinks = [];
+    private array $data = [];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->data = $this->loadFixtures(['login-links']);
+    }
 
     public function testCleanFor(): void
     {
-//        $this->loginLinks = $this->loadFixtures(['login-links']);
-//        $this->assertSame(9, $this->repository->count([]));
-//        $user = $this->loginLinks['user1'];
-//        $userFromRepo = $this->repository->findForAuth($user->getEmail());
-//        $this->assertInstanceOf(User::class, $userFromRepo);
+        /** @var LoginLink $loginLink */
+        $loginLink = $this->data['user1_login_link'];
+        $this->assertSame(2, $this->repository->count([]));
+        $user = $loginLink->getUser();
+        $this->repository->cleanFor($user);
+        $this->assertSame(1, $this->repository->count([]));
     }
 }
