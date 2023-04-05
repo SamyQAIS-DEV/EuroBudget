@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from 'react';
 import {Operation} from '@entities/Operation';
-import {Form, FormButton, FormField} from '@components/Form';
+import {Form, FormButton, FormField, FormSubmitButton} from '@components/Form';
 import {formatDate} from '@functions/date';
 import {Switch} from '@components/Switch';
 
@@ -41,33 +41,35 @@ export const OperationForm = ({
     };
 
     return (
-        <Form onSubmit={handleSubmit} className='grid2'>
-            <FormField
-                type="text"
-                name="label"
-                label="Libellé"
-                onChange={handleLabel}
-                required
-                defaultValue={item.label}
-            />
-            <FormField
-                type="number"
-                name="amount"
-                label="Montant"
-                onChange={handleAmount}
-                required
-                defaultValue={item.amount}
-            />
-            <Switch id='operation-past' checked={item.past} onChange={handlePast} label='Opération passée' />
-            <FormField
-                type="date"
-                name="date"
-                label="Date"
-                onChange={handleDate}
-                required
-                defaultValue={formatDate(item.date, '-', true)}
-            />
-            <FormButton>Ajouter</FormButton>
+        <Form onSubmit={handleSubmit}>
+            <div className='grid2'>
+                <FormField
+                    type="text"
+                    name="label"
+                    label="Libellé"
+                    onChange={handleLabel}
+                    required
+                    defaultValue={item.label}
+                />
+                <FormField
+                    type="number"
+                    name="amount"
+                    label="Montant"
+                    onChange={handleAmount}
+                    required
+                    defaultValue={item.amount}
+                />
+                <Switch id='operation-past' checked={item.past} onChange={handlePast} label='Opération passée' />
+                <FormField
+                    type="date"
+                    name="date"
+                    label="Date"
+                    onChange={handleDate}
+                    required
+                    defaultValue={formatDate(item.date, '-', true)}
+                />
+            </div>
+            <FormSubmitButton>Ajouter</FormSubmitButton>
         </Form>
     );
 };

@@ -7,6 +7,10 @@ form {
     background: inherit;
 }
 
+form > div {
+    background: inherit;
+}
+
 form > * + * {
     //margin-top: space(3);
 }
@@ -16,7 +20,6 @@ form > * + * {
 .form-group {
     position: relative;
     background: inherit;
-    margin-bottom: space(3);
 }
 
 .form-group input,

@@ -24,3 +24,20 @@ export const Button = ({
         </button>
     );
 };
+
+export const SubmitButton = ({
+    type = ButtonEnum.PRIMARY,
+    isLoading = false,
+    className,
+    children,
+    ...props
+}: ButtonProps) => {
+    className = classNames(`btn-${type}`, className);
+
+    return (
+        <button type='submit' className={className} disabled={isLoading} {...props}>
+            {isLoading && <Loader className="icon"/>}
+            {children}
+        </button>
+    );
+};

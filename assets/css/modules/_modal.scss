@@ -70,7 +70,8 @@
     }
 }
 
-.modal-box button {
+.modal-box button[type="submit"] {
+    width: fit-content;
     margin-top: space(3);
     float: right;
 }

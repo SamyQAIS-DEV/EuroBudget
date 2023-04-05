@@ -1,7 +1,7 @@
 import React, {createContext, FormEvent, HTMLProps, useContext, useState} from 'react';
 import {Field} from '@components/Field';
 import {PremiumButtonElement} from '@elements/PremiumButtonElement';
-import {Button} from '@components/Button';
+import {Button, SubmitButton} from '@components/Button';
 import {ApiError} from '@functions/api';
 import {addFlash} from '@elements/AlertElement';
 import {AlertEnum} from '@enums/AlertEnum';
@@ -99,5 +99,15 @@ export const FormButton = ({children, ...props}: HTMLProps<PremiumButtonElement>
         <Button isLoading={isLoading} {...props}>
             {children}
         </Button>
+    );
+};
+
+export const FormSubmitButton = ({children, ...props}: HTMLProps<PremiumButtonElement>) => {
+    const {isLoading} = useContext(FormContext);
+
+    return (
+        <SubmitButton isLoading={isLoading} {...props}>
+            {children}
+        </SubmitButton>
     );
 };
