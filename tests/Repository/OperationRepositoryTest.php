@@ -47,7 +47,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         $user = $this->data['user1'];
         $yearsMonths = $this->repository->findYearsMonths($user->getFavoriteDepositAccount()->getId());
         $now = new DateTime();
-        $this->assertCount(1, $yearsMonths);
+        $this->assertCount(2, $yearsMonths);
         $this->assertSame($now->format('Y/m'), $yearsMonths[0]['path']);
         $this->assertSame(1, $yearsMonths[0]['count']);
     }

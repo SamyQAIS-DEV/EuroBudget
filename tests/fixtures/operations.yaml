@@ -10,3 +10,11 @@ App\Entity\Operation:
         depositAccount: '@depositAccount<current()>'
         date: <(new DateTimeImmutable())>
         past: false
+    previous_operation{1..5}:
+        label: Label <current()>
+        amount: <numberBetween(2, 200)>
+        type: '-'
+        creator: '@user<current()>'
+        depositAccount: '@depositAccount<current()>'
+        date: <(new DateTimeImmutable('-1 month'))>
+        past: false

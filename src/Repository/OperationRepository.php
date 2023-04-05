@@ -68,8 +68,8 @@ class OperationRepository extends AbstractRepository
         $rows = $this->findByDepositAccountIdQueryBuilder($id)
             ->select('EXTRACT(MONTH FROM o.date) as month, EXTRACT(YEAR FROM o.date) as year, COUNT(o.id) as count')
             ->groupBy('month', 'year')
-            ->orderBy('month', 'DESC')
             ->orderBy('year', 'DESC')
+            ->addOrderBy('month', 'DESC')
             ->getQuery()
             ->getResult();
 

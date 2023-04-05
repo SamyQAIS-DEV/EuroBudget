@@ -28,7 +28,7 @@ class OperationControllerTest extends WebTestCase
         $now = new DateTime();
         $content = $this->jsonRequest('GET', '/api/operations/years-months');
         $items = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
-        $this->assertCount(1, $items);
+        $this->assertCount(2, $items);
         $this->assertSame($now->format('Y/m'), $items[0]->path);
         $this->assertSame(1, $items[0]->count);
     }
@@ -42,7 +42,7 @@ class OperationControllerTest extends WebTestCase
         $items = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
         $this->assertCount(1, $items);
         $this->assertSame($now->format('Y/m'), $items[0]->path);
-        $this->assertSame(1, $items[0]->count);
+        $this->assertSame(0, $items[0]->count);
     }
 
     public function testCurrentMonth(): void
