@@ -28,7 +28,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         /** @var User $user */
         $user = $this->data['user1'];
         $recap = $this->repository->findForRecap($user->getFavoriteDepositAccount()->getId());
-        $this->assertSame(1, $recap['waitingOperationsNb']);
+        $this->assertSame(2, $recap['waitingOperationsNb']);
         $this->assertIsNumeric($recap['waitingAmount']);
     }
 

@@ -43,10 +43,10 @@ class OperationServiceTest extends KernelTestCase
     {
         /** @var Operation $operation */
         ['operation1' => $operation] = $this->loadFixtures(['operations']);
-        $this->assertSame(5, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
         $this->service->delete($operation);
         $this->assertInstanceOf(Operation::class, $operation);
-        $this->assertSame(4, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(9, $this->em->getRepository(Operation::class)->count([]));
     }
 
 
