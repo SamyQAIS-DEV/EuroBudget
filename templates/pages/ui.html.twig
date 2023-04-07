@@ -1,0 +1,637 @@
+{% extends 'base.html.twig' %}
+
+{% set colors = [
+    'color',
+    'color-light',
+    'color-inversed',
+    'contrast',
+    'background',
+    'background-light',
+    'background-transparent',
+    'border',
+    'border-light',
+    'shadow',
+    'red',
+    'green',
+    'yellow',
+] %}
+
+{% block title "UI" %}
+
+{% block body %}
+    <main class="container stack-separated py5" style="--gap:6">
+        <div>
+            <h1 class="mb2">Titre de premier niveau</h1>
+            <h2 class="mb1">Titre de second niveau</h2>
+            <h3 class="mb1">Titre de troisième niveau</h3>
+            <h4 class="mb1">Titre de quatrième niveau</h4>
+            <h5 class="mb1">Titre de cinquième niveau</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam consequatur dolor est ex, excepturi
+                explicabo iusto libero minus nostrum obcaecati omnis perferendis provident reprehenderit sapiente, soluta unde
+                veniam voluptates?
+            </p>
+            <div>
+                <span class="text-error">Texte d'alerte .text-error</span>
+                <span class="text-muted">Texte d'alerte .text-muted</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="mb2">Couleurs</div>
+            <div class="hstack">
+                {% for color in colors %}
+                <div>
+                    <span style="font-size: 0.8em;">{{ color }}</span>
+                    <div style="width: 70px;height: 70px;background:var(--{{ color }});"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <h1 class="mb2">Boutons</h1>
+            <div class="stack">
+                <div class="hstack">
+                    <button class="btn-primary btn-icon">
+                        {{  icon('twitter') }}
+                        <span>Bouton .btn-primary.btn-icon</span>
+                    </button>
+                    <button class="btn-primary">
+                        <span class="loader"></span>
+                        <span>Bouton avec loader .btn-primary</span>
+                    </button>
+                </div>
+                <div class="hstack">
+                    <button class="btn-primary">Bouton .btn-primary</button>
+                    <button class="btn-secondary">Bouton .btn-secondary</button>
+                    <button class="btn-error">Bouton .btn-error</button>
+                    <button class="btn-secondary" disabled>Bouton [disabled]</button>
+                    <button class="btn-primary-outlined">Bouton .btn-primary-outlined</button>
+                </div>
+                <div class="hstack">
+                    <button class="btn-big btn-primary">Bouton .btn-big</button>
+                </div>
+                <div class="hstack">
+                    <button class="btn-small btn-primary">Bouton .btn-small</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="mb2">Loader</h1>
+            <div class="stack">
+                <span class="loader"></span>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="mb2">Carte</h1>
+            <div class="grid2" style="--gap:4;">
+                <div class="hstack full">
+                    <div>
+                        <small class="text-muted">.card</small>
+                        <div class="card" style="width: 100px; height: 100px;"></div>
+                    </div>
+                </div>
+                <div>
+                    <small class="text-muted">.card>(.card__body>.card__title+.card__description)</small>
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="card__title">Titre de la carte</div>
+                            <div class="card__description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi enim fugit illum iure nemo pariatur sint
+                                vitae. Architecto cupiditate delectus eos est non quis reiciendis suscipit totam veritatis voluptas.
+                                Vero?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <small class="text-muted">Ajouter un a.card__link à l'intérieur d'une carte la rend entièrement
+                        clicable</small>
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="card__title">Titre de la carte</div>
+                            <div class="card__description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi enim fugit illum iure nemo pariatur sint
+                                vitae. Architecto cupiditate delectus eos est non quis reiciendis suscipit totam veritatis voluptas.
+                                Vero?
+                            </div>
+                        </div>
+                        <a class="card__link" href="#"></a>
+                    </div>
+                </div>
+                <div>
+                    <small class="text-muted">.is-completed</small>
+                    <div class="card is-completed">
+                        <div class="card__body">
+                            <div class="card__title">Titre de la carte</div>
+                            <div class="card__description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi enim fugit illum iure nemo pariatur sint
+                                vitae. Architecto cupiditate delectus eos est non quis reiciendis suscipit totam veritatis voluptas.
+                                Vero?
+                            </div>
+                        </div>
+                        <a class="card__link" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="mb2">Layout</h1>
+            <p class="mb2">
+                Les espacements peuvent être pilotés au moyen de la variable <code>--gap</code> qui est multiplié par l'espace
+                (8px)<br/>
+                Chaque élément réinitialise la valeur de gap, la valeur ne "cascade" pas.
+            </p>
+            <div class="stack">
+                <div>
+                    <small class="text-muted">.stack</small>
+                    <div class="stack">
+                        {% for i in 1..3 %}
+                            <div class="card" style="height:40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.stack-separated</small>
+                    <div class="stack-separated">
+                        {% for i in 1..3 %}
+                            <div class="card" style="height:40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.hstack</small>
+                    <div class="hstack">
+                        {% for i in 1..50 %}
+                            <div class="card" style="height:40px; width: 40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.flex</small>
+                    <div class="flex">
+                        {% for i in 1..3 %}
+                            <div class="card" style="height:40px; width: 40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.flex.flex-start</small>
+                    <div class="flex flex-start">
+                        {% for i in 1..3 %}
+                            <div class="card" style="height:40px; width: 40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.flex.flex-end</small>
+                    <div class="flex flex-end">
+                        {% for i in 1..3 %}
+                            <div class="card" style="height:40px; width: 40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.layout-sidebar</small>
+                    <div class="layout-sidebar">
+                        {% for i in 1..2 %}
+                            <div class="card" style="height:40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.grid (utilisé pour les formulaire en général)</small>
+                    <div class="grid">
+                        {% for i in 1..6 %}
+                            <div class="card center text-muted {% if i == 5 %}full{% endif %}"
+                                 style="height:40px;">{% if i == 5 %}.full{% endif %}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted">.grid2</small>
+                    <div class="grid2">
+                        {% for i in 1..6 %}
+                            <div class="card" style="height:40px;"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="h1 mb2">Formulaires</h1>
+            <div class="stack card p2">
+                <div class="form-group">
+                    <input type="email" id="input1" name="form[input1]" required class="form-control" autocomplete="off" />
+                    <label for="input1" title=".form-group>label+input" class="required"></label>
+                </div>
+
+                {# TODO #}
+{#                <div class="form-group">#}
+{#                    <label for="inputfile">.form-group>label+input[type=file]</label>#}
+{#                    <input name="url" id="inputfile" type="file">#}
+{#                </div>#}
+{# TODO #}
+{#                <div class="form-group">#}
+{#                    <label for="inputselect">.form-group>label+select</label>#}
+{#                    <select name="url" id="inputselect">#}
+{#                        <option value="1">Value 1</option>#}
+{#                        <option value="2">Value 2</option>#}
+{#                        <option value="3">Value 3</option>#}
+{#                        <option value="4">Value 4</option>#}
+{#                    </select>#}
+{#                </div>#}
+
+                {# TODO #}
+{#                <div class="form-group">#}
+{#                    <label for="input2">.form-group>label+input[type="checkbox"]</label>#}
+{#                    <input type="checkbox" id="input2" value="React"/>#}
+{#                    <input type="checkbox" id="input2" value="React2"/>#}
+{#                    <input type="checkbox" id="input2" value="React3"/>#}
+{#                </div>#}
+
+                {# TODO #}
+{#                <div class="form-check">#}
+{#                    <input type="checkbox" class="form-check-input" id="rememberMe" name="_remember_me">#}
+{#                    <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>#}
+{#                </div>#}
+
+                {# TODO #}
+{#                <div class="form-group">#}
+{#                    <label for="input3">.form-group>label+input[type="radio"]</label>#}
+{#                    <input type="radio" name="radios" id="input3" value="React"/>#}
+{#                    <input type="radio" name="radios" id="input3" value="React2"/>#}
+{#                    <input type="radio" name="radios" id="input3" value="React3"/>#}
+{#                </div>#}
+
+                <div class="form-group">
+                    <div>
+                        <input id="s1" type="checkbox" is="input-switch">
+                        <label for="s1">Switch</label>
+                    </div>
+                    <div>
+                        <input id="s2" type="checkbox" is="input-switch" checked>
+                        <label for="s2">Switch</label>
+                    </div>
+                    <div>
+                        <input id="s1d" type="checkbox" is="input-switch" disabled>
+                        <label for="s1d">Switch</label>
+                    </div>
+                    <div>
+                        <input id="s2d" type="checkbox" is="input-switch" checked disabled>
+                        <label for="s2d">Switch</label>
+                    </div>
+                </div>
+
+                {# TODO #}
+{#                <div class="form-group">#}
+{#                    <label for="input4">.form-group>label+textarea</label>#}
+{#                    <textarea id="input4"></textarea>#}
+{#                </div>#}
+            </div>
+        </div>
+
+        <div>
+            <h1 class="">Alertes</h1>
+            <alert-element type="info" duration="3000" floating>
+                <strong>Ceci est un exemple alert-element[type=info]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="info" duration="10000" floating>
+                <strong>Ceci est un exemple alert-element[type=info]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="info" duration="100000">
+                <strong>Ceci est un exemple alert-element[type=info][duration=100000]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="success">
+                <strong>Ceci est un exemple alert-element[type=success]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="warning">
+                <strong>Ceci est un exemple alert-element[type=warning]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+            <alert-element type="error">
+                <strong>Ceci est un exemple alert-element[type=error]</strong><br/>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias assumenda blanditiis delectus.</p>
+            </alert-element>
+        </div>
+
+        <div>
+            <style>
+                .icons-grid svg {
+                    width: 24px;
+                    height: 24px;
+                    flex: none;
+                }
+            </style>
+            <h1 class="mb2">Icons</h1>
+            <div class="hstack icons-grid">
+                {{  icon('activity') }}
+                {{  icon('airplay') }}
+                {{  icon('alert-circle') }}
+                {{  icon('alert-octagon') }}
+                {{  icon('alert-triangle') }}
+                {{  icon('align-center') }}
+                {{  icon('align-justify') }}
+                {{  icon('align-left') }}
+                {{  icon('align-right') }}
+                {{  icon('anchor') }}
+                {{  icon('aperture') }}
+                {{  icon('archive') }}
+                {{  icon('arrow-down-circle') }}
+                {{  icon('arrow-down-left') }}
+                {{  icon('arrow-down-right') }}
+                {{  icon('arrow-down') }}
+                {{  icon('arrow-left-circle') }}
+                {{  icon('arrow-left') }}
+                {{  icon('arrow-right-circle') }}
+                {{  icon('arrow-right') }}
+                {{  icon('arrow-up-circle') }}
+                {{  icon('arrow-up-left') }}
+                {{  icon('arrow-up-right') }}
+                {{  icon('arrow-up') }}
+                {{  icon('at-sign') }}
+                {{  icon('award') }}
+                {{  icon('bar-chart-2') }}
+                {{  icon('bar-chart') }}
+                {{  icon('battery-charging') }}
+                {{  icon('battery') }}
+                {{  icon('bell-off') }}
+                {{  icon('bell') }}
+                {{  icon('bluetooth') }}
+                {{  icon('bold') }}
+                {{  icon('book-open') }}
+                {{  icon('book') }}
+                {{  icon('bookmark') }}
+                {{  icon('box') }}
+                {{  icon('briefcase') }}
+                {{  icon('calendar') }}
+                {{  icon('camera-off') }}
+                {{  icon('camera') }}
+                {{  icon('cast') }}
+                {{  icon('check-circle') }}
+                {{  icon('check-square') }}
+                {{  icon('check') }}
+                {{  icon('chevron-down') }}
+                {{  icon('chevron-left') }}
+                {{  icon('chevron-right') }}
+                {{  icon('chevron-up') }}
+                {{  icon('chevrons-down') }}
+                {{  icon('chevrons-left') }}
+                {{  icon('chevrons-right') }}
+                {{  icon('chevrons-up') }}
+                {{  icon('chrome') }}
+                {{  icon('circle') }}
+                {{  icon('clipboard') }}
+                {{  icon('clock') }}
+                {{  icon('cloud-drizzle') }}
+                {{  icon('cloud-lightning') }}
+                {{  icon('cloud-off') }}
+                {{  icon('cloud-rain') }}
+                {{  icon('cloud-snow') }}
+                {{  icon('cloud') }}
+                {{  icon('code') }}
+                {{  icon('codepen') }}
+                {{  icon('codesandbox') }}
+                {{  icon('coffee') }}
+                {{  icon('columns') }}
+                {{  icon('command') }}
+                {{  icon('compass') }}
+                {{  icon('copy') }}
+                {{  icon('corner-down-left') }}
+                {{  icon('corner-down-right') }}
+                {{  icon('corner-left-down') }}
+                {{  icon('corner-left-up') }}
+                {{  icon('corner-right-down') }}
+                {{  icon('corner-right-up') }}
+                {{  icon('corner-up-left') }}
+                {{  icon('corner-up-right') }}
+                {{  icon('cpu') }}
+                {{  icon('credit-card') }}
+                {{  icon('crop') }}
+                {{  icon('crosshair') }}
+                {{  icon('database') }}
+                {{  icon('delete') }}
+                {{  icon('disc') }}
+                {{  icon('divide-circle') }}
+                {{  icon('divide-square') }}
+                {{  icon('divide') }}
+                {{  icon('discord') }}
+                {{  icon('dollar-sign') }}
+                {{  icon('download-cloud') }}
+                {{  icon('download') }}
+                {{  icon('dribbble') }}
+                {{  icon('droplet') }}
+                {{  icon('edit-2') }}
+                {{  icon('edit-3') }}
+                {{  icon('edit') }}
+                {{  icon('external-link') }}
+                {{  icon('eye-off') }}
+                {{  icon('eye') }}
+                {{  icon('facebook') }}
+                {{  icon('fast-forward') }}
+                {{  icon('feather') }}
+                {{  icon('figma') }}
+                {{  icon('file-minus') }}
+                {{  icon('file-plus') }}
+                {{  icon('file-text') }}
+                {{  icon('file') }}
+                {{  icon('film') }}
+                {{  icon('filter') }}
+                {{  icon('flag') }}
+                {{  icon('folder-minus') }}
+                {{  icon('folder-plus') }}
+                {{  icon('folder') }}
+                {{  icon('framer') }}
+                {{  icon('frown') }}
+                {{  icon('gift') }}
+                {{  icon('git-branch') }}
+                {{  icon('git-commit') }}
+                {{  icon('git-merge') }}
+                {{  icon('git-pull-request') }}
+                {{  icon('github') }}
+                {{  icon('gitlab') }}
+                {{  icon('globe') }}
+                {{  icon('grid') }}
+                {{  icon('hard-drive') }}
+                {{  icon('hash') }}
+                {{  icon('headphones') }}
+                {{  icon('heart') }}
+                {{  icon('help-circle') }}
+                {{  icon('hexagon') }}
+                {{  icon('home') }}
+                {{  icon('image') }}
+                {{  icon('inbox') }}
+                {{  icon('info') }}
+                {{  icon('instagram') }}
+                {{  icon('italic') }}
+                {{  icon('key') }}
+                {{  icon('layers') }}
+                {{  icon('layout') }}
+                {{  icon('life-buoy') }}
+                {{  icon('link-2') }}
+                {{  icon('link') }}
+                {{  icon('linkedin') }}
+                {{  icon('list') }}
+                {{  icon('loader') }}
+                {{  icon('lock') }}
+                {{  icon('logo') }}
+                {{  icon('log-in') }}
+                {{  icon('log-out') }}
+                {{  icon('mail') }}
+                {{  icon('map-pin') }}
+                {{  icon('map') }}
+                {{  icon('maximize-2') }}
+                {{  icon('maximize') }}
+                {{  icon('meh') }}
+                {{  icon('menu') }}
+                {{  icon('message-circle') }}
+                {{  icon('message-square') }}
+                {{  icon('mic-off') }}
+                {{  icon('mic') }}
+                {{  icon('minimize-2') }}
+                {{  icon('minimize') }}
+                {{  icon('minus-circle') }}
+                {{  icon('minus-square') }}
+                {{  icon('minus') }}
+                {{  icon('monitor') }}
+                {{  icon('moon') }}
+                {{  icon('more-horizontal') }}
+                {{  icon('more-vertical') }}
+                {{  icon('mouse-pointer') }}
+                {{  icon('move') }}
+                {{  icon('music') }}
+                {{  icon('navigation-2') }}
+                {{  icon('navigation') }}
+                {{  icon('octagon') }}
+                {{  icon('package') }}
+                {{  icon('paperclip') }}
+                {{  icon('pause-circle') }}
+                {{  icon('pause') }}
+                {{  icon('pen-tool') }}
+                {{  icon('percent') }}
+                {{  icon('phone-call') }}
+                {{  icon('phone-forwarded') }}
+                {{  icon('phone-incoming') }}
+                {{  icon('phone-missed') }}
+                {{  icon('phone-off') }}
+                {{  icon('phone-outgoing') }}
+                {{  icon('phone') }}
+                {{  icon('pie-chart') }}
+                {{  icon('play-circle') }}
+                {{  icon('play') }}
+                {{  icon('plus-circle') }}
+                {{  icon('plus-square') }}
+                {{  icon('plus') }}
+                {{  icon('pocket') }}
+                {{  icon('power') }}
+                {{  icon('printer') }}
+                {{  icon('radio') }}
+                {{  icon('refresh-ccw') }}
+                {{  icon('refresh-cw') }}
+                {{  icon('repeat') }}
+                {{  icon('rewind') }}
+                {{  icon('rotate-ccw') }}
+                {{  icon('rotate-cw') }}
+                {{  icon('rss') }}
+                {{  icon('save') }}
+                {{  icon('scissors') }}
+                {{  icon('search') }}
+                {{  icon('send') }}
+                {{  icon('server') }}
+                {{  icon('settings') }}
+                {{  icon('share-2') }}
+                {{  icon('share') }}
+                {{  icon('shield-off') }}
+                {{  icon('shield') }}
+                {{  icon('shopping-bag') }}
+                {{  icon('shopping-cart') }}
+                {{  icon('shuffle') }}
+                {{  icon('sidebar') }}
+                {{  icon('skip-back') }}
+                {{  icon('skip-forward') }}
+                {{  icon('slack') }}
+                {{  icon('slash') }}
+                {{  icon('sliders') }}
+                {{  icon('smartphone') }}
+                {{  icon('smile') }}
+                {{  icon('speaker') }}
+                {{  icon('square') }}
+                {{  icon('star') }}
+                {{  icon('stop-circle') }}
+                {{  icon('sun') }}
+                {{  icon('sunrise') }}
+                {{  icon('sunset') }}
+                {{  icon('tablet') }}
+                {{  icon('tag') }}
+                {{  icon('target') }}
+                {{  icon('terminal') }}
+                {{  icon('thermometer') }}
+                {{  icon('thumbs-down') }}
+                {{  icon('thumbs-up') }}
+                {{  icon('toggle-left') }}
+                {{  icon('toggle-right') }}
+                {{  icon('tool') }}
+                {{  icon('trash-2') }}
+                {{  icon('trash') }}
+                {{  icon('trello') }}
+                {{  icon('trending-down') }}
+                {{  icon('trending-up') }}
+                {{  icon('triangle') }}
+                {{  icon('truck') }}
+                {{  icon('tv') }}
+                {{  icon('twitch') }}
+                {{  icon('twitter') }}
+                {{  icon('type') }}
+                {{  icon('umbrella') }}
+                {{  icon('underline') }}
+                {{  icon('unlock') }}
+                {{  icon('upload-cloud') }}
+                {{  icon('upload') }}
+                {{  icon('user-check') }}
+                {{  icon('user-minus') }}
+                {{  icon('user-plus') }}
+                {{  icon('user-x') }}
+                {{  icon('user') }}
+                {{  icon('users') }}
+                {{  icon('video-off') }}
+                {{  icon('video') }}
+                {{  icon('voicemail') }}
+                {{  icon('volume-1') }}
+                {{  icon('volume-2') }}
+                {{  icon('volume-x') }}
+                {{  icon('volume') }}
+                {{  icon('watch') }}
+                {{  icon('wifi-off') }}
+                {{  icon('wifi') }}
+                {{  icon('wind') }}
+                {{  icon('x-circle') }}
+                {{  icon('x-octagon') }}
+                {{  icon('x-square') }}
+                {{  icon('x') }}
+                {{  icon('youtube') }}
+                {{  icon('zap-off') }}
+                {{  icon('zap') }}
+                {{  icon('zoom-in') }}
+                {{  icon('zoom-out') }}
+            </div>
+        </div>
+    </main>
+    
+{% endblock %}

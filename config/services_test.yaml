@@ -1,0 +1,6 @@
+parameters:
+    admin_prefix: '%env(resolve:ADMIN_PREFIX)%'
+
+services:
+#  App\Tests\Infrastructure\Mercure\PublisherStub:
+#    decorates: mercure.hub.default.publisher

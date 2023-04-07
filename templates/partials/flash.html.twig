@@ -1,0 +1,15 @@
+<div id="floating-alerts">
+    {% for type, messages in app.flashes %}
+        <div class="{{ type }}">
+            {% for message in messages %}
+                <alert-element
+                    floating
+                    type="{{ type }}"
+                    {% if duration is defined and type != 'error' %} duration="{{ duration }}"{% endif %}
+                >
+                    {{ message | nl2br }}
+                </alert-element>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

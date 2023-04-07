@@ -1,0 +1,34 @@
+.auth-container {
+    @extend %container;
+    position: relative;
+    @include up(985) {
+        justify-content: flex-end;
+    }
+}
+
+.auth-container img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: auto;
+    opacity: 0.3;
+    z-index: -1;
+    @include down(985) {
+        display: none;
+    }
+}
+
+.auth-container .card {
+    min-width: 450px;
+    width: 80%;
+    @include up(985) {
+        position: absolute;
+        top: 10%;
+        right: 15%;
+        width: 400px;
+    }
+}
+
+.auth-container .auth-title {
+    text-align: center;
+}

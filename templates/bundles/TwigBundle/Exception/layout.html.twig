@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="page-header container py5">
+        <div class="relative page-header-error">
+            <h1 class="h1 mb1">{% block title '' %}</h1>
+            <p>{% block description '' %}</p>
+            <a href="{{ path('home') }}" class="btn btn-secondary mt2">Revenir à l'accueil</a>
+        </div>
+    </main>
+
+    <aside class="container bg py5">
+
+{#            {{ render(controller('App\\Http\\Controller\\Error\\ErrorController::body')) }}#}
+
+    </aside>
+{% endblock %}

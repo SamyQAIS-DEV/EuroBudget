@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Accueil" %}
+
+{% block body %}
+    <main class="homepage stack-separated py5" style="--gap:6">
+        <div class="welcome-container flex">
+            <img src="{{ asset('images/homepage_background.png') }}" alt="Home Background">
+            <h1 class="hero-title">Bienvenue sur <strong>EuroBudget</strong> votre nouvelle plateforme de gestion de comptes en banques</h1>
+        </div>
+
+        <div class="container">
+            <div class="dashboard__image grid2" style="--gap:6">
+                <img src="{{ asset('images/dashboard.jpg') }}" alt="EuroBudget dashboard">
+                <h2>Ce site vous permet d'<strong>anticiper les montants</strong> de vos comptes en banque.</h2>
+            </div>
+
+            <p class="hero-text mt2">
+                Créez vous un compte afin de profiter de ce site <strong><a href="{{ path('auth_register') }}" title="Inscription">ici</a></strong> ou <strong><a href="{{ path('auth_login') }}" title="Connexion">connectez vous</a></strong>.
+            </p>
+        </div>
+    </main>
+{% endblock %}

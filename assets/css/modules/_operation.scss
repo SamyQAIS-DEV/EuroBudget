@@ -1,0 +1,31 @@
+// Opération
+// ==========
+.operation {
+}
+
+.operation .operation__title {
+    text-align: center;
+}
+
+.operation .operation__amount  {
+
+    &.type__debit {
+        color: var(--red);
+    }
+
+    &.type__credit {
+        color: var(--green);
+    }
+}
+
+.operation .operation__past {
+
+}
+
+.operation .operation__date {
+
+}
+
+.operation .operation__actions  {
+
+}

@@ -1,0 +1,35 @@
+<ul class="header-side">
+{#    <li class="header__notification" title="{{ 'Notifications'|trans }}">#}
+{#        {{ icon('bell') }}#}
+{#    </li>#}
+    <li class="header__search" title="{{ 'Search'|trans }}">
+        {{ icon('search') }}
+    </li>
+    {% if app.user %}
+        <li class="header__account">
+            <a href="{{ path('user_profile') }}" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
+                {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
+            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_home') }}" class="mla">
+                    {{ icon('edit') }} Administration
+                </a>
+            {% endif %}
+        </li>
+          <li class="header__logout">
+              <a href="{{ path('auth_logout') }}" title="{{ 'Logout'|trans }}">
+                  {{ icon('log-out') }} <span>{{ 'Logout'|trans }}</span>
+              </a>
+          </li>
+    {% else %}
+        <li class="header-side__auth">
+            <a href="{{ path('auth_register') }}" title="{{ 'Registration'|trans }}" {{ menu_active('registration') }}>
+                {{ icon('log-in') }} <span>{{ 'Registration'|trans }}</span>
+            </a>
+            <span class="text-muted">|</span>
+            <a href="{{ path('auth_login', {redirect: app.request.pathInfo}) }}" title="{{ 'Login'|trans }}" {{ menu_active('login') }}>
+                <span>{{ 'Login'|trans }}</span>
+            </a>
+        </li>
+    {% endif %}
+</ul>

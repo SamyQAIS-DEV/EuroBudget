@@ -1,0 +1,25 @@
+<aside class="sidebar container sticky">
+    <div class="sidebar__avatar">
+        {% if app.user and app.user.id == user.id %}
+            <form enctype="multipart/form-data" method="post" action="{{ path('user_avatar') }}" is="auto-submit">
+                <img class="avatar" src="{{ user | avatar }}" alt="Avatar">
+                <div class="avatar__upload">
+                    {{ icon('camera') }}
+                </div>
+                <input type="file" name="avatar"/>
+            </form>
+        {% else %}
+            <img class="avatar" src="{{ user | avatar }}" alt="Avatar">
+        {% endif %}
+    </div>
+
+    <a href="{{ path('user_profile') }}" {% if active == 'profile' %}aria-selected="true"{% endif %}>
+        {{ icon('user') }} Profil
+    </a>
+    {#    <a href="{{ path('user_edit') }}" {% if active == 'edit' %}aria-selected="true"{% endif %}> #}
+    {#        {{ icon('user') }} Editer #}
+    {#    </a> #}
+    <a href="{{ path('user_transactions') }}" {% if active == 'transactions' %}aria-selected="true"{% endif %}>
+        {{ icon('inbox') }} Mes factures
+    </a>
+</aside>

@@ -1,0 +1,59 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    secret_key: '%env(SECRET_KEY)%'
+    mail_prefix_subject: '%env(MAIL_PREFIX_SUBJECT)%'
+    paypal_id: '%env(resolve:PAYPAL_ID)%'
+    paypal_secret: '%env(resolve:PAYPAL_SECRET)%'
+    encrypted_suffix: '<ENC>'
+    enable_encryption: '%env(default:default_enable_encryption:bool:ENABLE_ENCRYPTION)%'
+    default_enable_encryption: 'true'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $mailPrefixSubject: '%mail_prefix_subject%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\EventSubscriber\DoctrineEncryptSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    App\Service\Encryptors\AESOpenSslEncryptor:
+        arguments:
+            $secretKey: '%secret_key%'
+            $suffix: '%encrypted_suffix%'
+        calls:
+            -   setEnableEncryption: [ '%enable_encryption%' ]
+
+    App\Twig\Runtime\TwigUrlExtensionRuntime:
+        arguments:
+            $uploaderHelper: '@Vich\UploaderBundle\Templating\Helper\UploaderHelper'
+
+    App\Twig\Runtime\TwigPaymentExtensionRuntime:
+        arguments: [ '%paypal_id%' ]
+
+    paypal_sandbox_environment:
+        class: PayPalCheckoutSdk\Core\SandboxEnvironment
+        arguments: [ "%paypal_id%", "%paypal_secret%" ]
+
+    paypal_production_environment:
+        class: PayPalCheckoutSdk\Core\ProductionEnvironment
+        arguments: [ "%paypal_id%", "%paypal_secret%" ]
+
+    PayPalCheckoutSdk\Core\PayPalHttpClient:
+        arguments: [ "@paypal_sandbox_environment" ]

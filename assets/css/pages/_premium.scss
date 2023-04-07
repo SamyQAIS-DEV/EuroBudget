@@ -1,0 +1,28 @@
+.premium {
+
+}
+
+.card.pricing {
+
+}
+
+.card.pricing .pricing__price {
+    font-weight: bold;
+    text-align: center;
+    font-size: 75px;
+    line-height: 1;
+    color: var(--contrast);
+    padding: space(3);
+}
+
+.card.pricing .pricing__price sup {
+    font-size: 18px;
+}
+
+.card.pricing .pricing__item {
+    margin-bottom: space(2);
+}
+
+.card.pricing .pricing__action {
+
+}

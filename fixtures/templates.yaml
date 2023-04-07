@@ -1,0 +1,21 @@
+App\Entity\User:
+    user (template):
+        email: user<current()>\@domain.fr
+
+App\Entity\DepositAccount:
+    depositAccount (template):
+        creator: '@user<current()>'
+        users: [ '@user<current()>' ]
+        title: Title <current()>
+        amount: 0
+        color: '#287bff'
+
+App\Entity\Operation:
+    operation (template):
+        label: Label <current()>
+        amount: <numberBetween(2, 200)>
+        type: '-'
+        creator: '@user*'
+        depositAccount: '@depositAccount*'
+        date: <(new DateTimeImmutable())>
+        past: false

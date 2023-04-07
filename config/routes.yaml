@@ -1,0 +1,26 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    name_prefix: ''
+    prefix: ''
+    trailing_slash_on_root: false
+    type: attribute
+
+admin_controllers:
+    resource:
+        path: ../src/Controller/Admin/
+        namespace: App\Controller\Admin
+    name_prefix: admin_
+    prefix: '/admin'
+    trailing_slash_on_root: false
+    type: attribute
+
+api_controllers:
+    resource:
+        path: ../src/Controller/Api/
+        namespace: App\Controller\Api
+    name_prefix: api_
+    prefix: '/api'
+    trailing_slash_on_root: false
+    type: attribute

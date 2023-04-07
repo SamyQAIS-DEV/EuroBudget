@@ -1,0 +1,19 @@
+{% extends layout %}
+
+{% import "mails/macros.twig" as e %}
+
+{% block body %}
+
+    {% apply markdown_email %}
+
+        Bienvenue sur EuroBudget.fr {{ username }} !
+        ===============================
+
+        Vous venez de créer un compte sur EuroBudget.fr. Merci !
+        {% if isUsingOauth is same as(false) %}
+            Un mail avec un lien de connexion vous a été envoyé.
+        {% endif %}
+
+    {% endapply %}
+
+{% endblock %}

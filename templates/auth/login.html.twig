@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Connexion" %}
+
+{% block body %}
+    <main class="home py5">
+        <div class="auth-container flex center">
+            <img src="{{ asset('images/auth_background.png') }}" alt="Auth Background">
+            <div class="card fade">
+                <h1>Se connecter</h1>
+
+                {{ form_start(loginForm) }}
+                    {{ form_row(loginForm.email) }}
+
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                {{ form_end(loginForm) }}
+
+                {% include 'auth/_social_login_buttons.html.twig' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

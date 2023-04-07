@@ -1,0 +1,43 @@
+include:
+    - templates.yaml
+
+App\Entity\User:
+    user{1..5} (extends user):
+        favoriteDepositAccount: '@depositAccount<current()>'
+
+    admin_user (extends user):
+        email: admin@domain.fr
+        roles: [ 'ROLE_ADMIN' ]
+        favoriteDepositAccount: '@depositAccount*'
+
+    github_user (extends user):
+        email: github_user@domain.fr
+        favoriteDepositAccount: '@depositAccount*'
+        githubId: 12345
+
+    premium_user (extends user):
+        email: premium_user@domain.fr
+        premiumEnd: <(new DateTimeImmutable('+1 month'))>
+        favoriteDepositAccount: '@depositAccount*'
+
+App\Entity\DepositAccount:
+    depositAccount{1..5} (extends depositAccount):
+
+App\Entity\Operation:
+    operation{1..10} (extends operation):
+
+    previous_month_operation{1..10} (extends operation):
+        date: <(new DateTimeImmutable('-1 month'))>
+
+    previous_year_operation{1..20} (extends operation):
+        date: <(new DateTimeImmutable('-1 year'))>
+
+App\Entity\Plan:
+    plan1:
+        name: Compte premium 3 mois
+        price: 5
+        duration: 3
+    plan2:
+        name: Compte premium 12 mois
+        price: 10
+        duration: 12

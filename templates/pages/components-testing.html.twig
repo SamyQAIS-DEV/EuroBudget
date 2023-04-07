@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Accueil" %}
+
+{% block body %}
+    <main class="home py5">
+        <div class="container">
+            <components-testing user-id="{{ app.user.id }}"></components-testing>
+        </div>
+    </main>
+{% endblock %}

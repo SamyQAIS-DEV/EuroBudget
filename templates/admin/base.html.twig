@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title '' %} | EuroBudget</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('admin') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('admin') }}
+        {% endblock %}
+        <link rel="apple-touch-icon" sizes="128x128" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta property="og:title" content="{{ block('title') }}"/>
+        <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
+        <meta property="og:language" content="fr"/>
+    </head>
+    <body class="admin {{ body_theme() }}">
+        <div class="dashboard-page">
+            {% include "admin/partials/_sidebar.html.twig" %}
+            <main class="dashboard-body">
+                {% include 'partials/flash.html.twig' with { floating: true, duration: 5000 } %}
+                {% block body %}{% endblock %}
+            </main>
+        </div>
+
+        <script>
+            window.eurobudget = {
+                ...(window.eurobudget || {}),
+                USER_ID: {{ app.user ? app.user.id : 'null' }},
+            }
+        </script>
+    </body>
+</html>

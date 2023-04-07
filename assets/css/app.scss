@@ -1,0 +1,99 @@
+// Variables
+// ==================
+:root {
+    --color: #333333;
+    --color-light: #33333333;
+    --color-inversed: #f5f5f5;
+    --contrast: #287bff;
+    --contrast-transparent: #287bff33;
+    --background: #f4f4f4;
+    --background-light: #ffffff;
+    --background-transparent: transparent;
+    --blur: 12px;
+    --gap: 20px;
+    --space: 8px;
+    --border-radius: 8px;
+    --border: #b1b1b1;
+    --border-light: #99999933;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --card-padding: 16px;
+    --red: #f25353;
+    --red-transparent: #f2535333;
+    --green: #41cf7c;
+    --green-transparent: #41cf7c33;
+    --yellow: #feb32b;
+    --yellow-transparent: #feb32b33;
+}
+
+// Outils
+// ==================
+@import 'tools/reset';
+@import 'tools/functions';
+@import 'tools/mixins';
+@import 'tools/layout';
+@import 'tools/typography';
+@import 'tools/animations';
+
+// Dark mode
+// =============
+@include dark {
+    --color: #f5f5f5;
+    --color-light: #f5f5f599;
+    --color-inversed: #20232f;
+    --contrast: #5987e8;
+    --background: #1f1e24;
+    --background-light: #2e2e36;
+    --background-transparent: rgba(0, 0, 0, 0.65);
+}
+
+// Generic
+// ==================
+body {
+    font-family: $font;
+    font-size: 16px;
+    color: var(--color);
+    line-height: 1.6;
+    background: var(--background);
+    scroll-behavior: smooth;
+    scroll-margin: 100px 0 0 0;
+    word-break: break-word;
+    //transition: background 0.5s, color 0.2s;
+
+    @include down(985) {
+        //margin-bottom: 100px;
+    }
+}
+
+::selection {
+    background: var(--contrast);
+    color: #fff;
+}
+
+// Modules
+// ==================
+@import 'modules/header';
+@import 'modules/footer';
+@import 'modules/alert';
+@import 'modules/avatar';
+@import 'modules/btn';
+@import 'modules/bullet';
+@import 'modules/card';
+@import 'modules/form';
+@import 'modules/modal';
+@import 'modules/list';
+@import 'modules/loader';
+@import 'modules/operation';
+@import 'modules/pill';
+@import 'modules/recap';
+@import 'modules/sidebar';
+@import 'modules/switch';
+@import 'modules/scrollbar';
+@import 'modules/table';
+@import 'modules/tab';
+
+// Pages
+// ==================
+@import 'pages/home';
+@import 'pages/auth';
+@import 'pages/profile';
+@import 'pages/premium';

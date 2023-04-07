@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Inscription" %}
+
+{% block body %}
+    <main class="home py5">
+        <div class="auth-container flex center">
+            <img src="{{ asset('images/auth_background.png') }}" alt="Auth Background">
+            <div class="card fade">
+                <h1 class="auth-title">
+                    {% if oauth_type %}
+                        Se connecter avec {{ oauth_type }}
+                    {% else %}
+                        S'inscrire
+                    {% endif %}
+                </h1>
+
+                {% if oauth_registration %}
+                    <div>
+                        Il ne vous reste plus qu'à confirmer
+                    </div>
+                {% endif %}
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                {{ form_end(registrationForm) }}
+
+                {% include 'auth/_social_login_buttons.html.twig' %}
+
+                    <p>
+                        <small class="text-muted">Vos données personnelles (email et nom d'utilisateur) ne sont utilisées qu'à des fins d'authentification et ne sont pas partagées avec des tiers (<a href="#">En savoir plus</a>).</small>
+                    </p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

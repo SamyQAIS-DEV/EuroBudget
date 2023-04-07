@@ -1,0 +1,23 @@
+// Recap
+// ==========
+.recap {
+    @extend %card;
+    padding: space(3);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.recap .recap__item {
+    text-align: center;
+}
+
+.recap .recap__item .recap__amount {
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 1;
+    margin-top: space(1);
+}
+
+.recap .recap__item .recap__amount sup {
+    font-size: 18px;
+}
