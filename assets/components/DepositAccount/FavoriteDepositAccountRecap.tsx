@@ -5,6 +5,7 @@ import {OperationList} from '@components/Operation/OperationList';
 import {Operation as OperationEntity} from '@entities/Operation';
 
 export const FavoriteDepositAccountRecap = () => {
+    const [operationChanged, setOperationChanged] = useState<OperationEntity>(null);
     const [year, setYear] = useState<string>(null);
     const [month, setMonth] = useState<string>(null);
 
@@ -14,7 +15,7 @@ export const FavoriteDepositAccountRecap = () => {
     };
 
     const handleOperationChanged = (operation: OperationEntity) => {
-        console.log('Operation Changed', operation);
+        setOperationChanged(operation);
     };
 
     const style = {};
@@ -22,7 +23,7 @@ export const FavoriteDepositAccountRecap = () => {
 
     return (
         <div className="stack mt3" style={style}>
-            <DepositAccountRecap/>
+            <DepositAccountRecap operationChanged={operationChanged}/>
             <MonthsList onSelect={handleMonthSelected}/>
             <OperationList year={year} month={month} onOperationChanged={handleOperationChanged}/>
         </div>

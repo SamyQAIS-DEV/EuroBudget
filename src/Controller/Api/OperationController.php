@@ -5,12 +5,10 @@ namespace App\Controller\Api;
 use App\Entity\Operation;
 use App\Enum\AlertEnum;
 use App\Exception\OperationServiceException;
-use App\Exception\OperationUnauthorizedException;
 use App\Repository\OperationRepository;
 use App\Security\Voter\OperationVoter;
 use App\Service\OperationService;
 use DateTime;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +21,6 @@ class OperationController extends AbstractController
 {
     public function __construct(
         private readonly OperationRepository $operationRepository,
-        private readonly EntityManagerInterface $entityManager,
         private readonly OperationService $operationService,
         private readonly SerializerInterface $serializer
     ) {
@@ -95,14 +92,15 @@ class OperationController extends AbstractController
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas modifier cette opération.'], Response::HTTP_FORBIDDEN);
         }
-        $operation = $this->serializer->deserialize(
+        $originalOperation = clone $operation;
+        $this->serializer->deserialize(
             $request->getContent(),
             Operation::class,
             'json',
             [AbstractNormalizer::OBJECT_TO_POPULATE => $operation]
         );
         try {
-            $operation = $this->operationService->update($operation);
+            $operation = $this->operationService->update($operation, $originalOperation);
         } catch (OperationServiceException $exception) {
             return $this->json($exception->getErrors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -116,7 +114,6 @@ class OperationController extends AbstractController
         if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas supprimer cette opération.'], Response::HTTP_FORBIDDEN);
         }
-
         $this->operationService->delete($operation);
 
         return $this->json(null);

@@ -5,7 +5,7 @@
                 <alert-element
                     floating
                     type="{{ type }}"
-                    {% if duration is defined %} duration="{{ duration }}"{% endif %}
+                    {% if duration is defined and type != 'error' %} duration="{{ duration }}"{% endif %}
                 >
                     {{ message | nl2br }}
                 </alert-element>

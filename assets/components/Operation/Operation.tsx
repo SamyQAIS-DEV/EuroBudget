@@ -9,6 +9,7 @@ import {Loader} from '@components/Animation/Loader';
 import {Operation as OperationEntity} from '@entities/Operation';
 import {OperationForm} from '@components/Operation/OperationForm';
 import {formatDate} from '@functions/date';
+import {formatCurrency} from '@functions/number';
 
 type OperationProps = {
     operation: OperationEntity;
@@ -29,7 +30,7 @@ export const Operation = ({
     onPastChanged,
     onDelete,
 }: OperationProps) => {
-    const amountClassName = classNames('operation__amount amount', operation.type === '-' ? 'type__debit' : 'type__credit');
+    const amountClassName = classNames('operation__amount', operation.type === '-' ? 'type__debit' : 'type__credit');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
@@ -72,12 +73,10 @@ export const Operation = ({
                     {/*    </div>*/}
                     {/*) }*/}
                 </div>
-                <div className={amountClassName}>{operation.type}{operation.amount}</div>
-                {/*<div className={amountClassName}>{operation.type}{currencyFormatter.format(operation.amount)}</div>*/}
+                <div className={amountClassName}>{operation.type}{formatCurrency(operation.amount)}</div>
                 <div className="operation__past">
                     <Switch id={String(operation.id)} checked={operation.past} label="Opération passée" onChange={handlePastChanged}/>
                 </div>
-                {/*<div className="operation__date"><small>{formatDate(createdAt)}</small></div>*/}
                 <div className="operation__date"><small>{formatDate(operation.date)}</small></div>
                 <div className="operation__actions actions">
                     <Button onClick={handleEdit} title="Éditer l'opération">
@@ -90,7 +89,7 @@ export const Operation = ({
             </div>
             <Modal show={editing} onClose={handleClose}>
                 Édition d'une opération
-                <OperationForm operation={operation} onSubmit={handleUpdate} />
+                <OperationForm operation={operation} onSubmit={handleUpdate}/>
             </Modal>
         </>
     );

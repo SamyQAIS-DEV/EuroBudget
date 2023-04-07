@@ -1,4 +1,4 @@
-import React, {FormEvent, HTMLProps, useMemo, useRef, useState} from 'react';
+import React, {FormEvent, HTMLProps, useMemo, useRef} from 'react';
 
 type FieldProps = {
     type?: string,
@@ -34,6 +34,7 @@ export const Field = ({
         name,
         className,
         onInput: onInput,
+        autoComplete: 'off',
         type,
         ...(value === undefined ? {} : {value}),
         ...props,
@@ -44,26 +45,29 @@ export const Field = ({
             return component;
         }
         switch (type) {
-            // case 'textarea':
-            //     return FieldTextarea
-            // case 'editor':
-            //     return FieldEditor
             // case 'checkbox':
             //     return FieldCheckbox
+            case 'number':
+                return FieldNumber;
             default:
-                return FieldInput;
+                return FieldText;
         }
     }, [component, type]);
 
     return (
         <div className={`form-group ${wrapperClassName}`} ref={ref}>
-            <input {...attr} />
+            {/* @ts-expect-error */}
+            <FieldComponent {...attr} />
             {label && <label title={label} htmlFor={name}/>}
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
 };
 
-const FieldInput = ({...props}: FieldProps) => {
+const FieldText = ({...props}: FieldProps) => {
     return <input {...props} />;
+};
+
+const FieldNumber = ({...props}: FieldProps) => {
+    return <input type="number" inputMode="decimal" min="0" step="0.01" {...props} />;
 };

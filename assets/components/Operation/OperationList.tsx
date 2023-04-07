@@ -8,6 +8,9 @@ import {Modal} from '@components/Modal/Modal';
 import {Operation as OperationEntity} from '@entities/Operation';
 import {addOperation, deleteOperation, findOperationsForCurrentMonth, findOperationsForMonth, updateOperation, updatePastOperation} from '@api/operations';
 import {OperationForm} from '@components/Operation/OperationForm';
+import {addFlash} from '@elements/AlertElement';
+import {AlertEnum} from '@enums/AlertEnum';
+import {isOnCurrentMonth} from '@functions/date';
 
 type OperationListProps = {
     year: string;
@@ -57,31 +60,45 @@ export const OperationList = ({
     const handleCreate = async (operation: OperationEntity) => {
         const newOperation = await addOperation(operation);
         setState(s => ({...s, creating: false}));
-        setData([newOperation, ...data]); // TODO Checker la date de l'opération : ne pas l'ajouter si le mois est différent et bien la placer dans le tableau si elle doit se placer entre 2 autres opérations
+        if (isOnCurrentMonth(operation.date)) {
+            const newData = [newOperation, ...data];
+            newData.sort((a, b) => b.date - a.date);
+            setData(newData);
+        }
+        addFlash('Opération créée');
         onOperationChanged(operation);
     };
 
     const handleUpdate = async (operation: OperationEntity) => {
         const newOperation = await updateOperation(operation);
         setState(s => ({...s, editing: null}));
-        setData(data.map(o => (o === operation ? newOperation : o))); // TODO Checker la date de l'opération : ne pas l'ajouter si le mois est différent et bien la placer dans le tableau si elle doit se placer entre 2 autres opérations
+        if (isOnCurrentMonth(operation.date)) {
+            const newData = data.map(o => (o.id === operation.id ? newOperation : o));
+            newData.sort((a, b) => b.date - a.date);
+            setData(newData);
+        } else {
+            setData(data.filter(o => o !== operation));
+        }
+        addFlash('Opération modifiée');
         onOperationChanged(operation);
     };
 
     const handlePastChanged = async (operation: OperationEntity) => {
         try {
             const newOperation = await updatePastOperation(operation);
-            setData(data.map(o => (o === operation ? newOperation : o)));
+            setData(data.map(o => (o.id === operation.id ? newOperation : o)));
+            addFlash('Opération modifiée');
             onOperationChanged(operation);
         } catch (e) {
             operation.past = !operation.past;
-            setData(data.map(o => (o === operation ? operation : o)));
+            setData(data.map(o => (o.id === operation.id ? operation : o)));
         }
     };
 
     const handleDelete = async (operation: OperationEntity) => {
         await deleteOperation(operation);
         setData(data.filter(o => o !== operation));
+        addFlash('Opération suprimée');
         onOperationChanged(operation);
     };
 

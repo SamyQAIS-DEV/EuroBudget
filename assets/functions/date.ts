@@ -1,4 +1,4 @@
-export const formatDate = (date: Date, separator: string = null, reverse: boolean = false, locale: string = null) => {
+export const formatDate = (date: Date, separator: string = null, reverse: boolean = false, locale: string = null): string => {
     let loc = Intl.DateTimeFormat()
         .resolvedOptions().locale;
     if (locale) {
@@ -19,4 +19,10 @@ export const formatDate = (date: Date, separator: string = null, reverse: boolea
     }
 
     return date.toLocaleString(loc, {year: 'numeric', month: 'short', day: 'numeric'});
+};
+
+export const isOnCurrentMonth = (date: Date): boolean =>  {
+    const now = new Date();
+
+    return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth();
 };

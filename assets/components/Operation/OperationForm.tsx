@@ -29,6 +29,11 @@ export const OperationForm = ({
         setItem(i => ({...i, amount: Number(target.value)}));
     };
 
+    const handleType = (e: FormEvent<HTMLInputElement>) => {
+        const target = e.target as HTMLInputElement;
+        setItem(i => ({...i, type: String(target.value)}));
+    };
+
     const handlePast = (e: FormEvent<HTMLInputElement>) => {
         setItem(i => ({...i, past: !item.past}));
     };
@@ -59,7 +64,14 @@ export const OperationForm = ({
                     required
                     defaultValue={item.amount}
                 />
-                <Switch id='operation-past' checked={item.past} onChange={handlePast} label='Opération passée' />
+                <FormField
+                    type="text"
+                    name="type"
+                    label="Type"
+                    onChange={handleType}
+                    required
+                    defaultValue={item.type}
+                />
                 <FormField
                     type="date"
                     name="date"
@@ -68,6 +80,7 @@ export const OperationForm = ({
                     required
                     defaultValue={formatDate(item.date, '-', true)}
                 />
+                <Switch id='operation-past' checked={item.past} onChange={handlePast} label='Opération passée' />
             </div>
             <FormSubmitButton>Ajouter</FormSubmitButton>
         </Form>

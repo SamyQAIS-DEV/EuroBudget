@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TypeEnum;
 use App\Repository\OperationRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
@@ -10,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
-class Operation
+class Operation implements CalculableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,21 +20,22 @@ class Operation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING,length: 255)]
-    #[Groups(['read', 'write'])]
     #[Assert\Length(min: 3, max: 50)]
     #[Assert\NotBlank]
+    #[Groups(['read', 'write'])]
     private string $label;
 
     #[ORM\Column(type: Types::FLOAT)]
-    #[Groups(['read', 'write'])]
     #[Assert\Positive]
     #[Assert\NotNull]
+    #[Groups(['read', 'write'])]
     private float $amount;
 
-    #[ORM\Column(type: Types::STRING, length: 1)]
-    #[Groups(['read', 'write'])]
+    #[ORM\Column(type: Types::STRING, length: 1, enumType: TypeEnum::class)]
     #[Assert\NotBlank]
-    private string $type = '-';
+    #[Assert\Choice([TypeEnum::DEBIT, TypeEnum::CREDIT])]
+    #[Groups(['read', 'write'])]
+    private TypeEnum $type = TypeEnum::DEBIT;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -87,12 +89,12 @@ class Operation
         return $this;
     }
 
-    public function getType(): string
+    public function getType(): TypeEnum
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(TypeEnum $type): self
     {
         $this->type = $type;
 

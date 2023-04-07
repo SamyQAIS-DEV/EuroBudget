@@ -4,6 +4,7 @@
     @extend %card;
     padding: space(3);
     color: #ffffff;
+    overflow: hidden;
 }
 
 .recap .recap__item {

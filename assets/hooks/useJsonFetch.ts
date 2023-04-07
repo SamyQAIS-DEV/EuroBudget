@@ -31,7 +31,7 @@ export const useJsonFetch = <T>(
 
     const fetch: FetchFn<T> = useCallback(
         async (localCallback) => {
-            setState(s => ({...s, isLoading: true, isError: false, isDone: false}));
+            setState(s => ({...s, isLoading: true, isError: false}));
             try {
                 const response = localCallback !== undefined ? await localCallback() : await callback();
                 setState(s => ({...s, data: response, isLoading: false, isError: false, isDone: true}));

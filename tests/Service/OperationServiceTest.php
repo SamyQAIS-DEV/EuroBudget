@@ -32,9 +32,11 @@ class OperationServiceTest extends KernelTestCase
     public function testUpdate(): void
     {
         /** @var Operation $operation */
-        ['operation1' => $operation] = $this->loadFixtures(['operations']);
+        ['operation1' => $originalOperation] = $this->loadFixtures(['operations']);
+        $operation = clone $originalOperation;
         $operation->setLabel('Updated !!!');
-        $operation = $this->service->update($operation);
+        $operation->setAmount(250);
+        $operation = $this->service->update($operation, $originalOperation);
         $this->assertInstanceOf(Operation::class, $operation);
         $this->assertSame('Updated !!!', $operation->getLabel());
     }

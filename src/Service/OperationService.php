@@ -12,6 +12,7 @@ class OperationService
 {
     public function __construct(
         private readonly ValidatorInterface $validator,
+        private readonly CalculatorService $calculatorService,
         private readonly EntityManagerInterface $entityManager,
     ) {
     }
@@ -23,18 +24,22 @@ class OperationService
         if (count($errors) > 0) {
             throw new OperationServiceException($errors);
         }
+        $amount = $this->calculatorService->calculate($operation);
+        $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
         $this->entityManager->persist($operation);
         $this->entityManager->flush();
 
         return $operation;
     }
 
-    public function update(Operation $operation): Operation
+    public function update(Operation $operation, Operation $originalOperation): Operation
     {
         $errors = $this->validator->validate($operation);
         if (count($errors) > 0) {
             throw new OperationServiceException($errors);
         }
+        $amount = $this->calculatorService->calculate($operation, $originalOperation);
+        $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
         $this->entityManager->persist($operation);
         $this->entityManager->flush();
 
@@ -43,6 +48,8 @@ class OperationService
 
     public function delete(Operation $operation): void
     {
+        $amount = $this->calculatorService->calculate(null, $operation);
+        $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
         $this->entityManager->remove($operation);
         $this->entityManager->flush();
     }

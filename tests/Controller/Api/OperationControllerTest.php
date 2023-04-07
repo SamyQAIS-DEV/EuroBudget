@@ -2,8 +2,10 @@
 
 namespace App\Tests\Controller\Api;
 
+use App\Entity\DepositAccount;
 use App\Entity\Operation;
 use App\Entity\User;
+use App\Enum\TypeEnum;
 use App\Security\Voter\OperationVoter;
 use App\Tests\WebTestCase;
 use DateTime;
@@ -70,13 +72,32 @@ class OperationControllerTest extends WebTestCase
         ['user1' => $user] = $this->data;
         $this->login($user);
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
-        $operation = (new Operation())->setLabel('Label')->setAmount(15)->setType('-')->setDate(new DateTimeImmutable())->setPast(false);
-        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', $operation);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => false];
+        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
         $item = $this->serializer->deserialize($content, Operation::class, 'json');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSame(11, $this->em->getRepository(Operation::class)->count([]));
         $this->assertSame('Label', $item->getLabel());
         $this->assertSame(15.0, $item->getAmount());
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
+    }
+
+    public function testPostPastOperation(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->data;
+        $this->login($user);
+        $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => true];
+        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
+        $item = $this->serializer->deserialize($content, Operation::class, 'json');
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSame(11, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame('Label', $item->getLabel());
+        $this->assertSame(15.0, $item->getAmount());
+        $this->assertSame(-15.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 
     public function testPostExceedsMonthlyQuota(): void
@@ -85,14 +106,34 @@ class OperationControllerTest extends WebTestCase
         ['user1' => $user] = $this->data;
         $this->login($user);
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
-        $operation = (new Operation())->setLabel('Label')->setAmount(15)->setType('-')->setDate(new DateTimeImmutable())->setPast(false);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => false];
         for ($i = 0; $i < OperationVoter::MONTHLY_QUOTA; $i++) {
-            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $operation);
+            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
         }
         $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
-        $this->jsonRequest(Request::METHOD_POST, '/api/operations', $operation);
+        $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
         self::assertResponseStatusCodeSame(Response::HTTP_MOVED_PERMANENTLY);
         $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
+    }
+
+    public function testPostExceedsMonthlyQuotaPastOperation(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->data;
+        $this->login($user);
+        $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => false];
+        for ($i = 0; $i < OperationVoter::MONTHLY_QUOTA; $i++) {
+            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
+        }
+        $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
+        $this->jsonRequest(Request::METHOD_POST, '/api/operations', [...$data, 'past' => true]);
+        self::assertResponseStatusCodeSame(Response::HTTP_MOVED_PERMANENTLY);
+        $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 
     public function testPostExceedsMonthlyQuotaPremium(): void
@@ -101,18 +142,42 @@ class OperationControllerTest extends WebTestCase
         ['premium_user' => $user] = $this->data;
         $this->login($user);
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
-        $operation = (new Operation())->setLabel('Label')->setAmount(15)->setType('-')->setDate(new DateTimeImmutable())->setPast(false);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => false];
         for ($i = 0; $i < OperationVoter::MONTHLY_QUOTA; $i++) {
-            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $operation);
+            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
         }
         $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
-        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', $operation);
+        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
         $item = $this->serializer->deserialize($content, Operation::class, 'json');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSame(26, $this->em->getRepository(Operation::class)->count([]));
         $this->assertSame('Label', $item->getLabel());
         $this->assertSame(15.0, $item->getAmount());
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
+
+    public function testPostExceedsMonthlyQuotaPremiumPastOperation(): void
+    {
+        /** @var User $user */
+        ['premium_user' => $user] = $this->data;
+        $this->login($user);
+        $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label', 'amount' => 15, 'type' => TypeEnum::DEBIT, 'date'=> new DateTimeImmutable(), 'past' => false];
+        for ($i = 0; $i < OperationVoter::MONTHLY_QUOTA; $i++) {
+            $this->jsonRequest(Request::METHOD_POST, '/api/operations', $data);
+        }
+        $this->assertSame(25, $this->em->getRepository(Operation::class)->count([]));
+        $content = $this->jsonRequest(Request::METHOD_POST, '/api/operations', [...$data, 'past' => true]);
+        $item = $this->serializer->deserialize($content, Operation::class, 'json');
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSame(26, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame('Label', $item->getLabel());
+        $this->assertSame(15.0, $item->getAmount());
+        $this->assertSame(-15.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
+    }
+
 
     public function testPut(): void
     {
@@ -120,11 +185,28 @@ class OperationControllerTest extends WebTestCase
          * @var Operation $operation */
         ['user1' => $user, 'operation1' => $operation] = $this->data;
         $this->login($user);
-        $operation->setLabel('Label Modifié');
-        $content = $this->jsonRequest(Request::METHOD_PUT, '/api/operations/' . $operation->getId(), $operation);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label Modifié', 'amount' => 250];
+        $content = $this->jsonRequest(Request::METHOD_PUT, '/api/operations/' . $operation->getId(), $data);
         $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSame('Label Modifié', $item->label);
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
+    }
+
+    public function testPutPastOperation(): void
+    {
+        /** @var User $user
+         * @var Operation $operation */
+        ['user1' => $user, 'operation1' => $operation] = $this->data;
+        $this->login($user);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label Modifié', 'amount' => 250, 'past' => true];
+        $content = $this->jsonRequest(Request::METHOD_PUT, '/api/operations/' . $operation->getId(), $data);
+        $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSame('Label Modifié', $item->label);
+        $this->assertSame(-250.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 
     public function testPutAccessDenied(): void
@@ -133,11 +215,13 @@ class OperationControllerTest extends WebTestCase
          * @var Operation $operation */
         ['user1' => $user, 'operation2' => $operation] = $this->data;
         $this->login($user);
-        $operation->setLabel('Label Modifié');
-        $content = $this->jsonRequest(Request::METHOD_DELETE, '/api/operations/' . $operation->getId());
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label Modifié', 'amount' => 250, 'past' => true];
+        $content = $this->jsonRequest(Request::METHOD_PUT, '/api/operations/' . $operation->getId(), $data);
         $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
         self::assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
-        $this->assertSame('Vous ne pouvez pas supprimer cette opération.', $item->title);
+        $this->assertSame('Vous ne pouvez pas modifier cette opération.', $item->title);
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 
     public function testDelete(): void
@@ -146,12 +230,37 @@ class OperationControllerTest extends WebTestCase
          * @var Operation $operation */
         ['user1' => $user, 'operation1' => $operation] = $this->data;
         $this->login($user);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
         $content = $this->jsonRequest(Request::METHOD_DELETE, '/api/operations/' . $operation->getId());
         $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSame(9, $this->em->getRepository(Operation::class)->count([]));
         $this->assertSame(null, $item);
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
+    }
+
+    public function testDeletePastOperation(): void
+    {
+        /** @var User $user
+         * @var Operation $operation */
+        ['user1' => $user, 'operation1' => $operation] = $this->data;
+        $this->login($user);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
+        $data = ['label' => 'Label Modifié', 'amount' => 250, 'past' => true];
+        $content = $this->jsonRequest(Request::METHOD_PUT, '/api/operations/' . $operation->getId(), $data);
+        $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSame('Label Modifié', $item->label);
+        $this->assertSame(-250.0, $user->getFavoriteDepositAccount()->getAmount());
+
+        $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
+        $content = $this->jsonRequest(Request::METHOD_DELETE, '/api/operations/' . $operation->getId());
+        $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSame(9, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame(null, $item);
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 
     public function testDeleteAccessDenied(): void
@@ -160,9 +269,13 @@ class OperationControllerTest extends WebTestCase
          * @var Operation $operation */
         ['user1' => $user, 'operation2' => $operation] = $this->data;
         $this->login($user);
+        $this->assertSame(0.0, $user->getFavoriteDepositAccount()->getAmount());
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
         $content = $this->jsonRequest(Request::METHOD_DELETE, '/api/operations/' . $operation->getId());
+        $item = json_decode($content, null, 512, JSON_THROW_ON_ERROR);
         self::assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
         $this->assertSame(10, $this->em->getRepository(Operation::class)->count([]));
+        $this->assertSame('Vous ne pouvez pas supprimer cette opération.', $item->title);
+        $this->assertSame(0.0, $this->em->getRepository(DepositAccount::class)->find($user->getFavoriteDepositAccount()->getId())->getAmount());
     }
 }

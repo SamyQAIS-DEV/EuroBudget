@@ -32,9 +32,9 @@ export class AlertElement extends HTMLElement {
  * @param type
  * @param duration in ms
  */
-export const addFlash = (message: string, type: AlertEnum = AlertEnum.SUCCESS, duration?: number) => {
+export const addFlash = (message: string, type: AlertEnum = AlertEnum.SUCCESS, duration: number|null = 5000) => {
     const alert = document.createElement('alert-element');
-    if (duration) {
+    if (type !== AlertEnum.ERROR && duration) {
         alert.setAttribute('duration', String(duration));
     }
     alert.setAttribute('type', type);
