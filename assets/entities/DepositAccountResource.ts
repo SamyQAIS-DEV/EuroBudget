@@ -10,14 +10,14 @@ interface DepositAccountResourceInterface {
 }
 
 export class DepositAccountResource implements DepositAccountResourceInterface{
-    public id;
-    public title;
-    public amount;
-    public color;
-    public creatorId;
-    public finalAmount;
-    public waitingAmount;
-    public waitingOperationsNb;
+    public id: number;
+    public title: string;
+    public amount: number;
+    public color: string;
+    public creatorId: number;
+    public finalAmount: number;
+    public waitingAmount: number;
+    public waitingOperationsNb: number;
 
     constructor(options: DepositAccountResourceInterface = {}) {
         Object.assign(this, options);

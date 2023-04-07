@@ -58,7 +58,7 @@ class OperationRepository extends AbstractRepository
             ->setParameter('start', $start)
             ->setParameter('end', $end)
             ->orderBy('o.date', 'DESC')
-//            ->addOrderBy('o.createdAt', 'DESC')
+            ->addOrderBy('o.label', 'ASC')
             ->getQuery()
             ->getResult();
     }

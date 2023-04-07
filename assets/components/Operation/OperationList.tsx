@@ -9,8 +9,7 @@ import {Operation as OperationEntity} from '@entities/Operation';
 import {addOperation, deleteOperation, findOperationsForCurrentMonth, findOperationsForMonth, updateOperation, updatePastOperation} from '@api/operations';
 import {OperationForm} from '@components/Operation/OperationForm';
 import {addFlash} from '@elements/AlertElement';
-import {AlertEnum} from '@enums/AlertEnum';
-import {isOnCurrentMonth} from '@functions/date';
+import {isCurrentMonth} from '@functions/date';
 
 type OperationListProps = {
     year: string;
@@ -57,13 +56,22 @@ export const OperationList = ({
         setState(s => ({...s, editing: null}));
     }, []);
 
+    const sortData = (array: OperationEntity[]): void => {
+        array.sort((a, b) => {
+            if (b.date.getDate() === a.date.getDate()) {
+                return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : -1;
+            }
+            return b.date.getDate() - a.date.getDate();
+        });
+        setData(array);
+    };
+
     const handleCreate = async (operation: OperationEntity) => {
         const newOperation = await addOperation(operation);
         setState(s => ({...s, creating: false}));
-        if (isOnCurrentMonth(operation.date)) {
-            const newData = [newOperation, ...data];
-            newData.sort((a, b) => b.date - a.date);
-            setData(newData);
+        if (isCurrentMonth(operation.date, year && month ? new Date(year + '/' + month) : new Date())) {
+            let newData = [newOperation, ...data];
+            sortData(newData);
         }
         addFlash('Opération créée');
         onOperationChanged(operation);
@@ -72,10 +80,9 @@ export const OperationList = ({
     const handleUpdate = async (operation: OperationEntity) => {
         const newOperation = await updateOperation(operation);
         setState(s => ({...s, editing: null}));
-        if (isOnCurrentMonth(operation.date)) {
-            const newData = data.map(o => (o.id === operation.id ? newOperation : o));
-            newData.sort((a, b) => b.date - a.date);
-            setData(newData);
+        if (isCurrentMonth(operation.date, year && month ? new Date(year + '/' + month) : new Date())) {
+            let newData = data.map(o => (o.id === operation.id ? newOperation : o));
+            sortData(newData);
         } else {
             setData(data.filter(o => o !== operation));
         }
@@ -122,9 +129,7 @@ export const OperationList = ({
             </Button>
             <Modal show={state.creating} onClose={handleCloseCreating}>
                 Création d'une opération
-                <OperationForm onSubmit={handleCreate} />
-                {/*<Button onClick={handleUpdate}>handleUpdate</Button>*/}
-                {/*<OperationForm formId="operation-form" onSubmit={handleSubmit} onSuccess={handleSuccess} operation={operation}/>*/}
+                <OperationForm onSubmit={handleCreate}/>
             </Modal>
             <div className="operations list-group p0">
                 {data.map((operation) => (

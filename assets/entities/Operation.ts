@@ -8,12 +8,12 @@ interface OperationInterface {
 }
 
 export class Operation implements OperationInterface{
-    public id;
-    public label;
-    public amount;
-    public date;
-    public type;
-    public past;
+    public id: number;
+    public label: string;
+    public amount: number;
+    public date: Date;
+    public type: string;
+    public past: boolean;
 
     constructor(options: OperationInterface = {}) {
         Object.assign(this, options);

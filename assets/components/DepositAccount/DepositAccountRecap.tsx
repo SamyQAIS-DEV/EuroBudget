@@ -7,13 +7,13 @@ import {findDepositAccountResource} from '@api/deposit-accounts';
 import {DepositAccountResource} from '@entities/DepositAccountResource';
 import {LoaderWrapper} from '@components/LoaderWrapper';
 
-type DepositAccountRecapProps = {
+type Props = {
     operationChanged: Operation;
 };
 
 export const DepositAccountRecap = ({
     operationChanged,
-}) => {
+}: Props) => {
     const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<DepositAccountResource>(true, findDepositAccountResource);
 
     useEffect(() => {

@@ -21,8 +21,6 @@ export const formatDate = (date: Date, separator: string = null, reverse: boolea
     return date.toLocaleString(loc, {year: 'numeric', month: 'short', day: 'numeric'});
 };
 
-export const isOnCurrentMonth = (date: Date): boolean =>  {
-    const now = new Date();
-
-    return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth();
+export const isCurrentMonth = (date: Date, compareWith: Date = new Date()): boolean =>  {
+    return date.getFullYear() === compareWith.getFullYear() && date.getMonth() === compareWith.getMonth();
 };

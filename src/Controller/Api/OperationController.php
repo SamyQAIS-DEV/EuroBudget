@@ -48,6 +48,11 @@ class OperationController extends AbstractController
         $currentMonth = (new DateTime())->format('Y/m');
         if (count($yearsMonths) === 0 || !$this->monthInArray($currentMonth, $yearsMonths)) {
             $yearsMonths = [['path' => $currentMonth, 'count' => 0], ...$yearsMonths];
+            usort($yearsMonths, function($a, $b) {
+                $dateA = new DateTime(str_replace('/', '-', $a['path']));
+                $dateB = new DateTime(str_replace('/', '-', $b['path']));
+                return $dateB->getTimestamp() - $dateA->getTimestamp();
+            });
         }
 
         return $this->json(data: $yearsMonths, context: ['groups' => ['read']]);

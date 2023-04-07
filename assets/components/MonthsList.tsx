@@ -3,36 +3,48 @@ import {useJsonFetch} from '@hooks/useJsonFetch';
 import {Loader} from '@components/Animation/Loader';
 import {Button} from '@components/Button';
 import {classNames} from '@functions/dom';
-import {jsonFetch} from '@functions/api';
+import {YearMonth} from '@entities/YearMonth';
+import {findYearsMonths} from '@api/years-months';
+import {Logger} from 'sass';
 
-type YearMonth = {
-    path: string,
-    count: number
-};
-
-type MonthsListProps = {
+type Props = {
     onSelect: (year: string, month: string) => void;
+    otherMonthAdded?: Date;
 };
 
 export const MonthsList = ({
-    onSelect
-}: MonthsListProps) => {
-    const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<YearMonth[]>(true, () => jsonFetch<YearMonth[]>('/api/operations/years-months')); // TODO Use api file
+    onSelect,
+    otherMonthAdded,
+}: Props) => {
+    const [{data, isLoading, isError, isDone}, fetch, setData] = useJsonFetch<YearMonth[]>(true, findYearsMonths);
     const [selectedYear, setSelectedYear] = useState<string>(null);
     const [selectedMonth, setSelectedMonth] = useState<string>(null);
 
-    let renderedYears: string[] = []; // TODO Refacto that
+    let renderedYears: string[] = [];
 
     useEffect(() => {
         const now = new Date();
         setSelectedYear(String(now.getFullYear()));
-        setSelectedMonth(String((now.getMonth() + 1) < 10 && '0' + (now.getMonth() + 1)));
+        setSelectedMonth(String(((now.getMonth() + 1) < 10 && '0') + (now.getMonth() + 1)));
     }, []);
+
+    useEffect(() => {
+        if (!otherMonthAdded) {
+            return;
+        }
+        const path = String(otherMonthAdded.getFullYear()) + '/' + String(((otherMonthAdded.getMonth() + 1) < 10 && '0') + (otherMonthAdded.getMonth() + 1));
+        console.log(path);
+        if (!data.some((item) => item.path === path)) {
+            setData([new YearMonth({path: path, count: 1}), ...data]);
+        }
+    }, [otherMonthAdded]);
 
     const handleYearSelected = (year: string) => {
         let month: string = selectedMonth;
         if (!data.find((yearMonth: YearMonth) => yearMonth.path === year + '/' + selectedMonth)) {
-            month = data.find((yearMonth: YearMonth) => yearMonth.path.startsWith(year)).path.split('/')[1];
+            month = data.find((yearMonth: YearMonth) => yearMonth.path.startsWith(year))
+                .path
+                .split('/')[1];
         }
         setSelectedYear(year);
         setSelectedMonth(month);
@@ -72,7 +84,7 @@ export const MonthsList = ({
                             />
                         );
                     }
-                } )}
+                })}
             </div>
             <div className="tabs months overflow-visible">
                 {data.map((yearMonth: YearMonth) => {
@@ -88,7 +100,7 @@ export const MonthsList = ({
                             />
                         );
                     }
-                } )}
+                })}
             </div>
         </section>
     );
@@ -101,13 +113,13 @@ type MonthsListItemProps = {
     onSelect: (year: string) => void;
 };
 
-const MonthsListItem = ({label, count, active, onSelect}: MonthsListItemProps) =>  {
+const MonthsListItem = ({label, count, active, onSelect}: MonthsListItemProps) => {
     return (
         <div key={'year_' + label}
              className={classNames('tab year relative', active && 'active')}
              onClick={() => onSelect(label)}
         >
-            <span className='bullet'>{count}</span>
+            <span className="bullet">{count}</span>
             {label}
         </div>
     );
