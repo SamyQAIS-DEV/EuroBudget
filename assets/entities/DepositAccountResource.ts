@@ -9,7 +9,7 @@ interface DepositAccountResourceInterface {
     waitingOperationsNb?: number;
 }
 
-export class DepositAccountResource implements DepositAccountResourceInterface{
+export class DepositAccountResource implements DepositAccountResourceInterface {
     public id: number;
     public title: string;
     public amount: number;

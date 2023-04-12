@@ -7,7 +7,7 @@ interface OperationInterface {
     past?: boolean;
 }
 
-export class Operation implements OperationInterface{
+export class Operation implements OperationInterface {
     public id: number;
     public label: string;
     public amount: number;

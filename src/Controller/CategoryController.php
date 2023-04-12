@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/categories', name: 'category_index')]
+    #[Route(path: '/categories', name: 'category_index')]
     #[IsGranted(CategoryVoter::ACCESS)]
     public function index(): Response
     {

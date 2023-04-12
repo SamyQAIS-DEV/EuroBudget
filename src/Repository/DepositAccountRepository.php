@@ -27,4 +27,18 @@ class DepositAccountRepository extends AbstractRepository
     ) {
         parent::__construct($registry, DepositAccount::class, $encryptedPropertiesAccessor, $encryptor);
     }
+
+    /**
+     * @return DepositAccount[]
+     */
+    public function findFor(User $user): array
+    {
+        return $this->createQueryBuilder('d')
+            ->innerJoin('d.users', 'u')
+            ->where('u.id = :id')
+            ->setParameter('id', $user->getId())
+            ->orderBy('d.title', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

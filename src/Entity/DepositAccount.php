@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DepositAccountRepository::class)]
 class DepositAccount
@@ -14,12 +15,15 @@ class DepositAccount
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 100)]
+    #[Groups(['read', 'write'])]
     private string $title;
 
     #[ORM\Column(type: Types::FLOAT)]
+    #[Groups(['read', 'write'])]
     private float $amount = 0;
 
     #[ORM\ManyToOne]
@@ -30,6 +34,7 @@ class DepositAccount
     private Collection $users;
 
     #[ORM\Column(type: Types::STRING, length: 7)]
+    #[Groups(['read', 'write'])]
     private string $color = '#287bff';
 
     public function __construct()

@@ -20,7 +20,7 @@ class RegistrationController extends AbstractController
 {
     public const REGISTER_ROUTE_NAME = 'auth_register';
 
-    #[Route('/inscription', name: self::REGISTER_ROUTE_NAME)]
+    #[Route(path: '/inscription', name: self::REGISTER_ROUTE_NAME)]
     public function register(
         Request $request,
         EntityManagerInterface $entityManager,

@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from 'react';
 import {Operation} from '@entities/Operation';
-import {Form, FormButton, FormField, FormSubmitButton} from '@components/Form';
+import {Form, FormButton, FormField, FormSubmitButton} from '@components/Form/Form';
 import {formatDate} from '@functions/date';
 import {Switch} from '@components/Switch';
 

@@ -16,6 +16,11 @@
                 {{ icon('server') }} <span>{{ 'Transactions'|trans }}</span>
             </a>
         </li>
+        {% if app.user %}
+            <li>
+                <deposit-account-selection></deposit-account-selection>
+            </li>
+        {% endif %}
         <li>
             <a href="#" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
                 {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>

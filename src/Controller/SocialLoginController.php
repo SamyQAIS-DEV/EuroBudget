@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-#[Route('/oauth')]
+#[Route(path: '/oauth')]
 class SocialLoginController extends AbstractController
 {
     public const CONNECT_ROUTE_NAME = 'oauth_connect';
@@ -28,7 +28,7 @@ class SocialLoginController extends AbstractController
     {
     }
 
-    #[Route('/connect/{service}', name: self::CONNECT_ROUTE_NAME)]
+    #[Route(path: '/connect/{service}', name: self::CONNECT_ROUTE_NAME)]
     public function connect(string $service): RedirectResponse
     {
         $this->ensureServiceAccepted($service);
@@ -36,13 +36,13 @@ class SocialLoginController extends AbstractController
         return $this->clientRegistry->getClient($service)->redirect(self::SCOPES[$service], ['a' => 1]);
     }
 
-    #[Route('/check/{service}', name: self::CHECK_ROUTE_NAME)]
+    #[Route(path: '/check/{service}', name: self::CHECK_ROUTE_NAME)]
     public function check(): Response
     {
         throw $this->createNotFoundException();
     }
 
-    #[Route('/unlink/{service}', name: self::UNLINK_ROUTE_NAME)]
+    #[Route(path: '/unlink/{service}', name: self::UNLINK_ROUTE_NAME)]
     #[IsGranted('ROLE_USER')]
     public function unlink(string $service, AuthService $authService, EntityManagerInterface $entityManager): RedirectResponse
     {

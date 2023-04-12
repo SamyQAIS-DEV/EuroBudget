@@ -3,7 +3,7 @@ interface YearMonthInterface {
     count?: number;
 }
 
-export class YearMonth implements YearMonthInterface{
+export class YearMonth implements YearMonthInterface {
     public path: string;
     public count: number;
 

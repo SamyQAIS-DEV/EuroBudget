@@ -17,7 +17,7 @@ class SecurityController extends AbstractController
     public const CHECK_ROUTE_NAME = 'auth_check';
     public const LOGOUT_ROUTE_NAME = 'auth_logout';
 
-    #[Route('/connexion', name: self::LOGIN_ROUTE_NAME)]
+    #[Route(path: '/connexion', name: self::LOGIN_ROUTE_NAME)]
     public function login(
         Request $request,
         UserRepository $userRepository,
@@ -51,13 +51,13 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
+    #[Route(path: '/auth/check/{token}', name: self::CHECK_ROUTE_NAME)]
     public function check(): Response
     {
         throw $this->createNotFoundException();
     }
 
-    #[Route('/logout', name: self::LOGOUT_ROUTE_NAME)]
+    #[Route(path: '/logout', name: self::LOGOUT_ROUTE_NAME)]
     public function logout(): void
     {
     }

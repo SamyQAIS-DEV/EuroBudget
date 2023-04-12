@@ -36,7 +36,7 @@ export const DepositAccountRecap = ({
     }
 
     return (
-        <section id="deposit-account-recap">
+        <section id='deposit-account-recap'>
             <h3 className="pill mb1">{data.title}</h3>
             <div className="recap grid3" style={{backgroundColor: data.color}}>
                 <div className="recap__item">

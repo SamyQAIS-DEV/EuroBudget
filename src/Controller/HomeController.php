@@ -9,7 +9,7 @@ class HomeController extends AbstractController
 {
     public const HOME_ROUTE_NAME = 'home';
 
-    #[Route('/', name: self::HOME_ROUTE_NAME)]
+    #[Route(path: '/', name: self::HOME_ROUTE_NAME)]
     public function index(): Response
     {
         $user = $this->getUser();

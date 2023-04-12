@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
-    #[Route('', name: 'home')]
+    #[Route(path: '', name: 'home')]
     public function index(TransactionRepository $transactionRepository): Response
     {
         return $this->render('admin/pages/home.html.twig', [

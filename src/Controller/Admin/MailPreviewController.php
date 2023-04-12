@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MailPreviewController extends AbstractController
 {
 
-    #[Route('', name: 'index')]
+    #[Route(path: '', name: 'index')]
     public function index(TransactionRepository $transactionRepository): Response
     {
         return $this->render('admin/pages/mail-preview.html.twig', [

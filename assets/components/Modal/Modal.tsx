@@ -24,7 +24,7 @@ export const Modal = ({
     className = classNames('modal-box', className);
 
     if (closable && onClose === undefined) {
-        console.error('onClose can\'t be empty if the modal is closable');
+        console.error('Modal Component : onClose can\'t be empty if the modal is closable');
     }
 
     useEffect(() => {

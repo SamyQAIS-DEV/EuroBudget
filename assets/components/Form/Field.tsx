@@ -1,14 +1,26 @@
 import React, {FormEvent, HTMLProps, useMemo, useRef} from 'react';
 
 type FieldProps = {
-    type?: string,
-    name: string,
+    type?: string;
+    name: string;
     value?: any;
-    label?: string,
+    label?: string;
     onInput?: (event: FormEvent) => void;
     error?: string[];
-    component?: () => void;
+    component?: ({ ...props }: AttrProps) => JSX.Element | JSX.Element[];
     wrapperClassName?: string;
+    values?: any;
+} & HTMLProps<HTMLInputElement>;
+
+export type AttrProps = {
+    id: string|number;
+    name: string;
+    className?: string;
+    onInput?: () => void;
+    autoComplete?: string;
+    type?: string;
+    value?: any;
+    values?: any;
 } & HTMLProps<HTMLInputElement>;
 
 export const Field = ({
@@ -21,9 +33,14 @@ export const Field = ({
     component = null,
     wrapperClassName = '',
     className,
+    values,
     ...props
 }: FieldProps) => {
     const ref = useRef<HTMLDivElement>(null);
+
+    if (values && !component) {
+        console.error('Field Component : values can\'t be passed if the component isn\'t');
+    }
 
     if (error) {
         className += ' is-invalid';
@@ -36,9 +53,10 @@ export const Field = ({
         onInput: onInput,
         autoComplete: 'off',
         type,
+        values,
         ...(value === undefined ? {} : {value}),
         ...props,
-    };
+    } as AttrProps;
 
     const FieldComponent = useMemo(() => {
         if (component) {

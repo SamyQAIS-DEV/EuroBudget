@@ -1,0 +1,37 @@
+// Compte en banque
+// ==========
+.deposit-account {
+}
+
+.deposit-account .deposit-account__title {
+    text-align: center;
+}
+
+.deposit-account .deposit-account__amount  {
+
+    &.negative {
+        color: var(--red);
+    }
+
+    &.positive {
+        color: var(--green);
+    }
+}
+
+.deposit-account .deposit-account__past {
+
+}
+
+.deposit-account .deposit-account__date {
+
+}
+
+.deposit-account .deposit-account__actions  {
+
+}
+
+// Boutons radios pour sélection compte en banque
+// ==========
+.deposit-account-radio {
+
+}

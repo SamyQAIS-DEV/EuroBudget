@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PremiumController extends AbstractController
 {
-    #[Route('/premium', name: 'premium')]
+    #[Route(path: '/premium', name: 'premium')]
     public function index(PlanRepository $planRepository): Response
     {
         $plans = $planRepository->findAll();

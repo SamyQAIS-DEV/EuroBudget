@@ -20,7 +20,7 @@ export const Button = ({
     return (
         <button className={className} disabled={isLoading} {...props}>
             {isLoading && <Loader className="icon"/>}
-            {children}
+            <span>{children}</span>
         </button>
     );
 };
