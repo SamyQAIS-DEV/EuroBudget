@@ -19,8 +19,7 @@ export const Button = ({
 
     return (
         <button className={className} disabled={isLoading} {...props}>
-            {isLoading && <Loader className="icon"/>}
-            <span>{children}</span>
+            {isLoading ? <Loader className="icon"/> : children}
         </button>
     );
 };
@@ -36,8 +35,7 @@ export const SubmitButton = ({
 
     return (
         <button type='submit' className={className} disabled={isLoading} {...props}>
-            {isLoading && <Loader className="icon"/>}
-            {children}
+            {isLoading ? <Loader className="icon"/> : children}
         </button>
     );
 };

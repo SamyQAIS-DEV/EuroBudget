@@ -49,6 +49,7 @@ export const FavoriteDepositAccountSelection = () => {
                 {data && (
                     <AutoSubmitForm>
                         <Field
+                            wrapperClassName='grid2 fit'
                             name="favoriteDepositAccount"
                             component={DepositAccountRadios}
                             values={data}

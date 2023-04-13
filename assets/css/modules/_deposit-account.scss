@@ -1,10 +1,16 @@
 // Compte en banque
 // ==========
 .deposit-account {
+    @extend %card;
+    border: 5px solid transparent;
+}
+
+.deposit-account:hover:not(.selected) {
+    border: 5px solid var(--contrast);
 }
 
 .deposit-account .deposit-account__title {
-    text-align: center;
+    //text-align: center;
 }
 
 .deposit-account .deposit-account__amount  {
@@ -18,20 +24,43 @@
     }
 }
 
-.deposit-account .deposit-account__past {
-
-}
-
-.deposit-account .deposit-account__date {
-
-}
-
-.deposit-account .deposit-account__actions  {
-
+.deposit-account .selected-icon {
+    position: absolute;
+    top: space(0.5);
+    right: space(0.5);
+    color: white;
+    background: var(--contrast);
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    padding: 4px;
 }
 
 // Boutons radios pour sélection compte en banque
 // ==========
 .deposit-account-radio {
+    position: relative;
+    //width: calc(50% - 8px);
 
+    label {
+        cursor: pointer;
+        margin-bottom: 0 !important;
+        height: 100%;
+    }
+
+    .deposit-account {
+        background: var(--background);
+        box-shadow: none;
+        height: 100%;
+    }
+}
+
+.deposit-account-radio input[type="radio"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    z-index: -1;
 }

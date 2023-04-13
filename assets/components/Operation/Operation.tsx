@@ -79,11 +79,11 @@ export const Operation = ({
                 </div>
                 <div className="operation__date"><small>{formatDate(operation.date)}</small></div>
                 <div className="operation__actions actions">
-                    <Button onClick={handleEdit} title="Éditer l'opération">
-                        {isLoading ? <Loader/> : <Icon name="edit"/>}
+                    <Button isLoading={isLoading} onClick={handleEdit} title="Éditer l'opération">
+                        <Icon name="edit"/>
                     </Button>
-                    <Button type={ButtonEnum.ERROR} onClick={handleDelete} title="Supprimer l'opération">
-                        {isDeleting ? <Loader/> : <Icon name="trash"/>}
+                    <Button isLoading={isDeleting} type={ButtonEnum.ERROR} onClick={handleDelete} title="Supprimer l'opération">
+                        <Icon name="trash"/>
                     </Button>
                 </div>
             </div>

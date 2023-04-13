@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {AttrProps} from '@components/Form/Field';
-import {DepositAccount} from '@entities/DepositAccount';
+import {DepositAccount as DepositAccountEntity} from '@entities/DepositAccount';
+import {DepositAccount} from '@components/DepositAccount/DepositAccount';
+import {isCurrentMonth} from '@functions/date';
+import {addFlash} from '@elements/AlertElement';
+import {classNames} from '@functions/dom';
 
 type Props = {
-    values: DepositAccount[];
+    values: DepositAccountEntity[];
 } & AttrProps;
+
+type State = {
+    editing?: number;
+};
 
 export function DepositAccountRadios({values, ...props}: Props) {
 
-    return values.map((depositAccount: DepositAccount) => (
-        <div className='deposit-account deposit-account-radio' key={depositAccount.id}>
-            <label
-                htmlFor={String(depositAccount.id)}
-            >
-                {depositAccount.title}
+    return values.map((depositAccount) => (
+        <div className='deposit-account-radio' key={depositAccount.id}>
+            <label htmlFor={String(depositAccount.id)}>
+                <DepositAccount
+                    key={depositAccount.id}
+                    depositAccount={depositAccount}
+                    isSelected={depositAccount.id === props.defaultValue}
+                />
             </label>
             <input
                 type="radio"

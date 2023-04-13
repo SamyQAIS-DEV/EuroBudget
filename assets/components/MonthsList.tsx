@@ -33,7 +33,6 @@ export const MonthsList = ({
             return;
         }
         const path = String(otherMonthAdded.getFullYear()) + '/' + String(((otherMonthAdded.getMonth() + 1) < 10 && '0') + (otherMonthAdded.getMonth() + 1));
-        console.log(path);
         if (!data.some((item) => item.path === path)) {
             setData([new YearMonth({path: path, count: 1}), ...data]);
         }
