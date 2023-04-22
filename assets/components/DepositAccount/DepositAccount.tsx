@@ -17,14 +17,12 @@ export const DepositAccount = ({
     const amountClassName = classNames('deposit-account__amount', depositAccount.amount >= 0 ? 'positive' : 'negative');
 
     return (
-        <>
-            <div className={className}>
-                <div className="deposit-account__title">
-                    <span>{depositAccount.title}</span>
-                </div>
-                <div className={amountClassName}>{formatCurrency(depositAccount.amount)}</div>
-                {isSelected && <Icon className="selected-icon" name="check"/>}
+        <div className={className}>
+            <div className="deposit-account__title">
+                <span>{depositAccount.title}</span>
             </div>
-        </>
+            <div className={amountClassName}>{formatCurrency(depositAccount.amount)}</div>
+            {isSelected && <Icon className="selected-icon" name="check"/>}
+        </div>
     );
 };
