@@ -47,7 +47,7 @@
             <img src="{{ asset('images/auth_background.png') }}" alt="Auth Background">
             <h2>Merci pour votre paiement</h2>
             <p class="text-center mb2">
-                Votre premium se termine désormais au <br/><strong>{{ app.user.premiumEnd | format_date('long') }}</strong>.
+                Vous êtes premium jusqu'au <br/><strong>{{ app.user.premiumEnd | format_date('long') }}</strong>.
             </p>
         </modal-element>
     {% endif %}

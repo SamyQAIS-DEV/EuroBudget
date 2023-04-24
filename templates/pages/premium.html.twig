@@ -6,6 +6,15 @@
     <div class="container py5">
         <h1>Devenir premium</h1>
 
+        {% if app.user.isPremium() %}
+            <p>
+                Vous êtes premium jusqu'au <strong>{{ app.user.premiumEnd | format_date('long') }}</strong>.<br/>
+                Si vous reprenez un abonnement, sa durée sera additionnée à votre durée de premium actuelle.
+            </p>
+        {% else %}
+            <p>Vous n'êtes actuellement pas premium.</p>
+        {% endif %}
+
         {% include 'partials/_premium.html.twig' %}
     </div>
 {% endblock %}

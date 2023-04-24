@@ -26,3 +26,10 @@
 .card.pricing .pricing__action {
 
 }
+
+// User Premium
+body.is_premium {
+    .header__account a {
+        background: var(--yellow-transparent);
+    }
+}

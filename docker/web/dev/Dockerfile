@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
         git \
         libssh2-1-dev libssh2-1 \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql intl zip
+    && docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql intl zip gettext
 
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd

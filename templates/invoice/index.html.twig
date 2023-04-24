@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Toutes vos factures' %}
+
+{% block body %}
+    <div class="container py5">
+        <h1>Toutes vos factures</h1>
+
+        <section id="invoice-list">
+            <a href="#" class="btn-primary mb1">
+                {{ icon('edit') }}<span>Créer une facture</span>
+            </a>
+            {% if is_granted('CAN_CREATE_FROM_INVOICES') %}
+                <form action="{{ path('operation_create_from_invoices') }}" method="POST">
+                    <button type="submit" class="btn-secondary mb1">{{ icon('edit') }}<span>Convertir en opérations</span></button>
+                </form>
+            {% endif %}
+            <p><strong>{{ invoices|length }}</strong> facture{{ invoices|length > 1 ? 's' : '' }}</p>
+            <div class="invoices list-group p0">
+                {% for invoice in invoices %}
+                    {% include 'invoice/_invoice.html.twig' %}
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

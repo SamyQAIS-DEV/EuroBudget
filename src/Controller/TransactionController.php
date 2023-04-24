@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\TransactionRepository;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TransactionController extends AbstractController

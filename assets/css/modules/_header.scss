@@ -68,8 +68,8 @@
 .header a:hover,
 .header button:hover,
 .header a[aria-current] {
-    background: var(--color);
-    color: var(--background);
+    background: var(--color) !important;
+    color: var(--background) !important;
 }
 
 .header-nav > * + * {

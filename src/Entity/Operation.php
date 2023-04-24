@@ -55,6 +55,9 @@ class Operation implements CalculableInterface
     #[Assert\NotNull]
     private bool $past = false;
 
+    #[ORM\ManyToOne]
+    private ?Invoice $invoice = null;
+
     public function __construct()
     {
         $this->date = new DateTimeImmutable();
@@ -145,6 +148,18 @@ class Operation implements CalculableInterface
     public function setPast(bool $past): self
     {
         $this->past = $past;
+
+        return $this;
+    }
+
+    public function getInvoice(): ?Invoice
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(?Invoice $invoice): self
+    {
+        $this->invoice = $invoice;
 
         return $this;
     }

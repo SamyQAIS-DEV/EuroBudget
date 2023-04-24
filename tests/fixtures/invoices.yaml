@@ -1,0 +1,10 @@
+include:
+    - users.yaml
+
+App\Entity\Invoice:
+    invoice{1..5}:
+        label: Label <current()>
+        amount: <numberBetween(2, 200)>
+        active: true
+        creator: '@user<current()>'
+        depositAccount: '@depositAccount<current()>'

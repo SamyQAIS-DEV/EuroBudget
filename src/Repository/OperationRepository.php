@@ -81,16 +81,30 @@ class OperationRepository extends AbstractRepository
 
     public function countForYearAndMonth(int $id, int $year, int $month): int
     {
+        return $this->countFromInvoicesForYearAndMonthQueryBuilder($id, $year, $month)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countFromInvoicesForYearAndMonth(int $id, int $year, int $month): int
+    {
+        return $this->countFromInvoicesForYearAndMonthQueryBuilder($id, $year, $month)
+            ->andWhere('o.invoice IS NOT NULL')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    private function countFromInvoicesForYearAndMonthQueryBuilder(int $id, int $year, int $month): QueryBuilder
+    {
         $start = new DateTimeImmutable("01-{$month}-{$year}");
         $end = $start->modify('+1 month');
 
         return $this->findByDepositAccountIdQueryBuilder($id)
             ->select('COUNT(o.id)')
             ->andWhere('o.date >= :start AND o.date < :end')
+            ->andWhere('o.invoice IS NOT NULL')
             ->setParameter('start', $start)
-            ->setParameter('end', $end)
-            ->getQuery()
-            ->getSingleScalarResult();
+            ->setParameter('end', $end);
     }
 
     private function findByDepositAccountIdQueryBuilder(int $id): QueryBuilder

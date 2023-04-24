@@ -32,6 +32,9 @@ App\Entity\Operation:
     previous_year_operation{1..20} (extends operation):
         date: <(new DateTimeImmutable('-1 year'))>
 
+App\Entity\Invoice:
+    invoice{1..5} (extends invoice):
+
 App\Entity\Plan:
     plan1:
         name: Compte premium 3 mois

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DepositAccountController extends AbstractController
 {
     #[Route(path: '/select-favorite', name: 'select_favorite', methods: ['POST'])]
-    public function avatar(
+    public function selectFavorite(
         Request $request,
         DepositAccountService $depositAccountService,
     ): RedirectResponse {

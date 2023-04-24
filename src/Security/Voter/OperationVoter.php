@@ -12,9 +12,9 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class OperationVoter extends Voter
 {
     public const MONTHLY_QUOTA = 15;
-
     public const POST = 'POST_OPERATION';
     public const UPDATE = 'UPDATE_OPERATION';
+    public const CAN_CREATE_FROM_INVOICES = 'CAN_CREATE_FROM_INVOICES';
 
     public function __construct(
         private readonly OperationRepository $operationRepository
@@ -23,22 +23,23 @@ class OperationVoter extends Voter
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return $attribute === self::POST || ($attribute === self::UPDATE && $subject instanceof Operation);
+        return $attribute === self::POST ||
+            ($attribute === self::UPDATE && $subject instanceof Operation) ||
+            $attribute === self::CAN_CREATE_FROM_INVOICES;
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-
         if (!$user instanceof User) {
             return false;
         }
-
         /** @var Operation $operation */
         $operation = $subject;
 
-        return match($attribute) {
+        return match ($attribute) {
             self::POST => $this->canPost($user),
+            self::CAN_CREATE_FROM_INVOICES => $this->canCreateFromInvoices($user),
             self::UPDATE => $this->canUpdate($operation, $user),
             default => throw new \LogicException('This code should not be reached!')
         };
@@ -49,6 +50,7 @@ class OperationVoter extends Voter
         if ($user->isPremium()) {
             return true;
         }
+
         return $this->canCreateThisMonth($user);
     }
 
@@ -63,5 +65,13 @@ class OperationVoter extends Voter
         $count = $this->operationRepository->countForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
 
         return $count <= self::MONTHLY_QUOTA;
+    }
+
+    private function canCreateFromInvoices(User $user): bool
+    {
+        $now = new DateTime();
+        $count = $this->operationRepository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+
+        return $count === 0;
     }
 }

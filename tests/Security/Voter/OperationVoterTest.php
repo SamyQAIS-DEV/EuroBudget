@@ -74,6 +74,20 @@ class OperationVoterTest extends KernelTestCase
         $this->assertSame(VoterInterface::ACCESS_DENIED, $this->voter->vote($this->token, $operation, [OperationVoter::UPDATE]));
     }
 
+    public function testCanCreateFromInvoices(): void
+    {
+        $this->operationRepository->method('countFromInvoicesForYearAndMonth')->willReturn(0);
+        $this->token->method('getUser')->willReturn($this->getUser());
+        $this->assertSame(VoterInterface::ACCESS_GRANTED, $this->voter->vote($this->token, null, [OperationVoter::CAN_CREATE_FROM_INVOICES]));
+    }
+
+    public function testCanCreateFromInvoicesDenied(): void
+    {
+        $this->operationRepository->method('countFromInvoicesForYearAndMonth')->willReturn(1);
+        $this->token->method('getUser')->willReturn($this->getUser());
+        $this->assertSame(VoterInterface::ACCESS_DENIED, $this->voter->vote($this->token, null, [OperationVoter::CAN_CREATE_FROM_INVOICES]));
+    }
+
     private function getUser(): User
     {
         $depositAccount = $this->createMock(DepositAccount::class);

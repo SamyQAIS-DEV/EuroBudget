@@ -12,8 +12,8 @@
             </a>
         </li>
         <li>
-            <a href="#" title="{{ 'Transactions'|trans }}" {{ menu_active('operations') }}>
-                {{ icon('server') }} <span>{{ 'Transactions'|trans }}</span>
+            <a href="{{ path('invoice_index') }}" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
+                {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>
             </a>
         </li>
         {% if app.user %}
@@ -22,13 +22,13 @@
             </li>
         {% endif %}
         <li>
-            <a href="#" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
-                {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>
+            <a href="{{ path('category_index') }}" title="{{ 'Categories'|trans }}" {{ menu_active('categories') }}>
+                {{ icon('layers') }} <span>{{ 'Categories'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="{{ path('category_index') }}" title="{{ 'Categories'|trans }}" {{ menu_active('categories') }}>
-                {{ icon('layers') }} <span>{{ 'Categories'|trans }}</span>
+            <a href="{{ path('premium') }}" title="{{ 'Premium'|trans }}" {{ menu_active('premium') }}>
+                {{ icon('unlock') }} <span>{{ 'Premium'|trans }}</span>
             </a>
         </li>
     </ul>

@@ -17,7 +17,10 @@
         <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
         <meta property="og:language" content="fr"/>
     </head>
-    <body class="{{ body_theme() }}">
+    <body class="
+        {{ body_theme() }}
+        {{ app.user and app.user.isPremium() ? ' is_premium' : '' }}
+    ">
         <div class="page-wrapper">
             {% include "partials/_header.html.twig" %}
             {% include 'partials/flash.html.twig' with { floating: true, duration: 5000 } %}
