@@ -16,7 +16,7 @@ class OperationController extends AbstractController
     {
         if (!$this->isGranted(OperationVoter::CAN_CREATE_FROM_INVOICES)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous avez déjà convertis les factures en opérations ce mois-ci');
-//
+
             return $this->redirectToRoute('home');
         }
 

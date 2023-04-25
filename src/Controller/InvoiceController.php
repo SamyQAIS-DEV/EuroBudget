@@ -21,7 +21,8 @@ class InvoiceController extends AbstractController
         $invoices = $this->invoiceRepository->findByDepositAccount($favoriteDepositAccount->getId());
 
         return $this->render('invoice/index.html.twig', [
-            'invoices' => $invoices
+            'invoices' => $invoices,
+            'menu' => 'invoices',
         ]);
     }
 }

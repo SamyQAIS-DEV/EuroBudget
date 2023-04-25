@@ -37,9 +37,13 @@ class DepositAccount
     #[Groups(['read', 'write'])]
     private string $color = '#287bff';
 
+    #[ORM\OneToMany(mappedBy: 'depositAccount', targetEntity: Category::class)]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,6 +119,36 @@ class DepositAccount
     public function setColor(string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setDepositAccount($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getDepositAccount() === $this) {
+                $category->setDepositAccount(null);
+            }
+        }
 
         return $this;
     }

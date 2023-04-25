@@ -74,7 +74,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         /** @var User $user */
         $user = $this->data['user1'];
         $now = new DateTime();
-        $operationsCount = $this->repository->countForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $operationsCount = $this->repository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
         $this->assertSame(0, $operationsCount);
     }
 }
