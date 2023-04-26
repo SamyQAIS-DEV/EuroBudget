@@ -18,6 +18,12 @@
         border-bottom: none;
     }
 
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .actions button:not(:last-child) {
         margin-right: space(1);
     }

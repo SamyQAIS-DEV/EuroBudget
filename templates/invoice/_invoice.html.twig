@@ -1,22 +1,22 @@
 <div class="invoice grid fit">
     <div class="invoice__title">
         <span>{{ invoice.label }}</span>
-{#        {% if invoice.category %}#}
-{#            <div class="invoice__category">#}
-{#                <span class="pill small" style={{ color: category?.color }}>{{ invoice.category.name }}</span>#}
-{#            </div>#}
-{#        {% endif %}#}
+        {% if invoice.category %}
+            <div class="invoice__category">
+                <span class="pill small" style="color: {{ category.color }};">{{ invoice.category.name }}</span>
+            </div>
+        {% endif %}
     </div>
     <div class="invoice__amount">{{ invoice.amount }} €</div>
     <div class="invoice__active">
         <input type="checkbox" id="{{ invoice.id }}" checked="{{ invoice.active }}" label="Active" disabled is="input-switch">
     </div>
     <div class="invoice__actions actions">
-        <a href="#" class="btn-primary" title="Éditer la facture">
-            {{ icon('edit') }}
-        </a>
-        <a href="#" class="btn-error" title="Supprimer la facture">
-            {{ icon('trash') }}
-        </a>
+        <button>
+            <a href="{{ path('invoice_edit', {'id': invoice.id}) }}" class="btn-primary" title="Éditer la facture">
+                {{ icon('edit') }}
+            </a>
+        </button>
+        {{ include('invoice/_delete_form.html.twig') }}
     </div>
 </div>

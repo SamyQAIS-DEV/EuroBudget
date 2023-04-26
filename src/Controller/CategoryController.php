@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use ApiPlatform\Doctrine\Common\State\PersistProcessor;
 use App\Entity\Category;
 use App\Enum\AlertEnum;
-use App\Form\CategoryType;
+use App\Form\CategoryFormType;
 use App\Repository\CategoryRepository;
 use App\Security\Voter\CategoryVoter;
 use App\Service\CategoryService;
@@ -13,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route(path: '/categories', name: 'category_')]
 #[IsGranted(CategoryVoter::ACCESS)]
@@ -40,7 +38,7 @@ class CategoryController extends AbstractController
     public function new(Request $request): Response
     {
         $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,7 +62,7 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

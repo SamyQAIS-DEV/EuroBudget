@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edition d\'une facture' %}
+
+{% block body %}
+    <div class="container py5">
+        <h1>Edition d'une facture</h1>
+
+        {{ include('invoice/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+{% endblock %}

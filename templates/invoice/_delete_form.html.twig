@@ -1,0 +1,6 @@
+<form method="DELETE" action="{{ path('invoice_delete', {'id': invoice.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cette facture ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ invoice.id) }}">
+    <button class="btn-error" title="Supprimer la facture">
+        {{ icon('trash') }}
+    </button>
+</form>
