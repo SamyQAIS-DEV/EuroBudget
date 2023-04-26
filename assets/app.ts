@@ -3,6 +3,10 @@ import './bootstrap';
 import './elements/index';
 import './prototypes/index';
 
+import Turbolinks from 'turbolinks';
+
+import './modules/scrollreveal';
+
 declare global {
     interface Window {
         eurobudget: {
@@ -12,11 +16,13 @@ declare global {
     }
 }
 
-import './modules/scrollreveal';
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
     setTimeout(() => {
-        document.querySelector('#main-loader').remove();
+        const $mainLoader = document.querySelector('#main-loader');
+        if ($mainLoader) {
+            $mainLoader.remove();
+        }
     }, 300);
 });
 
+Turbolinks.start();

@@ -28,7 +28,10 @@
             {% include "partials/_footer.html.twig" %}
         </div>
 
-        {% include 'partials/_main-loader.html.twig' %}
+        {% if 'application/xml' in app.request.acceptableContentTypes %}
+            {% include 'partials/_main-loader.html.twig' %}
+        {% endif %}
+
         <script>
             window.eurobudget = {
                 ...(window.eurobudget || {}),
