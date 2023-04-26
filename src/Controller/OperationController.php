@@ -23,6 +23,7 @@ class OperationController extends AbstractController
         $count = $operationCreateFormInvoicesService->process($this->getUser());
 
         $message = ngettext('%d opération a bien été convertie depuis les factures', '%d opérations ont bien été converties depuis les factures', $count);
+        $message = sprintf($message, $count);
         $this->addAlert(AlertEnum::SUCCESS, $message);
 
         return $this->redirectToRoute('home');

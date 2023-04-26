@@ -27,6 +27,8 @@
             {% block body %}{% endblock %}
             {% include "partials/_footer.html.twig" %}
         </div>
+
+        {% include 'partials/_main-loader.html.twig' %}
         <script>
             window.eurobudget = {
                 ...(window.eurobudget || {}),

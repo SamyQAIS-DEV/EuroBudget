@@ -15,6 +15,8 @@ declare global {
 import './modules/scrollreveal';
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    setTimeout(() => {
+        document.querySelector('#main-loader').remove();
+    }, 300);
 });
 

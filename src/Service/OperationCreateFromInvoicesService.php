@@ -21,7 +21,6 @@ class OperationCreateFromInvoicesService
     {
         $favoriteDepositAccount = $user->getFavoriteDepositAccount();
         $invoices = $this->invoiceRepository->findByDepositAccount($favoriteDepositAccount->getId(), true);
-        $count = 0;
 
         foreach ($invoices as $invoice) {
             $operation = new Operation();
@@ -40,11 +39,10 @@ class OperationCreateFromInvoicesService
             }
 
             $this->invoiceRepository->save($operation);
-            $count++;
         }
 
         $this->entityManager->flush();
 
-        return $count;
+        return count($invoices);
     }
 }
