@@ -13,12 +13,12 @@ App\Entity\User:
     github_user (extends user):
         email: github_user@domain.fr
         githubId: 12345
-        favoriteDepositAccount: '@depositAccount*'
+        favoriteDepositAccount: '@depositAccount1'
 
     premium_user (extends user):
         email: premium_user@domain.fr
         premiumEnd: <(new DateTimeImmutable('+1 month'))>
-        favoriteDepositAccount: '@depositAccount*'
+        favoriteDepositAccount: '@depositAccount1'
 
     no_deposit_account_user (extends user):
         email: no_deposit_account_user@domain.fr

@@ -14,6 +14,7 @@ class OperationVoter extends Voter
     public const MONTHLY_QUOTA = 15;
     public const POST = 'POST_OPERATION';
     public const UPDATE = 'UPDATE_OPERATION';
+    public const DELETE = 'DELETE_OPERATION';
     public const CAN_CREATE_FROM_INVOICES = 'CAN_CREATE_FROM_INVOICES';
 
     public function __construct(
@@ -25,6 +26,7 @@ class OperationVoter extends Voter
     {
         return $attribute === self::POST ||
             ($attribute === self::UPDATE && $subject instanceof Operation) ||
+            ($attribute === self::DELETE && $subject instanceof Operation) ||
             $attribute === self::CAN_CREATE_FROM_INVOICES;
     }
 
@@ -40,7 +42,7 @@ class OperationVoter extends Voter
         return match ($attribute) {
             self::POST => $this->canPost($user),
             self::CAN_CREATE_FROM_INVOICES => $this->canCreateFromInvoices($user),
-            self::UPDATE => $this->canUpdate($operation, $user),
+            self::UPDATE, self::DELETE => $this->canUpdateOrDelete($operation, $user),
             default => throw new \LogicException('This code should not be reached!')
         };
     }
@@ -54,7 +56,7 @@ class OperationVoter extends Voter
         return $this->canCreateThisMonth($user);
     }
 
-    private function canUpdate(Operation $operation, User $user): bool
+    private function canUpdateOrDelete(Operation $operation, User $user): bool
     {
         return $operation->getDepositAccount()->getUsers()->contains($user);
     }

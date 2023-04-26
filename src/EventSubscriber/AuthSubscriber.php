@@ -3,7 +3,6 @@
 namespace App\EventSubscriber;
 
 use App\Entity\DepositAccount;
-use App\Entity\LoginLink;
 use App\Event\LoginLinkRequestedEvent;
 use App\Event\UserCreatedEvent;
 use App\Helper\TimeHelper;
@@ -42,11 +41,10 @@ class AuthSubscriber implements EventSubscriberInterface
     {
         $user = $event->getUser();
         $loginLink = $this->loginLinkService->createLoginLink($user);
-
         $email = $this->mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'username' => $user->getUserIdentifier()
+            'username' => $user->getUserIdentifier(),
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);
@@ -60,14 +58,12 @@ class AuthSubscriber implements EventSubscriberInterface
             ->setCreator($user);
         $user->setFavoriteDepositAccount($depositAccount);
         $this->entityManager->persist($depositAccount);
-
         $email = $this->mailer->createEmail('mails/auth/registration.twig', 'Votre inscription !', [
             'isUsingOauth' => $event->isUsingOauth(),
-            'username' => $user->getUserIdentifier()
+            'username' => $user->getUserIdentifier(),
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);
-
         if ($event->isUsingOauth()) {
             return;
         }

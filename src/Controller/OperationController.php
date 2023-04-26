@@ -4,15 +4,15 @@ namespace App\Controller;
 
 use App\Enum\AlertEnum;
 use App\Security\Voter\OperationVoter;
-use App\Service\OperationCreateFormInvoicesService;
+use App\Service\OperationCreateFromInvoicesService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/operations', name: 'operation_')]
 class OperationController extends AbstractController
 {
-    #[Route(path: '/create-from-invoices', name: 'create_from_invoices', methods: ['POST', 'GET'])]
-    public function createFromInvoices(OperationCreateFormInvoicesService $operationCreateFormInvoicesService): Response
+    #[Route(path: '/create-from-invoices', name: 'create_from_invoices', methods: ['POST'])]
+    public function createFromInvoices(OperationCreateFromInvoicesService $operationCreateFormInvoicesService): Response
     {
         if (!$this->isGranted(OperationVoter::CAN_CREATE_FROM_INVOICES)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous avez déjà convertis les factures en opérations ce mois-ci');

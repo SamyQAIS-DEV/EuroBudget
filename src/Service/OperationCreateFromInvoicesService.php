@@ -9,7 +9,7 @@ use App\Repository\InvoiceRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
-class OperationCreateFormInvoicesService
+class OperationCreateFromInvoicesService
 {
     public function __construct(
         private readonly InvoiceRepository $invoiceRepository,
@@ -35,7 +35,11 @@ class OperationCreateFormInvoicesService
                 ->setCreator($user)
                 ->setDepositAccount($user->getFavoriteDepositAccount());
 
-            $this->entityManager->persist($operation);
+            if ($user->isPremium()) {
+                $operation->setCategory($invoice->getCategory());
+            }
+
+            $this->invoiceRepository->save($operation);
             $count++;
         }
 

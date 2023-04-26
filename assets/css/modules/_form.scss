@@ -4,11 +4,7 @@ input:disabled {
 }
 
 form {
-    background: inherit;
-}
 
-form > div {
-    background: inherit;
 }
 
 form > * + * {
@@ -19,15 +15,14 @@ form > * + * {
 // ==================
 .form-group {
     position: relative;
-    background: inherit;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select,
 %input {
-    background: inherit;
-    color: inherit;
+    background: transparent;
+    color: var(--color);
     border: 2px solid var(--border);
     border-radius: var(--border-radius);
     padding: 0 space(2);
@@ -41,7 +36,7 @@ form > * + * {
     min-height: 150px;
 }
 .form-group label {
-    background: inherit;
+    background: transparent;
     display: block;
     margin-bottom: space(1);
 }
@@ -50,13 +45,20 @@ form > * + * {
     content: attr(title);
     cursor: text;
     position: absolute;
-    background: inherit;
+    background: var(--background);
     width: calc(100% - 30px);
     top: 5px;
     left: 15px;
     line-height: 35px;
     color: var(--border);
     transition: all 0.3s, background 0s;
+}
+
+.card,
+.modal-box {
+    .form-group label::before {
+        background: var(--background-light);
+    }
 }
 
 .form-group input {

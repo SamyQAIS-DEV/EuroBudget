@@ -20,7 +20,7 @@ class TransactionController extends AbstractController
 
         return $this->render('profile/transactions.html.twig', [
             'transactions' => $transactions,
-            'menu' => 'account',
+            'menu' => 'profile',
         ]);
     }
 
@@ -38,6 +38,7 @@ class TransactionController extends AbstractController
 
         return $this->render('profile/transaction.html.twig', [
             'transaction' => $transaction,
+            'menu' => 'profile',
         ]);
     }
 }

@@ -116,7 +116,7 @@ class OperationController extends AbstractController
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
     public function delete(Operation $operation): JsonResponse
     {
-        if (!$this->isGranted(OperationVoter::UPDATE, $operation)) {
+        if (!$this->isGranted(OperationVoter::DELETE, $operation)) {
             return new JsonResponse(['title' => 'Vous ne pouvez pas supprimer cette opération.'], Response::HTTP_FORBIDDEN);
         }
         $this->operationService->delete($operation);

@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Operation;
 use App\Entity\User;
 use App\Exception\OperationServiceException;
+use App\Repository\OperationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -13,7 +14,7 @@ class OperationService
     public function __construct(
         private readonly ValidatorInterface $validator,
         private readonly CalculatorService $calculatorService,
-        private readonly EntityManagerInterface $entityManager,
+        private readonly OperationRepository $operationRepository,
     ) {
     }
 
@@ -26,8 +27,7 @@ class OperationService
         }
         $amount = $this->calculatorService->calculate($operation);
         $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
-        $this->entityManager->persist($operation);
-        $this->entityManager->flush();
+        $this->operationRepository->save($operation, true);
 
         return $operation;
     }
@@ -40,8 +40,7 @@ class OperationService
         }
         $amount = $this->calculatorService->calculate($operation, $originalOperation);
         $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
-        $this->entityManager->persist($operation);
-        $this->entityManager->flush();
+        $this->operationRepository->save($operation, true);
 
         return $operation;
     }
@@ -50,7 +49,6 @@ class OperationService
     {
         $amount = $this->calculatorService->calculate(null, $operation);
         $operation->getDepositAccount()->setAmount($operation->getDepositAccount()->getAmount() + $amount);
-        $this->entityManager->remove($operation);
-        $this->entityManager->flush();
+        $this->operationRepository->remove($operation, true);
     }
 }

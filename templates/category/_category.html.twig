@@ -3,11 +3,9 @@
         <span>{{ category.name }}</span>
     </div>
     <div class="category__actions actions">
-        <a href="#" class="btn-primary" title="Éditer la catégorie">
+        <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn-primary" title="Éditer la catégorie">
             {{ icon('edit') }}
         </a>
-        <a href="#" class="btn-error" title="Supprimer la catégorie">
-            {{ icon('trash') }}
-        </a>
+        {{ include('category/_delete_form.html.twig') }}
     </div>
 </div>

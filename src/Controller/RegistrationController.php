@@ -7,6 +7,7 @@ use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Event\UserCreatedEvent;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\Authentication\Authenticator;
 use App\Service\SocialLoginService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +24,7 @@ class RegistrationController extends AbstractController
     #[Route(path: '/inscription', name: self::REGISTER_ROUTE_NAME)]
     public function register(
         Request $request,
-        EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
         SocialLoginService $socialLoginService,
         EventDispatcherInterface $dispatcher,
         UserAuthenticatorInterface $authenticator,
@@ -41,8 +42,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setEmail(strtolower($user->getEmail()));
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $userRepository->save($user, true);
             $dispatcher->dispatch(new UserCreatedEvent($user, $isOauthUser));
 
             if ($isOauthUser) {

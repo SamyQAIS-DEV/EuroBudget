@@ -58,6 +58,9 @@ class Operation implements CalculableInterface
     #[ORM\ManyToOne]
     private ?Invoice $invoice = null;
 
+    #[ORM\ManyToOne]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->date = new DateTimeImmutable();
@@ -160,6 +163,18 @@ class Operation implements CalculableInterface
     public function setInvoice(?Invoice $invoice): self
     {
         $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

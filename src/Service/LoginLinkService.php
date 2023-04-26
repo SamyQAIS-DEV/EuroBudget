@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 class LoginLinkService
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
         private readonly TokenGeneratorService $generator,
         private readonly LoginLinkRepository $loginLinkRepository,
     ) {
@@ -21,12 +20,11 @@ class LoginLinkService
     {
         $this->loginLinkRepository->cleanFor($user);
         $loginLink = new LoginLink();
-        $this->entityManager->persist($loginLink);
 
         $loginLink->setUser($user)
             ->setCreatedAt(new DateTimeImmutable())
             ->setToken($this->generator->generate());
-        $this->entityManager->flush();
+        $this->loginLinkRepository->save($loginLink, true);
 
         return $loginLink;
     }

@@ -194,6 +194,9 @@ class User implements UserInterface
     public function setFavoriteDepositAccount(DepositAccount $favoriteDepositAccount): self
     {
         $this->favoriteDepositAccount = $favoriteDepositAccount;
+        if (!$favoriteDepositAccount->getUsers()->contains($this)) {
+            $favoriteDepositAccount->addUser($this);
+        }
 
         return $this;
     }
