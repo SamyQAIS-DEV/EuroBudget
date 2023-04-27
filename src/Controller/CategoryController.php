@@ -26,7 +26,7 @@ class CategoryController extends AbstractController
     public function index(CategoryRepository $categoryRepository): Response
     {
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $categories = $categoryRepository->findByDepositAccount($favoriteDepositAccount->getId());
+        $categories = $categoryRepository->findByDepositAccount($favoriteDepositAccount);
 
         return $this->render('category/index.html.twig', [
             'categories' => $categories,

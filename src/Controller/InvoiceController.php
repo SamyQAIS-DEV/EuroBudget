@@ -24,7 +24,7 @@ class InvoiceController extends AbstractController
     public function index(InvoiceRepository $invoiceRepository): Response
     {
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $invoices = $invoiceRepository->findByDepositAccount($favoriteDepositAccount->getId());
+        $invoices = $invoiceRepository->findByDepositAccount($favoriteDepositAccount);
 
         return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices,

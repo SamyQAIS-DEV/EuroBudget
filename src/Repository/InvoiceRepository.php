@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\DepositAccount;
 use App\Entity\Invoice;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
@@ -29,9 +30,9 @@ class InvoiceRepository extends AbstractRepository
     /**
      * @return Invoice[]
      */
-    public function findByDepositAccount(int $id, bool $onlyActive = false): array
+    public function findByDepositAccount(DepositAccount $depositAccount, bool $onlyActive = false): array
     {
-        $qb = $this->findByDepositAccountIdQueryBuilder($id)
+        $qb = $this->findByDepositAccountIdQueryBuilder($depositAccount)
             ->orderBy('i.label', 'ASC');
 
         if ($onlyActive) {
@@ -42,11 +43,11 @@ class InvoiceRepository extends AbstractRepository
             ->getResult();
     }
 
-    private function findByDepositAccountIdQueryBuilder(int $id): QueryBuilder
+    private function findByDepositAccountIdQueryBuilder(DepositAccount $depositAccount): QueryBuilder
     {
         return $this->createQueryBuilder('i')
             ->innerJoin('i.depositAccount', 'd')
             ->where('d.id = :id')
-            ->setParameter('id', $id);
+            ->setParameter('id', $depositAccount);
     }
 }

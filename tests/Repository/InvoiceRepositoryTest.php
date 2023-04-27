@@ -26,7 +26,7 @@ class InvoiceRepositoryTest extends RepositoryTestCase
     {
         /** @var User $user */
         $user = $this->data['user1'];
-        $invoices = $this->repository->findByDepositAccount($user->getFavoriteDepositAccount()->getId());
+        $invoices = $this->repository->findByDepositAccount($user->getFavoriteDepositAccount());
         $this->assertCount(1, $invoices);
         $this->assertInstanceOf(Invoice::class, $invoices[0]);
     }

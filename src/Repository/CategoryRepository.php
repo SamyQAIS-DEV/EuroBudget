@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\DepositAccount;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -29,19 +30,19 @@ class CategoryRepository extends AbstractRepository
     /**
      * @return Category[]
      */
-    public function findByDepositAccount(int $id): array
+    public function findByDepositAccount(DepositAccount $depositAccount): array
     {
-        return $this->findByDepositAccountIdQueryBuilder($id)
+        return $this->findByDepositAccountQueryBuilder($depositAccount)
             ->orderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-    private function findByDepositAccountIdQueryBuilder(int $id): QueryBuilder
+    private function findByDepositAccountQueryBuilder(DepositAccount $depositAccount): QueryBuilder
     {
         return $this->createQueryBuilder('c')
             ->innerJoin('c.depositAccount', 'd')
             ->where('d.id = :id')
-            ->setParameter('id', $id);
+            ->setParameter('id', $depositAccount->getId());
     }
 }

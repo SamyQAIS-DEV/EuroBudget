@@ -20,7 +20,7 @@ class OperationCreateFromInvoicesService
     public function process(User $user): int
     {
         $favoriteDepositAccount = $user->getFavoriteDepositAccount();
-        $invoices = $this->invoiceRepository->findByDepositAccount($favoriteDepositAccount->getId(), true);
+        $invoices = $this->invoiceRepository->findByDepositAccount($favoriteDepositAccount, true);
 
         foreach ($invoices as $invoice) {
             $operation = new Operation();

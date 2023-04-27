@@ -22,6 +22,7 @@ export const DepositAccount = ({
                 <span>{depositAccount.title}</span>
             </div>
             <div className={amountClassName}>{formatCurrency(depositAccount.amount)}</div>
+            <a href={`/deposit-account/${depositAccount.id}/edit`} className="btn-primary"><Icon name='edit'/></a>
             {isSelected && <Icon className="selected-icon" name="check"/>}
         </div>
     );

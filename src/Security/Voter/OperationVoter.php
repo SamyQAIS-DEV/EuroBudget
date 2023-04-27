@@ -64,7 +64,7 @@ class OperationVoter extends Voter
     private function canCreateThisMonth(User $user): bool
     {
         $now = new DateTime();
-        $count = $this->operationRepository->countForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $count = $this->operationRepository->countForYearAndMonth($user->getFavoriteDepositAccount(), (int) $now->format('Y'), (int) $now->format('m'));
 
         return $count <= self::MONTHLY_QUOTA;
     }
@@ -72,7 +72,7 @@ class OperationVoter extends Voter
     private function canCreateFromInvoices(User $user): bool
     {
         $now = new DateTime();
-        $count = $this->operationRepository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $count = $this->operationRepository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount(), (int) $now->format('Y'), (int) $now->format('m'));
 
         return $count === 0;
     }

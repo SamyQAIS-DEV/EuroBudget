@@ -27,7 +27,7 @@ class OperationRepositoryTest extends RepositoryTestCase
     {
         /** @var User $user */
         $user = $this->data['user1'];
-        $recap = $this->repository->findForRecap($user->getFavoriteDepositAccount()->getId());
+        $recap = $this->repository->findForRecap($user->getFavoriteDepositAccount());
         $this->assertSame(2, $recap['waitingOperationsNb']);
         $this->assertIsNumeric($recap['waitingAmount']);
     }
@@ -37,7 +37,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         /** @var User $user */
         $user = $this->data['user1'];
         $now = new DateTime();
-        $operations = $this->repository->findForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $operations = $this->repository->findForYearAndMonth($user->getFavoriteDepositAccount(), (int) $now->format('Y'), (int) $now->format('m'));
         $this->assertCount(1, $operations);
     }
 
@@ -45,7 +45,7 @@ class OperationRepositoryTest extends RepositoryTestCase
     {
         /** @var User $user */
         $user = $this->data['user1'];
-        $yearsMonths = $this->repository->findYearsMonths($user->getFavoriteDepositAccount()->getId());
+        $yearsMonths = $this->repository->findYearsMonths($user->getFavoriteDepositAccount());
         $now = new DateTime();
         $this->assertCount(2, $yearsMonths);
         $this->assertSame($now->format('Y/m'), $yearsMonths[0]['path']);
@@ -56,7 +56,7 @@ class OperationRepositoryTest extends RepositoryTestCase
     {
         /** @var User $user */
         ['user1' => $user] = $this->loadFixtures(['users']);
-        $yearsMonths = $this->repository->findYearsMonths($user->getFavoriteDepositAccount()->getId());
+        $yearsMonths = $this->repository->findYearsMonths($user->getFavoriteDepositAccount());
         $this->assertEmpty($yearsMonths);
     }
 
@@ -65,7 +65,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         /** @var User $user */
         $user = $this->data['user1'];
         $now = new DateTime();
-        $operationsCount = $this->repository->countForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $operationsCount = $this->repository->countForYearAndMonth($user->getFavoriteDepositAccount(), (int) $now->format('Y'), (int) $now->format('m'));
         $this->assertSame(1, $operationsCount);
     }
 
@@ -74,7 +74,7 @@ class OperationRepositoryTest extends RepositoryTestCase
         /** @var User $user */
         $user = $this->data['user1'];
         $now = new DateTime();
-        $operationsCount = $this->repository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount()->getId(), (int) $now->format('Y'), (int) $now->format('m'));
+        $operationsCount = $this->repository->countFromInvoicesForYearAndMonth($user->getFavoriteDepositAccount(), (int) $now->format('Y'), (int) $now->format('m'));
         $this->assertSame(0, $operationsCount);
     }
 }

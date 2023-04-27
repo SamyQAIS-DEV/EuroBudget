@@ -53,7 +53,7 @@ class DepositAccountService
             throw new UnauthenticatedException();
         }
         $favoriteDepositAccount = $user->getFavoriteDepositAccount();
-        $operationsRecap = $this->operationRepository->findForRecap($favoriteDepositAccount->getId());
+        $operationsRecap = $this->operationRepository->findForRecap($favoriteDepositAccount);
 
         return DepositAccountResource::fromDepositAccount(
             $favoriteDepositAccount,

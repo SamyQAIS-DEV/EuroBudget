@@ -8,6 +8,7 @@ use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -28,17 +29,30 @@ class DepositAccountRepository extends AbstractRepository
         parent::__construct($registry, DepositAccount::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
+    public function countFor(User $user): int
+    {
+        return $this->findForQueryBuilder($user)
+            ->select('COUNT(d.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     /**
      * @return DepositAccount[]
      */
     public function findFor(User $user): array
     {
-        return $this->createQueryBuilder('d')
-            ->innerJoin('d.users', 'u')
-            ->where('u.id = :id')
-            ->setParameter('id', $user->getId())
-            ->orderBy('d.title', 'DESC')
+        return $this->findForQueryBuilder($user)
             ->getQuery()
             ->getResult();
+    }
+
+    private function findForQueryBuilder(User $user): QueryBuilder
+    {
+        return $this->createQueryBuilder('d')
+            ->leftJoin('d.users', 'u')
+            ->where('u.id = :id')
+            ->setParameter('id', $user->getId())
+            ->orderBy('d.title', 'DESC');
     }
 }

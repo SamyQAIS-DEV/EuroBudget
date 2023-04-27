@@ -18,7 +18,7 @@ class CategoryController extends AbstractController
     public function index(): JsonResponse
     {
         $favoritDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $categories = $this->categoryRepository->findByDepositAccount($favoritDepositAccount->getId());
+        $categories = $this->categoryRepository->findByDepositAccount($favoritDepositAccount);
 
         return $this->json(data: $categories, context: ['groups' => ['read']]);
     }

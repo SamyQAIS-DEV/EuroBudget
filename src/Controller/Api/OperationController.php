@@ -33,7 +33,7 @@ class OperationController extends AbstractController
         $now = new DateTime();
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
         $operations = $this->operationRepository->findForYearAndMonth(
-            $favoriteDepositAccount->getId(),
+            $favoriteDepositAccount,
             (int) $now->format('Y'),
             (int) $now->format('m')
         );
@@ -45,7 +45,7 @@ class OperationController extends AbstractController
     public function yearsMonths(): JsonResponse
     {
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $yearsMonths = $this->operationRepository->findYearsMonths($favoriteDepositAccount->getId());
+        $yearsMonths = $this->operationRepository->findYearsMonths($favoriteDepositAccount);
         $currentMonth = (new DateTime())->format('Y/m');
         if (count($yearsMonths) === 0 || !$this->monthInArray($currentMonth, $yearsMonths)) {
             $yearsMonths = [['path' => $currentMonth, 'count' => 0], ...$yearsMonths];
@@ -63,7 +63,7 @@ class OperationController extends AbstractController
     public function forMonth(int $year, int $month): JsonResponse
     {
         $favoriteDepositAccount = $this->getUser()->getFavoriteDepositAccount();
-        $operations = $this->operationRepository->findForYearAndMonth($favoriteDepositAccount->getId(), $year, $month);
+        $operations = $this->operationRepository->findForYearAndMonth($favoriteDepositAccount, $year, $month);
 
         return $this->json(data: $operations, context: ['groups' => ['read']]);
     }
