@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/premium', name: 'premium_')]
+#[Route(path: '/api/premium', name: 'api_premium_')]
 class PremiumController extends AbstractController
 {
     public function __construct(private readonly PlanRepository $planRepository)

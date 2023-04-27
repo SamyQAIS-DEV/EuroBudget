@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/mailpreview', name: 'mailpreview_')]
+#[Route(path: '/admin/mailpreview', name: 'admin_mailpreview_')]
 class MailPreviewController extends AbstractController
 {
 

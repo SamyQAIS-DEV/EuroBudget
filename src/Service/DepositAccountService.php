@@ -25,6 +25,21 @@ class DepositAccountService
     ) {
     }
 
+    public function create(DepositAccount $depositAccount, User $user): DepositAccount
+    {
+        $depositAccount->setCreator($user);
+        $this->depositAccountRepository->save($depositAccount, true);
+
+        return $depositAccount;
+    }
+
+    public function update(DepositAccount $depositAccount): DepositAccount
+    {
+        $this->depositAccountRepository->save($depositAccount, true);
+
+        return $depositAccount;
+    }
+
     public function updateFavorite(int $id): void
     {
         $user = $this->security->getUser();

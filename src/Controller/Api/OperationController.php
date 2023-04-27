@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
-#[Route(path: '/operations', name: 'operations_')]
+#[Route(path: '/api/operations', name: 'api_operations_')]
 class OperationController extends AbstractController
 {
     public function __construct(

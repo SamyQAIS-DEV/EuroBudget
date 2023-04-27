@@ -21,6 +21,28 @@ class DepositAccountServiceTest extends WebTestCase
         $this->service = self::getContainer()->get(DepositAccountService::class);
     }
 
+    public function testCreate(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtures(['users']);
+        $depositAccount = $this->service->create((new DepositAccount())->setTitle('Valid Title')->setAmount(10), $user);
+        $this->assertInstanceOf(DepositAccount::class, $depositAccount);
+        $this->assertSame('Valid Title', $depositAccount->getTitle());
+    }
+
+    public function testUpdate(): void
+    {
+        /** @var User $user */
+        ['user1' => $user] = $this->loadFixtures(['users']);
+        $repository = $this->em->getRepository(DepositAccount::class);
+        $depositAccount = $this->getValidEntity($user);
+        $repository->save($depositAccount, true);
+        $depositAccount->setTitle('Updated !!!');
+        $depositAccount = $this->service->update($depositAccount);
+        $this->assertInstanceOf(DepositAccount::class, $depositAccount);
+        $this->assertSame('Updated !!!', $depositAccount->getTitle());
+    }
+
     public function testUpdateFavorite(): void
     {
         /** @var User $user */

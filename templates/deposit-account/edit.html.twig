@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edition d\'un compte en banque' %}
+
+{% block body %}
+    <div class="container py5">
+        <h1>Edition d'un compte en banque</h1>
+
+        {{ include('deposit-account/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+{% endblock %}

@@ -6,7 +6,7 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/categories', name: 'categories_')]
+#[Route(path: '/api/categories', name: 'api_categories_')]
 class CategoryController extends AbstractController
 {
     public function __construct(

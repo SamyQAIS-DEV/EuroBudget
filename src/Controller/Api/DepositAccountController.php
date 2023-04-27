@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Throwable;
 
-#[Route(path: '/deposit-accounts', name: 'deposit_accounts_')]
+#[Route(path: '/api/deposit-accounts', name: 'api_deposit_accounts_')]
 class DepositAccountController extends AbstractController
 {
     public function __construct(
