@@ -6,6 +6,7 @@ type FieldProps = {
     value?: any;
     label?: string;
     onInput?: (event: FormEvent) => void;
+    onChange?: (event: FormEvent) => void;
     error?: string[];
     component?: ({ ...props }: AttrProps) => JSX.Element | JSX.Element[];
     wrapperClassName?: string;
@@ -17,6 +18,7 @@ export type AttrProps = {
     name: string;
     className?: string;
     onInput?: () => void;
+    onChange?: () => void;
     autoComplete?: string;
     type?: string;
     value?: any;

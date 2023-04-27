@@ -1,3 +1,5 @@
 Date.prototype.toJSON = function() {
-    return this.toUTCString();
+    console.log(this);
+    console.log(this.toDateString());
+    return this.toDateString();
 };

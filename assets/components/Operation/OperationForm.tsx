@@ -110,7 +110,6 @@ export const OperationForm = ({
                     required
                     defaultValue={item.type}
                 />
-                {/* TODO: FormField */}
                 {isPremium() && (
                     <select name="category" onChange={handleCategory} value={item.category?.id}>
                         <option value="">Placeholder</option>
@@ -118,13 +117,6 @@ export const OperationForm = ({
                             <option key={category.id} value={category.id}>{category.name}</option>
                         ))}
                     </select>
-                    // <FormField
-                    //     type="select"
-                    //     name="category"
-                    //     label="Catégorie"
-                    //     onChange={handleCategory}
-                    //     defaultValue={item.category}
-                    // />
                 )}
                 <FormField
                     type="date"

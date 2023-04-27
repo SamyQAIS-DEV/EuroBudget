@@ -10,6 +10,7 @@ import {addOperation, deleteOperation, findOperationsForCurrentMonth, findOperat
 import {OperationForm} from '@components/Operation/OperationForm';
 import {addFlash} from '@elements/AlertElement';
 import {isCurrentMonth} from '@functions/date';
+import {Switch} from '@components/Switch';
 
 type OperationListProps = {
     year: string;
@@ -28,6 +29,7 @@ export const OperationList = ({
     onOperationChanged = () => {},
 }: OperationListProps) => {
     const [{data, isLoading, isError, isDone}, fetch, setData] = useJsonFetch<OperationEntity[]>(true, findOperationsForCurrentMonth);
+    const [filterEnabled, setFilterEnabled] = useState<boolean>(false);
     const [state, setState] = useState<State>({
         creating: false,
         editing: null,
@@ -94,7 +96,6 @@ export const OperationList = ({
         try {
             const newOperation = await updatePastOperation(operation);
             setData(data.map(o => (o.id === operation.id ? newOperation : o)));
-            addFlash('Opération modifiée');
             onOperationChanged(operation);
         } catch (e) {
             operation.past = !operation.past;
@@ -124,26 +125,35 @@ export const OperationList = ({
     return (
         <section id="operation-list">
             <p><strong>{data.length}</strong> opération{data.length > 0 && 's'} ce mois-ci</p>
-            <Button className="mb1" onClick={handleCreating}>
-                <Icon name="edit" title="Créer une opération"/><span>Créer une opération</span>
-            </Button>
+            <div className="flex">
+                <Button className="mb1" onClick={handleCreating}>
+                    <Icon name="edit" title="Créer une opération"/><span>Créer une opération</span>
+                </Button>
+                <Switch id='operation-past-filter' checked={filterEnabled} label='Filtrer' onChange={() => setFilterEnabled(!filterEnabled)}/>
+
+            </div>
             <Modal show={state.creating} onClose={handleCloseCreating}>
                 Création d'une opération
                 <OperationForm onSubmit={handleCreate}/>
             </Modal>
             <div className="operations list-group p0">
-                {data.map((operation) => (
-                    <Operation
-                        key={operation.id}
-                        operation={operation}
-                        editing={state.editing === operation.id}
-                        onEdit={handleEditing}
-                        onCloseEdition={handleCloseEditing}
-                        onUpdate={handleUpdate}
-                        onPastChanged={handlePastChanged}
-                        onDelete={handleDelete}
-                    />
-                ))}
+                {data.map((operation) => {
+                    if (filterEnabled && operation.past) {
+                        return null;
+                    }
+                    return (
+                        <Operation
+                            key={operation.id}
+                            operation={operation}
+                            editing={state.editing === operation.id}
+                            onEdit={handleEditing}
+                            onCloseEdition={handleCloseEditing}
+                            onUpdate={handleUpdate}
+                            onPastChanged={handlePastChanged}
+                            onDelete={handleDelete}
+                        />
+                    );
+                })}
             </div>
         </section>
     );

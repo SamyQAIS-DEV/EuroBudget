@@ -10,6 +10,7 @@ import {Operation as OperationEntity} from '@entities/Operation';
 import {OperationForm} from '@components/Operation/OperationForm';
 import {formatDate} from '@functions/date';
 import {formatCurrency} from '@functions/number';
+import {playNotification} from '@functions/notification';
 
 type OperationProps = {
     operation: OperationEntity;
@@ -49,6 +50,7 @@ export const Operation = ({
     };
 
     const handlePastChanged = async () => {
+        playNotification();
         operation.past = !operation.past;
         setIsLoading(true);
         await onPastChanged(operation);

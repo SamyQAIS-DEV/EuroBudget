@@ -1,6 +1,8 @@
 {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.color) }}
+    <div class="grid2">
+        {{ form_row(form.name) }}
+        {{ form_row(form.color) }}
+    </div>
 
     <button type="submit" class="btn btn-primary">{{ button_label|default('Créer') }}</button>
 {{ form_end(form) }}

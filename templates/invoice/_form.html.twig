@@ -1,9 +1,12 @@
 {{ form_start(form) }}
-    {{ form_row(form.label) }}
-    {{ form_row(form.amount) }}
-    {{ form_row(form.active) }}
-
-    {{ form_rest(form) }}
+    <div class="grid2">
+        {{ form_row(form.label) }}
+        {{ form_row(form.amount) }}
+    </div>
+    <div class="grid2">
+        {{ form_rest(form) }}
+        {{ form_row(form.active) }}
+    </div>
 
     <button type="submit" class="btn btn-primary">{{ button_label|default('Créer') }}</button>
 {{ form_end(form) }}
