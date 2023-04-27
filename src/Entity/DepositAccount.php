@@ -83,6 +83,7 @@ class DepositAccount
     public function setCreator(User $creator): self
     {
         $this->creator = $creator;
+        $this->addUser($creator);
 
         return $this;
     }

@@ -28,6 +28,7 @@ class DepositAccountService
     public function create(DepositAccount $depositAccount, User $user): DepositAccount
     {
         $depositAccount->setCreator($user);
+        $user->setFavoriteDepositAccount($depositAccount);
         $this->depositAccountRepository->save($depositAccount, true);
 
         return $depositAccount;

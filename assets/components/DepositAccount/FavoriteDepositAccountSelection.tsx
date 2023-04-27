@@ -8,8 +8,7 @@ import {DepositAccount as DepositAccountEntity} from '@entities/DepositAccount';
 import {findDepositAccounts} from '@api/deposit-accounts';
 import {AutoSubmitForm} from '@components/Form/AutoSubmitForm';
 
-
-let cachedDepositAccounts: DepositAccountEntity[]|null = null;
+let cachedDepositAccounts: DepositAccountEntity[] | null = null;
 
 export const FavoriteDepositAccountSelection = () => {
     const [show, setShow] = useState<boolean>(false);
@@ -46,17 +45,20 @@ export const FavoriteDepositAccountSelection = () => {
             <Button onClick={() => setShow(true)}>Compte</Button>
             <Modal show={show} onClose={() => setShow(false)}>
                 Sélection du compte en banque
-                {data && (
-                    <AutoSubmitForm>
-                        <Field
-                            wrapperClassName='grid2 fit'
-                            name="favoriteDepositAccount"
-                            component={DepositAccountRadios}
-                            values={data}
-                            defaultValue={window.eurobudget.FAVORITE_DEPOSIT_ACCOUNT_ID}
-                        />
-                    </AutoSubmitForm>
-                )}
+                <div className="modal__body">
+                    {data && (
+                        <AutoSubmitForm>
+                            <Field
+                                wrapperClassName="grid2 fit"
+                                name="favoriteDepositAccount"
+                                component={DepositAccountRadios}
+                                values={data}
+                                defaultValue={window.eurobudget.FAVORITE_DEPOSIT_ACCOUNT_ID}
+                            />
+                        </AutoSubmitForm>
+                    )}
+                    <a className="btn-primary mt2" href="/deposit-accounts/new" data-turbolinks="false">Nouveau</a>
+                </div>
             </Modal>
         </>
     );

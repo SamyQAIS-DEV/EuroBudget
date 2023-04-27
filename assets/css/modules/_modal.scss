@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: visible;
 
     &.floating {
         width: 95vw;
@@ -69,6 +70,10 @@
     &:hover {
         color: var(--contrast);
     }
+}
+
+.modal-box .modal__body {
+    overflow: auto;
 }
 
 .modal-box button[type="submit"] {

@@ -17,7 +17,7 @@
             {% endif %}
         </li>
           <li class="header__logout">
-              <a href="{{ path('auth_logout') }}" title="{{ 'Logout'|trans }}">
+              <a href="{{ path('auth_logout') }}" title="{{ 'Logout'|trans }}" data-turbolinks="false">
                   {{ icon('log-out') }} <span>{{ 'Logout'|trans }}</span>
               </a>
           </li>
