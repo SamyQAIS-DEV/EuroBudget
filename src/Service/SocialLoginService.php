@@ -32,7 +32,7 @@ class SocialLoginService
         $user->setEmail($oauthData['email']);
         $user->setGithubId($oauthData['github_id'] ?? null);
         $user->setDiscordId($oauthData['discord_id'] ?? null);
-        // TODO Hydrate user if needed
+        // Hydrate user if needed
 
         return true;
     }

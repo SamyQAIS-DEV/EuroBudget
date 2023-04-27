@@ -25,11 +25,7 @@ class ProfileService
         if (false === $data->file->getRealPath()) {
             throw new RuntimeException('Impossible de redimensionner un avatar non existant');
         }
-        // TODO
-        // On redimensionne l'image
-        // $manager = new ImageManager(['driver' => 'imagick']);
-        // $manager->make($data->file)->fit(100, 100)->save($data->file->getRealPath());
-        // On la déplace dans le profil utilisateur
+
         $data->user->setAvatarFile($data->file);
         $data->user->setUpdatedAt(new DateTimeImmutable());
         $this->entityManager->flush();

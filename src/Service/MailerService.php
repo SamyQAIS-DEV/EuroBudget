@@ -14,6 +14,8 @@ class MailerService
         private readonly Environment $twig,
         private readonly MailerInterface $mailer,
         private readonly string $mailPrefixSubject,
+        private readonly string $senderAddress,
+        private readonly string $senderName,
     ) {
     }
 
@@ -24,9 +26,8 @@ class MailerService
         $this->twig->addGlobal('format', 'text');
         $text = $this->twig->render($template, array_merge($data, ['layout' => 'mails/base.text.twig']));
 
-        // TODO Sender email in env
         return (new Email())
-            ->from(new Address('noreply@samyqais.fr', 'SamyQais'))
+            ->from(new Address($this->senderAddress, $this->senderName))
             ->html($html)
             ->text($text)
             ->subject($this->mailPrefixSubject . ' | ' . $subject);
