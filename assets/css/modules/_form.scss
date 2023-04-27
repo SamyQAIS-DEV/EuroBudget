@@ -11,6 +11,10 @@ form > * + * {
     //margin-top: space(3);
 }
 
+option {
+    background-color: var(--background);
+}
+
 // Champs texte
 // ==================
 .form-group {

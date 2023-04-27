@@ -6,7 +6,7 @@
     border-radius: space(2);
     box-shadow: 0 0 8px var(--shadow);
     padding: var(--card-padding);
-    transition: 0.3s;
+    transition: all 0.3s, background 0s !important;
 }
 
 %card-hoverable {

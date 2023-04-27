@@ -45,6 +45,9 @@ class RegistrationControllerTest extends WebTestCase
         $form->setValues([
             'registration_form' => [
                 'email' => 'jane@doe.fr',
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);
@@ -66,6 +69,9 @@ class RegistrationControllerTest extends WebTestCase
         $form->setValues([
             'registration_form' => [
                 'email' => 'jane@doe.fr',
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);
@@ -88,6 +94,9 @@ class RegistrationControllerTest extends WebTestCase
         $form->setValues([
             'registration_form' => [
                 'email' => $this->users['user1']->getEmail(),
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);
@@ -107,6 +116,9 @@ class RegistrationControllerTest extends WebTestCase
         $form->setValues([
             'registration_form' => [
                 'email' => 'fdmqagnukbbiitrouoskoaffipvqkufeaaqxzgkjvzufukwectpivvmgbbvtzggogxtunaayxipvonbcacmuubkakxsnfiakuxqfdynmpfhwhjtphucuxyvhapnjbktjfdmqagnukbbiitrouoskoaffipvqkufeaaqxzgkjvzufukwectpivvmgbbvtzggogxtunaayxipvonbcacmuubkakxsnfiakuxqfdynmpfhwhjtphucuxyvhapnjbktj@domain.fr',
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);
@@ -143,6 +155,9 @@ class RegistrationControllerTest extends WebTestCase
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
         $form->setValues([
             'registration_form' => [
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);
@@ -172,6 +187,9 @@ class RegistrationControllerTest extends WebTestCase
         $form = $crawler->selectButton(self::SIGNUP_BUTTON)->form();
         $form->setValues([
             'registration_form' => [
+                'lastname' => 'DOE',
+                'firstname' => 'Jane',
+                'country' => 'FR',
                 'agreeTerms' => 1
             ],
         ]);

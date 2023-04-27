@@ -7,16 +7,22 @@ App\Entity\User:
 
     admin_user (extends user):
         email: admin@domain.fr
+        lastname: Lastname Admin
+        firstname: Firstname Admin
         roles: [ 'ROLE_ADMIN' ]
         favoriteDepositAccount: '@depositAccount*'
 
     github_user (extends user):
         email: github_user@domain.fr
+        lastname: Lastname Github
+        firstname: Firstname Github
         favoriteDepositAccount: '@depositAccount*'
         githubId: 12345
 
     premium_user (extends user):
         email: premium_user@domain.fr
+        lastname: Lastname Premium
+        firstname: Firstname Premium
         premiumEnd: <(new DateTimeImmutable('+1 month'))>
         favoriteDepositAccount: '@depositAccount*'
 

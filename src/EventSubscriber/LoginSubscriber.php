@@ -31,7 +31,7 @@ class LoginSubscriber implements EventSubscriberInterface
             if (!$user->isEmailVerified()) {
                 $user->setEmailVerified(true);
             }
-//            $user->setLastLoginAt(new DateTimeImmutable());
+            $user->setLastLoginAt(new DateTimeImmutable());
             $this->entityManager->flush();
         }
     }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Attribute\Encrypted;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -33,6 +34,16 @@ class User implements UserInterface
     #[Encrypted]
     private string $email;
 
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2)]
+    private string $lastname;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2)]
+    private string $firstname;
+
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $emailVerified = false;
 
@@ -42,11 +53,23 @@ class User implements UserInterface
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $avatarName = null;
 
+    #[ORM\Column(type: Types::STRING, length: 2)]
+    private string $country = 'fr';
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private string $lastLoginIp;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private DateTimeImmutable $lastLoginAt;
+
     #[ORM\Column]
     private array $roles = [];
 
     #[ORM\Column]
     private DateTimeImmutable $updatedAt;
+
+    #[ORM\Column]
+    private DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
@@ -55,8 +78,13 @@ class User implements UserInterface
     public function __construct()
     {
         $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +105,30 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
 
         return $this;
     }
@@ -113,6 +165,42 @@ class User implements UserInterface
     public function setAvatarName(?string $avatarName): self
     {
         $this->avatarName = $avatarName;
+
+        return $this;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getLastLoginIp(): string
+    {
+        return $this->lastLoginIp;
+    }
+
+    public function setLastLoginIp(string $lastLoginIp): self
+    {
+        $this->lastLoginIp = $lastLoginIp;
+
+        return $this;
+    }
+
+    public function getLastLoginAt(): DateTimeImmutable
+    {
+        return $this->lastLoginAt;
+    }
+
+    public function setLastLoginAt(DateTimeImmutable $lastLoginAt): self
+    {
+        $this->lastLoginAt = $lastLoginAt;
 
         return $this;
     }
@@ -182,6 +270,18 @@ class User implements UserInterface
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
