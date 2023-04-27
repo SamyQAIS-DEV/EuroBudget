@@ -2,9 +2,11 @@
 
 namespace App\Service;
 
+use App\Entity\Category;
 use App\Entity\Operation;
 use App\Entity\User;
 use App\Exception\OperationServiceException;
+use App\Repository\CategoryRepository;
 use App\Repository\OperationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -15,11 +17,15 @@ class OperationService
         private readonly ValidatorInterface $validator,
         private readonly CalculatorService $calculatorService,
         private readonly OperationRepository $operationRepository,
+        private readonly CategoryRepository $categoryRepository,
     ) {
     }
 
     public function create(Operation $operation, User $user): Operation
     {
+        if ($operation->getCategory() instanceof Category) {
+            $operation->setCategory($this->categoryRepository->find($operation->getCategory()->getId()));
+        }
         $operation->setCreator($user)->setDepositAccount($user->getFavoriteDepositAccount());
         $errors = $this->validator->validate($operation);
         if (count($errors) > 0) {
@@ -34,6 +40,9 @@ class OperationService
 
     public function update(Operation $operation, Operation $originalOperation): Operation
     {
+        if ($operation->getCategory() instanceof Category) {
+            $operation->setCategory($this->categoryRepository->find($operation->getCategory()->getId()));
+        }
         $errors = $this->validator->validate($operation);
         if (count($errors) > 0) {
             throw new OperationServiceException($errors);

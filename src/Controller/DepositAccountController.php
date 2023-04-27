@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Dto\AvatarDto;
 use App\Enum\AlertEnum;
 use App\Service\DepositAccountService;
-use App\Service\ProfileService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

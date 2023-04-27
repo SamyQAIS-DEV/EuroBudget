@@ -7,11 +7,11 @@
         <h1>Toutes vos factures</h1>
 
         <section id="invoice-list">
-            <a href="{{ path('invoice_new') }}" class="btn-primary mb1">
+            <a href="{{ path('invoices_new') }}" class="btn-primary mb1">
                 {{ icon('edit') }}<span>Créer une facture</span>
             </a>
             {% if is_granted('CAN_CREATE_FROM_INVOICES') %}
-                <form action="{{ path('operation_create_from_invoices') }}" method="POST">
+                <form action="{{ path('operations_create_from_invoices') }}" method="POST">
                     <button type="submit" class="btn-secondary mb1">{{ icon('edit') }}<span>Convertir en opérations</span></button>
                 </form>
             {% endif %}

@@ -7,7 +7,7 @@
         <h1>Toutes vos catégories</h1>
 
         <section id="category-list">
-            <a href="{{ path('category_new') }}" class="btn-primary mb1">
+            <a href="{{ path('categories_new') }}" class="btn-primary mb1">
                 {{ icon('edit') }}<span>Créer une catégorie</span>
             </a>
             <p><strong>{{ categories|length }}</strong> catégorie{{ categories|length > 1 ? 's' : '' }}</p>

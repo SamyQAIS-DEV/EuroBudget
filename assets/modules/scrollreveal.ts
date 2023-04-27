@@ -17,7 +17,7 @@ const handleIntersect = function(entries, observer) {
 };
 const observer = new IntersectionObserver(handleIntersect, options);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
     document.querySelectorAll('.fade')
         .forEach(r => {
             observer.observe(r);

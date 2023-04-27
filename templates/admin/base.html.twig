@@ -31,7 +31,9 @@
                 ...(window.eurobudget || {}),
                 USER_ID: {{ app.user ? app.user.id : 'null' }},
                 FAVORITE_DEPOSIT_ACCOUNT_ID: {{ app.user ? app.user.favoriteDepositAccount.id : 'null' }},
+                IS_PREMIUM: {{ app.user ? app.user.premium : 'false' }}
             }
         </script>
+        {% block javascripts_footer '' %}
     </body>
 </html>

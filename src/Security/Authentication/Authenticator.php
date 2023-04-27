@@ -64,7 +64,6 @@ class Authenticator extends AbstractAuthenticator
         TokenInterface $token,
         string $firewallName
     ): RedirectResponse {
-        // TODO Tester redirection after login
         if ($redirect = $request->get('redirect')) {
             try {
                 $this->urlMatcher->match($redirect);

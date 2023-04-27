@@ -9,6 +9,7 @@ use App\Repository\OperationRepository;
 use App\Security\Voter\OperationVoter;
 use App\Service\OperationService;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +69,7 @@ class OperationController extends AbstractController
     }
 
     #[Route(path: '', name: 'post', methods: ['POST'])]
-    public function post(Request $request): JsonResponse
+    public function post(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         if (!$this->isGranted(OperationVoter::POST)) {
             $this->addAlert(AlertEnum::WARNING, 'Vous ne pouvez pas ajouter plus d\'opération ce mois-ci sans être premium.');
@@ -102,7 +103,7 @@ class OperationController extends AbstractController
             $request->getContent(),
             Operation::class,
             'json',
-            [AbstractNormalizer::OBJECT_TO_POPULATE => $operation]
+            [AbstractNormalizer::GROUPS => ['write'], AbstractNormalizer::OBJECT_TO_POPULATE => $operation]
         );
         try {
             $operation = $this->operationService->update($operation, $originalOperation);

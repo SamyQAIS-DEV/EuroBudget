@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\InvoiceRepository;
+use App\Validator\CategoryAccess;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
-class Invoice
+class Invoice implements CategorizableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -38,6 +39,7 @@ class Invoice
     private DepositAccount $depositAccount;
 
     #[ORM\ManyToOne]
+    #[CategoryAccess]
     private ?Category $category = null;
 
     public function getId(): ?int

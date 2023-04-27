@@ -69,8 +69,8 @@ class InvoiceControllerTest extends WebTestCase
         self::assertResponseRedirects('/invoices');
         self::assertSame($originalNumObjectsInRepository, $repository->count([]));
         $fixture = $repository->find($fixture->getId());
-        self::assertSame('Something New', $fixture->getName());
-        self::assertSame('something-new', $fixture->getSlug());
+        self::assertSame('Something New', $fixture->getLabel());
+        self::assertEquals(15, $fixture->getAmount());
     }
 
     public function testEditAccessDenied(): void

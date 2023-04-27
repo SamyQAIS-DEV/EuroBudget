@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Enum\TypeEnum;
 use App\Repository\OperationRepository;
+use App\Validator\CategoryAccess;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
-class Operation implements CalculableInterface
+class Operation implements CalculableInterface, CategorizableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -59,6 +60,8 @@ class Operation implements CalculableInterface
     private ?Invoice $invoice = null;
 
     #[ORM\ManyToOne]
+    #[CategoryAccess]
+    #[Groups(['read', 'write'])]
     private ?Category $category = null;
 
     public function __construct()

@@ -47,7 +47,7 @@ class CategoryControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', sprintf('%s/new', $this->path));
         $form = $crawler->selectButton(self::CREATION_FORM_BUTTON)->form();
         $form->setValues([
-            'category' => [
+            'category_form' => [
                 'name' => 'Testing',
             ],
         ]);
@@ -67,7 +67,7 @@ class CategoryControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', sprintf('%s/%s/edit', $this->path, $fixture->getId()));
         $form = $crawler->selectButton(self::EDITION_FORM_BUTTON)->form();
         $form->setValues([
-            'category' => [
+            'category_form' => [
                 'name' => 'Something New',
             ],
         ]);

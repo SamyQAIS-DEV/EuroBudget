@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(path: '/categories', name: 'category_')]
+#[Route(path: '/categories', name: 'categories_')]
 #[IsGranted(CategoryVoter::ACCESS)]
 class CategoryController extends AbstractController
 {
@@ -44,7 +44,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->create($category, $this->getUser());
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('categories_index');
         }
 
         return $this->render('category/new.html.twig', [
@@ -60,7 +60,7 @@ class CategoryController extends AbstractController
         if (!$this->isGranted(CategoryVoter::UPDATE, $category)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous ne pouvez pas modifier cette catégorie.');
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('categories_index');
         }
         $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
@@ -68,7 +68,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->update($category);
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('categories_index');
         }
 
         return $this->render('category/edit.html.twig', [
@@ -84,12 +84,12 @@ class CategoryController extends AbstractController
         if (!$this->isGranted(CategoryVoter::DELETE, $category)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous ne pouvez pas supprimer cette catégorie.');
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('categories_index');
         }
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $this->categoryService->delete($category);
         }
 
-        return $this->redirectToRoute('category_index');
+        return $this->redirectToRoute('categories_index');
     }
 }

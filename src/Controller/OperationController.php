@@ -8,7 +8,7 @@ use App\Service\OperationCreateFromInvoicesService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/operations', name: 'operation_')]
+#[Route(path: '/operations', name: 'operations_')]
 class OperationController extends AbstractController
 {
     #[Route(path: '/create-from-invoices', name: 'create_from_invoices', methods: ['POST'])]

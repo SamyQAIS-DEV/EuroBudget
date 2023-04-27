@@ -12,6 +12,7 @@ declare global {
         eurobudget: {
             USER_ID?: number;
             FAVORITE_DEPOSIT_ACCOUNT_ID?: number;
+            IS_PREMIUM?: boolean;
         };
     }
 }

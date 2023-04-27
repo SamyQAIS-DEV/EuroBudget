@@ -1,3 +1,5 @@
+import {Category} from '@entities/Category';
+
 interface OperationInterface {
     id?: number;
     label?: string;
@@ -5,6 +7,7 @@ interface OperationInterface {
     date?: Date;
     type?: string;
     past?: boolean;
+    category?: Category;
 }
 
 export class Operation implements OperationInterface {
@@ -14,6 +17,7 @@ export class Operation implements OperationInterface {
     public date: Date;
     public type: string;
     public past: boolean;
+    category?: Category;
 
     constructor(options: OperationInterface = {}) {
         Object.assign(this, options);

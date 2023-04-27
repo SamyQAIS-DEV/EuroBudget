@@ -13,7 +13,6 @@ abstract class Normalizer implements NormalizerInterface, CacheableSupportsMetho
 
     public function hasCacheableSupportsMethod(): bool
     {
-//        return true; TODO
         return false;
     }
 }

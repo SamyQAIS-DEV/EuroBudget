@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/invoices', name: 'invoice_')]
+#[Route(path: '/invoices', name: 'invoices_')]
 class InvoiceController extends AbstractController
 {
     public function __construct(
@@ -42,7 +42,7 @@ class InvoiceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->invoiceService->create($invoice, $this->getUser());
 
-            return $this->redirectToRoute('invoice_index');
+            return $this->redirectToRoute('invoices_index');
         }
 
         return $this->render('invoice/new.html.twig', [
@@ -58,7 +58,7 @@ class InvoiceController extends AbstractController
         if (!$this->isGranted(InvoiceVoter::UPDATE, $invoice)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous ne pouvez pas modifier cette facture.');
 
-            return $this->redirectToRoute('invoice_index');
+            return $this->redirectToRoute('invoices_index');
         }
         $form = $this->createForm(InvoiceFormType::class, $invoice);
         $form->handleRequest($request);
@@ -66,7 +66,7 @@ class InvoiceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->invoiceService->update($invoice);
 
-            return $this->redirectToRoute('invoice_index');
+            return $this->redirectToRoute('invoices_index');
         }
 
         return $this->render('invoice/edit.html.twig', [
@@ -82,12 +82,12 @@ class InvoiceController extends AbstractController
         if (!$this->isGranted(InvoiceVoter::DELETE, $invoice)) {
             $this->addAlert(AlertEnum::ERROR, 'Vous ne pouvez pas supprimer cette facture.');
 
-            return $this->redirectToRoute('invoice_index');
+            return $this->redirectToRoute('invoices_index');
         }
         if ($this->isCsrfTokenValid('delete' . $invoice->getId(), $request->request->get('_token'))) {
             $this->invoiceService->delete($invoice);
         }
 
-        return $this->redirectToRoute('invoice_index');
+        return $this->redirectToRoute('invoices_index');
     }
 }

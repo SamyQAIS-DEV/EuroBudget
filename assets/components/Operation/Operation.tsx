@@ -67,11 +67,11 @@ export const Operation = ({
             <div className="operation grid fit">
                 <div className="operation__title">
                     <span>{operation.label}</span>
-                    {/*{ category && (*/}
-                    {/*    <div className="operation__category">*/}
-                    {/*        <span className="pill small" style={{ color: category?.color }}>{ category?.name }</span>*/}
-                    {/*    </div>*/}
-                    {/*) }*/}
+                    { operation.category && (
+                        <div className="operation__category">
+                            <span className="pill small" style={{ color: operation.category?.color }}>{ operation.category?.name }</span>
+                        </div>
+                    ) }
                 </div>
                 <div className={amountClassName}>{operation.type}{formatCurrency(operation.amount)}</div>
                 <div className="operation__past">

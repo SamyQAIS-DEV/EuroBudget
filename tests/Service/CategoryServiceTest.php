@@ -55,6 +55,9 @@ class CategoryServiceTest extends KernelTestCase
     private function getValidEntity(User $user): Category
     {
         return (new Category())
-            ->setName('Valid Name');
+            ->setName('Valid Name')
+            ->setSlug('valid-slug')
+            ->setOwner($user)
+            ->setDepositAccount($user->getFavoriteDepositAccount());
     }
 }

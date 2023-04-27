@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -12,14 +13,17 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read', 'write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
     #[Assert\Length(min: 3, max: 180)]
+    #[Groups(['read'])]
     private string $name;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 3, max: 255)]
+    #[Groups(['read'])]
     private string $slug;
 
     #[ORM\ManyToOne]
@@ -31,11 +35,19 @@ class Category
     private DepositAccount $depositAccount;
 
     #[ORM\Column(length: 7)]
+    #[Groups(['read'])]
     private string $color = '#4182f5';
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): string

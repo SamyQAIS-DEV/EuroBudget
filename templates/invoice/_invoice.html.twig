@@ -3,7 +3,7 @@
         <span>{{ invoice.label }}</span>
         {% if invoice.category %}
             <div class="invoice__category">
-                <span class="pill small" style="color: {{ category.color }};">{{ invoice.category.name }}</span>
+                <span class="pill small" style="color: {{ invoice.category.color }};">{{ invoice.category.name }}</span>
             </div>
         {% endif %}
     </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="invoice__actions actions">
         <button>
-            <a href="{{ path('invoice_edit', {'id': invoice.id}) }}" class="btn-primary" title="Éditer la facture">
+            <a href="{{ path('invoices_edit', {'id': invoice.id}) }}" class="btn-primary" title="Éditer la facture">
                 {{ icon('edit') }}
             </a>
         </button>
