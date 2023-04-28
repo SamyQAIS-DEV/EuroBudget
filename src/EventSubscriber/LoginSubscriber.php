@@ -3,14 +3,14 @@
 namespace App\EventSubscriber;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use DateTimeImmutable;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 
 class LoginSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 
@@ -27,12 +27,17 @@ class LoginSubscriber implements EventSubscriberInterface
     public function onLogin(LoginSuccessEvent $event): void
     {
         $user = $event->getUser();
+        $event->getRequest()->getClientIp();
         if ($user instanceof User) {
             if (!$user->isEmailVerified()) {
                 $user->setEmailVerified(true);
             }
+            $ip = $event->getRequest()->getClientIp();
+            if ($ip !== $user->getLastLoginIp()) {
+                $user->setLastLoginIp($ip);
+            }
             $user->setLastLoginAt(new DateTimeImmutable());
-            $this->entityManager->flush();
+            $this->userRepository->save($user, true);
         }
     }
 }
