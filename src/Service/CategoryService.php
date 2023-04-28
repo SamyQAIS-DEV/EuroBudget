@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Category;
 use App\Entity\User;
 use App\Repository\CategoryRepository;
+use DateTimeImmutable;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategoryService
@@ -28,6 +29,7 @@ class CategoryService
     public function update(Category $category): Category
     {
         $category->setSlug($this->slugger->slug(strtolower($category->getName())));
+        $category->setUpdatedAt(new DateTimeImmutable());
         $this->categoryRepository->save($category, true);
 
         return $category;

@@ -1,11 +1,8 @@
 {{ form_start(form) }}
-    <div class="grid2">
-        {{ form_row(form.label) }}
+    <div class="grid3">
+        {{ form_row(form.fromDepositAccount) }}
+        {{ form_row(form.targetDepositAccount) }}
         {{ form_row(form.amount) }}
-    </div>
-    <div class="grid2">
-        {{ form_row(form.active) }}
-        {{ form_rest(form) }}
     </div>
 
     <button type="submit" class="btn btn-primary">{{ button_label|default('Créer') }}</button>

@@ -2,13 +2,14 @@
 
 namespace App\Service;
 
+use App\Entity\DepositAccount;
 use App\Entity\Category;
 use App\Entity\Operation;
 use App\Entity\User;
+use App\Exception\CalculatorException;
 use App\Exception\OperationServiceException;
 use App\Repository\CategoryRepository;
 use App\Repository\OperationRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class OperationService
@@ -21,12 +22,20 @@ class OperationService
     ) {
     }
 
-    public function create(Operation $operation, User $user): Operation
+    /**
+     * @param Operation $operation
+     * @param User $user
+     * @param DepositAccount $depositAccount
+     * @return Operation
+     * @throws OperationServiceException
+     * @throws CalculatorException
+     */
+    public function create(Operation $operation, User $user, DepositAccount $depositAccount): Operation
     {
         if ($operation->getCategory() instanceof Category) {
             $operation->setCategory($this->categoryRepository->find($operation->getCategory()->getId()));
         }
-        $operation->setCreator($user)->setDepositAccount($user->getFavoriteDepositAccount());
+        $operation->setCreator($user)->setDepositAccount($depositAccount);
         $errors = $this->validator->validate($operation);
         if (count($errors) > 0) {
             throw new OperationServiceException($errors);
@@ -38,6 +47,12 @@ class OperationService
         return $operation;
     }
 
+    /**
+     * @param Operation $operation
+     * @param Operation $originalOperation
+     * @return Operation
+     * @throws CalculatorException
+     */
     public function update(Operation $operation, Operation $originalOperation): Operation
     {
         if ($operation->getCategory() instanceof Category) {
@@ -54,6 +69,11 @@ class OperationService
         return $operation;
     }
 
+    /**
+     * @param Operation $operation
+     * @return void
+     * @throws CalculatorException
+     */
     public function delete(Operation $operation): void
     {
         $amount = $this->calculatorService->calculate(null, $operation);

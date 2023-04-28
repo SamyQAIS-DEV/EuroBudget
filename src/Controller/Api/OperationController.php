@@ -84,7 +84,7 @@ class OperationController extends AbstractController
             [AbstractNormalizer::GROUPS => ['write']]
         );
         try {
-            $operation = $this->operationService->create($operation, $this->getUser());
+            $operation = $this->operationService->create($operation, $this->getUser(), $this->getUser()->getFavoriteDepositAccount());
         } catch (OperationServiceException $exception) {
             return $this->json($exception->getErrors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }

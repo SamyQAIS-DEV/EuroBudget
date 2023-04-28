@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Attribute\Encrypted;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
-use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -21,6 +20,7 @@ class User implements UserInterface
 {
     use PremiumTrait;
     use SocialLoggableTrait;
+    use TimestampableTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
@@ -45,6 +45,7 @@ class User implements UserInterface
     private string $firstname;
 
     #[ORM\Column(type: Types::BOOLEAN)]
+    #[Assert\Type(Types::BOOLEAN, message: 'The value {{ value }} is not a valid {{ type }}.')]
     private bool $emailVerified = false;
 
     #[Vich\UploadableField(mapping: "avatars", fileNameProperty: "avatarName")]
@@ -64,12 +65,6 @@ class User implements UserInterface
 
     #[ORM\Column]
     private array $roles = [];
-
-    #[ORM\Column]
-    private DateTimeImmutable $updatedAt;
-
-    #[ORM\Column]
-    private DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
@@ -260,30 +255,6 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-    }
-
-    public function getUpdatedAt(): DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getFavoriteDepositAccount(): DepositAccount

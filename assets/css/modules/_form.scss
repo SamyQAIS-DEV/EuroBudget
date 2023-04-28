@@ -21,6 +21,10 @@ option {
     position: relative;
 }
 
+option {
+    background-color: var(--background);
+}
+
 .form-group input,
 .form-group textarea,
 .form-group select,

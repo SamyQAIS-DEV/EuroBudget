@@ -30,7 +30,7 @@ class CategoryAccessValidatorTest extends ValidatorTestCase
     /**
      * @dataProvider dataProvider
      */
-    public function testSlugConstraint(bool $expectViolation, $value, CategorizableInterface $categorizable, CategoryAccess $constraint): void
+    public function testCategoryAccessConstraint(bool $expectViolation, $value, CategorizableInterface $categorizable, CategoryAccess $constraint): void
     {
         $categoryAccessValidator = new CategoryAccessValidator();
         $context = $this->getContext($expectViolation);

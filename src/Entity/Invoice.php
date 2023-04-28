@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\InvoiceRepository;
 use App\Validator\CategoryAccess;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
 class Invoice implements CategorizableInterface
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,6 +44,12 @@ class Invoice implements CategorizableInterface
     #[ORM\ManyToOne]
     #[CategoryAccess]
     private ?Category $category = null;
+
+    public function __construct()
+    {
+        $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
