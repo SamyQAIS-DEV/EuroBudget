@@ -33,9 +33,6 @@ class Transaction
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $methodRef = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?DateTimeImmutable $createdAt = null;
-
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?User $author = null;
@@ -60,6 +57,9 @@ class Transaction
 
     #[ORM\Column(type: Types::FLOAT)]
     private ?float $fee = null;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $createdAt = null;
 
     public function getFullName(): string
     {
@@ -142,18 +142,6 @@ class Transaction
     public function setMethodRef(?string $methodRef): self
     {
         $this->methodRef = $methodRef;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -250,6 +238,18 @@ class Transaction
     public function setFee(float $fee): self
     {
         $this->fee = $fee;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -3,15 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\DepositAccountRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DepositAccountRepository::class)]
 class DepositAccount
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -19,10 +23,14 @@ class DepositAccount
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 100)]
+    #[Assert\Length(min: 3, max: 50)]
+    #[Assert\NotBlank]
     #[Groups(['read', 'write'])]
     private string $title;
 
     #[ORM\Column(type: Types::FLOAT)]
+    #[Assert\Positive]
+    #[Assert\NotNull]
     #[Groups(['read', 'write'])]
     private float $amount = 0;
 
@@ -34,6 +42,7 @@ class DepositAccount
     private Collection $users;
 
     #[ORM\Column(type: Types::STRING, length: 7)]
+    #[Assert\CssColor]
     #[Groups(['read', 'write'])]
     private string $color = '#287bff';
 
@@ -44,11 +53,20 @@ class DepositAccount
     {
         $this->users = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getTitle(): string

@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Invoice;
 use App\Entity\User;
 use App\Repository\InvoiceRepository;
+use DateTimeImmutable;
 
 class InvoiceService
 {
@@ -24,6 +25,7 @@ class InvoiceService
 
     public function update(Invoice $invoice): Invoice
     {
+        $invoice->setUpdatedAt(new DateTimeImmutable());
         $this->invoiceRepository->save($invoice, true);
 
         return $invoice;

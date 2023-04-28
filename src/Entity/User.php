@@ -20,6 +20,7 @@ class User implements UserInterface
 {
     use PremiumTrait;
     use SocialLoggableTrait;
+    use TimestampableTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
@@ -34,6 +35,7 @@ class User implements UserInterface
     private string $email;
 
     #[ORM\Column(type: Types::BOOLEAN)]
+    #[Assert\Type(Types::BOOLEAN, message: 'The value {{ value }} is not a valid {{ type }}.')]
     private bool $emailVerified = false;
 
     #[Vich\UploadableField(mapping: "avatars", fileNameProperty: "avatarName")]
@@ -45,9 +47,6 @@ class User implements UserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column]
-    private DateTimeImmutable $updatedAt;
-
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
     private DepositAccount $favoriteDepositAccount;
@@ -55,6 +54,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -172,18 +172,6 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-    }
-
-    public function getUpdatedAt(): DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     public function getFavoriteDepositAccount(): DepositAccount

@@ -25,10 +25,11 @@ class OperationServiceTest extends KernelTestCase
     {
         /** @var User $user */
         ['user1' => $user] = $this->loadFixtures(['users']);
-        $operation = $this->service->create($this->getValidOperation(), $user);
+        $operation = $this->service->create($this->getValidOperation(), $user, $user->getFavoriteDepositAccount());
         $this->assertInstanceOf(Operation::class, $operation);
         $this->assertSame($user->getFavoriteDepositAccount()->getId(), $operation->getDepositAccount()->getId());
     }
+
     public function testUpdate(): void
     {
         /** @var Operation $operation */

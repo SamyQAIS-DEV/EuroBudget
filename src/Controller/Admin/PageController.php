@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/adminn', name: 'admin_')]
+#[Route(path: '/admin', name: 'admin_')]
 class PageController extends AbstractController
 {
     #[Route(path: '', name: 'home')]

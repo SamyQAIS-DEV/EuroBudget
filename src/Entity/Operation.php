@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
 class Operation implements CalculableInterface, CategorizableInterface
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -47,13 +49,13 @@ class Operation implements CalculableInterface, CategorizableInterface
     private DepositAccount $depositAccount;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    #[Groups(['read', 'write'])]
     #[Assert\NotNull]
+    #[Groups(['read', 'write'])]
     private DateTimeImmutable $date;
 
     #[ORM\Column]
+    #[Assert\Type(Types::BOOLEAN, message: 'The value {{ value }} is not a valid {{ type }}.')]
     #[Groups(['read', 'write'])]
-    #[Assert\NotNull]
     private bool $past = false;
 
     #[ORM\ManyToOne]
@@ -67,6 +69,8 @@ class Operation implements CalculableInterface, CategorizableInterface
     public function __construct()
     {
         $this->date = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int

@@ -10,9 +10,13 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class CategoryAccessValidator extends ConstraintValidator
 {
+    /**
+     * @param Category|null $value
+     * @param CategoryAccess $constraint
+     * @return void
+     */
     public function validate(mixed $value, Constraint $constraint): void
     {
-        /* @var CategoryAccess $constraint */
         if (null === $value || '' === $value) {
             return;
         }

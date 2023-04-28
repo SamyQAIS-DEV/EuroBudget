@@ -36,6 +36,7 @@ class DepositAccountService
 
     public function update(DepositAccount $depositAccount): DepositAccount
     {
+        $depositAccount->setUpdatedAt(new DateTimeImmutable());
         $this->depositAccountRepository->save($depositAccount, true);
 
         return $depositAccount;
