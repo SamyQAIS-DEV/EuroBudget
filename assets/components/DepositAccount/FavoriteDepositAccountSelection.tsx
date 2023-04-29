@@ -8,7 +8,7 @@ import {DepositAccount as DepositAccountEntity} from '@entities/DepositAccount';
 import {findDepositAccounts} from '@api/deposit-accounts';
 import {AutoSubmitForm} from '@components/Form/AutoSubmitForm';
 
-let cachedDepositAccounts: DepositAccountEntity[] | null = null;
+let cachedDepositAccounts: DepositAccountEntity[] = [];
 
 export const FavoriteDepositAccountSelection = () => {
     const [show, setShow] = useState<boolean>(false);

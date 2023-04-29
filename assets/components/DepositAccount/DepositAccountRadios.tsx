@@ -7,7 +7,7 @@ type Props = {
     values: DepositAccountEntity[];
 } & AttrProps;
 
-export function DepositAccountRadios({values, ...props}: Props) {
+export const DepositAccountRadios = ({values, ...props}: Props) => {
 
     return values.map((depositAccount) => (
         <div className="deposit-account-radio" key={depositAccount.id}>

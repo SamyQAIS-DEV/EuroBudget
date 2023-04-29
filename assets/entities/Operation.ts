@@ -1,11 +1,12 @@
 import {Category} from '@entities/Category';
+import {TypeEnum} from '@enums/TypeEnum';
 
 interface OperationInterface {
     id?: number;
     label?: string;
     amount?: number;
     date?: Date;
-    type?: string;
+    type?: TypeEnum;
     past?: boolean;
     category?: Category;
 }
@@ -15,7 +16,7 @@ export class Operation implements OperationInterface {
     public label: string;
     public amount: number;
     public date: Date;
-    public type: string;
+    public type: TypeEnum;
     public past: boolean;
     category?: Category;
 

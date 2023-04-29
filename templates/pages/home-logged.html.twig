@@ -7,7 +7,7 @@
         <div class="container">
             <h1 class="hero-title">{{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}<strong> {{ app.user.userIdentifier }}</strong> !</h1>
 
-            <favorite-deposit-account-recap></favorite-deposit-account-recap>
+            <favorite-deposit-account-recap labels="{{ labels|json_encode }}"></favorite-deposit-account-recap>
         </div>
     </main>
 {% endblock %}

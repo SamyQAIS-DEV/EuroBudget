@@ -44,7 +44,7 @@ export const DepositAccountRecap = ({
             <div className="recap grid3" style={{backgroundColor: data.color}}>
                 <div className="recap__item">
                     Montant actuel
-                    <div className="recap__amount">{data.amount}<sup>€</sup></div>
+                    <div className="recap__amount">{data.amount > 0 && '+'}{data.amount}<sup>€</sup></div>
                 </div>
                 <div className="recap__item">
                     {data.waitingOperationsNb} operation{data.waitingOperationsNb > 0 && 's'} en attente, pour

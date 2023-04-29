@@ -15,6 +15,7 @@ import {Switch} from '@components/Switch';
 type OperationListProps = {
     year: string;
     month: string;
+    labels: string[];
     onOperationChanged?: (operation: OperationEntity) => void;
 };
 
@@ -26,6 +27,7 @@ type State = {
 export const OperationList = ({
     year,
     month,
+    labels,
     onOperationChanged = () => {},
 }: OperationListProps) => {
     const [{data, isLoading, isError, isDone}, fetch, setData] = useJsonFetch<OperationEntity[]>(true, findOperationsForCurrentMonth);
@@ -129,12 +131,13 @@ export const OperationList = ({
                 <Button className="mb1" onClick={handleCreating}>
                     <Icon name="edit" title="Créer une opération"/><span>Créer une opération</span>
                 </Button>
-                <Switch id='operation-past-filter' checked={filterEnabled} label='Filtrer' onChange={() => setFilterEnabled(!filterEnabled)}/>
-
+                {data.length > 0 && (
+                    <Switch id='operation-past-filter' checked={filterEnabled} label='Filtrer' onChange={() => setFilterEnabled(!filterEnabled)}/>
+                )}
             </div>
             <Modal show={state.creating} onClose={handleCloseCreating}>
                 Création d'une opération
-                <OperationForm onSubmit={handleCreate}/>
+                <OperationForm labels={labels} onSubmit={handleCreate}/>
             </Modal>
             <div className="operations list-group p0">
                 {data.map((operation) => {
@@ -145,6 +148,7 @@ export const OperationList = ({
                         <Operation
                             key={operation.id}
                             operation={operation}
+                            labels={labels}
                             editing={state.editing === operation.id}
                             onEdit={handleEditing}
                             onCloseEdition={handleCloseEditing}

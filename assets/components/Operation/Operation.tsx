@@ -11,9 +11,11 @@ import {OperationForm} from '@components/Operation/OperationForm';
 import {formatDate} from '@functions/date';
 import {formatCurrency} from '@functions/number';
 import {playNotification} from '@functions/notification';
+import {TypeEnum} from '@enums/TypeEnum';
 
 type OperationProps = {
     operation: OperationEntity;
+    labels: string[];
     editing: boolean;
     onEdit: (operation: OperationEntity) => void;
     onCloseEdition: () => void;
@@ -24,6 +26,7 @@ type OperationProps = {
 
 export const Operation = ({
     operation,
+    labels,
     editing = false,
     onEdit,
     onCloseEdition,
@@ -31,7 +34,7 @@ export const Operation = ({
     onPastChanged,
     onDelete,
 }: OperationProps) => {
-    const amountClassName = classNames('operation__amount', operation.type === '-' ? 'type__debit' : 'type__credit');
+    const amountClassName = classNames('operation__amount', operation.type === TypeEnum.DEBIT ? 'type__debit' : 'type__credit');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
@@ -91,7 +94,7 @@ export const Operation = ({
             </div>
             <Modal show={editing} onClose={handleClose}>
                 Édition d'une opération
-                <OperationForm operation={operation} onSubmit={handleUpdate}/>
+                <OperationForm operation={operation} labels={labels} onSubmit={handleUpdate}/>
             </Modal>
         </>
     );

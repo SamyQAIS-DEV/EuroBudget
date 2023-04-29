@@ -42,7 +42,7 @@ class DoctrineEncryptSubscriberTest extends EventSubscriberTest
 
     public function testPrePersist(): void
     {
-        $user = (new User())->setEmail('prePersist@domain.fr');
+        $user = (new User())->setEmail('prePersist@domain.fr')->setLastname('Lastname')->setFirstname('Firstname');
         $this->em->persist($user);
         $this->em->flush();
         $userFromRepo = $this->em->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);

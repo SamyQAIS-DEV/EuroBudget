@@ -58,7 +58,7 @@ class User implements UserInterface
     private string $country = 'fr';
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    private string $lastLoginIp;
+    private string $lastLoginIp = '';
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private DateTimeImmutable $lastLoginAt;

@@ -8,17 +8,17 @@ type FieldProps = {
     onInput?: (event: FormEvent) => void;
     onChange?: (event: FormEvent) => void;
     error?: string[];
-    component?: ({ ...props }: AttrProps) => JSX.Element | JSX.Element[];
+    component?: ({...props}: AttrProps) => JSX.Element | JSX.Element[];
     wrapperClassName?: string;
     values?: any;
 } & HTMLProps<HTMLInputElement>;
 
 export type AttrProps = {
-    id: string|number;
+    id: string | number;
     name: string;
     className?: string;
-    onInput?: () => void;
-    onChange?: () => void;
+    onInput?: (event: FormEvent) => void;
+    onChange?: (event: FormEvent) => void;
     autoComplete?: string;
     type?: string;
     value?: any;
@@ -31,6 +31,7 @@ export const Field = ({
     value,
     label,
     onInput = () => {},
+    onChange = () => {},
     error,
     component = null,
     wrapperClassName = '',
@@ -53,6 +54,7 @@ export const Field = ({
         name,
         className,
         onInput: onInput,
+        onChange: onChange,
         autoComplete: 'off',
         type,
         values,
@@ -65,8 +67,6 @@ export const Field = ({
             return component;
         }
         switch (type) {
-            // case 'checkbox':
-            //     return FieldCheckbox
             case 'number':
                 return FieldNumber;
             default:
@@ -84,10 +84,10 @@ export const Field = ({
     );
 };
 
-const FieldText = ({...props}: FieldProps) => {
-    return <input {...props} />;
-};
-
 const FieldNumber = ({...props}: FieldProps) => {
     return <input type="number" inputMode="decimal" min="0" step="0.01" {...props} />;
+};
+
+const FieldText = ({...props}: FieldProps) => {
+    return <input {...props} />;
 };

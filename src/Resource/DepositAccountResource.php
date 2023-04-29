@@ -50,7 +50,7 @@ class DepositAccountResource
         $resource->color = $depositAccount->getColor();
         $resource->waitingOperationsNb = $waitingOperationsNb ?? 0;
         $resource->waitingAmount = $waitingAmount ?? 0;
-        $resource->finalAmount = $resource->amount - $resource->waitingAmount;
+        $resource->finalAmount = $resource->amount + $resource->waitingAmount;
         $resource->entity = $depositAccount;
 
         return $resource;

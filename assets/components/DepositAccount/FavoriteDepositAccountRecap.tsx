@@ -5,7 +5,11 @@ import {OperationList} from '@components/Operation/OperationList';
 import {Operation as OperationEntity} from '@entities/Operation';
 import {isCurrentMonth} from '@functions/date';
 
-export const FavoriteDepositAccountRecap = () => {
+type Props = {
+    labels: string[];
+};
+
+export const FavoriteDepositAccountRecap = ({labels}: Props) => {
     const [operationChanged, setOperationChanged] = useState<OperationEntity>(null);
     const [otherMonthAdded, setOtherMonthAdded] = useState<Date>(null);
     const [year, setYear] = useState<string>(null);
@@ -30,7 +34,7 @@ export const FavoriteDepositAccountRecap = () => {
         <div className="stack mt3" style={style}>
             <DepositAccountRecap operationChanged={operationChanged}/>
             <MonthsList onSelect={handleMonthSelected} otherMonthAdded={otherMonthAdded}/>
-            <OperationList year={year} month={month} onOperationChanged={handleOperationChanged}/>
+            <OperationList year={year} month={month} labels={labels} onOperationChanged={handleOperationChanged}/>
         </div>
     );
 };

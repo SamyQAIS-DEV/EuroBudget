@@ -9,16 +9,20 @@ import {useJsonFetch} from '@hooks/useJsonFetch';
 import {findCategories} from '@api/categories';
 import {Button} from '@components/Button';
 import {Loader} from '@components/Animation/Loader';
+import SearchDropDown from '@components/Operation/SearchDropDown';
+import {TypeEnum} from '@enums/TypeEnum';
 
-let cachedCategories: Category[] | null = null;
+let cachedCategories: Category[] = [];
 
 type OperationFormProps = {
-    operation?: Operation,
-    onSubmit: (operation: Operation) => void
+    operation?: Operation;
+    labels: string[];
+    onSubmit: (operation: Operation) => void;
 };
 
 export const OperationForm = ({
     operation,
+    labels,
     onSubmit,
 }: OperationFormProps) => {
     const [item, setItem] = useState<Operation>(operation ?? new Operation());
@@ -44,6 +48,10 @@ export const OperationForm = ({
         setItem(i => ({...i, label: String(target.value)}));
     };
 
+    const handleSelectLabel = (value: string) => {
+        setItem(i => ({...i, label: value}));
+    };
+
     const handleAmount = (e: FormEvent<HTMLInputElement>) => {
         const target = e.target as HTMLInputElement;
         setItem(i => ({...i, amount: Number(target.value)}));
@@ -51,7 +59,7 @@ export const OperationForm = ({
 
     const handleType = (e: FormEvent<HTMLInputElement>) => {
         const target = e.target as HTMLInputElement;
-        setItem(i => ({...i, type: String(target.value)}));
+        setItem(i => ({...i, type: target.checked ? TypeEnum.CREDIT : TypeEnum.DEBIT}));
     };
 
     const handleCategory = (e: FormEvent<HTMLSelectElement>) => {
@@ -86,13 +94,15 @@ export const OperationForm = ({
     return (
         <Form onSubmit={handleSubmit}>
             <div className="grid2">
-                <FormField
-                    type="text"
-                    name="label"
-                    label="Libellé"
-                    onChange={handleLabel}
+                <SearchDropDown
+                    id='label'
+                    name='label'
+                    label='Libellé'
                     required
                     defaultValue={item.label}
+                    values={labels}
+                    onChange={handleLabel}
+                    onSelection={handleSelectLabel}
                 />
                 <FormField
                     type="number"
@@ -102,14 +112,7 @@ export const OperationForm = ({
                     required
                     defaultValue={item.amount}
                 />
-                <FormField
-                    type="text"
-                    name="type"
-                    label="Type"
-                    onChange={handleType}
-                    required
-                    defaultValue={item.type}
-                />
+                <Switch id="operation-type" checked={item.type === TypeEnum.CREDIT} onChange={handleType} label="Crédit"/>
                 {isPremium() && (
                     <select name="category" onChange={handleCategory} value={item.category?.id}>
                         <option value="">Placeholder</option>

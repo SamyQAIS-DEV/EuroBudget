@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use DateTimeImmutable;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -31,6 +32,12 @@ class OperationRepository extends AbstractRepository
         parent::__construct($registry, Operation::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
+    public function findLabelsFor(DepositAccount $depositAccount) {
+        return $this->findLabelsForQueryBuilder($depositAccount)
+            ->getQuery()
+            ->getResult(AbstractQuery::HYDRATE_SCALAR_COLUMN);
+    }
+
     public function countFor(User $user): int
     {
         return $this->findByUserQueryBuilder($user)
@@ -42,7 +49,7 @@ class OperationRepository extends AbstractRepository
     public function findForRecap(DepositAccount $depositAccount): array
     {
         return $this->findByDepositAccountQueryBuilder($depositAccount)
-            ->select('COUNT(o.id) as waitingOperationsNb, SUM(o.amount) as waitingAmount')
+            ->select("COUNT(o.id) as waitingOperationsNb, SUM (CASE WHEN o.type = '-' THEN -o.amount ELSE o.amount END) as waitingAmount")
             ->andWhere('o.past = false')
             ->getQuery()
             ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true)
@@ -96,6 +103,13 @@ class OperationRepository extends AbstractRepository
             ->andWhere('o.invoice IS NOT NULL')
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    private function findLabelsForQueryBuilder(DepositAccount $depositAccount): QueryBuilder
+    {
+        return $this->findByDepositAccountQueryBuilder($depositAccount)
+            ->select('DISTINCT o.label')
+            ->orderBy('o.label', 'ASC');
     }
 
     private function countForYearAndMonthQueryBuilder(DepositAccount $depositAccount, int $year, int $month): QueryBuilder

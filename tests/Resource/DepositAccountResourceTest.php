@@ -18,6 +18,13 @@ class DepositAccountResourceTest extends TestCase
         $resource = DepositAccountResource::fromDepositAccount($depositAccount, 5, 45);
         $this->assertEquals(100, $resource->amount);
         $this->assertEquals(45, $resource->waitingAmount);
+        $this->assertEquals(145, $resource->finalAmount);
+        $this->assertEquals(5, $resource->waitingOperationsNb);
+
+        $depositAccount->method('getAmount')->willReturn((float) 100);
+        $resource = DepositAccountResource::fromDepositAccount($depositAccount, 5, -45);
+        $this->assertEquals(100, $resource->amount);
+        $this->assertEquals(-45, $resource->waitingAmount);
         $this->assertEquals(55, $resource->finalAmount);
         $this->assertEquals(5, $resource->waitingOperationsNb);
     }
