@@ -161,8 +161,8 @@
         left: 0;
         width: 100%;
         justify-content: space-around;
-        height: 4rem;
-        padding: calc(2 * var(--space));
+        height: auto;
+        padding: space(2) 0 space(5);
         border-top: 1px solid var(--border);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
