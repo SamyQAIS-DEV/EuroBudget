@@ -2,38 +2,40 @@
 
 namespace App\Repository;
 
-use App\Entity\DepositAccount;
+use App\Entity\Notification;
 use App\Entity\User;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\Query;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends AbstractRepository<DepositAccount>
+ * @extends AbstractRepository<Notification>
  */
-class DepositAccountRepository extends AbstractRepository
+class NotificationRepository extends AbstractRepository
 {
     public function __construct(
         ManagerRegistry $registry,
         EncryptedPropertiesAccessor $encryptedPropertiesAccessor,
         private readonly EncryptorInterface $encryptor
     ) {
-        parent::__construct($registry, DepositAccount::class, $encryptedPropertiesAccessor, $encryptor);
+        parent::__construct($registry, Notification::class, $encryptedPropertiesAccessor, $encryptor);
     }
 
-    public function countFor(User $user): int
+    /**
+     * @return Notification[]
+     */
+    public function findRecentFor(User $user): array
     {
         return $this->findForQueryBuilder($user)
-            ->select('COUNT(d.id)')
+            ->setMaxResults(10)
             ->getQuery()
             ->getSingleScalarResult();
     }
 
     /**
-     * @return DepositAccount[]
+     * @return Notification[]
      */
     public function findFor(User $user): array
     {
@@ -44,10 +46,9 @@ class DepositAccountRepository extends AbstractRepository
 
     private function findForQueryBuilder(User $user): QueryBuilder
     {
-        return $this->createQueryBuilder('d')
-            ->leftJoin('d.users', 'u')
-            ->where('u.id = :id')
-            ->setParameter('id', $user->getId())
-            ->orderBy('d.title', 'DESC');
+        return $this->createQueryBuilder('n')
+            ->where('n.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('n.createdAt', 'DESC');
     }
 }

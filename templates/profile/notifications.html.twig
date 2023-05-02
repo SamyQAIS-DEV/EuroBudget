@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mes notifications' %}
+
+{% block body %}
+    <div class="layout-sidebar py5" style="--gap:5;">
+        {% include 'profile/_sidebar.html.twig' with {active: 'notifications', user: app.user} %}
+
+        <main>
+            <h1 class="mb3">{{ icon('bell') }} Mes notifications</h1>
+            {% if notifications is empty %}
+                <div class="py4 text-muted text-center h3">
+                    Vous n'avez aucune notification
+                </div>
+            {% else %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="mobile-hidden">Message</th>
+                        <th style="width: 180px">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for notification in notifications %}
+                            <tr>
+                                <td><a href="{{ notification.url }}">{{ notification.message }}</a></td>
+                                <td>
+                                    <div class="mobile-hidden">
+                                        {{ notification.createdAt | format_date('long') }}
+                                    </div>
+                                    <div class="mobile-only" aria-hidden="true">
+                                        {{ notification.createdAt | format_date('short') }}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </main>
+    </div>
+{% endblock %}

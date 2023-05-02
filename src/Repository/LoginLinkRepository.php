@@ -10,11 +10,6 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends AbstractRepository<LoginLink>
- *
- * @method LoginLink|null find($id, $lockMode = null, $lockVersion = null)
- * @method LoginLink|null findOneBy(array $criteria, array $orderBy = null)
- * @method LoginLink[]    findAll()
- * @method LoginLink[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class LoginLinkRepository extends AbstractRepository
 {

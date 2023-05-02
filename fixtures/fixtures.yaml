@@ -50,3 +50,7 @@ App\Entity\Plan:
         name: Compte premium 12 mois
         price: 10
         duration: 12
+
+App\Entity\Notification:
+    notification{1..5} (extends notification):
+        user: '@user<current()>'

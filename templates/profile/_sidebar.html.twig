@@ -22,4 +22,7 @@
     <a href="{{ path('user_transactions') }}" {% if active == 'transactions' %}aria-selected="true"{% endif %}>
         {{ icon('inbox') }} Mes factures
     </a>
+    <a href="{{ path('user_notifications') }}" {% if active == 'notifications' %}aria-selected="true"{% endif %}>
+        {{ icon('bell') }} Mes notifications
+    </a>
 </aside>

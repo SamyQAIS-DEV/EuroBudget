@@ -8,7 +8,8 @@
 
 .sidebar a {
     display: block;
-    padding: space(2);
+    padding: 0 0 space(2);
+    margin: space(2) space(2) 0;
     font-size: 1.2em;
     white-space: nowrap;
     position: relative;

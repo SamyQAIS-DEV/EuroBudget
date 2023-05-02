@@ -29,3 +29,8 @@ App\Entity\Invoice:
         active: true
         creator: '@user<current()>'
         depositAccount: '@depositAccount<current()>'
+
+App\Entity\Notification:
+    notification (template):
+        message: message
+        url: message

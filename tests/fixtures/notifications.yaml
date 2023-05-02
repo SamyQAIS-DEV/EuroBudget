@@ -1,0 +1,6 @@
+include:
+    - ../../fixtures/templates.yaml
+
+App\Entity\Notification:
+    notification{1..5} (extends notification):
+        user: '@user<current()>'

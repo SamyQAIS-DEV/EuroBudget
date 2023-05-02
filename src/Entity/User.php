@@ -19,6 +19,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class User implements UserInterface
 {
     use PremiumTrait;
+    use NotifiableTrait;
     use SocialLoggableTrait;
     use TimestampableTrait;
 

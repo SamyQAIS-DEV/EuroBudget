@@ -31,6 +31,9 @@ abstract class AbstractRepository extends ServiceEntityRepository
         parent::__construct($registry, $entityClass);
     }
 
+    /**
+     * @return T[]
+     */
     public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null): array
     {
         return $this->findByQuery($criteria)->getResult();

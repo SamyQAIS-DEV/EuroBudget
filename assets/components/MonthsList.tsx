@@ -112,7 +112,6 @@ type MonthsListItemProps = {
 };
 
 const MonthsListItem = ({label, active, count, onSelect}: MonthsListItemProps) => {
-    console.log(label);
     return (
         <div key={'year_' + label}
              className={classNames('tab year relative', active && 'active')}
