@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -26,6 +27,7 @@ class User implements UserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     #[ORM\Column(type: Types::INTEGER)]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 180, unique: true)]
@@ -33,18 +35,21 @@ class User implements UserInterface
     #[Assert\Length(min: 5, max: 100)]
     #[Assert\Email]
     #[Encrypted]
+    #[Groups(['read'])]
     private string $email;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
     #[Encrypted]
+    #[Groups(['read'])]
     private string $lastname;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
     #[Encrypted]
+    #[Groups(['read'])]
     private string $firstname;
 
     #[ORM\Column(type: Types::BOOLEAN)]

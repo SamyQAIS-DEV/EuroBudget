@@ -9,7 +9,7 @@
     </div>
     <div class="invoice__amount">{{ invoice.amount }} €</div>
     <div class="invoice__active">
-        <input type="checkbox" id="{{ invoice.id }}" checked="{{ invoice.active }}" label="Active" disabled is="input-switch">
+        <input type="checkbox" id="{{ invoice.id }}" {{ invoice.active ? 'checked' : null }} label="Active" disabled is="input-switch">
     </div>
     <div class="invoice__actions actions">
         <button>

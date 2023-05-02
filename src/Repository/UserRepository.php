@@ -58,4 +58,19 @@ class UserRepository extends AbstractRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @param string $q
+     * @return User[]
+     */
+    public function search(string $q): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where("LOWER(u.email) LIKE LOWER(:q)")
+            ->orWhere("LOWER(u.lastname) LIKE LOWER(:q)")
+            ->orWhere("LOWER(u.firstname) LIKE LOWER(:q)")
+            ->setParameter('q', $this->encryptor->encrypt($q))
+            ->getQuery()
+            ->getResult();
+    }
 }

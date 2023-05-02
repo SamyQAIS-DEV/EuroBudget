@@ -3,12 +3,12 @@
 {#        {{ icon('bell') }}#}
 {#    </li>#}
     <li class="header__search" title="{{ 'Search'|trans }}">
-        {{ icon('search') }}
+        <search-button></search-button>
     </li>
     {% if app.user %}
         <li class="header__account">
             <a href="{{ path('user_profile') }}" title="{{ 'Profile'|trans }}" {{ menu_active('profile') }}>
-                {{ icon('user') }} <span>{{ app.user.userIdentifier }}</span>
+                {{ icon('user') }} <span>{{ app.user.fullName }}</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('admin_home') }}" class="mla">

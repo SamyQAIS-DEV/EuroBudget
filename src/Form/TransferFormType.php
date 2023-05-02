@@ -29,14 +29,14 @@ class TransferFormType extends AbstractType
             ->add('fromDepositAccount', EntityType::class, [
                 'class' => DepositAccount::class,
                 'placeholder' => 'Compte débité',
-                'choice_label' => 'title',
-                'choices' => $choices
+                'choices' => $choices,
+                'choice_label' => 'title'
             ])
             ->add('targetDepositAccount', EntityType::class, [
                 'class' => DepositAccount::class,
                 'placeholder' => 'Compte crédité',
-                'choice_label' => 'title',
-                'choices' => $choices
+                'choices' => $choices,
+                'choice_label' => 'title'
             ])
             ->add('amount', NumberType::class, [
                 'label' => 'Montant',

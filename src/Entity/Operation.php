@@ -22,8 +22,8 @@ class Operation implements CalculableInterface, CategorizableInterface
     #[Groups(['read'])]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING,length: 255)]
-    #[Assert\Length(min: 3, max: 50)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\Length(min: 3, max: 150)]
     #[Assert\NotBlank]
     #[Groups(['read', 'write'])]
     private string $label;

@@ -1,4 +1,4 @@
-import React, {CSSProperties, HTMLProps, PropsWithChildren, Ref, useEffect, useState} from 'react';
+import React, {CSSProperties, PropsWithChildren, Ref, useEffect, useState} from 'react';
 
 type AnimatedProps = {
     show: boolean;
@@ -6,7 +6,7 @@ type AnimatedProps = {
     duration?: number;
     style?: CSSProperties;
     forwardedRef?: Ref<HTMLDivElement>
-} & PropsWithChildren & HTMLProps<HTMLDivElement>;
+} & PropsWithChildren<any>;
 
 export const Animated = ({
     show,

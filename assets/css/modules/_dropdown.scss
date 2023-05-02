@@ -1,8 +1,6 @@
 .dropdown {
     @extend %card;
-    backdrop-filter: blur(var(--blur));
-    -webkit-backdrop-filter: blur(var(--blur));
-    background: var(--background-transparent);
+    background: var(--background-light);
     padding: 0;
     display: block;
     position: absolute;

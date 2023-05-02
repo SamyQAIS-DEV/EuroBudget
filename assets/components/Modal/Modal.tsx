@@ -41,15 +41,17 @@ export const Modal = ({
         }
     };
 
-    const handleClickOutside = () => {
-        handleClose();
+    const handleClickOutside = (event: MouseEvent) => {
+        if (event.target === event.currentTarget) {
+            handleClose();
+        }
     };
 
     useOnKeyUp('Escape', handleClose);
-    useOnClickOutside('mousedown', ref, handleClickOutside);
+    // useOnClickOutside('mousedown', ref, handleClickOutside);
 
     return createPortal(
-        <Animated show={show} animationName="modal" className={wrapperClassName}>
+        <Animated show={show} animationName="modal" className={wrapperClassName} onClick={handleClickOutside}>
             <Animated show={show} animationName="modalSlide" className={className} forwardedRef={ref}>
                 {closable === true && (
                     <button className="modal-close" onClick={handleClose}>

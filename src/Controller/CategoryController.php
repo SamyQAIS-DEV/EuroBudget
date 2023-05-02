@@ -78,7 +78,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Category $category): Response
     {
         if (!$this->isGranted(CategoryVoter::DELETE, $category)) {

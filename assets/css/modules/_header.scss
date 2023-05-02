@@ -89,6 +89,17 @@
     white-space: nowrap;
 }
 
+.header__search {
+    button {
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+    }
+    .icon {
+        margin: 0;
+    }
+}
+
 .header .header__home {
     display: flex;
     align-items: center;

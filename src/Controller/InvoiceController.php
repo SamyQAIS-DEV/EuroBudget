@@ -76,7 +76,7 @@ class InvoiceController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Invoice $invoice): Response
     {
         if (!$this->isGranted(InvoiceVoter::DELETE, $invoice)) {

@@ -1,6 +1,7 @@
 import {ComponentsTestingElement} from './ComponentsTestingElement';
 import {AlertElement} from './AlertElement';
 import {ModalElement} from './ModalElement';
+import {SearchButtonElement} from './SearchButtonElement';
 import {ThemeSwitcherElement} from './ThemeSwitcherElement';
 import {NetworkStatusElement} from './NetworkStatusElement';
 import {SwitchElement} from './SwitchElement';
@@ -13,6 +14,7 @@ import {DepositAccountSelectionElement} from './DepositAccountSelectionElement';
 customElements.define('components-testing', ComponentsTestingElement);
 customElements.define('alert-element', AlertElement);
 customElements.define('modal-element', ModalElement);
+customElements.define('search-button', SearchButtonElement);
 customElements.define('theme-switcher', ThemeSwitcherElement);
 customElements.define('network-status', NetworkStatusElement);
 customElements.define('premium-button', PremiumButtonElement);
