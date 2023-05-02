@@ -6,6 +6,7 @@ import {Operation} from '@entities/Operation';
 import {findDepositAccountResource} from '@api/deposit-accounts';
 import {DepositAccountResource} from '@entities/DepositAccountResource';
 import {LoaderWrapper} from '@components/LoaderWrapper';
+import {formatCurrency} from '@functions/number';
 
 type Props = {
     operationChanged: Operation;
@@ -37,22 +38,22 @@ export const DepositAccountRecap = ({
 
     return (
         <section id='deposit-account-recap'>
-            <div className="flex">
+            <div className="flex wrap">
                 <h3 className="pill mb1">{data.title}</h3>
                 <a className="btn-secondary" href="/transfers/new" data-turbolinks="false">Faire un virement</a>
             </div>
-            <div className="recap grid3" style={{backgroundColor: data.color}}>
+            <div className="recap grid3 mt1" style={{backgroundColor: data.color}}>
                 <div className="recap__item">
                     Montant actuel
-                    <div className="recap__amount">{data.amount > 0 && '+'}{data.amount}<sup>€</sup></div>
+                    <div className="recap__amount">{formatCurrency(data.amount)}</div>
                 </div>
                 <div className="recap__item">
                     {data.waitingOperationsNb} operation{data.waitingOperationsNb > 0 && 's'} en attente, pour
-                    <div className="recap__amount">{data.waitingAmount}<sup>€</sup></div>
+                    <div className="recap__amount">{formatCurrency(data.waitingAmount)}</div>
                 </div>
                 <div className="recap__item">
                     Montant final
-                    <div className="recap__amount">{data.finalAmount}<sup>€</sup></div>
+                    <div className="recap__amount">{formatCurrency(data.finalAmount)}</div>
                 </div>
                 {isLoading && (
                     <LoaderWrapper />

@@ -39,6 +39,8 @@ class TransferControllerTest extends WebTestCase
             ],
         ]);
         $this->client->submit($form);
+        $this->expectFormErrors(0);
+        $this->client->followRedirect();
         self::assertResponseRedirects('/');
         self::assertSame($originalNumObjectsInRepository + 2, $operationRepository->count([]));
     }

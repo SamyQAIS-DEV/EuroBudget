@@ -32,7 +32,7 @@ class PremiumSubscriptionSubscriber implements EventSubscriberInterface
         $user = $event->getUser();
 
         $email = $this->mailer->createEmail('mails/payment/subscription.twig', 'Merci pour votre paiement !', [
-            'username' => $user->getUserIdentifier(),
+            'username' => $user->getFullName(),
             'premiumEnd' => $user->getPremiumEnd()
         ])
             ->to($user->getEmail());

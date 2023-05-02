@@ -12,7 +12,7 @@ import {Loader} from '@components/Animation/Loader';
 import SearchDropDown from '@components/Operation/SearchDropDown';
 import {TypeEnum} from '@enums/TypeEnum';
 
-let cachedCategories: Category[] = [];
+let cachedCategories: Category[] | null = null;
 
 type OperationFormProps = {
     operation?: Operation;

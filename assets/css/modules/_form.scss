@@ -71,12 +71,14 @@ option {
 
 .form-group input {
     &:focus,
-    &:valid {
+    &:valid,
+    &:invalid:not(:placeholder-shown) {
         outline: 0;
         border-color: var(--contrast);
     }
     &:focus + label::before,
-    &:valid + label::before {
+    &:valid + label::before,
+    &:invalid:not(:placeholder-shown) + label::before {
         line-height: 1;
         font-size: 0.7rem;
         width: auto;

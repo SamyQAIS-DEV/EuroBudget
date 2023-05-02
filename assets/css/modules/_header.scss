@@ -157,7 +157,7 @@
     .header-nav {
         position: fixed;
         bottom: 0;
-        bottom: env(safe-area-inset-bottom);
+        //bottom: env(safe-area-inset-bottom);
         left: 0;
         width: 100%;
         justify-content: space-around;
@@ -177,14 +177,19 @@
     }
 }
 
-@include down(450) {
+@include down(750) {
     .header .header-nav span {
         display: none;
     }
-}
 
-@include down(600) {
     .header__account span {
         display: none;
+    }
+
+    .header-nav > * + * {
+        margin-left: space(1);
+    }
+    .header {
+        padding-top: space(1);
     }
 }

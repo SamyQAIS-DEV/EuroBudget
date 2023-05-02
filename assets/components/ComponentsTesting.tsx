@@ -65,7 +65,7 @@ export const ComponentsTesting = ({userId}: ComponentsTestingProps) => {
                 <h2>Inscription</h2>
                 <form action="">
                     <div className="form-group">
-                        <input type="email" id="login_form_email" name="login_form[email]" required={true} className="form-control" autoComplete="off" />
+                        <input type="email" id="login_form_email" name="login_form[email]" required={true} className="form-control" autoComplete="off" placeholder=' ' />
                         <label htmlFor="login_form_email" title="Adresse mail" className="required"></label>
                     </div>
                     <button type="submit" className='btn btn-primary'>Submit</button>

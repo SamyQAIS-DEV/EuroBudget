@@ -37,11 +37,13 @@ class User implements UserInterface
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
+    #[Encrypted]
     private string $lastname;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
+    #[Encrypted]
     private string $firstname;
 
     #[ORM\Column(type: Types::BOOLEAN)]
@@ -69,6 +71,9 @@ class User implements UserInterface
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
     private DepositAccount $favoriteDepositAccount;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $password = null;
 
     public function __construct()
     {
@@ -268,6 +273,13 @@ class User implements UserInterface
         if (!$favoriteDepositAccount->getUsers()->contains($this)) {
             $favoriteDepositAccount->addUser($this);
         }
+
+        return $this;
+    }
+
+    public function setPassword(?string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

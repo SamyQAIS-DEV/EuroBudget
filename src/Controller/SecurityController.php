@@ -6,9 +6,14 @@ use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Form\LoginFormType;
 use App\Repository\UserRepository;
+use App\Service\MailerService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SecurityController extends AbstractController
@@ -21,7 +26,8 @@ class SecurityController extends AbstractController
     public function login(
         Request $request,
         UserRepository $userRepository,
-        EventDispatcherInterface $dispatcher
+        EventDispatcherInterface $dispatcher,
+        MailerService $mailer
     ): Response {
         if ($this->getUser()) {
             return $this->redirectToRoute(HomeController::HOME_ROUTE_NAME);

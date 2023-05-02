@@ -41,8 +41,8 @@ class Operation implements CalculableInterface, CategorizableInterface
     private TypeEnum $type = TypeEnum::DEBIT;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private User $creator;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $creator = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -65,6 +65,9 @@ class Operation implements CalculableInterface, CategorizableInterface
     #[CategoryAccess]
     #[Groups(['read', 'write'])]
     private ?Category $category = null;
+
+    #[ORM\Column]
+    private bool $transfer = false;
 
     public function __construct()
     {
@@ -114,7 +117,7 @@ class Operation implements CalculableInterface, CategorizableInterface
         return $this;
     }
 
-    public function getCreator(): User
+    public function getCreator(): ?User
     {
         return $this->creator;
     }
@@ -182,6 +185,18 @@ class Operation implements CalculableInterface, CategorizableInterface
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function isTransfer(): bool
+    {
+        return $this->transfer;
+    }
+
+    public function setTransfer(bool $transfer): self
+    {
+        $this->transfer = $transfer;
 
         return $this;
     }

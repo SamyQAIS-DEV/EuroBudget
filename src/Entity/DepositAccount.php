@@ -29,7 +29,7 @@ class DepositAccount
     private string $title;
 
     #[ORM\Column(type: Types::FLOAT)]
-    #[Assert\Positive]
+    #[Assert\PositiveOrZero]
     #[Assert\NotNull]
     #[Groups(['read', 'write'])]
     private float $amount = 0;

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\OperationRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,12 +11,14 @@ class HomeController extends AbstractController
 {
     public const HOME_ROUTE_NAME = 'home';
 
-    public function __construct(private readonly OperationRepository $operationRepository)
-    {
+    public function __construct(
+        private readonly OperationRepository $operationRepository,
+        private readonly string $adminIps,
+    ) {
     }
 
     #[Route(path: '/', name: self::HOME_ROUTE_NAME)]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $user = $this->getUser();
         if ($user) {
@@ -23,6 +26,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('pages/home.html.twig', [
+            'canLoginAsAdmin' => str_contains($this->adminIps, $request->getClientIp()),
             'menu' => 'home',
         ]);
     }

@@ -78,7 +78,7 @@ export const Operation = ({
                         </div>
                     ) }
                 </div>
-                <div className={amountClassName}>{operation.type}{formatCurrency(operation.amount)}</div>
+                <div className={amountClassName}>{operation.type}{formatCurrency(operation.amount, false)}</div>
                 <div className="operation__past">
                     <Switch id={String(operation.id)} checked={operation.past} label="Opération passée" onChange={handlePastChanged}/>
                 </div>

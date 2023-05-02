@@ -78,7 +78,6 @@ export const MonthsList = ({
                             <MonthsListItem
                                 key={'year_' + year}
                                 label={year}
-                                count={yearMonth.count}
                                 active={year === selectedYear} onSelect={handleYearSelected}
                             />
                         );
@@ -107,18 +106,19 @@ export const MonthsList = ({
 
 type MonthsListItemProps = {
     label: string;
-    count: number;
     active: boolean;
+    count?: number;
     onSelect: (year: string) => void;
 };
 
-const MonthsListItem = ({label, count, active, onSelect}: MonthsListItemProps) => {
+const MonthsListItem = ({label, active, count, onSelect}: MonthsListItemProps) => {
+    console.log(label);
     return (
         <div key={'year_' + label}
              className={classNames('tab year relative', active && 'active')}
              onClick={() => onSelect(label)}
         >
-            <span className="bullet">{count}</span>
+            {count !== undefined ? <span className="bullet">{count}</span> : null}
             {label}
         </div>
     );

@@ -8,10 +8,10 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
         {% block javascripts %}
+            {{ fix_is_attribute()|raw }}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-{#        <link rel="apple-touch-icon" sizes="128x128" href="/favicons/icon-128x128.png">#}
-        <link rel="apple-touch-icon" sizes="128x128" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="apple-touch-icon" sizes="128x128" href="/images/icon-rounded-128x128.png">
         {% block meta '' -%}
         <meta property="og:title" content="{{ block('title') }}"/>
         <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>

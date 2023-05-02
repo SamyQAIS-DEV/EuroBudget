@@ -7,8 +7,9 @@ import {useJsonFetch} from '@hooks/useJsonFetch';
 import {DepositAccount as DepositAccountEntity} from '@entities/DepositAccount';
 import {findDepositAccounts} from '@api/deposit-accounts';
 import {AutoSubmitForm} from '@components/Form/AutoSubmitForm';
+import {Icon} from '@components/Icon';
 
-let cachedDepositAccounts: DepositAccountEntity[] = [];
+let cachedDepositAccounts: DepositAccountEntity[] | null = null;
 
 export const FavoriteDepositAccountSelection = () => {
     const [show, setShow] = useState<boolean>(false);
@@ -28,8 +29,16 @@ export const FavoriteDepositAccountSelection = () => {
         fetchData();
     }, [show]);
 
+    const handleOpen = () => {
+        setShow(true);
+    };
+
+    const handleClose = () => {
+        setShow(false);
+    };
+
     if (!show || isLoading) {
-        return <Button isLoading={isLoading} onClick={() => setShow(true)}>Compte</Button>;
+        return <Button isLoading={isLoading} onClick={() => setShow(true)}><Icon name='briefcase'/></Button>;
     }
 
     if (isError) {
@@ -42,8 +51,9 @@ export const FavoriteDepositAccountSelection = () => {
 
     return (
         <>
-            <Button onClick={() => setShow(true)}>Compte</Button>
-            <Modal show={show} onClose={() => setShow(false)}>
+            <Button onClick={handleOpen}><Icon name='briefcase'/></Button>
+            {/* // TODO : Fix Overflow on close*/}
+            <Modal show={show} onClose={handleClose}>
                 Sélection du compte en banque
                 <div className="modal__body">
                     {data && (

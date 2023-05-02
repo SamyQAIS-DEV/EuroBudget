@@ -44,7 +44,7 @@ class AuthSubscriber implements EventSubscriberInterface
         $email = $this->mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'username' => $user->getUserIdentifier(),
+            'username' => $user->getFullName(),
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);
@@ -60,7 +60,7 @@ class AuthSubscriber implements EventSubscriberInterface
         $this->entityManager->persist($depositAccount);
         $email = $this->mailer->createEmail('mails/auth/registration.twig', 'Votre inscription !', [
             'isUsingOauth' => $event->isUsingOauth(),
-            'username' => $user->getUserIdentifier(),
+            'username' => $user->getFullName(),
         ])
             ->to($user->getEmail());
         $this->mailer->send($email);

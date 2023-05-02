@@ -118,7 +118,7 @@ const SearchDropDown = ({values, onChange, onSelection, ...props}: Props) => {
 
     return (
         <div ref={ref} className={className}>
-            <input ref={inputRef} onChange={handleChange} onInput={() => emptyError(props.name)} onClick={() => setVisible(true)} autoComplete='off' {...props}/>
+            <input ref={inputRef} onChange={handleChange} onInput={() => emptyError(props.name)} onClick={() => setVisible(true)} autoComplete='off' placeholder=' ' {...props}/>
             <label title={props.label} htmlFor={props.name}></label>
             {error && <div className="invalid-feedback">{error}</div>}
             <div ref={dropdownRef} className="dropdown">

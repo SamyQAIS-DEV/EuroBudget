@@ -33,7 +33,7 @@ class MailPreviewController extends AbstractController
         $email = $mailer->createEmail('mails/auth/registration.twig', 'Votre inscription !', [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'username' => $user->getUserIdentifier()
+            'username' => $user->getFullName()
         ]);
         return new Response($email->getHtmlBody());
     }
@@ -46,7 +46,7 @@ class MailPreviewController extends AbstractController
         $email = $mailer->createEmail('mails/auth/login_link.twig', 'Votre lien de connexion !', [
             'token' => $loginLink->getToken(),
             'leftTime' => TimeHelper::leftTime($loginLink->getExpiresAt()),
-            'username' => $user->getUserIdentifier()
+            'username' => $user->getFullName()
         ]);
         return new Response($email->getHtmlBody());
     }

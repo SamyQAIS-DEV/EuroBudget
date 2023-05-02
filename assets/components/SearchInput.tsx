@@ -13,7 +13,7 @@ export const SearchInput = () => {
     return (
         <div>
             <label htmlFor={id}>Search</label>
-            <input id={id} type="search" value={value} onChange={(e) => setValue(e.target.value)} />
+            <input id={id} type="search" value={value} onChange={(e) => setValue(e.target.value)} placeholder=' '/>
             {isWaiting && <p>Waiting...</p>}
         </div>
     );

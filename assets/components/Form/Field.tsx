@@ -85,9 +85,9 @@ export const Field = ({
 };
 
 const FieldNumber = ({...props}: FieldProps) => {
-    return <input type="number" inputMode="decimal" min="0" step="0.01" {...props} />;
+    return <input type="number" inputMode="decimal" min="0" step="0.01" placeholder=' ' {...props} />;
 };
 
 const FieldText = ({...props}: FieldProps) => {
-    return <input {...props} />;
+    return <input placeholder=' ' {...props} />;
 };

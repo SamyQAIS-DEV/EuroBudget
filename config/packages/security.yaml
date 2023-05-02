@@ -38,6 +38,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: '^/admin/auto-login$', role: PUBLIC_ACCESS } # Allow Admin Autologin
         - { path: '^/admin', roles: ROLE_ADMIN } # Disallow all admin pages
         - { path: '^/$', role: PUBLIC_ACCESS } # Allow Homepage
         - { path: '^/inscription$', role: PUBLIC_ACCESS } # Allow Registration page

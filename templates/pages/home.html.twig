@@ -4,6 +4,9 @@
 
 {% block body %}
     <main class="homepage stack-separated py5" style="--gap:6">
+        {% if canLoginAsAdmin %}
+            <a class="btn-secondary" href="{{ path('admin_auto_login') }}">Login as admin</a>
+        {% endif %}
         <div class="welcome-container flex">
             <img src="{{ asset('images/homepage_background.png') }}" alt="Home Background">
             <h1 class="hero-title">Bienvenue sur <strong>EuroBudget</strong> votre nouvelle plateforme de gestion de comptes en banques</h1>

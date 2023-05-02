@@ -26,15 +26,17 @@ class TransferService
     public function create(TransferDto $transfer, User $user): TransferDto
     {
         $operationA = (new Operation())
-            ->setLabel('Label 1')
+            ->setLabel(sprintf('Virement vers le %s', $transfer->targetDepositAccount->getTitle()))
             ->setAmount($transfer->amount)
             ->setType(TypeEnum::DEBIT)
-            ->setPast(true);
+            ->setPast(true)
+            ->setTransfer(true);
         $operationB = (new Operation())
-            ->setLabel('Label 1')
+            ->setLabel(sprintf('Virement depuis le %s (%s)', $transfer->fromDepositAccount->getTitle(), $user->getFullName()))
             ->setAmount($transfer->amount)
             ->setType(TypeEnum::CREDIT)
-            ->setPast(false);
+            ->setPast(false)
+            ->setTransfer(true);
         $this->operationService->create($operationA, $user, $transfer->fromDepositAccount);
         $this->operationService->create($operationB, $user, $transfer->targetDepositAccount);
 
