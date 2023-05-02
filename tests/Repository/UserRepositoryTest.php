@@ -36,4 +36,9 @@ class UserRepositoryTest extends RepositoryTestCase
         $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
     }
+
+    // TODO
+//    public function testSearch(): void
+//    {
+//    }
 }

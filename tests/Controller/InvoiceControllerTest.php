@@ -111,7 +111,7 @@ class InvoiceControllerTest extends WebTestCase
         $fixture = $this->getValidEntity($user);
         $repository->save($fixture, true);
 
-        $this->client->request('DELETE', sprintf('%s/%s', $this->path, $fixture->getId()));
+        $this->client->request('POST', sprintf('%s/%s', $this->path, $fixture->getId()));
 
         self::assertResponseRedirects('/invoices');
         $this->client->followRedirect();

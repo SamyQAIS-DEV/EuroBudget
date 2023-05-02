@@ -34,10 +34,10 @@ class OperationTest extends WebTestCase
 
     public function testInvalidMaxLengthLabelEntity(): void
     {
-        $entity = $this->getValidEntity()->setLabel('azertyazertyazertyazertyazertyazertyazertyazertyazertyazerty');
+        $entity = $this->getValidEntity()->setLabel('azertyazertyazertyazertyazertyazertyazertyazertyazazertyazertyazertyazertyazertyazertyazertyazertyazazertyazertyazertyazertyazertyazertyazertyazertyaza');
         $errors = $this->validator->validate($entity);
         $this->assertCount(1, $errors);
-        $this->assertSame('Cette chaîne est trop longue. Elle doit avoir au maximum 50 caractères.', $errors[0]->getMessage());
+        $this->assertSame('Cette chaîne est trop longue. Elle doit avoir au maximum 150 caractères.', $errors[0]->getMessage());
     }
 
     public function testInvalidPositiveAmountEntity(): void
