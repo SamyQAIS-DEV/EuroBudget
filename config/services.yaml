@@ -21,6 +21,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
+            $projectDir: '%kernel.project_dir%'
             $mailPrefixSubject: '%mail_prefix_subject%'
             $senderAddress: '%sender_address%'
             $senderName: '%sender_name%'
