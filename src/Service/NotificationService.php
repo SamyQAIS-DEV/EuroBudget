@@ -16,13 +16,13 @@ class NotificationService
     ) {
     }
 
-    public function notifyUser(User $user, string $message): Notification
+    public function notifyUser(User $user, string $message, string $url = null): Notification
     {
         $notification = (new Notification())
             ->setMessage($message)
-            ->setUrl($message)
+            ->setUrl($url)
             ->setUser($user);
-        $this->notificationRepository->save($notification);
+        $this->notificationRepository->save($notification, true);
 
         return $notification;
     }
@@ -30,6 +30,6 @@ class NotificationService
     public function readAll(User $user): void
     {
         $user->setNotificationsReadAt(new DateTimeImmutable());
-        $this->userRepository->save($user);
+        $this->userRepository->save($user, true);
     }
 }

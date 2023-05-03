@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useJsonFetch} from '@hooks/useJsonFetch';
 import {NetworkStatus} from '@components//NetworkStatus';
-import {SearchInput} from '@components/SearchInput';
+import {SearchInput} from '@components/Search/SearchInput';
 import {Copy} from '@components/Copy';
 import {Animated} from '@components/Animation/Animated';
 import {ConfirmModal} from '@components/Modal/ConfirmModal';
@@ -46,7 +46,7 @@ export const ComponentsTesting = ({userId}: ComponentsTestingProps) => {
             <NetworkStatus/>
             <hr/>
             <h2>useDebounce</h2>
-            <SearchInput/>
+            <SearchInput placeholder='Rechercher quelque chose...'/>
             <hr/>
             <h2>useCopyToClipBoard</h2>
             <Copy text="Bonjour"/>

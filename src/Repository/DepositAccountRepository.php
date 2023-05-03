@@ -8,6 +8,7 @@ use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -42,12 +43,21 @@ class DepositAccountRepository extends AbstractRepository
             ->getResult();
     }
 
+    /**
+     * @return DepositAccount[]
+     */
+    public function findForAndWithout(User $user, User $withoutUser): array
+    {
+        $data = $this->findForQueryBuilder($user)->getQuery()->getResult();
+        return array_filter($data, static fn (DepositAccount $d) => !$d->getUsers()->contains($withoutUser));
+    }
+
     private function findForQueryBuilder(User $user): QueryBuilder
     {
         return $this->createQueryBuilder('d')
             ->leftJoin('d.users', 'u')
-            ->where('u.id = :id')
-            ->setParameter('id', $user->getId())
+            ->where('u.id = :userId')
+            ->setParameter('userId', $user->getId())
             ->orderBy('d.title', 'DESC');
     }
 }

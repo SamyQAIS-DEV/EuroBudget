@@ -1,5 +1,5 @@
 <aside class="sidebar container sticky">
-    <div class="sidebar__avatar">
+    <div class="sidebar__avatar mb2">
         {% if app.user and app.user.id == user.id %}
             <form enctype="multipart/form-data" method="post" action="{{ path('user_avatar') }}" is="auto-submit">
                 <img class="avatar" src="{{ user | avatar }}" alt="Avatar">
@@ -13,16 +13,29 @@
         {% endif %}
     </div>
 
-    <a href="{{ path('user_profile') }}" {% if active == 'profile' %}aria-selected="true"{% endif %}>
-        {{ icon('user') }} Profil
-    </a>
-    {#    <a href="{{ path('user_edit') }}" {% if active == 'edit' %}aria-selected="true"{% endif %}> #}
-    {#        {{ icon('user') }} Editer #}
-    {#    </a> #}
-    <a href="{{ path('user_transactions') }}" {% if active == 'transactions' %}aria-selected="true"{% endif %}>
-        {{ icon('inbox') }} Mes factures
-    </a>
-    <a href="{{ path('user_notifications') }}" {% if active == 'notifications' %}aria-selected="true"{% endif %}>
-        {{ icon('bell') }} Mes notifications
-    </a>
+    {% if app.user and app.user.id == user.id %}
+        <a href="{{ path('my_profile') }}" {% if active == 'profile' %}aria-selected="true"{% endif %}>
+            {{ icon('user') }} Profil
+        </a>
+        {#    <a href="{{ path('user_edit') }}" {% if active == 'edit' %}aria-selected="true"{% endif %}> #}
+        {#        {{ icon('user') }} Editer #}
+        {#    </a> #}
+        <a href="{{ path('user_transactions') }}" {% if active == 'transactions' %}aria-selected="true"{% endif %}>
+            {{ icon('inbox') }} Mes factures
+        </a>
+        <a href="{{ path('user_notifications') }}" {% if active == 'notifications' %}aria-selected="true"{% endif %}>
+            {{ render(controller(
+                'App\\\Controller\\Template\\NotificationStateController::state'
+            )) }}
+            {{ icon('bell') }} Mes notifications
+        </a>
+    {% else %}
+        <div class="infos text-center">
+            <div class="text-muted">{{ user.email }}</div>
+            {% if user.isPremium %}
+                <div class="pill small color-yellow">Premium</div>
+            {% endif %}
+            <a class="btn-white-outlined" href="{{ path('deposit_accounts_share', {id: user.id}) }}">Partager un compte</a>
+        </div>
+    {% endif %}
 </aside>

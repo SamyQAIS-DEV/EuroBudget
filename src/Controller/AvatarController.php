@@ -24,6 +24,6 @@ class AvatarController extends AbstractController
             $this->addAlert(AlertEnum::ERROR, $exception->getMessage());
         }
 
-        return $this->redirectToRoute('user_profile');
+        return $this->redirectToRoute('my_profile');
     }
 }

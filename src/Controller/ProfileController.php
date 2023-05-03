@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\DepositAccountRepository;
 use App\Repository\OperationRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,29 @@ class ProfileController extends AbstractController
     ) {
     }
 
-    #[Route(path: '/profil', name: 'user_profile', methods: ['GET'])]
-    public function index(): Response
+    #[Route(path: '/profil', name: 'my_profile', methods: ['GET'])]
+    public function myProfile(): Response
     {
         $user = $this->getUserOrThrow();
 
-        return $this->render('profile/index.html.twig', [
+        return $this->render('profile/my_profile.html.twig', [
             'depositAccountCount' => $this->depositAccountRepository->countFor($user),
             'operationCount' => $this->operationRepository->countFor($user),
             'menu' => 'profile'
+        ]);
+    }
+
+    #[Route(path: '/profil/{id}', name: 'user_profile', methods: ['GET'])]
+    public function profile(User $user): Response
+    {
+        if ($user->getId() === $this->getUserOrThrow()->getId()) {
+            return $this->redirectToRoute('my_profile');
+        }
+
+        return $this->render('profile/profile.html.twig', [
+            'user' => $user,
+            'depositAccountCount' => $this->depositAccountRepository->countFor($user),
+            'operationCount' => $this->operationRepository->countFor($user),
         ]);
     }
 }

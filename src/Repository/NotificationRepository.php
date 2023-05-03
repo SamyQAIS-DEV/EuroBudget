@@ -26,22 +26,26 @@ class NotificationRepository extends AbstractRepository
     /**
      * @return Notification[]
      */
-    public function findRecentFor(User $user): array
-    {
-        return $this->findForQueryBuilder($user)
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
-    /**
-     * @return Notification[]
-     */
     public function findFor(User $user): array
     {
         return $this->findForQueryBuilder($user)
             ->getQuery()
             ->getResult();
+    }
+
+    public function countUnreadFor(User $user): int
+    {
+        return $this->findUnreadForQueryBuilder($user)
+            ->select('COUNT(n.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    private function findUnreadForQueryBuilder(User $user): QueryBuilder
+    {
+        return $this->findForQueryBuilder($user)
+            ->andWhere('n.createdAt > :readAt')
+            ->setParameter(':readAt', $user->getNotificationsReadAt());
     }
 
     private function findForQueryBuilder(User $user): QueryBuilder

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Partager un compte en banque' %}
+
+{% block body %}
+    <div class="container py5">
+        <h1>Partager un compte en banque</h1>
+        <h2>Avec : {{ user.fullName }} - {{ user.email }}</h2>
+
+        {{ form_start(form) }}
+            <div class="grid2">
+                {{ form_row(form.depositAccount) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Partager</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

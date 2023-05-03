@@ -7,14 +7,11 @@ use App\Entity\User;
 use App\Enum\TypeEnum;
 use App\Repository\InvoiceRepository;
 use DateTimeImmutable;
-use Doctrine\ORM\EntityManagerInterface;
 
 class OperationCreateFromInvoicesService
 {
-    public function __construct(
-        private readonly InvoiceRepository $invoiceRepository,
-        private readonly EntityManagerInterface $entityManager,
-    ) {
+    public function __construct(private readonly InvoiceRepository $invoiceRepository)
+    {
     }
 
     public function process(User $user): int
@@ -41,7 +38,7 @@ class OperationCreateFromInvoicesService
             $this->invoiceRepository->save($operation);
         }
 
-        $this->entityManager->flush();
+        $this->invoiceRepository->flush();
 
         return count($invoices);
     }

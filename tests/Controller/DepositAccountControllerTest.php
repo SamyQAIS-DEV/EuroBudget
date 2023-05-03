@@ -71,7 +71,13 @@ class DepositAccountControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s/%s/edit', $this->path, $fixture->getId()));
         self::assertResponseRedirects('/');
         $this->client->followRedirect();
-        $this->expectErrorAlert('Vous ne pouvez pas modifier cette facture.');
+        $this->expectErrorAlert('Vous ne pouvez pas modifier ce compte en banque.');
+    }
+
+    // TODO
+    public function testShare(): void
+    {
+
     }
 
     private function getValidEntity(User $user): DepositAccount

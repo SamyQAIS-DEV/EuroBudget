@@ -31,7 +31,7 @@ class TwigUrlExtensionRuntime implements RuntimeExtensionInterface
 
     public function avatarPath(User $user): string
     {
-        if (null === $user->getAvatarName()) {
+        if ($user->getAvatarName() === null) {
             return '/images/default.png';
         }
 

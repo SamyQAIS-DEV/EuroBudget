@@ -12,6 +12,7 @@ class AvatarDto
         #[Assert\NotBlank]
         #[Assert\Image(mimeTypes: ['image/jpeg', 'image/png'], minWidth: 100, maxWidth: 1400, maxHeight: 1400, minHeight: 100)]
         public UploadedFile $file,
+        #[Assert\NotBlank]
         public User $user
     ) {
     }

@@ -45,6 +45,10 @@ class UserRepositoryTest extends RepositoryTestCase
         $this->assertInstanceOf(User::class, $users[0]);
         $this->assertSame('Firstname1', $user->getFirstname());
 
+        $users = $this->repository->search('user1@domain.fr');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('user1@domain.fr', $user->getEmail());
+
 
         $users = $this->repository->search('Firstname1 Lastnerkvnjernvkjrnvame1');
         $this->assertCount(0, $users);

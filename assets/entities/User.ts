@@ -3,6 +3,7 @@ interface UserInterface {
     email?: string;
     lastname?: string;
     firstname?: string;
+    avatarName?: string;
 }
 
 export class User implements UserInterface {
@@ -10,6 +11,7 @@ export class User implements UserInterface {
     public email: string;
     public lastname: string;
     public firstname: string;
+    public avatarName: string;
 
     constructor(options: UserInterface = {}) {
         Object.assign(this, options);
@@ -17,5 +19,12 @@ export class User implements UserInterface {
 
     get fullName(): string {
         return this.firstname + ' ' + this.lastname;
+    }
+
+    get avatarFileName(): string {
+        if (this.avatarName === null) {
+            return '/images/default.png';
+        }
+        return '/uploads/' + this.avatarName;
     }
 }

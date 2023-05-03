@@ -114,12 +114,14 @@ export const OperationForm = ({
                 />
                 <Switch id="operation-type" checked={item.type === TypeEnum.CREDIT} onChange={handleType} label="Crédit"/>
                 {isPremium() && (
-                    <select name="category" onChange={handleCategory} value={item.category?.id}>
-                        <option value="">Catégorie</option>
-                        {data && data.map((category) => (
-                            <option key={category.id} value={category.id}>{category.name}</option>
-                        ))}
-                    </select>
+                    <div className="form-group">
+                        <select name="category" onChange={handleCategory} value={item.category?.id}>
+                            <option value="">Catégorie</option>
+                            {data && data.map((category) => (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            ))}
+                        </select>
+                    </div>
                 )}
                 <FormField
                     type="date"

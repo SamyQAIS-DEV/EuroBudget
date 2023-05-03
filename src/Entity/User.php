@@ -60,13 +60,14 @@ class User implements UserInterface
     private ?File $avatarFile = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[Groups(['read'])]
     private ?string $avatarName = null;
 
     #[ORM\Column(type: Types::STRING, length: 2)]
     private string $country = 'fr';
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    private string $lastLoginIp = '';
+    private ?string $lastLoginIp = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private DateTimeImmutable $lastLoginAt;
@@ -187,7 +188,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastLoginIp(): string
+    public function getLastLoginIp(): ?string
     {
         return $this->lastLoginIp;
     }

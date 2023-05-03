@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Dto\ShareDepositAccountDto;
 use App\Entity\DepositAccount;
 use App\Entity\User;
 use App\Exception\EntityNotFoundException;
@@ -40,6 +41,16 @@ class DepositAccountService
         $this->depositAccountRepository->save($depositAccount, true);
 
         return $depositAccount;
+    }
+
+    public function share(ShareDepositAccountDto $shareDepositAccount): ShareDepositAccountDto
+    {
+        $depositAccount = $shareDepositAccount->depositAccount;
+        $depositAccount->setUpdatedAt(new DateTimeImmutable());
+        $depositAccount->addUser($shareDepositAccount->user);
+        $this->depositAccountRepository->save($depositAccount, true);
+
+        return $shareDepositAccount;
     }
 
     public function updateFavorite(int $id): void

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mon profil' %}
+
+{% block body %}
+    <div class="layout-sidebar py5" style="--gap:5;">
+        {% include 'profile/_sidebar.html.twig' with {active: 'profile', user: user} %}
+
+        <main>
+            <h1 class="mb3">{{ icon('user') }} Profil de {{ user.fullName }}</h1>
+
+            <div class="grid2">
+
+                <div class="card">
+                    <div class="card__body">
+                        <div class="card__title">Nombre de comptes en banque :</div>
+                        <div class="card__description">
+                            <h1 class="text-center mt2"><strong>{{ depositAccountCount }}</strong></h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <div class="card__title">Nombre d'opérations</div>
+                        <div class="card__description">
+                            <h1 class="text-center mt2"><strong>{{ operationCount }}</strong></h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

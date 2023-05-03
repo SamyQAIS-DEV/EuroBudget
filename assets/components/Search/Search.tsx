@@ -34,7 +34,7 @@ const SearchBar = ({onClose}: SearchBarProps) => {
 
     return createPortal(
         <div className="search-popup" onClick={onClose}>
-            <SearchInput />
+            <SearchInput placeholder='Rechercher un utilisateur...' description='Nom et/ou prénom exact(s)'/>
         </div>,
         document.querySelector('body'),
     );

@@ -31,7 +31,7 @@ class NotificationRepositoryTest extends RepositoryTestCase
         $this->assertInstanceOf(Notification::class, $notifications[0]);
     }
     
-    public function testFindRecentFor(): void
+    public function testCountUnreadFor(): void
     {
         /** @var User $user */
         $user = $this->data['user1'];

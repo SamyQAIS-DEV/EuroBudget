@@ -23,7 +23,13 @@
                     <tbody>
                         {% for notification in notifications %}
                             <tr>
-                                <td><a href="{{ notification.url }}">{{ notification.message }}</a></td>
+                                <td>
+                                    {% if notification.url %}
+                                        <a href="{{ notification.url }}">{{ notification.message }}</a>
+                                    {% else %}
+                                        {{ notification.message }}
+                                    {% endif %}
+                                </td>
                                 <td>
                                     <div class="mobile-hidden">
                                         {{ notification.createdAt | format_date('long') }}

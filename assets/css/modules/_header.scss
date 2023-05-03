@@ -130,6 +130,9 @@
 
 .header__account a {
     display: flex;
+    &:not(:last-child) {
+        margin-bottom: space(0.5);
+    }
 }
 
 .header__account span {

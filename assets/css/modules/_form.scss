@@ -13,16 +13,13 @@ form > * + * {
 
 option {
     background-color: var(--background);
+    color: var(--color);
 }
 
 // Champs texte
 // ==================
 .form-group {
     position: relative;
-}
-
-option {
-    background-color: var(--background);
 }
 
 .form-group input,
@@ -95,6 +92,10 @@ option {
         -webkit-appearance: none;
         margin: 0;
     }
+}
+
+button[type="submit"] {
+    margin-top: space(1);
 }
 
 // Validation

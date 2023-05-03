@@ -28,6 +28,10 @@
     margin-bottom: 40%;
 }
 
+.search-popup .search-input button {
+    top: 30px;
+}
+
 .search-input {
     position: relative;
     width: 100%;
@@ -40,9 +44,8 @@
 .search-input button {
     display: inline-flex;
     position: absolute;
-    top: 30px;
-    //top: 50%;
-    //transform: translateY(-50%);
+    top: 15px;
+    margin: 0;
     right: space(4);
 }
 
@@ -61,18 +64,24 @@
     margin-top: space(0.5);
 
     li {
-        text-align: center;
         &:not(:first-child) {
             margin-top: space(1);
         }
     }
 
     li a {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 0.9rem;
         color: var(--color-light);
         padding: space(1);
         transition: .3s!important;
+
+        img {
+            height: 25px;
+            margin-right: space(1);
+        }
     }
 
     li a:hover,

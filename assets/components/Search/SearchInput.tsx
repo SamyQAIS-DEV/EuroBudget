@@ -11,9 +11,15 @@ const SEARCH_URL = '/recherche';
 
 type SearchInputProps = {
     defaultValue?: string;
+    placeholder?: string;
+    description?: string;
 };
 
-export const SearchInput = ({defaultValue = ''}: SearchInputProps) => {
+export const SearchInput = ({
+    defaultValue = '',
+    placeholder = 'Rechercher...',
+    description = '',
+}: SearchInputProps) => {
     const input = useRef(null);
     const [search, setSearch] = useState(defaultValue);
     const [{data, isLoading, isError, isDone}, fetch] = useJsonFetch<User[]>(false);
@@ -53,18 +59,19 @@ export const SearchInput = ({defaultValue = ''}: SearchInputProps) => {
                 autoComplete="off"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Rechercher un utilisateur..."
+                placeholder={placeholder}
             />
-            <small className='text-muted'>Nom et/ou prénom exact(s)</small>
+            {description !== '' && <small className='text-muted'>{description}</small>}
             <button type="submit">
                 <Icon name="search"/>
             </button>
-            {isLoading && <Loader className="search-input_loader"/>}
+            {isLoading && <Loader className="search-input_loader ma"/>}
             {results.length > 0 && (
                 <ul className="search-input_suggestions">
                     {results.map((r, index) => (
                         <li key={r.id}>
                             <a className={classNames(index === selectedItem && 'focused')} href={`/profil/${r.id}`}>
+                                <img className='avatar' src={r.avatarFileName} alt={r.avatarFileName}/>
                                 <span>{r.fullName} - {r.email}</span>
                             </a>
                         </li>
