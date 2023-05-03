@@ -40,7 +40,44 @@
 .search-input button {
     display: inline-flex;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30px;
+    //top: 50%;
+    //transform: translateY(-50%);
     right: space(4);
+}
+
+// Suggestions
+// ==============
+.search-input_suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block !important;
+    background: var(--background-light);
+    padding: space(1);
+    border-radius: space(2);
+    box-shadow: 0 0 8px var(--shadow);
+    margin-top: space(0.5);
+
+    li {
+        text-align: center;
+        &:not(:first-child) {
+            margin-top: space(1);
+        }
+    }
+
+    li a {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--color-light);
+        padding: space(1);
+        transition: .3s!important;
+    }
+
+    li a:hover,
+    li a.focused {
+        background: var(--background);
+        border-radius: space(1);
+    }
 }

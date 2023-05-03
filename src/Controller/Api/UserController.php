@@ -24,7 +24,7 @@ class UserController extends AbstractController
             return $this->json([]);
         }
 
-        if ($q === 'moi') {
+        if (strtolower($q) === 'moi') {
             return $this->json(data: [$this->getUser()], context: ['groups' => ['read']]);
         }
 

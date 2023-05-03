@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -73,20 +72,28 @@ abstract class AbstractRepository extends ServiceEntityRepository
         return $this->findByCaseInsensitiveQuery($conditions)->setMaxResults(1)->getOneOrNullResult();
     }
 
-    private function findByQuery(array $criteria, $conditionType = 'AND'): Query
+    private function findByQuery(array $criteria, string $conditionType = 'AND'): Query
     {
-        $encryptedProperties = $this->encryptedPropertiesAccessor->getProperties(new User());
+        $encryptedProperties = $this->encryptedPropertiesAccessor->getProperties(new $this->_entityName());
         $criteriaString = [];
         $parameters = [];
         foreach ($criteria as $field => $value) {
+            // TODO Refacto that
             if (array_key_exists($field, $encryptedProperties) && $value) {
-                $value = $this->encryptor->encrypt($value);
+                $values = [];
+                if (is_string($value)) {
+                    $value = $this->encryptor->encrypt($value);
+                } else {
+                    foreach ($value as $v) {
+                        $values[] = $this->encryptor->encrypt($v);
+                    }
+                }
             }
-            $criteriaString[] = "o.$field = :$field";
-            $parameters[$field] = $value;
+            $criteriaString[] = is_string($value) ? "e.$field = :$field" : "e.$field IN (:$field)";
+            $parameters[$field] = is_string($value) ? $value : $values;
         }
 
-        $qb = $this->createQueryBuilder('o');
+        $qb = $this->createQueryBuilder('e');
         if (count($criteriaString) > 0) {
             $qb->where(implode(' ' . $conditionType . ' ', $criteriaString))
                 ->setParameters($parameters);
@@ -100,11 +107,11 @@ abstract class AbstractRepository extends ServiceEntityRepository
         $conditionString = [];
         $parameters = [];
         foreach ($conditions as $k => $v) {
-            $conditionString[] = "LOWER(o.$k) = :$k";
-            $parameters[$k] = strtolower((string)$v);
+            $conditionString[] = "LOWER(e.$k) = :$k";
+            $parameters[$k] = strtolower((string) $v);
         }
 
-        return $this->createQueryBuilder('o')
+        return $this->createQueryBuilder('e')
             ->where(implode(' AND ', $conditionString))
             ->setParameters($parameters)
             ->getQuery();

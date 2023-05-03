@@ -13,17 +13,9 @@ class UserRepositoryTest extends RepositoryTestCase
 {
     protected $repositoryClass = UserRepository::class;
 
-    private array $data = [];
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->data = $this->loadFixtures(['users']);
-    }
-
     public function testFindForAuthExistingEmail(): void
     {
-        $user = $this->data['user1'];
+        ['user1' => $user] = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $userFromRepo = $this->repository->findForAuth($user->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
@@ -31,14 +23,30 @@ class UserRepositoryTest extends RepositoryTestCase
 
     public function testFindForOauthExistingEmail(): void
     {
-        $githubUser = $this->data['github_user'];
+        ['github_user' => $githubUser] = $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $userFromRepo = $this->repository->findForOauth('github', $githubUser->getId(), $githubUser->getEmail());
         $this->assertInstanceOf(User::class, $userFromRepo);
     }
 
-    // TODO
-//    public function testSearch(): void
-//    {
-//    }
+    public function testSearch(): void
+    {
+        ['user1' => $user] = $this->loadFixtures(['users']);
+        $this->assertSame(9, $this->repository->count([]));
+        $users = $this->repository->search('Firstname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $user->getFirstname());
+
+        $users = $this->repository->search('Lastname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $user->getFirstname());
+
+        $users = $this->repository->search('Firstname1 Lastname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $user->getFirstname());
+
+
+        $users = $this->repository->search('Firstname1 Lastnerkvnjernvkjrnvame1');
+        $this->assertCount(0, $users);
+    }
 }

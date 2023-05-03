@@ -1,8 +1,8 @@
 App\Entity\User:
     user (template):
         email: user<current()>\@domain.fr
-        lastname: Lastname <current()>
-        firstname: Firstname <current()>
+        lastname: Lastname<current()>
+        firstname: Firstname<current()>
 
 App\Entity\DepositAccount:
     depositAccount (template):

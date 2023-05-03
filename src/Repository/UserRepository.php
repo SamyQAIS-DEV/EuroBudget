@@ -65,12 +65,11 @@ class UserRepository extends AbstractRepository
      */
     public function search(string $q): array
     {
-        return $this->createQueryBuilder('u')
-            ->where("LOWER(u.email) LIKE LOWER(:q)")
-            ->orWhere("LOWER(u.lastname) LIKE LOWER(:q)")
-            ->orWhere("LOWER(u.firstname) LIKE LOWER(:q)")
-            ->setParameter('q', $this->encryptor->encrypt($q))
-            ->getQuery()
-            ->getResult();
+        $search = explode(' ', $q);
+
+        if (count($search) > 1) {
+            return $this->findBy(['firstname' => $search, 'lastname' => $search]);
+        }
+        return $this->findByOr(['firstname' => $search, 'lastname' => $search]);
     }
 }

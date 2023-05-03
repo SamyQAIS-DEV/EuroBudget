@@ -5,6 +5,7 @@ import {classNames} from '@functions/dom';
 import {useDebounce} from '@hooks/useDebounce';
 import {User} from '@entities/User';
 import {searchUsers} from '@api/users';
+import {Loader} from '@components/Animation/Loader';
 
 const SEARCH_URL = '/recherche';
 
@@ -52,12 +53,13 @@ export const SearchInput = ({defaultValue = ''}: SearchInputProps) => {
                 autoComplete="off"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Rechercher un contenu..."
+                placeholder="Rechercher un utilisateur..."
             />
+            <small className='text-muted'>Nom et/ou prénom exact(s)</small>
             <button type="submit">
                 <Icon name="search"/>
             </button>
-            {/*{loading && <Loader className="search-input_loader"/>}*/}
+            {isLoading && <Loader className="search-input_loader"/>}
             {results.length > 0 && (
                 <ul className="search-input_suggestions">
                     {results.map((r, index) => (
