@@ -35,8 +35,7 @@
                                     {% endif %}
                                 </td>
                                 <td class="actions start">
-                                    {# TODO : uncomment if after voter dev #}
-{#                                    {% if request.answered is same as(false) %}#}
+                                    {% if is_granted('ANSWER_USER_REQUEST', request) %}
                                         <form method="post" action="{{ path('user_requests_accept', {'id': request.id}) }}" onsubmit="return confirm('Voulez vous vraiment accepter cette demande ?');">
                                             <input type="hidden" name="_token" value="{{ csrf_token('accept' ~ request.id) }}">
                                             <button class="btn-primary" title="Accepter la demande">
@@ -49,7 +48,7 @@
                                                 {{ icon('x') }}
                                             </button>
                                         </form>
-{#                                    {% endif %}#}
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {{ request.createdAt | format_datetime('medium', 'short') }}

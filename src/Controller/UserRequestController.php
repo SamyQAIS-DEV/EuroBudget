@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\UserRequest;
+use App\Enum\AlertEnum;
 use App\Event\DepositAccountShareRequestAnsweredEvent;
 use App\Repository\NotificationRepository;
 use App\Repository\UserRequestRepository;
+use App\Security\Voter\CategoryVoter;
+use App\Security\Voter\UserRequestVoter;
 use App\Service\NotificationService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,9 +35,13 @@ class UserRequestController extends AbstractController
     }
 
     #[Route(path: '/profil/demandes/{id}/accept', name: 'user_requests_accept', methods: ['POST'])]
-    // TODO Voter
     public function accept(UserRequest $request): Response
     {
+        if (!$this->isGranted(UserRequestVoter::ANSWER, $request)) {
+            $this->addAlert(AlertEnum::ERROR, 'Vous avez déjà répondu à cette demande.');
+
+            return $this->redirectToRoute('user_requests');
+        }
         $request->setAccepted(true);
         $this->dispatcher->dispatch(new DepositAccountShareRequestAnsweredEvent($request));
         $this->userRequestRepository->flush();
@@ -43,9 +50,13 @@ class UserRequestController extends AbstractController
     }
 
     #[Route(path: '/profil/demandes/{id}/reject', name: 'user_requests_reject', methods: ['POST'])]
-    // TODO Voter
     public function reject(UserRequest $request): Response
     {
+        if (!$this->isGranted(UserRequestVoter::ANSWER, $request)) {
+            $this->addAlert(AlertEnum::ERROR, 'Vous avez déjà répondu à cette demande.');
+
+            return $this->redirectToRoute('user_requests');
+        }
         $request->setRejected(true);
         $this->dispatcher->dispatch(new DepositAccountShareRequestAnsweredEvent($request));
         $this->userRequestRepository->flush();
