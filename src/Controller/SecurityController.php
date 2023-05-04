@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
 
             $dispatcher->dispatch(new LoginLinkRequestedEvent($user));
 
-            $this->addAlert(AlertEnum::SUCCESS, 'Login link sent');
+            $this->addAlert(AlertEnum::SUCCESS, 'Lien d\'authentification envoyé');
 
             return $this->redirectToRoute(self::LOGIN_ROUTE_NAME);
         }

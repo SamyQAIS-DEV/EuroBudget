@@ -25,6 +25,15 @@ class UserRepository extends AbstractRepository
         return $this->findOneBy(['email' => $email]);
     }
 
+    public function findOneByRole(string $role): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :role')
+            ->setParameter('role', '%' . $role . '%')
+            ->getQuery()
+            ->getSingleResult();
+    }
+
     /**
      * Requête permettant de récupérer un utilisateur pour le login.
      */
@@ -65,11 +74,12 @@ class UserRepository extends AbstractRepository
      */
     public function search(string $q): array
     {
+        // TODO : Test with automatically lowercase, capitalize and uppercase search
         $search = explode(' ', $q);
-
         if (count($search) > 1) {
             return $this->findBy(['firstname' => $search, 'lastname' => $search]);
         }
+
         return $this->findByOr(['firstname' => $search, 'lastname' => $search, 'email' => $search]);
     }
 }
