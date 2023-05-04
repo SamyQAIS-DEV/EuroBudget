@@ -44,22 +44,19 @@ class DepositAccountShareRequestSubscriber implements EventSubscriberInterface
             throw new UnauthenticatedException();
         }
 
-        $this->userRequestService->create($user, $depositAccountShareRequest->user, $depositAccountShareRequest->depositAccount);
-
-        $this->notificationService->notifyUser($depositAccountShareRequest->user, sprintf(
-            '%s a partagé un compte "%s" en banque avec vous',
+        $message = sprintf(
+            '%s a partagé un compte en banque "%s" avec vous',
             $user->getFullName(),
             $depositAccountShareRequest->depositAccount->getTitle()
-        ), $this->urlGenerator->generate('user_requests'));
+        );
+        $this->userRequestService->create($user, $depositAccountShareRequest->user, $message, $depositAccountShareRequest->depositAccount);
+
+        $this->notificationService->notifyUser($depositAccountShareRequest->user, $message, $this->urlGenerator->generate('user_requests'));
     }
 
     public function onDepositAccountShareRequestAnswered(DepositAccountShareRequestAnsweredEvent $event): void
     {
         $request = $event->getUserRequest();
-
-        if ($request->isAnswered()) {
-            throw new RuntimeException('Already answered');
-        }
 
         $depositAccount = $this->depositAccountRepository->find($this->userRequestService->getIdFromHash($request->getEntity()));
 

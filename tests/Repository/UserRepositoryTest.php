@@ -31,23 +31,23 @@ class UserRepositoryTest extends RepositoryTestCase
 
     public function testSearch(): void
     {
-        ['user1' => $user] = $this->loadFixtures(['users']);
+        $this->loadFixtures(['users']);
         $this->assertSame(9, $this->repository->count([]));
         $users = $this->repository->search('Firstname1');
         $this->assertInstanceOf(User::class, $users[0]);
-        $this->assertSame('Firstname1', $user->getFirstname());
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
 
         $users = $this->repository->search('Lastname1');
         $this->assertInstanceOf(User::class, $users[0]);
-        $this->assertSame('Firstname1', $user->getFirstname());
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
 
         $users = $this->repository->search('Firstname1 Lastname1');
         $this->assertInstanceOf(User::class, $users[0]);
-        $this->assertSame('Firstname1', $user->getFirstname());
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
 
         $users = $this->repository->search('user1@domain.fr');
         $this->assertInstanceOf(User::class, $users[0]);
-        $this->assertSame('user1@domain.fr', $user->getEmail());
+        $this->assertSame('user1@domain.fr', $users[0]->getEmail());
 
 
         $users = $this->repository->search('Firstname1 Lastnerkvnjernvkjrnvame1');

@@ -24,10 +24,18 @@ class UserRequestTest extends WebTestCase
         $this->assertCount(0, $errors);
     }
 
+    public function testInvalidBlankMessageEntity(): void
+    {
+        $user = (new User())->setId(1);
+        $entity = (new UserRequest())->setCreator($user)->setTarget($user);
+        $errors = $this->validator->validate($entity);
+        $this->assertCount(1, $errors);
+    }
+
     public function testInvalidBlankCreatorEntity(): void
     {
         $user = (new User())->setId(1);
-        $entity = (new UserRequest())->setTarget($user);
+        $entity = (new UserRequest())->setMessage('Bonjour')->setTarget($user);
         $errors = $this->validator->validate($entity);
         $this->assertCount(1, $errors);
     }
@@ -35,7 +43,7 @@ class UserRequestTest extends WebTestCase
     public function testInvalidBlankTargetEntity(): void
     {
         $user = (new User())->setId(1);
-        $entity = (new UserRequest())->setTarget($user);
+        $entity = (new UserRequest())->setMessage('Bonjour')->setCreator($user);
         $errors = $this->validator->validate($entity);
         $this->assertCount(1, $errors);
     }
@@ -55,6 +63,7 @@ class UserRequestTest extends WebTestCase
     private function getValidEntity(): UserRequest
     {
         return (new UserRequest())
+            ->setMessage('Bonjour')
             ->setCreator((new User())->setId(1))
             ->setTarget((new User())->setId(2));
     }

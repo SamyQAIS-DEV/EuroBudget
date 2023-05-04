@@ -20,9 +20,10 @@ class UserRequestService
     ) {
     }
 
-    public function create(User $creator, User $target, object $entity): UserRequest
+    public function create(User $creator, User $target, string $message, object $entity): UserRequest
     {
         $request = (new UserRequest())
+            ->setMessage($message)
             ->setCreator($creator)
             ->setTarget($target)
             ->setEntity($this->getHashForEntity($entity));

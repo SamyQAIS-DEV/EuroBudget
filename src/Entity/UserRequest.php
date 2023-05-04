@@ -18,6 +18,10 @@ class UserRequest
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
+    private string $message;
+
     // TODO Relations Annotations
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -54,6 +58,18 @@ class UserRequest
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
     }
 
     public function getCreator(): User

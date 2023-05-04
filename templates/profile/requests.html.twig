@@ -16,9 +16,10 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Créateur</th>
-                        <th>Etat</th>
-                        <th>Actions</th>
+                        <th style="width: 150px">Créateur</th>
+                        <th>Demande</th>
+                        <th style="width: 150px">Etat</th>
+                        <th style="width: 150px">Actions</th>
                         <th style="width: 180px">Date</th>
                     </tr>
                     </thead>
@@ -26,6 +27,7 @@
                         {% for request in requests %}
                             <tr class="{{ request.answered ? (request.accepted ? 'background-green-transparent' : 'background-red-transparent') : '' }}">
                                 <td>{{ request.creator.fullName }}</td>
+                                <td>{{ request.message }}</td>
                                 <td>
                                     {% if request.isAnswered %}
                                         {{ request.accepted ? 'Acceptée' : '' }}

@@ -68,7 +68,7 @@ class UserRepository extends AbstractRepository
         $search = explode(' ', $q);
 
         if (count($search) > 1) {
-            return $this->findBy(['firstname' => $search, 'lastname' => $search, 'email' => $search]);
+            return $this->findBy(['firstname' => $search, 'lastname' => $search]);
         }
         return $this->findByOr(['firstname' => $search, 'lastname' => $search, 'email' => $search]);
     }

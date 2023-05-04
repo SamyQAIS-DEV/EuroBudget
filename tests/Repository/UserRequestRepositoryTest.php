@@ -30,4 +30,19 @@ class UserRequestRepositoryTest extends RepositoryTestCase
         $this->assertCount(1, $requests);
         $this->assertInstanceOf(UserRequest::class, $requests[0]);
     }
+
+    public function testCountUnansweredFor(): void
+    {
+        /** @var User $user */
+        $user = $this->data['user1'];
+        $this->repository->flush();
+        $requestsCount = $this->repository->countUnansweredFor($user);
+        $this->assertSame(1, $requestsCount);
+
+        $request = $this->repository->findFor($user);
+        $request[0]->setAccepted(true);
+        $this->repository->flush();
+        $requestsCount = $this->repository->countUnansweredFor($user);
+        $this->assertSame(0, $requestsCount);
+    }
 }

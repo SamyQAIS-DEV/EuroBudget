@@ -10,6 +10,7 @@ class DepositAccountControllerTest extends WebTestCase
 {
     private const CREATION_FORM_BUTTON = 'Créer';
     private const EDITION_FORM_BUTTON = 'Modifier';
+    private const SHARE_FORM_BUTTON = 'Partager';
 
     private string $path = '/deposit-accounts';
 
@@ -74,10 +75,21 @@ class DepositAccountControllerTest extends WebTestCase
         $this->expectErrorAlert('Vous ne pouvez pas modifier ce compte en banque.');
     }
 
-    // TODO
     public function testShare(): void
     {
-
+        ['user1' => $user1, 'user2' => $user2] = $this->loadFixtures(['users']);
+        $this->login($user1);
+        $crawler = $this->client->request('GET', sprintf('%s/%d/partager', $this->path, $user2->getId()));
+        $this->expectH1('Partager un compte en banque');
+        $this->expectH2(sprintf('Avec : %s - %s', $user2->getFullName(), $user2->getEmail()));
+        $form = $crawler->selectButton(self::SHARE_FORM_BUTTON)->form();
+        $form->setValues([
+            'deposit_account_share_request_form' => [
+                'depositAccount' => $user1->getFavoriteDepositAccount()->getId(),
+            ],
+        ]);
+        $this->client->submit($form);
+        self::assertResponseRedirects(sprintf('/profil/%d', $user2->getId()));
     }
 
     private function getValidEntity(User $user): DepositAccount

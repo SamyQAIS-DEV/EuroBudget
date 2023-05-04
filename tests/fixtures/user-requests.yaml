@@ -1,4 +1,5 @@
 App\Entity\UserRequest:
     user_request{1..5}:
+        message: 'Bonjour'
         creator: '@admin_user'
         target: '@user<current()>'

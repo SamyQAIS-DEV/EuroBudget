@@ -32,6 +32,21 @@ class UserRequestRepository extends AbstractRepository
             ->getResult();
     }
 
+    public function countUnansweredFor(User $user): int
+    {
+        return $this->findUnansweredForQueryBuilder($user)
+            ->select('COUNT(ur.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    private function findUnansweredForQueryBuilder(User $user): QueryBuilder
+    {
+        return $this->findForQueryBuilder($user)
+            ->andWhere('ur.accepted = :false AND ur.rejected = :false')
+            ->setParameter('false', false);
+    }
+
     private function findForQueryBuilder(User $user): QueryBuilder
     {
         return $this->createQueryBuilder('ur')

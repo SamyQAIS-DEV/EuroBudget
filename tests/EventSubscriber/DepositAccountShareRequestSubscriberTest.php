@@ -66,27 +66,6 @@ class DepositAccountShareRequestSubscriberTest extends EventSubscriberTest
         $this->assertSame(6, $notificationCount);
     }
 
-    public function testOnDepositAccountShareRequestAnsweredWithoutAnswer(): void
-    {
-        /** @var User $user */
-        ['user1' => $user1, 'user2' => $user2] = $this->loadFixtures(['users', 'notifications', 'user-requests']);
-        $this->login($user1);
-        $notificationRepository = self::getContainer()->get(NotificationRepository::class);
-        $originalNotificationCount = $notificationRepository->count([]);
-        $this->assertSame(5, $originalNotificationCount);
-
-        $request = (new UserRequest())
-            ->setCreator($user1)
-            ->setTarget($user2)
-            ->setEntity($this->callMethod($this->userRequestService, 'getHashForEntity', [$user1->getFavoriteDepositAccount()]));
-        $event = new DepositAccountShareRequestAnsweredEvent($request);
-        $this->expectException(RuntimeException::class);
-        $this->dispatch($this->subscriber, $event);
-
-        $notificationCount = $notificationRepository->count([]);
-        $this->assertSame(5, $notificationCount);
-    }
-
     public function testOnDepositAccountShareRequestAnsweredAccepted(): void
     {
         /** @var User $user */

@@ -30,6 +30,9 @@
             {{ icon('bell') }} Mes notifications
         </a>
         <a href="{{ path('user_requests') }}" {% if active == 'requests' %}aria-selected="true"{% endif %}>
+            {{ render(controller(
+                'App\\\Controller\\Template\\UserRequestStateController::state'
+            )) }}
             {{ icon('inbox') }} Mes demandes
         </a>
     {% else %}

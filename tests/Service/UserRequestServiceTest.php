@@ -18,7 +18,7 @@ class UserRequestServiceTest extends KernelTestCase
     public function testCreate(): void
     {
         ['user1' => $user1, 'user2' => $user2] = $this->loadFixtures(['users']);
-        $request = $this->service->create($user1, $user2, $user1->getFavoriteDepositAccount());
+        $request = $this->service->create($user1, $user2, 'Bonjour', $user1->getFavoriteDepositAccount());
         $this->assertEquals($user1->getId(), $request->getCreator()->getId());
     }
 }
