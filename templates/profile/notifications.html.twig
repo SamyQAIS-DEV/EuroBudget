@@ -16,7 +16,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th class="mobile-hidden">Message</th>
+                        <th>Message</th>
                         <th style="width: 180px">Date</th>
                     </tr>
                     </thead>
@@ -31,12 +31,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <div class="mobile-hidden">
-                                        {{ notification.createdAt | format_date('long') }}
-                                    </div>
-                                    <div class="mobile-only" aria-hidden="true">
-                                        {{ notification.createdAt | format_date('short') }}
-                                    </div>
+                                    {{ notification.createdAt | format_datetime('medium', 'short') }}
                                 </td>
                             </tr>
                         {% endfor %}

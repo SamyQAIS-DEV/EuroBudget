@@ -12,7 +12,6 @@ class NotificationService
 {
     public function __construct(
         private readonly NotificationRepository $notificationRepository,
-        private readonly UserRepository $userRepository,
     ) {
     }
 
@@ -30,6 +29,6 @@ class NotificationService
     public function readAll(User $user): void
     {
         $user->setNotificationsReadAt(new DateTimeImmutable());
-        $this->userRepository->save($user, true);
+        $this->notificationRepository->flush();
     }
 }

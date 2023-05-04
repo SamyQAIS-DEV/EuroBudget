@@ -61,6 +61,7 @@ table a:not([class^='btn']):hover {
     color: var(--contrast);
 }
 
-table tbody > a {
+table tbody a {
     display: table-row;
+    text-decoration: underline;
 }

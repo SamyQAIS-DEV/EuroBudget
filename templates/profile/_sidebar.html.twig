@@ -29,6 +29,9 @@
             )) }}
             {{ icon('bell') }} Mes notifications
         </a>
+        <a href="{{ path('user_requests') }}" {% if active == 'requests' %}aria-selected="true"{% endif %}>
+            {{ icon('inbox') }} Mes demandes
+        </a>
     {% else %}
         <div class="infos text-center">
             <div class="text-muted">{{ user.email }}</div>

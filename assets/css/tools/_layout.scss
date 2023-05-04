@@ -136,9 +136,21 @@
 }
 
 .center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.start {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: start !important;
+}
+
+.end {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: end !important;
 }
 
 .inline-1 {

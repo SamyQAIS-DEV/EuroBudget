@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Dto\ShareDepositAccountDto;
+use App\Dto\DepositAccountShareRequestDto;
 use App\Entity\DepositAccount;
 use App\Entity\User;
 use App\Exception\EntityNotFoundException;
@@ -43,7 +43,7 @@ class DepositAccountService
         return $depositAccount;
     }
 
-    public function share(ShareDepositAccountDto $shareDepositAccount): ShareDepositAccountDto
+    public function share(DepositAccountShareRequestDto $shareDepositAccount): DepositAccountShareRequestDto
     {
         $depositAccount = $shareDepositAccount->depositAccount;
         $depositAccount->setUpdatedAt(new DateTimeImmutable());

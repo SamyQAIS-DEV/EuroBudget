@@ -44,8 +44,8 @@ class NotificationRepository extends AbstractRepository
     private function findUnreadForQueryBuilder(User $user): QueryBuilder
     {
         return $this->findForQueryBuilder($user)
-            ->andWhere('n.createdAt > :readAt')
-            ->setParameter(':readAt', $user->getNotificationsReadAt());
+            ->andWhere('n.updatedAt > :readAt')
+            ->setParameter(':readAt', $user->getNotificationsReadAt() ?? $user->getCreatedAt());
     }
 
     private function findForQueryBuilder(User $user): QueryBuilder

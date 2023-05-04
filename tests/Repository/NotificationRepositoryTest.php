@@ -5,7 +5,9 @@ namespace App\Tests\Repository;
 use App\Entity\Notification;
 use App\Entity\User;
 use App\Repository\NotificationRepository;
+use App\Repository\UserRepository;
 use App\Tests\RepositoryTestCase;
+use DateTimeImmutable;
 
 /**
  * @property NotificationRepository $repository
@@ -35,8 +37,14 @@ class NotificationRepositoryTest extends RepositoryTestCase
     {
         /** @var User $user */
         $user = $this->data['user1'];
-        $notifications = $this->repository->findFor($user);
-        $this->assertCount(1, $notifications);
-        $this->assertInstanceOf(Notification::class, $notifications[0]);
+        $user->setNotificationsReadAt(new DateTimeImmutable('-1 day'));
+        $this->repository->flush();
+        $notificationsCount = $this->repository->countUnreadFor($user);
+        $this->assertSame(1, $notificationsCount);
+
+        $user->setNotificationsReadAt(new DateTimeImmutable('+1 day'));
+        $this->repository->flush();
+        $notificationsCount = $this->repository->countUnreadFor($user);
+        $this->assertSame(0, $notificationsCount);
     }
 }

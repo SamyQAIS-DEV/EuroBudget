@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
-use App\Dto\ShareDepositAccountDto;
+use App\Dto\DepositAccountShareRequestDto;
 use App\Entity\DepositAccount;
 use App\Entity\User;
 use App\Enum\AlertEnum;
+use App\Event\DepositAccountShareRequestCreatedEvent;
 use App\Form\DepositAccountFormType;
-use App\Form\ShareDepositAccountFormType;
+use App\Form\DepositAccountShareRequestFormType;
 use App\Security\Voter\DepositAccountVoter;
 use App\Service\DepositAccountService;
-use App\Service\NotificationService;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class DepositAccountController extends AbstractController
 {
     public function __construct(
         private readonly DepositAccountService $depositAccountService,
-        private readonly NotificationService $notificationService,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
     }
 
@@ -41,23 +42,19 @@ class DepositAccountController extends AbstractController
     #[Route(path: '/{id}/partager', name: 'share', methods: ['GET', 'POST'])]
     public function share(Request $request, User $user): Response
     {
-        $shareDepositAccount = new ShareDepositAccountDto($user);
-        $form = $this->createForm(ShareDepositAccountFormType::class, $shareDepositAccount);
+        $depositAccountShareRequest = new DepositAccountShareRequestDto($user);
+        $form = $this->createForm(DepositAccountShareRequestFormType::class, $depositAccountShareRequest);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->depositAccountService->share($shareDepositAccount);
-            $this->notificationService->notifyUser($shareDepositAccount->user, sprintf(
-                '%s a partagé un compte ("%s") en banque avec vous',
-                $this->getUser()->getFullName(),
-                $shareDepositAccount->depositAccount->getTitle()
-            ));
+            $this->dispatcher->dispatch(new DepositAccountShareRequestCreatedEvent($depositAccountShareRequest));
+
             $this->addAlert(AlertEnum::SUCCESS, sprintf(
-                    'Compte en banque "%s" partagé avec %s',
-                    $shareDepositAccount->depositAccount->getTitle(),
-                    $shareDepositAccount->user->getFullName()
+                    'Demande de partage de "%s" envoyé à %s',
+                    $depositAccountShareRequest->depositAccount->getTitle(),
+                    $depositAccountShareRequest->user->getFullName()
             ));
 
-            return $this->redirectToRoute('user_profile', ['id' => $shareDepositAccount->user->getId()]);
+            return $this->redirectToRoute('user_profile', ['id' => $depositAccountShareRequest->user->getId()]);
         }
 
         return $this->render('deposit-account/share.html.twig', [

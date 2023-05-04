@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mes demandes' %}
+
+{% block body %}
+    <div class="layout-sidebar py5" style="--gap:5;">
+        {% include 'profile/_sidebar.html.twig' with {active: 'requests', user: app.user} %}
+
+        <main>
+            <h1 class="mb3">{{ icon('bell') }} Mes demandes</h1>
+            {% if requests is empty %}
+                <div class="py4 text-muted text-center h3">
+                    Vous n'avez aucune demande
+                </div>
+            {% else %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Créateur</th>
+                        <th>Etat</th>
+                        <th>Actions</th>
+                        <th style="width: 180px">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in requests %}
+                            <tr class="{{ request.answered ? (request.accepted ? 'background-green-transparent' : 'background-red-transparent') : '' }}">
+                                <td>{{ request.creator.fullName }}</td>
+                                <td>
+                                    {% if request.isAnswered %}
+                                        {{ request.accepted ? 'Acceptée' : '' }}
+                                        {{ request.rejected ? 'Rejetée' : '' }}
+                                    {% else %}
+                                        Non répondue
+                                    {% endif %}
+                                </td>
+                                <td class="actions start">
+                                    {# TODO : uncomment if after voter dev #}
+{#                                    {% if request.answered is same as(false) %}#}
+                                        <form method="post" action="{{ path('user_requests_accept', {'id': request.id}) }}" onsubmit="return confirm('Voulez vous vraiment accepter cette demande ?');">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('accept' ~ request.id) }}">
+                                            <button class="btn-primary" title="Accepter la demande">
+                                                {{ icon('check') }}
+                                            </button>
+                                        </form>
+                                        <form method="post" action="{{ path('user_requests_reject', {'id': request.id}) }}" onsubmit="return confirm('Voulez vous vraiment rejeter cette demande ?');">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('reject' ~ request.id) }}">
+                                            <button class="btn-error" title="Rejeter la demande">
+                                                {{ icon('x') }}
+                                            </button>
+                                        </form>
+{#                                    {% endif %}#}
+                                </td>
+                                <td>
+                                    {{ request.createdAt | format_datetime('medium', 'short') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </main>
+    </div>
+{% endblock %}

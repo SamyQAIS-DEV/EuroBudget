@@ -1,0 +1,4 @@
+App\Entity\UserRequest:
+    user_request{1..5}:
+        creator: '@admin_user'
+        target: '@user<current()>'

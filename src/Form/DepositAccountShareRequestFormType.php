@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Dto\ShareDepositAccountDto;
+use App\Dto\DepositAccountShareRequestDto;
 use App\Entity\DepositAccount;
 use App\Repository\DepositAccountRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ShareDepositAccountFormType extends AbstractType
+class DepositAccountShareRequestFormType extends AbstractType
 {
     public function __construct(
         private readonly Security $security,
@@ -21,7 +21,7 @@ class ShareDepositAccountFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ShareDepositAccountDto $entity */
+        /** @var DepositAccountShareRequestDto $entity */
         $entity = $builder->getData();
         $user = $this->security->getUser();
         $choices = $this->depositAccountRepository->findForAndWithout($user, $entity->user);
@@ -37,7 +37,7 @@ class ShareDepositAccountFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ShareDepositAccountDto::class,
+            'data_class' => DepositAccountShareRequestDto::class,
         ]);
     }
 }

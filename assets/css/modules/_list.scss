@@ -17,16 +17,16 @@
     &:last-child {
         border-bottom: none;
     }
+}
 
-    .actions {
-        display: flex;
-        align-items: center;
-        justify-content: end;
-    }
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
 
-    .actions button:not(:last-child) {
-        margin-right: space(1);
-    }
+.actions > *:not(:last-child) {
+    margin-right: space(1);
 }
 
 // Opérations

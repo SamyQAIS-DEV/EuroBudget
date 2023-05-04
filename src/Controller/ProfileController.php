@@ -28,7 +28,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/profil/{id}', name: 'user_profile', methods: ['GET'])]
+    #[Route(path: '/profil/{id}', name: 'user_profile', methods: ['GET'], priority: -1)]
     public function profile(User $user): Response
     {
         if ($user->getId() === $this->getUserOrThrow()->getId()) {
