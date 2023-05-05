@@ -7,15 +7,17 @@ import {Icon} from '@components/Icon';
 import {createPortal} from 'react-dom';
 
 type ModalProps = {
-    title?: string;
     show: boolean;
+    title?: string;
+    icon?: string;
     closable?: boolean;
     onClose?: () => void;
 } & PropsWithChildren & HTMLProps<HTMLDivElement>;
 
 export const Modal = ({
-    title,
     show,
+    title,
+    icon,
     closable = true,
     onClose,
     className,
@@ -60,6 +62,7 @@ export const Modal = ({
                         <Icon name="x"/>
                     </button>
                 )}
+                {icon && <Icon className='modal-box__icon' name={icon} />}
                 {title && <h2>{title}</h2>}
                 {children}
             </Animated>

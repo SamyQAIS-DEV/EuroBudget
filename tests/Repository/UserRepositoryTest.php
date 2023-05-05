@@ -37,7 +37,23 @@ class UserRepositoryTest extends RepositoryTestCase
         $this->assertInstanceOf(User::class, $users[0]);
         $this->assertSame('Firstname1', $users[0]->getFirstname());
 
+        $users = $this->repository->search('firstname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
+        $users = $this->repository->search('FIRSTNAME1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
         $users = $this->repository->search('Lastname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
+        $users = $this->repository->search('lastname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
+        $users = $this->repository->search('LASTNAME1');
         $this->assertInstanceOf(User::class, $users[0]);
         $this->assertSame('Firstname1', $users[0]->getFirstname());
 
@@ -45,10 +61,17 @@ class UserRepositoryTest extends RepositoryTestCase
         $this->assertInstanceOf(User::class, $users[0]);
         $this->assertSame('Firstname1', $users[0]->getFirstname());
 
+        $users = $this->repository->search('Firstname1 lastname1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
+        $users = $this->repository->search('Firstname1 LASTNAME1');
+        $this->assertInstanceOf(User::class, $users[0]);
+        $this->assertSame('Firstname1', $users[0]->getFirstname());
+
         $users = $this->repository->search('user1@domain.fr');
         $this->assertInstanceOf(User::class, $users[0]);
         $this->assertSame('user1@domain.fr', $users[0]->getEmail());
-
 
         $users = $this->repository->search('Firstname1 Lastnerkvnjernvkjrnvame1');
         $this->assertCount(0, $users);

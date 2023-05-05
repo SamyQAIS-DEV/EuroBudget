@@ -19,7 +19,7 @@ export const DepositAccount = ({
     return (
         <div className={className}>
             <div className="deposit-account__title">
-                <span>{depositAccount.title}</span>
+                <span className='deposit-account__color-indicator' style={{background: depositAccount.color}}></span><span>{depositAccount.title}</span>
             </div>
             <div className={amountClassName}>{formatCurrency(depositAccount.amount)}</div>
             <a href={`/deposit-accounts/${depositAccount.id}/edit`} className="btn-primary" data-turbolinks="false"><Icon name='edit'/></a>

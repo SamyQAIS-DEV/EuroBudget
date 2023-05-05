@@ -74,9 +74,15 @@ class UserRepository extends AbstractRepository
      */
     public function search(string $q): array
     {
-        // TODO : Test with automatically lowercase, capitalize and uppercase search
-        $search = explode(' ', $q);
-        if (count($search) > 1) {
+        $search = [];
+        foreach (explode(' ', $q) as $v) {
+            $search[] = strtolower($v);
+            $search[] = ucfirst(strtolower($v));
+            $search[] = strtoupper($v);
+        }
+
+        if (count($search) > 3) {
+
             return $this->findBy(['firstname' => $search, 'lastname' => $search]);
         }
 

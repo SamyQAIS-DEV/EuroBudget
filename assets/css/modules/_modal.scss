@@ -39,9 +39,14 @@
     }
 }
 
-.modal-box img {
-    margin-top: -35%;
-    margin-bottom: space(3);
+.modal-box .modal-box__icon {
+    width: 100px;
+    height: 100px;
+    margin: -100px auto space(3);
+    background: #fff;
+    color: #333;
+    border-radius: border-radius(3);
+    padding: space(1);
 }
 
 .modal-box h2 {

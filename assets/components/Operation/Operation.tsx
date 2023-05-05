@@ -92,7 +92,7 @@ export const Operation = ({
                     </Button>
                 </div>
             </div>
-            <Modal title="Édition d'une opération" show={editing} onClose={handleClose}>
+            <Modal title="Édition d'une opération" icon='list' show={editing} onClose={handleClose}>
                 <OperationForm operation={operation} labels={labels} onSubmit={handleUpdate}/>
             </Modal>
         </>

@@ -48,9 +48,7 @@ export const FavoriteDepositAccountSelection = () => {
     return (
         <>
             <Button isLoading={isLoading} onClick={handleOpen}><Icon name='briefcase'/></Button>
-            {/* // TODO : Fix Overflow on close*/}
-            <Modal show={show} onClose={handleClose}>
-                Sélection du compte en banque
+            <Modal title="Sélection du compte en banque" icon='briefcase' show={show} onClose={handleClose}>
                 <div className="modal__body">
                     {data && (
                         <AutoSubmitForm>

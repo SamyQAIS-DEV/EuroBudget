@@ -10,7 +10,14 @@
 }
 
 .deposit-account .deposit-account__title {
-    //text-align: center;
+    display: flex;
+}
+
+.deposit-account .deposit-account__title .deposit-account__color-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: border-radius(0.5);
+    margin-right: space(1);
 }
 
 .deposit-account .deposit-account__amount  {

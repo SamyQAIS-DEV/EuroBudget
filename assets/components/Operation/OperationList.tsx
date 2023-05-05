@@ -135,7 +135,7 @@ export const OperationList = ({
                     <Switch id='operation-past-filter' checked={filterEnabled} label='Filtrer' onChange={() => setFilterEnabled(!filterEnabled)}/>
                 )}
             </div>
-            <Modal title="Création d'une opération" show={state.creating} onClose={handleCloseCreating}>
+            <Modal title="Création d'une opération" icon='list' show={state.creating} onClose={handleCloseCreating}>
                 <OperationForm labels={labels} onSubmit={handleCreate}/>
             </Modal>
             <div className="operations list-group p0">
