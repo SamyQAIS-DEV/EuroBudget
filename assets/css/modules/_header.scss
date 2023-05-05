@@ -142,9 +142,8 @@
     text-overflow: ellipsis;
 }
 
-.header__account svg {
-    display: block;
-    align-self: center;
+.header__account img {
+    --size: 35px;
 }
 
 .header__logout {

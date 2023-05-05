@@ -11,9 +11,15 @@
                 Vous êtes premium jusqu'au <strong>{{ app.user.premiumEnd | format_date('long') }}</strong>.<br/>
                 Si vous reprenez un abonnement, sa durée sera additionnée à votre durée de premium actuelle.
             </p>
+            <p>Votre premium vous permet de :</p>
         {% else %}
-            <p>Vous n'êtes actuellement pas premium.</p>
+            <h4>Vous n'êtes actuellement pas premium.</h4>
+            <p>Devenir premium vous permet de :</p>
         {% endif %}
+        <ul>
+            <li>- Éviter le quota de 15 opération maximum par mois</li>
+            <li>- Accéder aux catégories pour y associer vos opérations et factures</li>
+        </ul>
 
         {% include 'partials/_premium.html.twig' %}
     </div>

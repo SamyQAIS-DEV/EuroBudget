@@ -13,7 +13,7 @@ parameters:
     encrypted_suffix: '<ENC>'
     enable_encryption: '%env(default:default_enable_encryption:bool:ENABLE_ENCRYPTION)%'
     default_enable_encryption: 'true'
-    admin_ips: '%env(ADMIN_IPS)%'
+    admin_ip: '%env(ADMIN_IP)%'
 
 services:
     # default configuration for services in *this* file
@@ -25,7 +25,7 @@ services:
             $mailPrefixSubject: '%mail_prefix_subject%'
             $senderAddress: '%sender_address%'
             $senderName: '%sender_name%'
-            $adminIps: '%admin_ips%'
+            $adminIp: '%admin_ip%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
