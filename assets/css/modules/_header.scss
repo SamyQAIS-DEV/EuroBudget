@@ -29,7 +29,10 @@
 .header svg {
     width: 12px;
     height: 12px;
-    margin-right: space(.5);
+}
+
+.header span {
+    margin-left: space(.5);
 }
 
 .header__home svg {
@@ -49,6 +52,15 @@
     overflow: hidden;
 }
 
+.header-nav svg {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav svg {
+    display: block;
+}
+
 .header-nav small {
     font-weight: normal;
 }
@@ -61,7 +73,7 @@
 }
 
 .header a {
-    padding: space(1) space(2);
+    padding: space(1);
     border-radius: 50px;
 }
 

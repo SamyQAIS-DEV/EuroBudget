@@ -70,7 +70,7 @@ export const SearchInput = ({
                 <ul className="search-input_suggestions">
                     {results.map((r, index) => (
                         <li key={r.id}>
-                            <a className={classNames(index === selectedItem && 'focused')} href={`/profil/avatars/${r.id}`}>
+                            <a className={classNames(index === selectedItem && 'focused')} href={`/profil/${r.id}`}>
                                 <img className='avatar' src={r.avatarFileName} alt={r.avatarFileName}/>
                                 <span>{r.fullName} - {r.email}</span>
                             </a>

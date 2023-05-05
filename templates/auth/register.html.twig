@@ -22,11 +22,13 @@
                 {% endif %}
 
                 {{ form_start(registrationForm) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.lastname) }}
-                    {{ form_row(registrationForm.firstname) }}
-                    {{ form_row(registrationForm.country) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
+                    <div class="grid">
+                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.lastname) }}
+                        {{ form_row(registrationForm.firstname) }}
+                        {{ form_row(registrationForm.country) }}
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
 
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
                 {{ form_end(registrationForm) }}
@@ -34,7 +36,7 @@
                 {% include 'auth/_social_login_buttons.html.twig' %}
 
                     <p>
-                        <small class="text-muted">Vos données personnelles (email et nom d'utilisateur) ne sont utilisées qu'à des fins d'authentification et ne sont pas partagées avec des tiers (<a href="#">En savoir plus</a>).</small>
+                        <small class="text-muted">Vos données personnelles ne sont utilisées uniquement pour des raisons techniques mais également garantir la cohérence de l'application et ne seront en aucun cas utilisées pour d'autres raisons. Les données son annonymisées via un chiffrement en base de données. (<a href="#">En savoir plus</a>).</small>
                     </p>
             </div>
         </div>

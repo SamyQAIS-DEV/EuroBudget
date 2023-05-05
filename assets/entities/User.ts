@@ -25,6 +25,6 @@ export class User implements UserInterface {
         if (this.avatarName === null) {
             return '/images/default.png';
         }
-        return '/uploads/' + this.avatarName;
+        return '/uploads/avatars/' + this.avatarName;
     }
 }

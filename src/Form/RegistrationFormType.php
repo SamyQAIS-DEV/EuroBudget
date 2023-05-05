@@ -30,6 +30,7 @@ class RegistrationFormType extends AbstractType
                 'placeholder' => 'Pays'
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Conditions d\'utilisation',
                 'mapped' => false,
                 'required' => true,
                 'attr' => [
@@ -37,7 +38,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms',
+                        'message' => 'Vous devez accepter les conditions d\'utilisation (disponible via le lien ci dessous)',
                     ]),
                 ],
             ])

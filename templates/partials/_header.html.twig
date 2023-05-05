@@ -11,26 +11,26 @@
                 {{ icon('home') }} <span>{{ 'Home'|trans }}</span>
             </a>
         </li>
-        <li>
-            <a href="{{ path('invoices_index') }}" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
-                {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>
-            </a>
-        </li>
         {% if app.user %}
+            <li>
+                <a href="{{ path('invoices_index') }}" title="{{ 'Invoices'|trans }}" {{ menu_active('invoices') }}>
+                    {{ icon('inbox') }} <span>{{ 'Invoices'|trans }}</span>
+                </a>
+            </li>
             <li>
                 <deposit-account-selection></deposit-account-selection>
             </li>
+            <li>
+                <a href="{{ path('categories_index') }}" title="{{ 'Categories'|trans }}" {{ menu_active('categories') }}>
+                    {{ icon('layers') }} <span>{{ 'Categories'|trans }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('premium') }}" title="{{ 'Premium'|trans }}" {{ menu_active('premium') }}>
+                    {{ icon('unlock') }} <span>{{ 'Premium'|trans }}</span>
+                </a>
+            </li>
         {% endif %}
-        <li>
-            <a href="{{ path('categories_index') }}" title="{{ 'Categories'|trans }}" {{ menu_active('categories') }}>
-                {{ icon('layers') }} <span>{{ 'Categories'|trans }}</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('premium') }}" title="{{ 'Premium'|trans }}" {{ menu_active('premium') }}>
-                {{ icon('unlock') }} <span>{{ 'Premium'|trans }}</span>
-            </a>
-        </li>
     </ul>
     {% include 'partials/header-side.html.twig' %}
 </nav>
