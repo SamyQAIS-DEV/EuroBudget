@@ -53,4 +53,13 @@ class UserRepositoryTest extends RepositoryTestCase
         $users = $this->repository->search('Firstname1 Lastnerkvnjernvkjrnvame1');
         $this->assertCount(0, $users);
     }
+
+    public function testFindOneByRole(): void
+    {
+        $this->loadFixtures(['users']);
+        $this->assertSame(9, $this->repository->count([]));
+        $userFromRepo = $this->repository->findOneByRole('ROLE_ADMIN');
+        $this->assertInstanceOf(User::class, $userFromRepo);
+        $this->assertContains('ROLE_ADMIN', $userFromRepo->getRoles());
+    }
 }

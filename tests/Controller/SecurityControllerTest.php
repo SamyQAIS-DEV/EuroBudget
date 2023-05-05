@@ -49,7 +49,7 @@ class SecurityControllerTest extends WebTestCase
         self::assertEmailCount(1);
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
         $this->client->followRedirect();
-        $this->expectSuccessAlert('Login link sent');
+        $this->expectSuccessAlert('Lien d\'authentification envoyé');
     }
 
     public function testLoginNotExistingEmail(): void

@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="homepage stack-separated py5" style="--gap:6">
-        {% if canLoginAsAdmin %}
+        {% if is_granted('CAN_LOGIN_AS_ADMIN') %}
             <a class="btn-secondary" href="{{ path('admin_auto_login') }}">Login as admin</a>
         {% endif %}
         <div class="welcome-container flex">
