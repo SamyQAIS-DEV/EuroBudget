@@ -37,10 +37,6 @@ export const FavoriteDepositAccountSelection = () => {
         setShow(false);
     };
 
-    if (!show || isLoading) {
-        return <Button isLoading={isLoading} onClick={() => setShow(true)}><Icon name='briefcase'/></Button>;
-    }
-
     if (isError) {
         return (
             <p>
@@ -51,7 +47,7 @@ export const FavoriteDepositAccountSelection = () => {
 
     return (
         <>
-            <Button onClick={handleOpen}><Icon name='briefcase'/></Button>
+            <Button isLoading={isLoading} onClick={handleOpen}><Icon name='briefcase'/></Button>
             {/* // TODO : Fix Overflow on close*/}
             <Modal show={show} onClose={handleClose}>
                 Sélection du compte en banque
