@@ -11,6 +11,7 @@ import {Button} from '@components/Button';
 import {Loader} from '@components/Animation/Loader';
 import SearchDropDown from '@components/Operation/SearchDropDown';
 import {TypeEnum} from '@enums/TypeEnum';
+import {manage} from '../../modules/selects';
 
 let cachedCategories: Category[] | null = null;
 
@@ -64,6 +65,7 @@ export const OperationForm = ({
 
     const handleCategory = (e: FormEvent<HTMLSelectElement>) => {
         const target = e.target as HTMLSelectElement;
+        manage(target);
         const category = data.find((c) => target.value === String(c.id)) ?? null;
         setItem(i => ({...i, category: category}));
     };
@@ -121,6 +123,7 @@ export const OperationForm = ({
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
                         </select>
+                        <label htmlFor='category' title='Catégorie'/>
                     </div>
                 )}
                 <FormField

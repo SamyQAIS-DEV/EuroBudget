@@ -1,11 +1,12 @@
-export const registerSelects = () => {
-    const manage = (select: HTMLSelectElement) => {
-        if (select.value) {
-            select.classList.add('valid');
-        } else {
-            select.classList.remove('valid');
-        }
+export const manage = (select: HTMLSelectElement) => {
+    if (select.value) {
+        select.classList.add('valid');
+    } else {
+        select.classList.remove('valid');
     }
+};
+
+export const registerSelects = () => {
 
     document.querySelectorAll('select')
         .forEach((s) => {
