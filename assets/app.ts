@@ -19,9 +19,10 @@ declare global {
     }
 }
 
-registerColor();
 
 document.addEventListener('turbolinks:load', () => {
+    registerColor();
+    
     setTimeout(() => {
         const $mainLoader = document.querySelector('#main-loader');
         if ($mainLoader) {
