@@ -22,7 +22,7 @@ declare global {
 
 document.addEventListener('turbolinks:load', () => {
     registerColor();
-    
+
     setTimeout(() => {
         const $mainLoader = document.querySelector('#main-loader');
         if ($mainLoader) {

@@ -217,10 +217,3 @@
         padding-top: space(3);
     }
 }
-
-@include down(450) {
-    .auth-container .card {
-        min-width: unset;
-        width: 100%;
-    }
-}
