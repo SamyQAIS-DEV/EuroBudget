@@ -7,7 +7,15 @@
     gap: space(4);
 }
 
+.footer .footer-title {
+    font-weight: bold;
+}
+
 .footer a {
     color: var(--contrast);
-    font-weight: bold;
+}
+
+.footer p img {
+    height: 16px;
+    border-radius: 3px;
 }

@@ -76,11 +76,14 @@ class UserRepository extends AbstractRepository
     {
         $search = [];
         foreach (explode(' ', $q) as $v) {
-            // TODO Capitalize if '-' => Jean-Paul instead of Jean-paul
+            $parts = str_replace('-', ' ', $v);
             $search[] = strtolower($v);
-            $search[] = ucfirst(strtolower($v));
             $search[] = strtoupper($v);
+            $search[] = ucfirst(strtolower($v));
+            $search[] = str_replace(' ', '-', ucwords($parts));
+            $search[] = $v;
         }
+        $search = array_unique($search);
 
         if (count($search) > 3) {
 

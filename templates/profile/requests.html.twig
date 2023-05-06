@@ -16,19 +16,19 @@
                 <table>
                     <thead>
                     <tr>
-                        <th style="width: 150px">Créateur</th>
+                        <th class="mobile-hidden">Créateur</th>
                         <th>Demande</th>
-                        <th style="width: 150px">Etat</th>
-                        <th style="width: 150px">Actions</th>
-                        <th style="width: 180px">Date</th>
+                        <th class="mobile-hidden">Etat</th>
+                        <th style="width: 115px">Actions</th>
+                        <th style="width: 115px">Date</th>
                     </tr>
                     </thead>
                     <tbody>
                         {% for request in requests %}
                             <tr class="{{ request.answered ? (request.accepted ? 'background-green-transparent' : 'background-red-transparent') : '' }}">
-                                <td>{{ request.creator.fullName }}</td>
+                                <td class="mobile-hidden">{{ request.creator.fullName }}</td>
                                 <td>{{ request.message }}</td>
-                                <td>
+                                <td class="mobile-hidden">
                                     {% if request.isAnswered %}
                                         {{ request.accepted ? 'Acceptée' : '' }}
                                         {{ request.rejected ? 'Rejetée' : '' }}

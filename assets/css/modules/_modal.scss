@@ -52,7 +52,7 @@
         transform: translateX(-50%);
         width: 100px;
         height: space(1);
-        background: #fff;
+        background: var(--color);
         border-radius: border-radius(5);
     }
 }

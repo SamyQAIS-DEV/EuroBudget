@@ -32,4 +32,7 @@ body.is_premium {
     .header__account a {
         background: var(--yellow-transparent);
     }
+    .page-wrapper::before {
+        background: var(--yellow-transparent);
+    }
 }

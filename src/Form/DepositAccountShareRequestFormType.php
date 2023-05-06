@@ -27,6 +27,7 @@ class DepositAccountShareRequestFormType extends AbstractType
         $choices = $this->depositAccountRepository->findForAndWithout($user, $entity->user);
 
         $builder->add('depositAccount', EntityType::class, [
+            'label' => 'Compte en banque',
             'class' => DepositAccount::class,
             'placeholder' => 'Compte en banque',
             'choices' => $choices,

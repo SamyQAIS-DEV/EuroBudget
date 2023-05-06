@@ -20,8 +20,8 @@ class InvoiceControllerTest extends WebTestCase
         $this->login($user);
         $this->client->request('GET', '/invoices');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->expectTitle('Toutes vos factures');
-        $this->expectH1('Toutes vos factures');
+        $this->expectTitle('Toutes vos opérations récurentes');
+        $this->expectH1('Toutes vos opérations récurentes');
     }
 
     public function testIndexUnauthenticated(): void

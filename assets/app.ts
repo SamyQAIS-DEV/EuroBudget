@@ -7,6 +7,7 @@ import Turbolinks from 'turbolinks';
 
 import './modules/scrollreveal';
 import {registerColor} from './modules/color';
+import {registerSelects} from './modules/selects';
 
 declare global {
     interface Window {
@@ -22,6 +23,7 @@ declare global {
 
 document.addEventListener('turbolinks:load', () => {
     registerColor();
+    registerSelects();
 
     setTimeout(() => {
         const $mainLoader = document.querySelector('#main-loader');

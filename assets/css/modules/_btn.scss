@@ -65,13 +65,16 @@
     }
 }
 
-.btn-white-outlined {
+.btn-secondary-outlined {
     @extend %btn;
-    border: 1px solid currentColor;
+    background: transparent;
+    color: var(--color);
+    border: 1px solid var(--color);
 
     &:hover {
         filter: none;
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--color);
+        color: var(--background) !important;
     }
 }
 
@@ -83,26 +86,16 @@
 .btn-secondary {
     @extend %btn;
     font-weight: normal;
-    color: var(--color) !important;
-    background: #ffff;
-    border: 1px solid var(--border) !important;
+    background: var(--border);
+    color: var(--background-light) !important;
+    border: 1px solid var(--border);
 
+    &:hover,
     &:focus,
     &.active,
     &[aria-expanded="true"] {
-        color: var(--contrast);
-        border-color: var(--contrast) !important;
-    }
-
-    @include dark {
-        border-color: #323970 !important;
-        background: #323970 !important;
-
-        &:focus,
-        &.active,
-        &[aria-expanded="true"] {
-            border-color: var(--contrast) !important;
-        }
+        background: var(--background-light);
+        color: var(--color) !important;
     }
 }
 

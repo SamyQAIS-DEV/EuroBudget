@@ -56,6 +56,7 @@ option {
     line-height: 35px;
     color: var(--border);
     transition: all 0.3s, background 0s;
+    pointer-events: none;
 }
 
 .card,
@@ -63,6 +64,10 @@ option {
     .form-group label::before {
         background: var(--background-light);
     }
+}
+
+.form-group select + option:checked {
+    background: red;
 }
 
 .form-group input {
@@ -75,6 +80,22 @@ option {
     &:focus + label::before,
     &:valid + label::before,
     &:invalid:not(:placeholder-shown) + label::before {
+        line-height: 1;
+        font-size: 0.7rem;
+        width: auto;
+        top: -5px;
+        padding: 0 space(1);
+        left: space(1);
+        color: var(--contrast);
+    }
+}
+
+.form-group select {
+    &.valid {
+        outline: 0;
+        border-color: var(--contrast);
+    }
+    &.valid + label::before {
         line-height: 1;
         font-size: 0.7rem;
         width: auto;

@@ -40,6 +40,7 @@ class InvoiceFormType extends AbstractType
 
         if ($user && $user->isPremium()) {
             $builder->add('category', EntityType::class, [
+                'label' => 'Catégorie',
                 'class' => Category::class,
                 'placeholder' => 'Catégorie',
                 'choices' => $choices,
