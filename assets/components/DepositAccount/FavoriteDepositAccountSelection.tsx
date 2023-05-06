@@ -48,7 +48,7 @@ export const FavoriteDepositAccountSelection = () => {
     return (
         <>
             <Button isLoading={isLoading} onClick={handleOpen}><Icon name='briefcase'/></Button>
-            <Modal title="Sélection du compte en banque" icon='briefcase' show={show} onClose={handleClose}>
+            <Modal title="Sélection du compte<br>en banque" show={show} onClose={handleClose}>
                 <div className="modal__body">
                     {data && (
                         <AutoSubmitForm>

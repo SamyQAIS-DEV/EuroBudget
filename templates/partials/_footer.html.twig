@@ -1,16 +1,23 @@
-<footer class="footer">
+<footer class="footer grid3">
     <div class="footer__contact">
         <div class="footer-title">Contact</div>
-    </div>
-
-    <div class="footer__description">
-        <div class="footer-title">L'application</div>
-        <p class="text-muted mb2">
-            Description
+        <p class="mb2">
+            <a href="mailto:samy.qais.dev@gmail.com" target="_blank">samy.qais.dev@gmail.com</a>
         </p>
     </div>
 
-    <div class="footer__theme">
+    <div class="footer__description">
+        <div class="footer-title">Développement</div>
+        <p class="flex start mb2">
+            Développé en <img class="mx1" src="{{ asset('images/flag/france.jpg') }}" alt="LinkedIn Logo" loading="lazy"> par Samy Qais.
+            <a href="https://fr.linkedin.com/in/samy-qais" title="LinkedIn Samy Qais" target="_blank" rel="noreferrer">
+                <img class="mx1" src="{{ asset('images/social/linkedin.png') }}" alt="LinkedIn Logo" loading="lazy">
+            </a>
+        </p>
+    </div>
+
+    <div class="footer__theme text-right">
+        <p>Thème sombre</p>
         <theme-switcher></theme-switcher>
         <network-status></network-status>
     </div>

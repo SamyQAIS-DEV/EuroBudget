@@ -12,17 +12,16 @@
     &::after {
         content: '';
         position: absolute;
-        width: 100%;
+        width: 50%;
+        max-width: 80%;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: var(--border);
-        //max-width: var(--container-width);
-        max-width: 80%;
+        background-color: var(--color);
         margin-left: auto;
         margin-right: auto;
-        border-radius: 5px;
-        height: 3px;
+        border-radius: border-radius(1);
+        height: space(0.7);
     }
 }
 
@@ -52,7 +51,7 @@
     overflow: hidden;
 }
 
-.header-nav svg {
+.header-nav a {
     display: flex;
     align-items: center;
 }
@@ -215,6 +214,13 @@
         margin-left: space(1);
     }
     .header {
-        padding-top: space(1);
+        padding-top: space(3);
+    }
+}
+
+@include down(450) {
+    .auth-container .card {
+        min-width: unset;
+        width: 100%;
     }
 }

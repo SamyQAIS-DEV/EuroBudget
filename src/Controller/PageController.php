@@ -8,6 +8,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class PageController extends AbstractController
 {
+    #[Route(path: '/confidentialite', name: 'terms')]
+    public function confidentialite(): Response
+    {
+        return $this->render('pages/confidentialite.html.twig');
+    }
+
     #[Route(path: '/ui', name: 'ui')]
     #[IsGranted('ROLE_ADMIN')]
     public function ui(): Response

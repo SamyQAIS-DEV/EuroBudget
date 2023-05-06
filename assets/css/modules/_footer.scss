@@ -2,7 +2,12 @@
     @extend %container;
     margin-top: auto;
     padding-top: space(5);
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     background: var(--background-light);
     gap: space(4);
+}
+
+.footer a {
+    color: var(--contrast);
+    font-weight: bold;
 }

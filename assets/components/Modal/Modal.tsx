@@ -9,7 +9,6 @@ import {createPortal} from 'react-dom';
 type ModalProps = {
     show: boolean;
     title?: string;
-    icon?: string;
     closable?: boolean;
     onClose?: () => void;
 } & PropsWithChildren & HTMLProps<HTMLDivElement>;
@@ -17,7 +16,6 @@ type ModalProps = {
 export const Modal = ({
     show,
     title,
-    icon,
     closable = true,
     onClose,
     className,
@@ -33,10 +31,10 @@ export const Modal = ({
 
     useEffect(() => {
         if (show) {
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('locked');
             return;
         }
-        document.body.style.overflow = '';
+        document.body.classList.remove('locked');
     }, [show]);
 
     const handleClose = () => {
@@ -62,8 +60,7 @@ export const Modal = ({
                         <Icon name="x"/>
                     </button>
                 )}
-                {icon && <Icon className='modal-box__icon' name={icon} />}
-                {title && <h2>{title}</h2>}
+                {title && <h2 className="modal-title" dangerouslySetInnerHTML={{__html: title}}/>}
                 {children}
             </Animated>
         </Animated>,

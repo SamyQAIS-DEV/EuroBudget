@@ -39,18 +39,22 @@
     }
 }
 
-.modal-box .modal-box__icon {
-    width: 100px;
-    height: 100px;
-    margin: -100px auto space(3);
-    background: #fff;
-    color: #333;
-    border-radius: border-radius(3);
-    padding: space(1);
-}
-
-.modal-box h2 {
+.modal-box .modal-title {
+    position: relative;
+    margin: -75px auto 25px;
     text-align: center;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: space(1);
+        background: #fff;
+        border-radius: border-radius(5);
+    }
 }
 
 .modal-box .modal-close {

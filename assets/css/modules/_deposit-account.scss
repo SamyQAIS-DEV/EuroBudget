@@ -33,8 +33,8 @@
 
 .deposit-account .selected-icon {
     position: absolute;
-    top: space(0.5);
-    right: space(0.5);
+    top: space(1);
+    right: space(1);
     color: white;
     background: var(--contrast);
     width: 22px;
@@ -59,6 +59,10 @@
         background: var(--background);
         box-shadow: none;
         height: 100%;
+
+        &.selected {
+            border: 3px solid var(--contrast);
+        }
     }
 }
 
