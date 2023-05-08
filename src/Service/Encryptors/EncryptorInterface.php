@@ -28,6 +28,12 @@ interface EncryptorInterface
     public function encrypt(?string $data): string;
 
     /**
+     * @param string|array|null $data Data to encrypt
+     * @return string
+     */
+    public function encryptData(string|array|null $data): string|array;
+
+    /**
      * @return string
      */
     public function getSuffix(): string;

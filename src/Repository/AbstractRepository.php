@@ -78,19 +78,11 @@ abstract class AbstractRepository extends ServiceEntityRepository
         $criteriaString = [];
         $parameters = [];
         foreach ($criteria as $field => $value) {
-            // TODO Refacto that
             if (array_key_exists($field, $encryptedProperties) && $value) {
-                $values = [];
-                if (is_string($value)) {
-                    $value = $this->encryptor->encrypt($value);
-                } else {
-                    foreach ($value as $v) {
-                        $values[] = $this->encryptor->encrypt($v);
-                    }
-                }
+                $value = $this->encryptor->encryptData($value);
             }
-            $criteriaString[] = is_string($value) ? "e.$field = :$field" : "e.$field IN (:$field)";
-            $parameters[$field] = is_string($value) ? $value : $values;
+            $criteriaString[] = is_array($value) ? "e.$field IN (:$field)" : "e.$field = :$field";
+            $parameters[$field] = $value;
         }
 
         $qb = $this->createQueryBuilder('e');

@@ -85,6 +85,22 @@ class AESOpenSslEncryptor implements EncryptorInterface
         return base64_encode($ciphertext) . $this->suffix;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function encryptData(array|string|null $data): string|array
+    {
+        if (is_string($data)) {
+            return $this->encrypt($data);
+        }
+
+        $values = [];
+        foreach ($data as $value) {
+            $values[] = $this->encrypt($value);
+        }
+        return $values;
+    }
+
     public function getSuffix(): string
     {
         if (!empty($this->suffix)) {
