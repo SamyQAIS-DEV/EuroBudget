@@ -49,7 +49,7 @@ class TransactionRepository extends AbstractRepository
                 'SUM(t.price - t.tax - t.fee) as amount'
             )
             ->groupBy('fulldate', 'date')
-//            ->where('t.refunded = false') // TODO
+//            ->where('t.refunded = false')
             ->orderBy('fulldate', 'DESC')
             ->getQuery()
             ->getResult());
@@ -66,7 +66,7 @@ class TransactionRepository extends AbstractRepository
                 'ROUND(SUM(t.fee) * 100) / 100 as fee',
             )
             ->groupBy('month', 't.method')
-//            ->where('t.refunded = false') // TODO
+//            ->where('t.refunded = false')
             ->andWhere('EXTRACT(YEAR FROM t.createdAt) = :year')
             ->setParameter('year', $year)
             ->orderBy('month', 'DESC')
