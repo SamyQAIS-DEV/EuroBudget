@@ -34,7 +34,7 @@ class DepositAccount
     #[Groups(['read', 'write'])]
     private float $amount = 0;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private User $creator;
 

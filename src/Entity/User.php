@@ -75,7 +75,7 @@ class User implements UserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: DepositAccount::class)]
     #[ORM\JoinColumn(nullable: true)]
     private DepositAccount $favoriteDepositAccount;
 

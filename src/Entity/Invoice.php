@@ -33,15 +33,15 @@ class Invoice implements CategorizableInterface
     #[Assert\Type(Types::BOOLEAN, message: 'The value {{ value }} is not a valid {{ type }}.')]
     private bool $active = true;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private User $creator;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: DepositAccount::class)]
     #[ORM\JoinColumn(nullable: false)]
     private DepositAccount $depositAccount;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
     #[CategoryAccess]
     private ?Category $category = null;
 

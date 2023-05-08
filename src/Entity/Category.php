@@ -29,11 +29,11 @@ class Category
     #[Groups(['read'])]
     private string $slug;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private User $owner;
 
-    #[ORM\ManyToOne(inversedBy: 'categories')]
+    #[ORM\ManyToOne(targetEntity: DepositAccount::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(nullable: false)]
     private DepositAccount $depositAccount;
 

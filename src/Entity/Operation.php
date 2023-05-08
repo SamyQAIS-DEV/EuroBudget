@@ -40,11 +40,11 @@ class Operation implements CalculableInterface, CategorizableInterface
     #[Groups(['read', 'write'])]
     private TypeEnum $type = TypeEnum::DEBIT;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $creator = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: DepositAccount::class)]
     #[ORM\JoinColumn(nullable: false)]
     private DepositAccount $depositAccount;
 
@@ -58,10 +58,10 @@ class Operation implements CalculableInterface, CategorizableInterface
     #[Groups(['read', 'write'])]
     private bool $past = false;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Invoice::class)]
     private ?Invoice $invoice = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
     #[CategoryAccess]
     #[Groups(['read', 'write'])]
     private ?Category $category = null;

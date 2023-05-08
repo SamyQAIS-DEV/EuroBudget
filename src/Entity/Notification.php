@@ -17,7 +17,7 @@ class Notification
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private User $user;
 
     #[ORM\Column(type: Types::STRING, length: 255)]

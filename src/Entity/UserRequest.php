@@ -22,13 +22,12 @@ class UserRequest
     #[Assert\NotBlank]
     private string $message;
 
-    // TODO Relations Annotations
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private User $creator;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private User $target;
