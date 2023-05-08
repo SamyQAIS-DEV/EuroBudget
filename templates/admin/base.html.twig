@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title '' %} | EuroBudget</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-            {{ encore_entry_link_tags('admin') }}
-        {% endblock %}
-        {% block javascripts %}
-            {{ fix_is_attribute()|raw }}
-            {{ encore_entry_script_tags('app') }}
-            {{ encore_entry_script_tags('admin') }}
-        {% endblock %}
-        <link rel="apple-touch-icon" sizes="128x128" href="/images/icon-rounded-128x128.png">
-        <meta property="og:title" content="{{ block('title') }}"/>
-        <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
-        <meta property="og:language" content="fr"/>
-    </head>
-    <body class="admin {{ body_theme() }}">
-        <div class="dashboard-page">
-            {% include "admin/partials/_sidebar.html.twig" %}
-            <main class="dashboard-body">
-                {% include 'partials/flash.html.twig' with { floating: true, duration: 5000 } %}
-                {% block body %}{% endblock %}
-            </main>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title 'EuroBudget' %} | EuroBudget</title>
+    <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="mobile-web-app-title" content="EuroBudget"/>
+    <meta name="apple-mobile-web-app-title" content="EuroBudget"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ fix_is_attribute()|raw }}
+        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('admin') }}
+    {% endblock %}
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/icon-rounded-128x128.png">
+    <meta property="og:title" content="{{ block('title') }}"/>
+    <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
+    <meta property="og:language" content="fr"/>
+</head>
+<body class="admin {{ body_theme() }}">
+<div class="dashboard-page">
+    {% include "admin/partials/_sidebar.html.twig" %}
+    <main class="dashboard-body">
+        {% include 'partials/flash.html.twig' with { floating: true, duration: 5000 } %}
+        {% block body %}{% endblock %}
+    </main>
+</div>
 
-        <script>
-            window.eurobudget = {
-                ...(window.eurobudget || {}),
-                USER_ID: {{ app.user ? app.user.id : 'null' }},
-                FAVORITE_DEPOSIT_ACCOUNT_ID: {{ app.user ? app.user.favoriteDepositAccount.id : 'null' }},
-                FAVORITE_DEPOSIT_ACCOUNT_COLOR: "{{ app.user ? app.user.favoriteDepositAccount.color : null }}",
-                IS_PREMIUM: {{ app.user ? (app.user.premium ? 'true' : 'false') : 'false' }},
-            }
-        </script>
-        {% block javascripts_footer '' %}
-    </body>
+<script>
+    window.eurobudget = {
+        ...(window.eurobudget || {}),
+        USER_ID: {{ app.user ? app.user.id : 'null' }},
+        FAVORITE_DEPOSIT_ACCOUNT_ID: {{ app.user ? app.user.favoriteDepositAccount.id : 'null' }},
+        FAVORITE_DEPOSIT_ACCOUNT_COLOR: "{{ app.user ? app.user.favoriteDepositAccount.color : null }}",
+        IS_PREMIUM: {{ app.user ? (app.user.premium ? 'true' : 'false') : 'false' }},
+    };
+</script>
+{% block javascripts_footer '' %}
+</body>
 </html>

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title 'EuroBudget' %} | EuroBudget</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-        <link rel="apple-touch-icon" sizes="128x128" href="/images/icon-rounded-128x128.png">
-        {% block meta '' -%}
-        <meta property="og:title" content="{{ block('title') }}"/>
-        <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
-        <meta property="og:language" content="fr"/>
-    </head>
-    <body class="
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title 'EuroBudget' %} | EuroBudget</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/icon-rounded-128x128.png">
+    {% block meta '' -%}
+    <meta property="og:title" content="{{ block('title') }}"/>
+    <meta property="og:site_name" content="EuroBudget.SamyQais.fr"/>
+    <meta property="og:language" content="fr"/>
+</head>
+<body class="
         {{ body_theme() }}
         {{ app.user and app.user.isPremium() ? ' is_premium' : '' }}
     ">
-        <div class="page-wrapper">
-            {% block body %}{% endblock %}
-        </div>
+<div class="page-wrapper">
+    {% block body %}{% endblock %}
+</div>
 
-        {% block javascripts_footer '' %}
-    </body>
+{% block javascripts_footer '' %}
+</body>
 </html>

@@ -49,7 +49,7 @@
 // Generic
 // ==================
 body {
-    position:relative;
+    position: relative;
     font-family: $font;
     font-size: 16px;
     color: var(--color);
@@ -63,17 +63,6 @@ body {
     @include down(985) {
         //margin-bottom: 100px;
     }
-}
-
-body.locked {
-    position: fixed !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    overflow: hidden !important;
 }
 
 ::selection {

@@ -85,7 +85,7 @@ class UserRepository extends AbstractRepository
         }
         $search = array_unique($search);
 
-        if (count($search) > 3) {
+        if (count($search) > 5) {
 
             return $this->findBy(['firstname' => $search, 'lastname' => $search]);
         }
