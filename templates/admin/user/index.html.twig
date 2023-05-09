@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    {{ icon('user') }} Utilisateurs
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
+            <th>Pseudo</th>
+            <th>Email</th>
+            <th>Inscription</th>
+            <th>Premium</th>
+            <th>IP</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in rows %}
+            <tr>
+                <td>
+                    {{ user.id }}
+                </td>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>
+                    {{ user.createdAt | format_datetime(pattern="dd MMM. yyyy à kk:mm") }}
+                </td>
+                <td>
+                    {{ user.premium ? user.premiumEnd | ago('Pour') : '' }}
+                </td>
+                <td>
+                    <a href="https://ipinfo.io/{{ user.lastLoginIp }}" target="_blank">{{ user.lastLoginIp }}</a>
+                </td>
+                <td>
+                    <div class="dashboard-actions">
+                        <a href="/?_ninja={{ user.email }}" class="btn-secondary">
+                            {{ icon('ninja') }} Ninja
+                        </a>
+                        {#              <a href="{{ path('admin_transaction_index', {q: 'user:' ~ user.id}) }}" class="btn-secondary">{{ icon('refund') }} Transactions</a> #}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ paginate(rows) }}
+{% endblock %}

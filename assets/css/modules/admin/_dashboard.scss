@@ -1,11 +1,9 @@
 .dashboard-page {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: 60px 1fr;
     min-height: 100vh;
-    grid-template-areas:
-      "sidebar header"
-      "sidebar body"
+    @include up(725) {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+    }
 }
 
 // Sidebar
@@ -13,7 +11,6 @@
 .dashboard-sidebar {
     background: var(--background-light);
     font-size: 15px;
-    grid-area: sidebar;
 }
 .dashboard-sidebar__wrapper {
     top: 0;
@@ -62,7 +59,6 @@
 .dashboard-body {
     position: relative;
     padding: space(3) space(6);
-    grid-area: body;
 }
 
 .dashboard-title {

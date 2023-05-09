@@ -15,7 +15,7 @@ class PageController extends AbstractController
     }
 
     #[Route(path: '/ui', name: 'ui')]
-//    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     public function ui(): Response
     {
         return $this->render('pages/ui.html.twig');

@@ -9,7 +9,7 @@ App\Entity\User:
         email: admin_user@domain.fr
         lastname: Lastname Admin
         firstname: Firstname Admin
-        roles: ['ROLE_ADMIN']
+        roles: ['ROLE_SUPER_ADMIN']
         favoriteDepositAccount: '@depositAccountWithoutOperation'
 
     github_user (extends user):
