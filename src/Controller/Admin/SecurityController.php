@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
         Authenticator $appAuthenticator,
     ): Response
     {
-        $user = $this->userRepository->findOneByRole('ROLE_ADMIN');
+        $user = $this->userRepository->findOneByRole('ROLE_SUPER_ADMIN');
         if (!$user) {
             throw new EntityNotFoundException();
         }

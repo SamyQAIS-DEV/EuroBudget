@@ -30,6 +30,7 @@ class UserRepository extends AbstractRepository
         return $this->createQueryBuilder('u')
             ->andWhere('u.roles LIKE :role')
             ->setParameter('role', '%' . $role . '%')
+            ->setMaxResults(1)
             ->getQuery()
             ->getSingleResult();
     }

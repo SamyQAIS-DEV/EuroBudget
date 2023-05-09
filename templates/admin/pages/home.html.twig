@@ -4,6 +4,33 @@
 
 {% block body %}
     <div class="stack-large">
+        <h3>
+            {{ icon('inbox') }} Chiffres
+        </h3>
+        <div class="grid3">
+            <div class="card text-center">
+                <h2><strong>{{ categoryCount }}</strong></h2> Catégories
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ depositAccountCount }}</strong></h2> Comptes
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ invoiceCount }}</strong></h2> Opérations récurentes
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ notificationCount }}</strong></h2> Notifications
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ operationCount }}</strong></h2> Opérations
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ transactionCount }}</strong></h2> Factures
+            </div>
+            <div class="card text-center">
+                <h2><strong>{{ userRequestCount }}</strong></h2> Demandes
+            </div>
+        </div>
+
         <section class="stack" style="--gap: 1;">
             <div class="flex">
                 <h3>

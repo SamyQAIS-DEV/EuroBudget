@@ -1,14 +1,12 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}
-    {{ icon('user') }} Utilisateurs
-{% endblock %}
+{% block title 'Utilisateurs' %}
 
-{% block content %}
+{% block body %}
     <table class="table">
         <thead>
         <tr>
-            <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
+            <th>ID</th>
             <th>Pseudo</th>
             <th>Email</th>
             <th>Inscription</th>
@@ -24,7 +22,7 @@
                     {{ user.id }}
                 </td>
                 <td>
-                    {{ user.username }}
+                    {{ user.userIdentifier }}
                 </td>
                 <td>
                     {{ user.email }}
@@ -33,16 +31,13 @@
                     {{ user.createdAt | format_datetime(pattern="dd MMM. yyyy à kk:mm") }}
                 </td>
                 <td>
-                    {{ user.premium ? user.premiumEnd | ago('Pour') : '' }}
+                    {{ user.premium ? user.premiumEnd | format_date('long') : '' }}
                 </td>
                 <td>
                     <a href="https://ipinfo.io/{{ user.lastLoginIp }}" target="_blank">{{ user.lastLoginIp }}</a>
                 </td>
                 <td>
                     <div class="dashboard-actions">
-                        <a href="/?_ninja={{ user.email }}" class="btn-secondary">
-                            {{ icon('ninja') }} Ninja
-                        </a>
                         {#              <a href="{{ path('admin_transaction_index', {q: 'user:' ~ user.id}) }}" class="btn-secondary">{{ icon('refund') }} Transactions</a> #}
                     </div>
                 </td>
@@ -50,6 +45,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    {{ paginate(rows) }}
 {% endblock %}
