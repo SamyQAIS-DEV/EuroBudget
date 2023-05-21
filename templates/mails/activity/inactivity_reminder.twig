@@ -1,0 +1,19 @@
+{% extends layout %}
+
+{% import "mails/macros.twig" as e %}
+
+{% block body %}
+
+    {% apply markdown_email %}
+
+        `{{ 'now'|date('H') in 4..17 ? 'Bonjour' : 'Bonsoir' }}` {{ username }} !
+        ===============================
+
+        Vous ne vous êtes pas connecté sur EuroBudget depuis plus de **{{ nbDays }}** jours.
+        N'oubliez pas de vous connectez régulièrement à l'application afin de tenir vos compte le plus à jour possible.
+
+    {% endapply %}
+
+    {{ e.button('Se connecter', url('home')) }}
+
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Enum\AlertEnum;
 use App\Event\LoginLinkRequestedEvent;
 use App\Helper\TimeHelper;
 use App\Repository\TransactionRepository;
+use App\Service\InactivityReminderService;
 use App\Service\LoginLinkService;
 use App\Service\MailerService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -57,6 +58,17 @@ class MailPreviewController extends AbstractController
         $user = $this->getUserOrThrow();
         $email = $mailer->createEmail('mails/auth/delete.twig', 'Suppression de votre compte !', [
             'days' => 5,
+        ]);
+        return new Response($email->getHtmlBody());
+    }
+
+    #[Route(path: '/inactivity-reminder', name: 'inactivity_reminder', methods: ['GET'])]
+    public function inactivityReminder(MailerService $mailer): Response
+    {
+        $user = $this->getUserOrThrow();
+        $email = $mailer->createEmail('mails/activity/inactivity_reminder.twig', 'N\'oubliez pas de tenir vos comptes à jour', [
+            'username' => $user->getFullName(),
+            'nbDays' => InactivityReminderService::ACTIVITY_REMINDER_NB_DAYS,
         ]);
         return new Response($email->getHtmlBody());
     }

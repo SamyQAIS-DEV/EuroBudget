@@ -5,6 +5,8 @@ namespace App\Tests\Repository;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Tests\RepositoryTestCase;
+use DateTime;
+use DateTimeImmutable;
 
 /**
  * @property UserRepository $repository
@@ -85,4 +87,16 @@ class UserRepositoryTest extends RepositoryTestCase
         $this->assertInstanceOf(User::class, $userFromRepo);
         $this->assertContains('ROLE_SUPER_ADMIN', $userFromRepo->getRoles());
     }
+     public function testFindInactiveUsers(): void
+     {
+         $this->loadFixtures(['users']);
+         $users = $this->repository->findInactiveUsers(new DateTime('-7 days'), 5);
+         $this->assertCount(0, $users);
+
+         $fixture = (new User())->setEmail('inactive@domain.fr')->setLastname('lastname')->setFirstname('firstname')->setLastLoginAt(new DateTimeImmutable('-8 days'));
+         $this->repository->save($fixture, true);
+
+         $users = $this->repository->findInactiveUsers(new DateTime('-7 days'), 5);
+         $this->assertCount(1, $users);
+     }
 }

@@ -21,6 +21,7 @@ class User implements UserInterface
 {
     use PremiumTrait;
     use NotifiableTrait;
+    use InactivityRemindableTrait;
     use SocialLoggableTrait;
     use TimestampableTrait;
 
@@ -68,9 +69,6 @@ class User implements UserInterface
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $lastLoginIp = null;
-
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private DateTimeImmutable $lastLoginAt;
 
     #[ORM\Column]
     private array $roles = [];
@@ -196,18 +194,6 @@ class User implements UserInterface
     public function setLastLoginIp(string $lastLoginIp): self
     {
         $this->lastLoginIp = $lastLoginIp;
-
-        return $this;
-    }
-
-    public function getLastLoginAt(): DateTimeImmutable
-    {
-        return $this->lastLoginAt;
-    }
-
-    public function setLastLoginAt(DateTimeImmutable $lastLoginAt): self
-    {
-        $this->lastLoginAt = $lastLoginAt;
 
         return $this;
     }

@@ -31,7 +31,7 @@ class DepositAccountShareRequestFormType extends AbstractType
             'class' => DepositAccount::class,
             'placeholder' => 'Compte en banque',
             'choices' => $choices,
-            'choice_label' => 'title',
+            'choice_label' => fn(DepositAccount $depositAccount) => $depositAccount->getTitle() . ' - ' . $depositAccount->getAmount() . ' €'
         ]);
     }
 

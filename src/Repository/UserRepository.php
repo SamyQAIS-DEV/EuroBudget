@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use App\Service\Encryptors\EncryptedPropertiesAccessor;
 use App\Service\Encryptors\EncryptorInterface;
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -92,5 +93,21 @@ class UserRepository extends AbstractRepository
         }
 
         return $this->findByOr(['firstname' => $search, 'lastname' => $search, 'email' => $search]);
+    }
+
+    /**
+     * @param DateTime $lastActivityDate
+     * @return User[]
+     */
+    public function findInactiveUsers(DateTime $lastActivityDate, int $maxBulkNbItems): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.lastLoginAt < :lastActivityDate')
+            ->andWhere('u.activityReminderSentAt < u.lastLoginAt OR u.activityReminderSentAt IS NULL')
+            ->setParameter(':lastActivityDate', $lastActivityDate)
+            ->orderBy('u.createdAt', 'DESC')
+            ->setMaxResults($maxBulkNbItems)
+            ->getQuery()
+            ->getResult();
     }
 }
